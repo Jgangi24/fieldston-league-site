@@ -188,6 +188,12 @@ table.stats-table th.sort-desc::after {
     content: " \25BC";
 }
 
+table.stats-table th abbr {
+    text-decoration: none;
+    border-bottom: 1px dotted var(--muted);
+    cursor: help;
+}
+
 table.stats-table tbody tr:hover {
     background: #fafbfc;
 }
