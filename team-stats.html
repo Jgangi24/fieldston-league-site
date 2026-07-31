@@ -27,6 +27,8 @@
             <a href="rivalries.html">Rivalries</a>
             <a href="leaders.html">League Leaders</a>
             <a href="player-ratings.html">Player Ratings</a>
+            <a href="player-stats.html">Player Stats</a>
+            <a href="free-agents.html">Free Agents</a>
             <a href="team-stats.html">Team Stats</a>
             <a href="league-stats.html">League Stats</a>
             <a href="game-log.html">Game Log</a>
@@ -35,7 +37,7 @@
         </div>
     </div>
 
-    <a href="draft.html">Draft</a>
+    <a href="draft-results.html">Draft Results</a>
     <a href="history.html">History</a>
 </nav>
 
@@ -43,7 +45,45 @@
 <h1>Team Stats</h1>
 <p class="subtitle">Per-game averages, sorted by points per game (click a column to re-sort)</p>
 <div class="card">
-<p class="placeholder">No games played yet &mdash; export your Game Stats CSV once games have been simulated.</p>
+<table class="stats-table">
+<thead><tr>
+<th>Team</th><th>PPG</th><th>RPG</th><th>APG</th><th>SPG</th><th>BPG</th>
+<th>FG%</th><th>Opp PPG</th>
+</tr></thead>
+<tbody>
+<tr><td>Flamington Tuxedos (FLM)</td><td data-value='139.6'>139.6</td><td data-value='44.4'>44.4</td><td data-value='32.9'>32.9</td><td data-value='6.1'>6.1</td><td data-value='7.1'>7.1</td><td data-value='56.1'>56.1%</td><td data-value='100.3'>100.3</td></tr>
+<tr><td>LA Magic Wiltworthy Kobronabviches (LA)</td><td data-value='137.6'>137.6</td><td data-value='48.7'>48.7</td><td data-value='30.7'>30.7</td><td data-value='8.1'>8.1</td><td data-value='7.6'>7.6</td><td data-value='53.6'>53.6%</td><td data-value='90.4'>90.4</td></tr>
+<tr><td>Blankendorf Monstrosities (BLF)</td><td data-value='135.0'>135.0</td><td data-value='51.9'>51.9</td><td data-value='31.1'>31.1</td><td data-value='7.6'>7.6</td><td data-value='6.1'>6.1</td><td data-value='53.7'>53.7%</td><td data-value='91.1'>91.1</td></tr>
+<tr><td>Laurel Canyon Naughty Chauffeurs (LC)</td><td data-value='131.7'>131.7</td><td data-value='49.4'>49.4</td><td data-value='28.1'>28.1</td><td data-value='10.3'>10.3</td><td data-value='8.1'>8.1</td><td data-value='52.0'>52.0%</td><td data-value='96.1'>96.1</td></tr>
+<tr><td>Jackson Heights Lew Crew (JH)</td><td data-value='130.7'>130.7</td><td data-value='43.6'>43.6</td><td data-value='27.4'>27.4</td><td data-value='7.9'>7.9</td><td data-value='9.7'>9.7</td><td data-value='50.6'>50.6%</td><td data-value='108.7'>108.7</td></tr>
+<tr><td>Queens Lew's Crew 2, Electric Boogaloo (QNS)</td><td data-value='130.4'>130.4</td><td data-value='49.0'>49.0</td><td data-value='28.9'>28.9</td><td data-value='8.7'>8.7</td><td data-value='9.3'>9.3</td><td data-value='51.1'>51.1%</td><td data-value='103.3'>103.3</td></tr>
+<tr><td>San Francisco 3-Deep (SF)</td><td data-value='128.4'>128.4</td><td data-value='43.6'>43.6</td><td data-value='27.0'>27.0</td><td data-value='7.3'>7.3</td><td data-value='4.9'>4.9</td><td data-value='47.8'>47.8%</td><td data-value='107.0'>107.0</td></tr>
+<tr><td>Oakland Paint Patrol (OAK)</td><td data-value='119.7'>119.7</td><td data-value='46.6'>46.6</td><td data-value='26.7'>26.7</td><td data-value='6.7'>6.7</td><td data-value='6.1'>6.1</td><td data-value='47.7'>47.7%</td><td data-value='108.1'>108.1</td></tr>
+<tr><td>Las Vegas Blue Chips (LV)</td><td data-value='116.5'>116.5</td><td data-value='43.8'>43.8</td><td data-value='25.7'>25.7</td><td data-value='7.3'>7.3</td><td data-value='5.0'>5.0</td><td data-value='48.9'>48.9%</td><td data-value='102.2'>102.2</td></tr>
+<tr><td>Seattle Symphony (SEA)</td><td data-value='115.7'>115.7</td><td data-value='50.3'>50.3</td><td data-value='23.7'>23.7</td><td data-value='5.4'>5.4</td><td data-value='3.1'>3.1</td><td data-value='47.8'>47.8%</td><td data-value='106.1'>106.1</td></tr>
+<tr><td>Mexico City Aztecs (MXC)</td><td data-value='114.0'>114.0</td><td data-value='39.9'>39.9</td><td data-value='27.4'>27.4</td><td data-value='5.9'>5.9</td><td data-value='5.0'>5.0</td><td data-value='47.1'>47.1%</td><td data-value='120.4'>120.4</td></tr>
+<tr><td>Miami Cyclones (MIA)</td><td data-value='111.8'>111.8</td><td data-value='46.2'>46.2</td><td data-value='26.2'>26.2</td><td data-value='6.0'>6.0</td><td data-value='5.3'>5.3</td><td data-value='49.0'>49.0%</td><td data-value='105.5'>105.5</td></tr>
+<tr><td>New York Bankers (NY)</td><td data-value='111.0'>111.0</td><td data-value='45.5'>45.5</td><td data-value='23.7'>23.7</td><td data-value='5.0'>5.0</td><td data-value='5.5'>5.5</td><td data-value='43.4'>43.4%</td><td data-value='118.3'>118.3</td></tr>
+<tr><td>Minneapolis Blizzard (MIN)</td><td data-value='109.0'>109.0</td><td data-value='48.1'>48.1</td><td data-value='24.4'>24.4</td><td data-value='6.1'>6.1</td><td data-value='6.6'>6.6</td><td data-value='43.4'>43.4%</td><td data-value='112.9'>112.9</td></tr>
+<tr><td>Toronto Raccoons (TOR)</td><td data-value='108.6'>108.6</td><td data-value='45.9'>45.9</td><td data-value='25.6'>25.6</td><td data-value='8.4'>8.4</td><td data-value='4.3'>4.3</td><td data-value='44.8'>44.8%</td><td data-value='114.7'>114.7</td></tr>
+<tr><td>Phoenix Vultures (PHO)</td><td data-value='107.9'>107.9</td><td data-value='42.6'>42.6</td><td data-value='22.4'>22.4</td><td data-value='4.6'>4.6</td><td data-value='5.3'>5.3</td><td data-value='43.3'>43.3%</td><td data-value='124.6'>124.6</td></tr>
+<tr><td>Detroit Muscle (DET)</td><td data-value='107.1'>107.1</td><td data-value='41.4'>41.4</td><td data-value='26.0'>26.0</td><td data-value='7.3'>7.3</td><td data-value='3.1'>3.1</td><td data-value='47.3'>47.3%</td><td data-value='113.6'>113.6</td></tr>
+<tr><td>South Beach Lowriders (SB)</td><td data-value='105.7'>105.7</td><td data-value='41.6'>41.6</td><td data-value='22.7'>22.7</td><td data-value='7.6'>7.6</td><td data-value='5.1'>5.1</td><td data-value='42.8'>42.8%</td><td data-value='120.6'>120.6</td></tr>
+<tr><td>Philadelphia Cheesesteaks (PHI)</td><td data-value='105.7'>105.7</td><td data-value='44.7'>44.7</td><td data-value='25.5'>25.5</td><td data-value='5.0'>5.0</td><td data-value='5.0'>5.0</td><td data-value='42.9'>42.9%</td><td data-value='104.7'>104.7</td></tr>
+<tr><td>Houston Apollos (HOU)</td><td data-value='104.0'>104.0</td><td data-value='45.0'>45.0</td><td data-value='24.8'>24.8</td><td data-value='9.7'>9.7</td><td data-value='6.0'>6.0</td><td data-value='43.4'>43.4%</td><td data-value='120.7'>120.7</td></tr>
+<tr><td>Portland Roses (POR)</td><td data-value='102.3'>102.3</td><td data-value='44.3'>44.3</td><td data-value='21.7'>21.7</td><td data-value='5.9'>5.9</td><td data-value='5.6'>5.6</td><td data-value='44.1'>44.1%</td><td data-value='117.4'>117.4</td></tr>
+<tr><td>Vancouver Whalers (VAN)</td><td data-value='102.0'>102.0</td><td data-value='39.9'>39.9</td><td data-value='22.9'>22.9</td><td data-value='6.9'>6.9</td><td data-value='4.1'>4.1</td><td data-value='40.9'>40.9%</td><td data-value='119.1'>119.1</td></tr>
+<tr><td>California Unicorns (CAL)</td><td data-value='101.1'>101.1</td><td data-value='44.3'>44.3</td><td data-value='23.3'>23.3</td><td data-value='4.7'>4.7</td><td data-value='4.1'>4.1</td><td data-value='44.5'>44.5%</td><td data-value='120.6'>120.6</td></tr>
+<tr><td>St. Louis Spirits (STL)</td><td data-value='100.1'>100.1</td><td data-value='40.3'>40.3</td><td data-value='21.6'>21.6</td><td data-value='6.3'>6.3</td><td data-value='4.0'>4.0</td><td data-value='41.8'>41.8%</td><td data-value='130.7'>130.7</td></tr>
+<tr><td>Montreal Beavers (MON)</td><td data-value='100.0'>100.0</td><td data-value='45.1'>45.1</td><td data-value='20.6'>20.6</td><td data-value='6.6'>6.6</td><td data-value='5.0'>5.0</td><td data-value='39.6'>39.6%</td><td data-value='117.6'>117.6</td></tr>
+<tr><td>San Diego Pandas (SD)</td><td data-value='100.0'>100.0</td><td data-value='43.4'>43.4</td><td data-value='24.7'>24.7</td><td data-value='7.3'>7.3</td><td data-value='5.6'>5.6</td><td data-value='42.8'>42.8%</td><td data-value='111.6'>111.6</td></tr>
+<tr><td>Tampa Turtles (TPA)</td><td data-value='98.4'>98.4</td><td data-value='40.1'>40.1</td><td data-value='21.7'>21.7</td><td data-value='5.6'>5.6</td><td data-value='5.9'>5.9</td><td data-value='41.9'>41.9%</td><td data-value='125.0'>125.0</td></tr>
+<tr><td>Washington Monuments (WAS)</td><td data-value='96.4'>96.4</td><td data-value='43.0'>43.0</td><td data-value='22.9'>22.9</td><td data-value='3.9'>3.9</td><td data-value='5.7'>5.7</td><td data-value='43.0'>43.0%</td><td data-value='117.3'>117.3</td></tr>
+<tr><td>Sacramento Gold Rush (SAC)</td><td data-value='95.6'>95.6</td><td data-value='46.1'>46.1</td><td data-value='20.6'>20.6</td><td data-value='5.1'>5.1</td><td data-value='3.9'>3.9</td><td data-value='40.1'>40.1%</td><td data-value='115.3'>115.3</td></tr>
+<tr><td>Pittsburgh Rivers (PIT)</td><td data-value='91.5'>91.5</td><td data-value='47.2'>47.2</td><td data-value='19.0'>19.0</td><td data-value='6.3'>6.3</td><td data-value='7.0'>7.0</td><td data-value='36.0'>36.0%</td><td data-value='117.8'>117.8</td></tr>
+
+</tbody>
+</table>
 </div>
 </div>
 <footer class="site-footer"><a href="rules.html">League Rules</a></footer>

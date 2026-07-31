@@ -194,6 +194,85 @@ table.stats-table th abbr {
     cursor: help;
 }
 
+.pt-select {
+    font-family: inherit;
+    font-size: 0.85rem;
+    padding: 3px 6px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: var(--card-bg);
+    color: var(--text);
+}
+
+.pt-info {
+    cursor: help;
+    color: var(--muted);
+    font-weight: 400;
+}
+
+.team-banner {
+    margin: 12px 0 20px;
+}
+
+.team-banner img {
+    width: 100%;
+    max-width: 1200px;
+    height: auto;
+    border-radius: 10px;
+    display: block;
+}
+
+.team-banner-placeholder {
+    border: 2px dashed var(--border);
+    border-radius: 10px;
+    padding: 24px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+.team-banner-placeholder code {
+    background: var(--bg);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+}
+
+.roster-table tr.bench-divider td {
+    background: var(--navy);
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 6px 10px;
+    text-align: center;
+}
+
+.roster-table .drag-handle {
+    cursor: grab;
+    color: var(--muted);
+    text-align: center;
+    width: 20px;
+    letter-spacing: -2px;
+}
+
+.roster-table tr[draggable="true"].dragging {
+    opacity: 0.4;
+    background: var(--bg);
+}
+
+.roster-table tr[draggable="true"]:hover {
+    background: #fafbfc;
+}
+
+.drag-hint {
+    color: var(--muted);
+    font-size: 0.82rem;
+    font-style: italic;
+    margin-top: 8px;
+}
+
 table.stats-table tbody tr:hover {
     background: #fafbfc;
 }
