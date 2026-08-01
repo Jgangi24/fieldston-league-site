@@ -231,6 +231,18 @@ table.stats-table th abbr {
     font-size: 0.9rem;
 }
 
+.team-identity-banner {
+    margin: 20px 0 4px;
+}
+
+.team-identity-banner img {
+    width: 100%;
+    max-width: 1200px;
+    height: auto;
+    border-radius: 10px;
+    display: block;
+}
+
 .team-banner-placeholder code {
     background: var(--bg);
     padding: 2px 6px;
