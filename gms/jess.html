@@ -41,14 +41,16 @@
     <a href="../history.html">History</a>
 </nav>
 
-<div class="page-wide">
+<div class="page-wide gm-page">
     <h1>Jess</h1>
-    <p class="subtitle">Fieldston Core Four Fantasy</p>
 
-    <div class="team-identity-banner team-banner-placeholder">
-    Add a team name + logo banner here &mdash; save a 1200&times;250px image (.jpg or .png) as
-    <code>assets/images/identity/blnk.jpg</code> (or <code>.png</code>)
-</div>
+    <div class="team-tabs"><button class="team-tab active" data-target="panel-0" onclick="showTeamPanel(this, 'panel-0')">
+<img src="../assets/images/identity/blnk.png" alt="Blankendorf Monstrosities">
+</button><button class="team-tab" data-target="panel-1" onclick="showTeamPanel(this, 'panel-1')">
+<img src="../assets/images/identity/flm.png" alt="Flamington Tuxedos">
+</button></div>
+
+    <div class="team-panel" id="panel-0">
 <h2 class="team-name-row">Blankendorf Monstrosities (BLNK)
 <span class="record">0-0</span></h2>
 <div class="team-banner">
@@ -74,106 +76,32 @@
 <thead><tr>
 <th></th><th>Pos</th><th>Player</th><th>GP</th><th>MIN</th><th>PTS</th><th>REB</th>
 <th>AST</th><th>STL</th><th>BLK</th><th>TOV</th><th>FG%</th><th>3P%</th><th>FT%</th><th>GmSc</th>
-<th>PT <span class="pt-info" title="Suggest a playing time change -- Jess will apply it in BBGM">&#9432;</span></th>
 </tr></thead>
 <tbody>
-<tr draggable='true'><td class='drag-handle'>&#8942;&#8942;</td><td>PG</td><td><a href='../players/750.html'>Russell Westbrook</a></td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td><select class="pt-select">
-<option value="0">0</option>
-<option value="-">-</option>
-<option value="normal" selected>&#10003;</option>
-<option value="+">+</option>
-<option value="++">++</option>
-</select></td></tr>
-<tr draggable='true'><td class='drag-handle'>&#8942;&#8942;</td><td>GF</td><td><a href='../players/751.html'>John Havlicek</a></td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td><select class="pt-select">
-<option value="0">0</option>
-<option value="-">-</option>
-<option value="normal" selected>&#10003;</option>
-<option value="+">+</option>
-<option value="++">++</option>
-</select></td></tr>
-<tr draggable='true'><td class='drag-handle'>&#8942;&#8942;</td><td>F</td><td><a href='../players/752.html'>Carmelo Anthony</a></td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td><select class="pt-select">
-<option value="0">0</option>
-<option value="-">-</option>
-<option value="normal" selected>&#10003;</option>
-<option value="+">+</option>
-<option value="++">++</option>
-</select></td></tr>
-<tr draggable='true'><td class='drag-handle'>&#8942;&#8942;</td><td>GF</td><td><a href='../players/753.html'>Giannis Antetokounmpo</a></td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td><select class="pt-select">
-<option value="0">0</option>
-<option value="-">-</option>
-<option value="normal" selected>&#10003;</option>
-<option value="+">+</option>
-<option value="++">++</option>
-</select></td></tr>
-<tr draggable='true'><td class='drag-handle'>&#8942;&#8942;</td><td>FC</td><td><a href='../players/754.html'>Victor Wembanyama</a></td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td><select class="pt-select">
-<option value="0">0</option>
-<option value="-">-</option>
-<option value="normal" selected>&#10003;</option>
-<option value="+">+</option>
-<option value="++">++</option>
-</select></td></tr>
-<tr class="bench-divider"><td colspan="16">Bench</td></tr>
-<tr draggable='true'><td class='drag-handle'>&#8942;&#8942;</td><td>FC</td><td><a href='../players/755.html'>Dave Cowens</a></td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td><select class="pt-select">
-<option value="0">0</option>
-<option value="-">-</option>
-<option value="normal" selected>&#10003;</option>
-<option value="+">+</option>
-<option value="++">++</option>
-</select></td></tr>
-<tr draggable='true'><td class='drag-handle'>&#8942;&#8942;</td><td>F</td><td><a href='../players/756.html'>Andrei Kirilenko</a></td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td><select class="pt-select">
-<option value="0">0</option>
-<option value="-">-</option>
-<option value="normal" selected>&#10003;</option>
-<option value="+">+</option>
-<option value="++">++</option>
-</select></td></tr>
-<tr draggable='true'><td class='drag-handle'>&#8942;&#8942;</td><td>PG</td><td><a href='../players/757.html'>Bob Cousy</a></td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td><select class="pt-select">
-<option value="0">0</option>
-<option value="-">-</option>
-<option value="normal" selected>&#10003;</option>
-<option value="+">+</option>
-<option value="++">++</option>
-</select></td></tr>
-<tr draggable='true'><td class='drag-handle'>&#8942;&#8942;</td><td>GF</td><td><a href='../players/758.html'>Vince Carter</a></td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td><select class="pt-select">
-<option value="0">0</option>
-<option value="-">-</option>
-<option value="normal" selected>&#10003;</option>
-<option value="+">+</option>
-<option value="++">++</option>
-</select></td></tr>
-<tr draggable='true'><td class='drag-handle'>&#8942;&#8942;</td><td>GF</td><td><a href='../players/759.html'>Paul Pierce</a></td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td><select class="pt-select">
-<option value="0">0</option>
-<option value="-">-</option>
-<option value="normal" selected>&#10003;</option>
-<option value="+">+</option>
-<option value="++">++</option>
-</select></td></tr>
-<tr draggable='true'><td class='drag-handle'>&#8942;&#8942;</td><td>FC</td><td><a href='../players/760.html'>Willis Reed</a></td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td><select class="pt-select">
-<option value="0">0</option>
-<option value="-">-</option>
-<option value="normal" selected>&#10003;</option>
-<option value="+">+</option>
-<option value="++">++</option>
-</select></td></tr>
-<tr draggable='true'><td class='drag-handle'>&#8942;&#8942;</td><td>PG</td><td><a href='../players/761.html'>Mark Price</a></td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td><select class="pt-select">
-<option value="0">0</option>
-<option value="-">-</option>
-<option value="normal" selected>&#10003;</option>
-<option value="+">+</option>
-<option value="++">++</option>
-</select></td></tr>
+<tr draggable='true'><td class='drag-handle'>&#8942;&#8942;</td><td>PG</td><td><a href='../players/750.html'>Russell Westbrook</a></td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td></tr>
+<tr draggable='true'><td class='drag-handle'>&#8942;&#8942;</td><td>GF</td><td><a href='../players/751.html'>John Havlicek</a></td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td></tr>
+<tr draggable='true'><td class='drag-handle'>&#8942;&#8942;</td><td>F</td><td><a href='../players/752.html'>Carmelo Anthony</a></td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td></tr>
+<tr draggable='true'><td class='drag-handle'>&#8942;&#8942;</td><td>GF</td><td><a href='../players/753.html'>Giannis Antetokounmpo</a></td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td></tr>
+<tr draggable='true'><td class='drag-handle'>&#8942;&#8942;</td><td>FC</td><td><a href='../players/754.html'>Victor Wembanyama</a></td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td></tr>
+<tr class="bench-divider"><td colspan="15">Bench</td></tr>
+<tr draggable='true'><td class='drag-handle'>&#8942;&#8942;</td><td>FC</td><td><a href='../players/755.html'>Dave Cowens</a></td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td></tr>
+<tr draggable='true'><td class='drag-handle'>&#8942;&#8942;</td><td>F</td><td><a href='../players/756.html'>Andrei Kirilenko</a></td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td></tr>
+<tr draggable='true'><td class='drag-handle'>&#8942;&#8942;</td><td>PG</td><td><a href='../players/757.html'>Bob Cousy</a></td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td></tr>
+<tr draggable='true'><td class='drag-handle'>&#8942;&#8942;</td><td>GF</td><td><a href='../players/758.html'>Vince Carter</a></td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td></tr>
+<tr draggable='true'><td class='drag-handle'>&#8942;&#8942;</td><td>GF</td><td><a href='../players/759.html'>Paul Pierce</a></td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td></tr>
+<tr draggable='true'><td class='drag-handle'>&#8942;&#8942;</td><td>FC</td><td><a href='../players/760.html'>Willis Reed</a></td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td></tr>
+<tr draggable='true'><td class='drag-handle'>&#8942;&#8942;</td><td>PG</td><td><a href='../players/761.html'>Mark Price</a></td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td></tr>
 
 </tbody>
 </table>
 <p class="drag-hint">Drag the &#8942;&#8942; handle to try different starter/bench arrangements &mdash;
 this is just for exploring ideas and doesn't save anywhere. Let Jess know what you land on.</p>
+<p class="pt-link"><a href="https://docs.google.com/spreadsheets/d/1KGYAY5I_hz0OzkXUw-x0lEBlGyniHUy6K9c6bSW5P4Q/edit?usp=sharing" target="_blank">Adjust Playing Time &#8594;</a></p>
     </div>
 </div>
-
-    <div class="team-identity-banner team-banner-placeholder">
-    Add a team name + logo banner here &mdash; save a 1200&times;250px image (.jpg or .png) as
-    <code>assets/images/identity/flm.jpg</code> (or <code>.png</code>)
 </div>
+
+    <div class="team-panel" id="panel-1" style="display:none">
 <h2 class="team-name-row">Flamington Tuxedos (FLM)
 <span class="record">0-0</span></h2>
 <div class="team-banner">
@@ -199,104 +127,34 @@ this is just for exploring ideas and doesn't save anywhere. Let Jess know what y
 <thead><tr>
 <th></th><th>Pos</th><th>Player</th><th>GP</th><th>MIN</th><th>PTS</th><th>REB</th>
 <th>AST</th><th>STL</th><th>BLK</th><th>TOV</th><th>FG%</th><th>3P%</th><th>FT%</th><th>GmSc</th>
-<th>PT <span class="pt-info" title="Suggest a playing time change -- Jess will apply it in BBGM">&#9432;</span></th>
 </tr></thead>
 <tbody>
-<tr draggable='true'><td class='drag-handle'>&#8942;&#8942;</td><td>G</td><td><a href='../players/798.html'>James Harden</a></td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td><select class="pt-select">
-<option value="0">0</option>
-<option value="-">-</option>
-<option value="normal" selected>&#10003;</option>
-<option value="+">+</option>
-<option value="++">++</option>
-</select></td></tr>
-<tr draggable='true'><td class='drag-handle'>&#8942;&#8942;</td><td>G</td><td><a href='../players/799.html'>Shai Gilgeous-Alexander</a></td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td><select class="pt-select">
-<option value="0">0</option>
-<option value="-">-</option>
-<option value="normal" selected>&#10003;</option>
-<option value="+">+</option>
-<option value="++">++</option>
-</select></td></tr>
-<tr draggable='true'><td class='drag-handle'>&#8942;&#8942;</td><td>GF</td><td><a href='../players/800.html'>Paul George</a></td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td><select class="pt-select">
-<option value="0">0</option>
-<option value="-">-</option>
-<option value="normal" selected>&#10003;</option>
-<option value="+">+</option>
-<option value="++">++</option>
-</select></td></tr>
-<tr draggable='true'><td class='drag-handle'>&#8942;&#8942;</td><td>FC</td><td><a href='../players/801.html'>Kevin Garnett</a></td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td><select class="pt-select">
-<option value="0">0</option>
-<option value="-">-</option>
-<option value="normal" selected>&#10003;</option>
-<option value="+">+</option>
-<option value="++">++</option>
-</select></td></tr>
-<tr draggable='true'><td class='drag-handle'>&#8942;&#8942;</td><td>C</td><td><a href='../players/802.html'>Nikola Jokić</a></td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td><select class="pt-select">
-<option value="0">0</option>
-<option value="-">-</option>
-<option value="normal" selected>&#10003;</option>
-<option value="+">+</option>
-<option value="++">++</option>
-</select></td></tr>
-<tr class="bench-divider"><td colspan="16">Bench</td></tr>
-<tr draggable='true'><td class='drag-handle'>&#8942;&#8942;</td><td>SG</td><td><a href='../players/803.html'>Reggie Miller</a></td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td><select class="pt-select">
-<option value="0">0</option>
-<option value="-">-</option>
-<option value="normal" selected>&#10003;</option>
-<option value="+">+</option>
-<option value="++">++</option>
-</select></td></tr>
-<tr draggable='true'><td class='drag-handle'>&#8942;&#8942;</td><td>FC</td><td><a href='../players/804.html'>Dwight Howard</a></td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td><select class="pt-select">
-<option value="0">0</option>
-<option value="-">-</option>
-<option value="normal" selected>&#10003;</option>
-<option value="+">+</option>
-<option value="++">++</option>
-</select></td></tr>
-<tr draggable='true'><td class='drag-handle'>&#8942;&#8942;</td><td>GF</td><td><a href='../players/805.html'>Marques Johnson</a></td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td><select class="pt-select">
-<option value="0">0</option>
-<option value="-">-</option>
-<option value="normal" selected>&#10003;</option>
-<option value="+">+</option>
-<option value="++">++</option>
-</select></td></tr>
-<tr draggable='true'><td class='drag-handle'>&#8942;&#8942;</td><td>PG</td><td><a href='../players/806.html'>Derrick Rose</a></td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td><select class="pt-select">
-<option value="0">0</option>
-<option value="-">-</option>
-<option value="normal" selected>&#10003;</option>
-<option value="+">+</option>
-<option value="++">++</option>
-</select></td></tr>
-<tr draggable='true'><td class='drag-handle'>&#8942;&#8942;</td><td>FC</td><td><a href='../players/807.html'>Alonzo Mourning</a></td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td><select class="pt-select">
-<option value="0">0</option>
-<option value="-">-</option>
-<option value="normal" selected>&#10003;</option>
-<option value="+">+</option>
-<option value="++">++</option>
-</select></td></tr>
-<tr draggable='true'><td class='drag-handle'>&#8942;&#8942;</td><td>SG</td><td><a href='../players/808.html'>Richie Guerin</a></td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td><select class="pt-select">
-<option value="0">0</option>
-<option value="-">-</option>
-<option value="normal" selected>&#10003;</option>
-<option value="+">+</option>
-<option value="++">++</option>
-</select></td></tr>
-<tr draggable='true'><td class='drag-handle'>&#8942;&#8942;</td><td>G</td><td><a href='../players/809.html'>Gail Goodrich</a></td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td><select class="pt-select">
-<option value="0">0</option>
-<option value="-">-</option>
-<option value="normal" selected>&#10003;</option>
-<option value="+">+</option>
-<option value="++">++</option>
-</select></td></tr>
+<tr draggable='true'><td class='drag-handle'>&#8942;&#8942;</td><td>G</td><td><a href='../players/798.html'>James Harden</a></td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td></tr>
+<tr draggable='true'><td class='drag-handle'>&#8942;&#8942;</td><td>G</td><td><a href='../players/799.html'>Shai Gilgeous-Alexander</a></td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td></tr>
+<tr draggable='true'><td class='drag-handle'>&#8942;&#8942;</td><td>GF</td><td><a href='../players/800.html'>Paul George</a></td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td></tr>
+<tr draggable='true'><td class='drag-handle'>&#8942;&#8942;</td><td>FC</td><td><a href='../players/801.html'>Kevin Garnett</a></td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td></tr>
+<tr draggable='true'><td class='drag-handle'>&#8942;&#8942;</td><td>C</td><td><a href='../players/802.html'>Nikola Jokić</a></td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td></tr>
+<tr class="bench-divider"><td colspan="15">Bench</td></tr>
+<tr draggable='true'><td class='drag-handle'>&#8942;&#8942;</td><td>SG</td><td><a href='../players/803.html'>Reggie Miller</a></td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td></tr>
+<tr draggable='true'><td class='drag-handle'>&#8942;&#8942;</td><td>FC</td><td><a href='../players/804.html'>Dwight Howard</a></td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td></tr>
+<tr draggable='true'><td class='drag-handle'>&#8942;&#8942;</td><td>GF</td><td><a href='../players/805.html'>Marques Johnson</a></td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td></tr>
+<tr draggable='true'><td class='drag-handle'>&#8942;&#8942;</td><td>PG</td><td><a href='../players/806.html'>Derrick Rose</a></td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td></tr>
+<tr draggable='true'><td class='drag-handle'>&#8942;&#8942;</td><td>FC</td><td><a href='../players/807.html'>Alonzo Mourning</a></td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td></tr>
+<tr draggable='true'><td class='drag-handle'>&#8942;&#8942;</td><td>SG</td><td><a href='../players/808.html'>Richie Guerin</a></td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td></tr>
+<tr draggable='true'><td class='drag-handle'>&#8942;&#8942;</td><td>G</td><td><a href='../players/809.html'>Gail Goodrich</a></td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td><td data-value='0'>-</td></tr>
 
 </tbody>
 </table>
 <p class="drag-hint">Drag the &#8942;&#8942; handle to try different starter/bench arrangements &mdash;
 this is just for exploring ideas and doesn't save anywhere. Let Jess know what you land on.</p>
+<p class="pt-link"><a href="https://docs.google.com/spreadsheets/d/1KGYAY5I_hz0OzkXUw-x0lEBlGyniHUy6K9c6bSW5P4Q/edit?usp=sharing" target="_blank">Adjust Playing Time &#8594;</a></p>
     </div>
+</div>
 </div>
 </div>
 <footer class="site-footer"><a href="../rules.html">League Rules</a></footer>
 <script src="../assets/js/sort-table.js"></script>
 <script src="../assets/js/drag-roster.js"></script>
+<script src="../assets/js/team-tabs.js"></script>
 </body>
 </html>
