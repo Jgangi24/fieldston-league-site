@@ -93,10 +93,6 @@ body {
     padding: 48px 24px;
 }
 
-.table-scroll {
-    overflow-x: auto;
-}
-
 .skill-badge {
     display: inline-block;
     font-size: 0.68rem;
@@ -136,6 +132,19 @@ h2 {
 h3 {
     margin-top: 4px;
     margin-bottom: 10px;
+}
+
+.game-log-day {
+    margin-top: 28px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+    color: var(--navy);
+}
+
+.game-log-day:first-child {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
 }
 
 .subtitle {
@@ -198,6 +207,12 @@ table.stats-table th abbr {
     margin-top: 12px;
 }
 
+.brand-kit-links {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
 .pt-link a {
     display: inline-block;
     padding: 8px 16px;
@@ -247,7 +262,8 @@ table.stats-table th abbr {
 }
 
 .team-tab {
-    flex: 1 1 300px;
+    flex: 0 1 220px;
+    max-width: 240px;
     padding: 0;
     border: 2px solid var(--border);
     border-radius: 10px;

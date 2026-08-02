@@ -10,3 +10,13 @@ function showTeamPanel(clickedTab, targetId) {
     });
     clickedTab.classList.add('active');
 }
+
+// If the page was linked to with a #panel-<tid> hash (e.g. from the
+// homepage standings table), activate that team's tab on load instead
+// of always defaulting to the first team.
+document.addEventListener('DOMContentLoaded', function () {
+    var targetId = window.location.hash.slice(1);
+    if (!targetId) return;
+    var tab = document.querySelector('.team-tab[data-target="' + targetId + '"]');
+    if (tab) showTeamPanel(tab, targetId);
+});
