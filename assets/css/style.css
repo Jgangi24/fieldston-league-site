@@ -390,19 +390,40 @@ table.stats-table tbody tr:hover {
 }
 
 .result-list li {
-    padding: 8px 0;
     border-bottom: 1px solid var(--border);
 }
 
 .result-link {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     width: 100%;
     text-decoration: none;
     color: inherit;
+    padding: 8px 8px;
+    margin: 0 -8px;
+    border-radius: 6px;
+    transition: background 0.15s ease, color 0.15s ease;
 }
 
 .result-link:hover {
+    background: var(--border);
+    color: var(--navy);
+}
+
+.result-score {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-weight: 500;
+}
+
+.result-chevron {
+    color: var(--muted);
+    font-weight: 700;
+}
+
+.result-link:hover .result-chevron {
     color: var(--accent);
 }
 
@@ -479,7 +500,7 @@ table.stats-table tbody tr:hover {
     padding: 0;
     margin: 0;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 4px 20px;
 }
 
