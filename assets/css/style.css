@@ -386,6 +386,7 @@ table.stats-table tbody tr:hover {
     margin: 0;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    grid-auto-flow: column;
     gap: 4px 24px;
 }
 
