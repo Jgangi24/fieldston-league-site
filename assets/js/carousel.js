@@ -2,6 +2,13 @@
 // the chevrons or dots to jump directly. Manual interaction resets the
 // auto-rotate timer, so it doesn't jump to a new story right after
 // someone clicked to one on purpose.
+//
+// Each slide (image + text) renders as its own block; only the active
+// slide is shown at a time. Prev/next arrows are duplicated inside each
+// slide's image area (so they always sit over the image, never the text
+// below it) -- since only the active slide's copy is visible, we use
+// event delegation on the whole carousel rather than binding to one
+// fixed button.
 
 document.addEventListener('DOMContentLoaded', function () {
     var carousel = document.querySelector('.carousel');
@@ -9,8 +16,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     var slides = carousel.querySelectorAll('.carousel-slide');
     var dots = carousel.querySelectorAll('.carousel-dot');
-    var prevBtn = carousel.querySelector('.carousel-arrow-prev');
-    var nextBtn = carousel.querySelector('.carousel-arrow-next');
     var current = 0;
     var timer = null;
     var AUTO_ROTATE_MS = 6000;
@@ -35,10 +40,15 @@ document.addEventListener('DOMContentLoaded', function () {
         startTimer(); // manual interaction resets the auto-rotate clock
     }
 
-    if (prevBtn) prevBtn.addEventListener('click', function () { goTo(current - 1); });
-    if (nextBtn) nextBtn.addEventListener('click', function () { goTo(current + 1); });
-    dots.forEach(function (dot, i) {
-        dot.addEventListener('click', function () { goTo(i); });
+    carousel.addEventListener('click', function (e) {
+        if (e.target.closest('.carousel-arrow-prev')) {
+            goTo(current - 1);
+        } else if (e.target.closest('.carousel-arrow-next')) {
+            goTo(current + 1);
+        } else if (e.target.closest('.carousel-dot')) {
+            var dotIndex = Array.prototype.indexOf.call(dots, e.target.closest('.carousel-dot'));
+            if (dotIndex !== -1) goTo(dotIndex);
+        }
     });
 
     show(0);
