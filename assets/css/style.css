@@ -821,3 +821,26 @@ table.stats-table tbody tr:hover {
     color: var(--muted);
     margin: 0;
 }
+
+/* --- Article: team value breakdown (draft analysis pieces) --- */
+.team-value-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.team-value-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    margin: 0 0 6px;
+}
+
+.team-value-best {
+    color: #1D9E75;
+}
+
+.team-value-worst {
+    color: #A32D2D;
+}
