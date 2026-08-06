@@ -832,3 +832,42 @@ table.stats-table tbody tr:hover {
 .team-value-worst {
     color: #A32D2D;
 }
+
+/* --- GM page: Team Stats windowed toggle, side-by-side with Last Week's Games --- */
+.two-col-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    align-items: start;
+}
+
+.two-col-cards > .card,
+.two-col-cards > .card + .card {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.team-stats-tabs {
+    display: flex;
+    gap: 6px;
+    margin: 0 0 12px;
+    font-size: 13px;
+}
+
+.team-stats-tab-link {
+    color: var(--muted);
+    text-decoration: none;
+    padding: 2px 4px;
+}
+
+.team-stats-tab-link:not(:last-child)::after {
+    content: "/";
+    margin-left: 6px;
+    color: var(--border);
+}
+
+.team-stats-tab-link.active {
+    color: var(--navy);
+    font-weight: 600;
+    text-decoration: underline;
+}

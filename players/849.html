@@ -50,20 +50,22 @@
 
 <div class="page">
 <h1>Chauncey Billups</h1>
-<p class="subtitle">G &middot; Free Agent</p>
+<p class="subtitle">G &middot; Free Agent &middot; 6'3", 202 lbs</p>
 
-<h2>Bio</h2>
+<p class="team-stats-tabs">
+<a href="#" data-tab-link data-tab-group="player-tabs" data-tab-target="gamelog" class="team-stats-tab-link active">Game Log</a>
+<a href="#" data-tab-link data-tab-group="player-tabs" data-tab-target="season" class="team-stats-tab-link">Season Stats</a>
+</p>
 <div class="card">
-    <p><strong>Team:</strong> Free Agent</p>
-    <p><strong>Position:</strong> G</p>
-    <p><strong>Height / Weight:</strong> 6'3", 202 lbs</p>
-    <p><strong>Born:</strong> 1996, Colorado, USA</p>
-    <p><strong>College:</strong> Colorado</p>
-    <p><strong>No games played yet this season</strong></p>
+<div data-tab-panel-group="player-tabs" data-tab-panel="gamelog"><div class="table-scroll"><p class="placeholder">No games played yet this season.</p></div></div>
+<div data-tab-panel-group="player-tabs" data-tab-panel="season" style="display:none"><table class="stats-table">
+<thead><tr>
+<th></th><th>GP</th><th>PTS</th><th>REB</th><th>AST</th><th>STL</th><th>BLK</th>
+<th>FG%</th><th>3P%</th><th>FT%</th>
+</tr></thead>
+<tbody><tr><td>Last 7</td><td colspan='8' class='placeholder'>No games in this window.</td></tr><tr><td>Last 14</td><td colspan='8' class='placeholder'>No games in this window.</td></tr><tr><td>Full Season</td><td colspan='8' class='placeholder'>No games in this window.</td></tr></tbody>
+</table></div>
 </div>
-
-<h2>Season Stats</h2>
-<div class="card"><p class="placeholder">No games played yet this season.</p></div>
 
 <h2>Ratings</h2>
 <div class="card"><ul class="team-leaders-grid"><li><strong>Overall:</strong> 70</li>
@@ -86,6 +88,7 @@
 </ul><p><strong>Skills:</strong> Three Point Shooter, Ball Handler, Perimeter Defender, Passer, Volume Scorer</p></div>
 </div>
 <footer class="site-footer"><a href="../rules.html">League Rules</a></footer>
-
+<script src="../assets/js/sort-table.js"></script>
+<script src="../assets/js/simple-tabs.js"></script>
 </body>
 </html>
