@@ -839,6 +839,7 @@ table.stats-table tbody tr:hover {
     grid-template-columns: 1fr 1fr;
     gap: 20px;
     align-items: start;
+    margin-bottom: 20px;
 }
 
 .two-col-cards > .card,
@@ -870,4 +871,55 @@ table.stats-table tbody tr:hover {
     color: var(--navy);
     font-weight: 600;
     text-decoration: underline;
+}
+
+/* --- Article image lightbox (click hero/photo-strip images to expand) --- */
+.lightbox-trigger {
+    cursor: zoom-in;
+}
+
+.lightbox-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 37, 64, 0.92);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s ease;
+}
+
+.lightbox-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.lightbox-overlay img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    cursor: zoom-out;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 16px;
+    right: 24px;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 32px;
+    line-height: 1;
+    cursor: pointer;
+    padding: 4px 10px;
+}
+
+.lightbox-close:hover {
+    color: var(--accent);
 }
