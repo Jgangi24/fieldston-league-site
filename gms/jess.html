@@ -135,8 +135,12 @@
 </div>
 <div class="card">
     <h3>Roster</h3>
-    <div class="table-scroll">
-    <table class="stats-table roster-table">
+    <p class="team-stats-tabs">
+    <a href="#" data-tab-link data-tab-group="roster-view-BLNK" data-tab-target="stats" class="team-stats-tab-link active">Player Stats</a>
+    <a href="#" data-tab-link data-tab-group="roster-view-BLNK" data-tab-target="ratings" class="team-stats-tab-link">Player Ratings</a>
+    </p>
+    <div data-tab-panel-group="roster-view-BLNK" data-tab-panel="stats">
+    <div class="table-scroll"><table class="stats-table roster-table">
 <thead><tr>
 <th></th><th>Pos</th><th>Player</th><th>GP</th><th>MIN</th><th>PTS</th><th>REB</th>
 <th>AST</th><th>STL</th><th>BLK</th><th><abbr title="Personal Fouls per game">PF</abbr></th><th>TOV</th><th>FG%</th><th>3P%</th><th>FT%</th><th><abbr title="Game Score — a per-game efficiency rating combining scoring, rebounding, and other stats into one number">GmSc</abbr></th>
@@ -160,7 +164,30 @@
 </table>
 <p class="drag-hint">Drag the &#8942;&#8942; handle to try different starter/bench arrangements &mdash;
 this is just for exploring ideas and doesn't save anywhere. Let Jess know what you land on.</p>
-<p class="pt-link"><a href="https://docs.google.com/spreadsheets/d/18FZz-46fYY_KYfo6OZmrnbByJLjR0SzkZSkCX3X9MEI/edit?usp=sharing" target="_blank">Adjust Starters/Playing Time &#8594;</a></p>
+<p class="pt-link"><a href="https://docs.google.com/spreadsheets/d/1KGYAY5I_hz0OzkXUw-x0lEBlGyniHUy6K9c6bSW5P4Q/edit?usp=sharing" target="_blank">Adjust Starters/Playing Time &#8594;</a></p></div>
+    </div>
+    <div data-tab-panel-group="roster-view-BLNK" data-tab-panel="ratings" style="display:none">
+    <div class="table-scroll"><table class="stats-table roster-table">
+<thead><tr>
+<th>Pos</th><th>Player</th><th><abbr title='Overall'>OVR</abbr></th><th><abbr title='Potential'>POT</abbr></th><th><abbr title='Height Rating'>HGT</abbr></th><th><abbr title='Strength'>STR</abbr></th><th><abbr title='Speed'>SPD</abbr></th><th><abbr title='Jumping'>JMP</abbr></th><th><abbr title='Endurance'>END</abbr></th><th><abbr title='Inside Scoring'>INS</abbr></th><th><abbr title='Dunks'>DNK</abbr></th><th><abbr title='Free Throw'>FT</abbr></th><th><abbr title='Field Goal'>FG</abbr></th><th><abbr title='Three Point'>3PT</abbr></th><th><abbr title='Offensive IQ'>OIQ</abbr></th><th><abbr title='Defensive IQ'>DIQ</abbr></th><th><abbr title='Dribbling'>DRB</abbr></th><th><abbr title='Passing'>PSS</abbr></th><th><abbr title='Rebounding'>REB</abbr></th>
+</tr></thead>
+<tbody>
+<tr><td>GF</td><td><a href='../players/753.html'>Giannis Antetokounmpo</a></td><td data-value='85'>85</td><td data-value='85'>85</td><td data-value='70'>70</td><td data-value='89'>89</td><td data-value='76'>76</td><td data-value='70'>70</td><td data-value='97'>97</td><td data-value='87'>87</td><td data-value='82'>82</td><td data-value='25'>25</td><td data-value='20'>20</td><td data-value='60'>60</td><td data-value='88'>88</td><td data-value='72'>72</td><td data-value='77'>77</td><td data-value='80'>80</td><td data-value='71'>71</td></tr>
+<tr><td>PG</td><td><a href='../players/750.html'>Russell Westbrook</a></td><td data-value='83'>83</td><td data-value='83'>83</td><td data-value='46'>46</td><td data-value='54'>54</td><td data-value='88'>88</td><td data-value='84'>84</td><td data-value='97'>97</td><td data-value='67'>67</td><td data-value='80'>80</td><td data-value='69'>69</td><td data-value='66'>66</td><td data-value='56'>56</td><td data-value='97'>97</td><td data-value='62'>62</td><td data-value='92'>92</td><td data-value='84'>84</td><td data-value='81'>81</td></tr>
+<tr><td>GF</td><td><a href='../players/751.html'>John Havlicek</a></td><td data-value='81'>81</td><td data-value='81'>81</td><td data-value='40'>40</td><td data-value='60'>60</td><td data-value='73'>73</td><td data-value='34'>34</td><td data-value='99'>99</td><td data-value='58'>58</td><td data-value='50'>50</td><td data-value='73'>73</td><td data-value='90'>90</td><td data-value='88'>88</td><td data-value='94'>94</td><td data-value='89'>89</td><td data-value='75'>75</td><td data-value='69'>69</td><td data-value='61'>61</td></tr>
+<tr><td>PG</td><td><a href='../players/757.html'>Bob Cousy</a></td><td data-value='79'>79</td><td data-value='79'>79</td><td data-value='30'>30</td><td data-value='20'>20</td><td data-value='88'>88</td><td data-value='59'>59</td><td data-value='97'>97</td><td data-value='42'>42</td><td data-value='20'>20</td><td data-value='66'>66</td><td data-value='99'>99</td><td data-value='97'>97</td><td data-value='95'>95</td><td data-value='69'>69</td><td data-value='86'>86</td><td data-value='98'>98</td><td data-value='57'>57</td></tr>
+<tr><td>FC</td><td><a href='../players/754.html'>Victor Wembanyama</a></td><td data-value='80'>80</td><td data-value='80'>80</td><td data-value='98'>98</td><td data-value='38'>38</td><td data-value='36'>36</td><td data-value='42'>42</td><td data-value='94'>94</td><td data-value='72'>72</td><td data-value='70'>70</td><td data-value='66'>66</td><td data-value='54'>54</td><td data-value='64'>64</td><td data-value='94'>94</td><td data-value='81'>81</td><td data-value='51'>51</td><td data-value='57'>57</td><td data-value='97'>97</td></tr>
+<tr class="bench-divider"><td colspan="19">Bench</td></tr>
+<tr><td>F</td><td><a href='../players/752.html'>Carmelo Anthony</a></td><td data-value='81'>81</td><td data-value='81'>81</td><td data-value='54'>54</td><td data-value='71'>71</td><td data-value='69'>69</td><td data-value='47'>47</td><td data-value='97'>97</td><td data-value='58'>58</td><td data-value='70'>70</td><td data-value='71'>71</td><td data-value='92'>92</td><td data-value='73'>73</td><td data-value='97'>97</td><td data-value='63'>63</td><td data-value='92'>92</td><td data-value='71'>71</td><td data-value='77'>77</td></tr>
+<tr><td>GF</td><td><a href='../players/759.html'>Paul Pierce</a></td><td data-value='80'>80</td><td data-value='80'>80</td><td data-value='51'>51</td><td data-value='71'>71</td><td data-value='73'>73</td><td data-value='38'>38</td><td data-value='92'>92</td><td data-value='64'>64</td><td data-value='50'>50</td><td data-value='66'>66</td><td data-value='84'>84</td><td data-value='84'>84</td><td data-value='97'>97</td><td data-value='66'>66</td><td data-value='73'>73</td><td data-value='66'>66</td><td data-value='59'>59</td></tr>
+<tr><td>GF</td><td><a href='../players/758.html'>Vince Carter</a></td><td data-value='80'>80</td><td data-value='80'>80</td><td data-value='46'>46</td><td data-value='30'>30</td><td data-value='76'>76</td><td data-value='99'>99</td><td data-value='97'>97</td><td data-value='54'>54</td><td data-value='99'>99</td><td data-value='64'>64</td><td data-value='84'>84</td><td data-value='80'>80</td><td data-value='97'>97</td><td data-value='63'>63</td><td data-value='75'>75</td><td data-value='68'>68</td><td data-value='32'>32</td></tr>
+<tr><td>FC</td><td><a href='../players/755.html'>Dave Cowens</a></td><td data-value='74'>74</td><td data-value='74'>74</td><td data-value='59'>59</td><td data-value='91'>91</td><td data-value='30'>30</td><td data-value='63'>63</td><td data-value='97'>97</td><td data-value='78'>78</td><td data-value='39'>39</td><td data-value='69'>69</td><td data-value='82'>82</td><td data-value='54'>54</td><td data-value='88'>88</td><td data-value='85'>85</td><td data-value='20'>20</td><td data-value='45'>45</td><td data-value='99'>99</td></tr>
+<tr><td>FC</td><td><a href='../players/760.html'>Willis Reed</a></td><td data-value='70'>70</td><td data-value='70'>70</td><td data-value='55'>55</td><td data-value='85'>85</td><td data-value='30'>30</td><td data-value='70'>70</td><td data-value='97'>97</td><td data-value='82'>82</td><td data-value='70'>70</td><td data-value='56'>56</td><td data-value='80'>80</td><td data-value='20'>20</td><td data-value='98'>98</td><td data-value='84'>84</td><td data-value='20'>20</td><td data-value='20'>20</td><td data-value='89'>89</td></tr>
+<tr><td>PG</td><td><a href='../players/761.html'>Mark Price</a></td><td data-value='66'>66</td><td data-value='66'>66</td><td data-value='22'>22</td><td data-value='20'>20</td><td data-value='63'>63</td><td data-value='20'>20</td><td data-value='89'>89</td><td data-value='20'>20</td><td data-value='20'>20</td><td data-value='90'>90</td><td data-value='90'>90</td><td data-value='93'>93</td><td data-value='97'>97</td><td data-value='49'>49</td><td data-value='79'>79</td><td data-value='95'>95</td><td data-value='20'>20</td></tr>
+<tr><td>C</td><td><a href='../players/904.html'>Yao Ming</a></td><td data-value='65'>65</td><td data-value='65'>65</td><td data-value='88'>88</td><td data-value='81'>81</td><td data-value='20'>20</td><td data-value='20'>20</td><td data-value='65'>65</td><td data-value='48'>48</td><td data-value='20'>20</td><td data-value='73'>73</td><td data-value='80'>80</td><td data-value='20'>20</td><td data-value='97'>97</td><td data-value='74'>74</td><td data-value='20'>20</td><td data-value='20'>20</td><td data-value='99'>99</td></tr>
+
+</tbody>
+</table></div>
     </div>
 </div>
 </div>
@@ -243,8 +270,12 @@ this is just for exploring ideas and doesn't save anywhere. Let Jess know what y
 </div>
 <div class="card">
     <h3>Roster</h3>
-    <div class="table-scroll">
-    <table class="stats-table roster-table">
+    <p class="team-stats-tabs">
+    <a href="#" data-tab-link data-tab-group="roster-view-FLM" data-tab-target="stats" class="team-stats-tab-link active">Player Stats</a>
+    <a href="#" data-tab-link data-tab-group="roster-view-FLM" data-tab-target="ratings" class="team-stats-tab-link">Player Ratings</a>
+    </p>
+    <div data-tab-panel-group="roster-view-FLM" data-tab-panel="stats">
+    <div class="table-scroll"><table class="stats-table roster-table">
 <thead><tr>
 <th></th><th>Pos</th><th>Player</th><th>GP</th><th>MIN</th><th>PTS</th><th>REB</th>
 <th>AST</th><th>STL</th><th>BLK</th><th><abbr title="Personal Fouls per game">PF</abbr></th><th>TOV</th><th>FG%</th><th>3P%</th><th>FT%</th><th><abbr title="Game Score — a per-game efficiency rating combining scoring, rebounding, and other stats into one number">GmSc</abbr></th>
@@ -268,7 +299,30 @@ this is just for exploring ideas and doesn't save anywhere. Let Jess know what y
 </table>
 <p class="drag-hint">Drag the &#8942;&#8942; handle to try different starter/bench arrangements &mdash;
 this is just for exploring ideas and doesn't save anywhere. Let Jess know what you land on.</p>
-<p class="pt-link"><a href="https://docs.google.com/spreadsheets/d/18FZz-46fYY_KYfo6OZmrnbByJLjR0SzkZSkCX3X9MEI/edit?usp=sharing" target="_blank">Adjust Starters/Playing Time &#8594;</a></p>
+<p class="pt-link"><a href="https://docs.google.com/spreadsheets/d/1KGYAY5I_hz0OzkXUw-x0lEBlGyniHUy6K9c6bSW5P4Q/edit?usp=sharing" target="_blank">Adjust Starters/Playing Time &#8594;</a></p></div>
+    </div>
+    <div data-tab-panel-group="roster-view-FLM" data-tab-panel="ratings" style="display:none">
+    <div class="table-scroll"><table class="stats-table roster-table">
+<thead><tr>
+<th>Pos</th><th>Player</th><th><abbr title='Overall'>OVR</abbr></th><th><abbr title='Potential'>POT</abbr></th><th><abbr title='Height Rating'>HGT</abbr></th><th><abbr title='Strength'>STR</abbr></th><th><abbr title='Speed'>SPD</abbr></th><th><abbr title='Jumping'>JMP</abbr></th><th><abbr title='Endurance'>END</abbr></th><th><abbr title='Inside Scoring'>INS</abbr></th><th><abbr title='Dunks'>DNK</abbr></th><th><abbr title='Free Throw'>FT</abbr></th><th><abbr title='Field Goal'>FG</abbr></th><th><abbr title='Three Point'>3PT</abbr></th><th><abbr title='Offensive IQ'>OIQ</abbr></th><th><abbr title='Defensive IQ'>DIQ</abbr></th><th><abbr title='Dribbling'>DRB</abbr></th><th><abbr title='Passing'>PSS</abbr></th><th><abbr title='Rebounding'>REB</abbr></th>
+</tr></thead>
+<tbody>
+<tr><td>FC</td><td><a href='../players/801.html'>Kevin Garnett</a></td><td data-value='81'>81</td><td data-value='81'>81</td><td data-value='64'>64</td><td data-value='79'>79</td><td data-value='67'>67</td><td data-value='74'>74</td><td data-value='97'>97</td><td data-value='78'>78</td><td data-value='85'>85</td><td data-value='56'>56</td><td data-value='88'>88</td><td data-value='34'>34</td><td data-value='97'>97</td><td data-value='75'>75</td><td data-value='46'>46</td><td data-value='54'>54</td><td data-value='91'>91</td></tr>
+<tr><td>G</td><td><a href='../players/798.html'>James Harden</a></td><td data-value='81'>81</td><td data-value='81'>81</td><td data-value='53'>53</td><td data-value='48'>48</td><td data-value='65'>65</td><td data-value='74'>74</td><td data-value='97'>97</td><td data-value='65'>65</td><td data-value='68'>68</td><td data-value='75'>75</td><td data-value='71'>71</td><td data-value='84'>84</td><td data-value='98'>98</td><td data-value='59'>59</td><td data-value='99'>99</td><td data-value='81'>81</td><td data-value='45'>45</td></tr>
+<tr><td>PG</td><td><a href='../players/806.html'>Derrick Rose</a></td><td data-value='79'>79</td><td data-value='79'>79</td><td data-value='36'>36</td><td data-value='40'>40</td><td data-value='88'>88</td><td data-value='93'>93</td><td data-value='97'>97</td><td data-value='45'>45</td><td data-value='91'>91</td><td data-value='71'>71</td><td data-value='80'>80</td><td data-value='54'>54</td><td data-value='97'>97</td><td data-value='53'>53</td><td data-value='97'>97</td><td data-value='86'>86</td><td data-value='20'>20</td></tr>
+<tr><td>G</td><td><a href='../players/799.html'>Shai Gilgeous-Alexander</a></td><td data-value='79'>79</td><td data-value='79'>79</td><td data-value='50'>50</td><td data-value='24'>24</td><td data-value='73'>73</td><td data-value='70'>70</td><td data-value='97'>97</td><td data-value='65'>65</td><td data-value='50'>50</td><td data-value='75'>75</td><td data-value='99'>99</td><td data-value='62'>62</td><td data-value='88'>88</td><td data-value='70'>70</td><td data-value='92'>92</td><td data-value='96'>96</td><td data-value='20'>20</td></tr>
+<tr><td>FC</td><td><a href='../players/804.html'>Dwight Howard</a></td><td data-value='78'>78</td><td data-value='78'>78</td><td data-value='63'>63</td><td data-value='97'>97</td><td data-value='55'>55</td><td data-value='91'>91</td><td data-value='97'>97</td><td data-value='78'>78</td><td data-value='95'>95</td><td data-value='30'>30</td><td data-value='20'>20</td><td data-value='20'>20</td><td data-value='97'>97</td><td data-value='88'>88</td><td data-value='20'>20</td><td data-value='20'>20</td><td data-value='95'>95</td></tr>
+<tr class="bench-divider"><td colspan="19">Bench</td></tr>
+<tr><td>GF</td><td><a href='../players/805.html'>Marques Johnson</a></td><td data-value='79'>79</td><td data-value='79'>79</td><td data-value='52'>52</td><td data-value='54'>54</td><td data-value='80'>80</td><td data-value='86'>86</td><td data-value='92'>92</td><td data-value='67'>67</td><td data-value='80'>80</td><td data-value='56'>56</td><td data-value='88'>88</td><td data-value='47'>47</td><td data-value='96'>96</td><td data-value='63'>63</td><td data-value='75'>75</td><td data-value='53'>53</td><td data-value='65'>65</td></tr>
+<tr><td>GF</td><td><a href='../players/800.html'>Paul George</a></td><td data-value='79'>79</td><td data-value='79'>79</td><td data-value='51'>51</td><td data-value='30'>30</td><td data-value='74'>74</td><td data-value='76'>76</td><td data-value='94'>94</td><td data-value='64'>64</td><td data-value='70'>70</td><td data-value='66'>66</td><td data-value='56'>56</td><td data-value='67'>67</td><td data-value='97'>97</td><td data-value='76'>76</td><td data-value='75'>75</td><td data-value='54'>54</td><td data-value='51'>51</td></tr>
+<tr><td>SG</td><td><a href='../players/808.html'>Richie Guerin</a></td><td data-value='80'>80</td><td data-value='80'>80</td><td data-value='40'>40</td><td data-value='71'>71</td><td data-value='80'>80</td><td data-value='76'>76</td><td data-value='97'>97</td><td data-value='49'>49</td><td data-value='29'>29</td><td data-value='69'>69</td><td data-value='84'>84</td><td data-value='77'>77</td><td data-value='95'>95</td><td data-value='65'>65</td><td data-value='75'>75</td><td data-value='74'>74</td><td data-value='61'>61</td></tr>
+<tr><td>C</td><td><a href='../players/802.html'>Nikola Jokić</a></td><td data-value='75'>75</td><td data-value='75'>75</td><td data-value='69'>69</td><td data-value='93'>93</td><td data-value='26'>26</td><td data-value='24'>24</td><td data-value='94'>94</td><td data-value='88'>88</td><td data-value='50'>50</td><td data-value='64'>64</td><td data-value='97'>97</td><td data-value='67'>67</td><td data-value='83'>83</td><td data-value='58'>58</td><td data-value='57'>57</td><td data-value='92'>92</td><td data-value='95'>95</td></tr>
+<tr><td>SG</td><td><a href='../players/882.html'>Manu Ginóbili</a></td><td data-value='73'>73</td><td data-value='73'>73</td><td data-value='44'>44</td><td data-value='20'>20</td><td data-value='62'>62</td><td data-value='32'>32</td><td data-value='97'>97</td><td data-value='35'>35</td><td data-value='20'>20</td><td data-value='66'>66</td><td data-value='84'>84</td><td data-value='75'>75</td><td data-value='94'>94</td><td data-value='69'>69</td><td data-value='92'>92</td><td data-value='81'>81</td><td data-value='26'>26</td></tr>
+<tr><td>FC</td><td><a href='../players/807.html'>Alonzo Mourning</a></td><td data-value='71'>71</td><td data-value='71'>71</td><td data-value='66'>66</td><td data-value='93'>93</td><td data-value='28'>28</td><td data-value='63'>63</td><td data-value='97'>97</td><td data-value='73'>73</td><td data-value='39'>39</td><td data-value='54'>54</td><td data-value='62'>62</td><td data-value='20'>20</td><td data-value='96'>96</td><td data-value='87'>87</td><td data-value='20'>20</td><td data-value='20'>20</td><td data-value='93'>93</td></tr>
+<tr><td>G</td><td><a href='../players/809.html'>Gail Goodrich</a></td><td data-value='67'>67</td><td data-value='67'>67</td><td data-value='32'>32</td><td data-value='20'>20</td><td data-value='63'>63</td><td data-value='20'>20</td><td data-value='97'>97</td><td data-value='25'>25</td><td data-value='20'>20</td><td data-value='69'>69</td><td data-value='90'>90</td><td data-value='88'>88</td><td data-value='97'>97</td><td data-value='48'>48</td><td data-value='79'>79</td><td data-value='89'>89</td><td data-value='20'>20</td></tr>
+
+</tbody>
+</table></div>
     </div>
 </div>
 </div>
