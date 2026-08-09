@@ -8,45 +8,78 @@
 <body>
 <nav class="site-nav">
     <a class="brand" href="../index.html">Fieldston Core Four Fantasy</a>
-    <a href="../index.html">Home</a>
+    <button type="button" class="nav-mobile-toggle" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
 
-    <div class="nav-dropdown">
-        <a href="#" class="nav-dropdown-toggle">GMs &#9662;</a>
-        <div class="nav-dropdown-menu">
-            <a href="../gms/jess.html">Jess</a>
-            <a href="../gms/lew.html">Lew</a>
-            <a href="../gms/mike.html">Mike</a>
-            <a href="../gms/paul.html">Paul</a>
+    <div class="nav-links">
+        <a href="../index.html">Home</a>
+
+        <div class="nav-dropdown">
+            <a href="#" class="nav-dropdown-toggle">GMs &#9662;</a>
+            <div class="nav-dropdown-menu">
+                <a href="../gms/jess.html">Jess</a>
+                <a href="../gms/lew.html">Lew</a>
+                <a href="../gms/mike.html">Mike</a>
+                <a href="../gms/paul.html">Paul</a>
+            </div>
         </div>
-    </div>
 
-    <div class="nav-dropdown">
-        <a href="#" class="nav-dropdown-toggle">League &#9662;</a>
-        <div class="nav-dropdown-menu">
-            <a href="../standings.html">Standings</a>
-            <a href="../rivalries.html">Rivalries</a>
-            <a href="../game-log.html">Game Log</a>
-            <a href="../all-stories.html">All Stories</a>
-            <a href="../power-rankings.html">Power Rankings</a>
-            <a href="../awards.html">Awards</a>
+        <div class="nav-dropdown">
+            <a href="#" class="nav-dropdown-toggle">League &#9662;</a>
+            <div class="nav-dropdown-menu">
+                <a href="../standings.html">Standings</a>
+                <a href="../rivalries.html">Rivalries</a>
+                <a href="../game-log.html">Game Log</a>
+                <a href="../all-stories.html">All Stories</a>
+                <a href="../power-rankings.html">Power Rankings</a>
+                <a href="../awards.html">Awards</a>
+            </div>
         </div>
-    </div>
 
-    <div class="nav-dropdown">
-        <a href="#" class="nav-dropdown-toggle">Stats &#9662;</a>
-        <div class="nav-dropdown-menu">
-            <a href="../leaders.html">League Leaders</a>
-            <a href="../player-ratings.html">Player Ratings</a>
-            <a href="../player-stats.html">Player Stats</a>
-            <a href="../team-stats.html">Team Stats</a>
-            <a href="../league-stats.html">League Stats</a>
-            <a href="../free-agents.html">Free Agents</a>
+        <div class="nav-dropdown">
+            <a href="#" class="nav-dropdown-toggle">Stats &#9662;</a>
+            <div class="nav-dropdown-menu">
+                <a href="../leaders.html">League Leaders</a>
+                <a href="../player-ratings.html">Player Ratings</a>
+                <a href="../player-stats.html">Player Stats</a>
+                <a href="../team-stats.html">Team Stats</a>
+                <a href="../league-stats.html">League Stats</a>
+                <a href="../free-agents.html">Free Agents</a>
+            </div>
         </div>
-    </div>
 
-    <a href="../draft-results.html">Draft Results</a>
-    <a href="../history.html">History</a>
+        <a href="../draft-results.html">Draft Results</a>
+        <a href="../history.html">History</a>
+    </div>
 </nav>
+<script>
+(function () {
+    var MOBILE_BREAKPOINT = 700;
+    var toggle = document.querySelector(".nav-mobile-toggle");
+    var links = document.querySelector(".nav-links");
+    if (!toggle || !links) return;
+
+    toggle.addEventListener("click", function () {
+        var isOpen = links.classList.toggle("nav-links-open");
+        toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    });
+
+    // On mobile, tapping a dropdown toggle (GMs/League/Stats) expands that
+    // submenu in place instead of relying on :hover, which doesn't fire
+    // reliably via touch. Desktop keeps its existing hover behavior --
+    // this only takes over below the mobile breakpoint.
+    document.querySelectorAll(".nav-dropdown-toggle").forEach(function (toggleLink) {
+        toggleLink.addEventListener("click", function (e) {
+            if (window.innerWidth > MOBILE_BREAKPOINT) return;
+            e.preventDefault();
+            var dropdown = toggleLink.closest(".nav-dropdown");
+            var isOpen = dropdown.classList.toggle("nav-dropdown-open");
+            document.querySelectorAll(".nav-dropdown").forEach(function (other) {
+                if (other !== dropdown) other.classList.remove("nav-dropdown-open");
+            });
+        });
+    });
+})();
+</script>
 
 <div class="page">
 <h1>Jackson Heights Lew Crew 124 &ndash; Flamington Tuxedos 102</h1>

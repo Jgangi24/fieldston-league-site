@@ -88,6 +88,26 @@ body {
     color: var(--navy) !important;
 }
 
+.nav-mobile-toggle {
+    display: none;
+    background: none;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
+    font-size: 1.25rem;
+    line-height: 1;
+    padding: 4px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-left: auto;
+}
+
+.nav-links {
+    /* On desktop this wrapper is invisible to layout -- its children
+       (Home, the three dropdowns, Draft Results, History) become direct
+       flex items of .site-nav exactly as before this wrapper existed. */
+    display: contents;
+}
+
 .placeholder-page {
     text-align: center;
     padding: 48px 24px;
@@ -873,6 +893,11 @@ table.stats-table tbody tr:hover {
     text-decoration: underline;
 }
 
+.table-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
 /* --- Article image lightbox (click hero/photo-strip images to expand) --- */
 .lightbox-trigger {
     cursor: zoom-in;
@@ -922,4 +947,150 @@ table.stats-table tbody tr:hover {
 
 .lightbox-close:hover {
     color: var(--accent);
+}
+
+/* ==========================================================================
+   Mobile responsive pass (phones, ~700px and under)
+   No prior @media rules existed in this file -- the site rendered at full
+   desktop width on every device before this. This section adapts the
+   existing layout for narrow screens without changing anything on desktop.
+   ========================================================================== */
+@media (max-width: 700px) {
+
+    /* Nav: tighter spacing so more links fit before wrapping. The dropdown
+       menus (GMs/League/Stats) still rely on :hover / :focus-within, which
+       doesn't work well via touch -- that's a separate, bigger fix (needs
+       a tap-to-toggle button) tracked separately, not solved by this pass. */
+    .site-nav {
+        padding: 12px 16px;
+        gap: 12px 16px;
+    }
+
+    .site-nav .brand {
+        font-size: 1rem;
+        margin-right: 0;
+    }
+
+    .site-nav a {
+        font-size: 0.88rem;
+    }
+
+    /* Hamburger button: shown only on mobile, sits at the far right of the
+       brand row via margin-left:auto set on .nav-mobile-toggle above */
+    .nav-mobile-toggle {
+        display: inline-block;
+    }
+
+    /* Links collapse into a hidden panel by default, full-width and
+       stacked, revealed by JS toggling .nav-links-open on tap */
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2px;
+        width: 100%;
+    }
+
+    .nav-links.nav-links-open {
+        display: flex;
+    }
+
+    /* Submenus (GMs/League/Stats) no longer open on hover/focus at mobile
+       width -- :hover doesn't fire reliably via touch. They're controlled
+       entirely by the .nav-dropdown-open class the tap handler toggles. */
+    .nav-dropdown:hover .nav-dropdown-menu,
+    .nav-dropdown:focus-within .nav-dropdown-menu {
+        display: none;
+    }
+
+    .nav-dropdown {
+        width: 100%;
+    }
+
+    .nav-dropdown-toggle {
+        display: block;
+        padding: 6px 0;
+    }
+
+    .nav-dropdown.nav-dropdown-open .nav-dropdown-menu {
+        display: block;
+        position: static;
+        box-shadow: none;
+        border: none;
+        padding: 0 0 4px 16px;
+        background: transparent;
+    }
+
+    .nav-dropdown-menu a {
+        color: #cbd5e1 !important;
+    }
+
+    .nav-dropdown-menu a:hover {
+        background: rgba(255, 255, 255, 0.08);
+        color: #fff !important;
+    }
+
+    /* Page padding: reclaim horizontal space on narrow screens */
+    .page,
+    .page-wide {
+        width: 100%;
+        padding: 20px 14px 48px;
+    }
+
+    /* Any stats-style table becomes horizontally scrollable within its own
+       width, even if a build script forgot to wrap it in .table-scroll.
+       thead/tbody/tr keep their table display so columns still align;
+       only the outer <table> becomes the scroll container. */
+    table.stats-table {
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        white-space: nowrap;
+    }
+
+    table.stats-table thead,
+    table.stats-table tbody,
+    table.stats-table tr {
+        display: table;
+        width: 100%;
+    }
+
+    /* Two-column layouts collapse to one column and stack */
+    .two-col-cards,
+    .team-value-columns {
+        grid-template-columns: 1fr;
+    }
+
+    /* Last Week's Games list: was a rigid 2-column grid (grid-auto-flow:
+       column), which squeezes each result into ~half the already-narrow
+       screen width. Falls back to a normal single-column stacked list. */
+    .result-list {
+        grid-template-columns: 1fr;
+        grid-auto-flow: row;
+    }
+
+    /* Carousel: trim padding and type size to fit comfortably */
+    .carousel-text {
+        padding: 16px 16px;
+    }
+
+    .carousel-title {
+        font-size: 19px;
+    }
+
+    .carousel-blurb {
+        font-size: 13px;
+    }
+
+    /* Team logo tabs on the GM page: allow narrower tabs so two can still
+       sit side by side on most phones instead of each forcing its own row */
+    .team-tab {
+        flex: 1 1 140px;
+        max-width: none;
+    }
+
+    /* Cards lose a little padding to reclaim width for their content */
+    .card {
+        padding: 16px 16px;
+    }
 }
