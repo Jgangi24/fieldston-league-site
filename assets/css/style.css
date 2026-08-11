@@ -949,6 +949,102 @@ table.stats-table tbody tr:hover {
     color: var(--accent);
 }
 
+/* --- Compare Players page --- */
+.compare-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 8px 0 12px;
+}
+
+.compare-select-wrap {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.compare-select {
+    min-width: 220px;
+    padding: 8px 10px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 0.92rem;
+    background: var(--card-bg);
+}
+
+.compare-remove-btn {
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--card-bg);
+    color: var(--muted);
+    cursor: pointer;
+    font-size: 1rem;
+    line-height: 1;
+}
+
+.compare-remove-btn:hover {
+    background: var(--bg);
+    color: var(--loss);
+}
+
+.compare-add-btn {
+    display: inline-block;
+    padding: 8px 16px;
+    background: var(--navy);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.compare-add-btn:hover {
+    background: var(--accent);
+}
+
+table.compare-table th {
+    text-align: center;
+    padding: 10px;
+}
+
+table.compare-table .compare-subhead {
+    font-weight: 400;
+    color: var(--muted);
+    font-size: 0.78rem;
+    margin-top: 2px;
+}
+
+table.compare-table td {
+    text-align: center;
+    padding: 6px 10px;
+}
+
+table.compare-table .compare-row-label {
+    text-align: left;
+    color: var(--muted);
+}
+
+tr.compare-section-row td {
+    background: var(--navy);
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 6px 10px;
+}
+
+table.compare-table .compare-best {
+    background: rgba(26, 127, 55, 0.12);
+    color: var(--win);
+    font-weight: 600;
+}
+
 /* ==========================================================================
    Mobile responsive pass (phones, ~700px and under)
    No prior @media rules existed in this file -- the site rendered at full
