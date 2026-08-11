@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BLNK vs LC - Fieldston Core Four Fantasy</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<nav class="site-nav">
+    <a class="brand" href="../index.html">Fieldston Core Four Fantasy</a>
+    <button type="button" class="nav-mobile-toggle" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
+
+    <div class="nav-links">
+        <a href="../index.html">Home</a>
+
+        <div class="nav-dropdown">
+            <a href="#" class="nav-dropdown-toggle">GMs &#9662;</a>
+            <div class="nav-dropdown-menu">
+                <a href="../gms/jess.html">Jess</a>
+                <a href="../gms/lew.html">Lew</a>
+                <a href="../gms/mike.html">Mike</a>
+                <a href="../gms/paul.html">Paul</a>
+            </div>
+        </div>
+
+        <div class="nav-dropdown">
+            <a href="#" class="nav-dropdown-toggle">League &#9662;</a>
+            <div class="nav-dropdown-menu">
+                <a href="../standings.html">Standings</a>
+                <a href="../rivalries.html">Rivalries</a>
+                <a href="../game-log.html">Game Log</a>
+                <a href="../all-stories.html">All Stories</a>
+                <a href="../power-rankings.html">Power Rankings</a>
+                <a href="../awards.html">Awards</a>
+            </div>
+        </div>
+
+        <div class="nav-dropdown">
+            <a href="#" class="nav-dropdown-toggle">Stats &#9662;</a>
+            <div class="nav-dropdown-menu">
+                <a href="../leaders.html">League Leaders</a>
+                <a href="../player-ratings.html">Player Ratings</a>
+                <a href="../player-stats.html">Player Stats</a>
+                <a href="../team-stats.html">Team Stats</a>
+                <a href="../league-stats.html">League Stats</a>
+                <a href="../free-agents.html">Free Agents</a>
+            </div>
+        </div>
+
+        <a href="../draft-results.html">Draft Results</a>
+        <a href="../history.html">History</a>
+    </div>
+</nav>
+<script>
+(function () {
+    var MOBILE_BREAKPOINT = 700;
+    var toggle = document.querySelector(".nav-mobile-toggle");
+    var links = document.querySelector(".nav-links");
+    if (!toggle || !links) return;
+
+    toggle.addEventListener("click", function () {
+        var isOpen = links.classList.toggle("nav-links-open");
+        toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    });
+
+    // On mobile, tapping a dropdown toggle (GMs/League/Stats) expands that
+    // submenu in place instead of relying on :hover, which doesn't fire
+    // reliably via touch. Desktop keeps its existing hover behavior --
+    // this only takes over below the mobile breakpoint.
+    document.querySelectorAll(".nav-dropdown-toggle").forEach(function (toggleLink) {
+        toggleLink.addEventListener("click", function (e) {
+            if (window.innerWidth > MOBILE_BREAKPOINT) return;
+            e.preventDefault();
+            var dropdown = toggleLink.closest(".nav-dropdown");
+            var isOpen = dropdown.classList.toggle("nav-dropdown-open");
+            document.querySelectorAll(".nav-dropdown").forEach(function (other) {
+                if (other !== dropdown) other.classList.remove("nav-dropdown-open");
+            });
+        });
+    });
+})();
+</script>
+
+<div class="page">
+<h1>Blankendorf Monstrosities 121 &ndash; Laurel Canyon Naughty Chauffeurs 141</h1>
+<p class="subtitle">Regular Season &middot; Season 2026</p>
+
+<h2>Blankendorf Monstrosities</h2>
+<div class="card"><table class="stats-table">
+<thead><tr>
+<th>Player</th><th>Pos</th><th>Min</th><th>FG</th><th>3P</th><th>FT</th>
+<th>Reb</th><th>Ast</th><th>Stl</th><th>Blk</th><th>TO</th><th>Pts</th>
+</tr></thead>
+<tbody>
+<tr><td>Paul Pierce</td><td>GF</td><td>31.4</td><td>6-12</td><td>5-7</td><td>2-2</td><td>4</td><td>0</td><td>0</td><td>0</td><td>3</td><td>19</td></tr>
+<tr><td>Russell Westbrook</td><td>PG</td><td>35.1</td><td>5-12</td><td>2-5</td><td>6-7</td><td>6</td><td>7</td><td>2</td><td>0</td><td>1</td><td>18</td></tr>
+<tr><td>Victor Wembanyama</td><td>FC</td><td>25.1</td><td>6-7</td><td>4-5</td><td>1-2</td><td>4</td><td>0</td><td>1</td><td>2</td><td>1</td><td>17</td></tr>
+<tr><td>Bob Cousy</td><td>PG</td><td>39.3</td><td>5-13</td><td>2-9</td><td>4-4</td><td>1</td><td>7</td><td>1</td><td>0</td><td>2</td><td>16</td></tr>
+<tr><td>Carmelo Anthony</td><td>F</td><td>38.6</td><td>3-13</td><td>0-5</td><td>10-12</td><td>2</td><td>3</td><td>2</td><td>0</td><td>1</td><td>16</td></tr>
+<tr><td>Giannis Antetokounmpo</td><td>GF</td><td>29.1</td><td>5-11</td><td>4-6</td><td>1-2</td><td>8</td><td>3</td><td>3</td><td>1</td><td>5</td><td>15</td></tr>
+<tr><td>Vince Carter</td><td>GF</td><td>21.0</td><td>4-13</td><td>3-7</td><td>1-2</td><td>1</td><td>1</td><td>0</td><td>2</td><td>0</td><td>12</td></tr>
+<tr><td>John Havlicek</td><td>GF</td><td>15.8</td><td>2-5</td><td>2-5</td><td>2-2</td><td>2</td><td>2</td><td>2</td><td>0</td><td>0</td><td>8</td></tr>
+<tr><td>DeMarcus Cousins</td><td>C</td><td>1.5</td><td>0-0</td><td>0-0</td><td>0-0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td>Dave Cowens</td><td>FC</td><td>1.5</td><td>0-1</td><td>0-0</td><td>0-0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td>Willis Reed</td><td>FC</td><td>0.0</td><td>0-0</td><td>0-0</td><td>0-0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td>Mark Price</td><td>PG</td><td>1.5</td><td>0-0</td><td>0-0</td><td>0-0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+
+</tbody>
+</table></div>
+
+<h2>Laurel Canyon Naughty Chauffeurs</h2>
+<div class="card"><table class="stats-table">
+<thead><tr>
+<th>Player</th><th>Pos</th><th>Min</th><th>FG</th><th>3P</th><th>FT</th>
+<th>Reb</th><th>Ast</th><th>Stl</th><th>Blk</th><th>TO</th><th>Pts</th>
+</tr></thead>
+<tbody>
+<tr><td>David Thompson</td><td>GF</td><td>43.9</td><td>9-16</td><td>2-6</td><td>12-13</td><td>7</td><td>1</td><td>1</td><td>0</td><td>1</td><td>32</td></tr>
+<tr><td>Elgin Baylor</td><td>SF</td><td>41.5</td><td>6-15</td><td>4-10</td><td>7-8</td><td>8</td><td>1</td><td>1</td><td>0</td><td>5</td><td>23</td></tr>
+<tr><td>Jerry West</td><td>G</td><td>28.5</td><td>7-9</td><td>5-7</td><td>2-2</td><td>1</td><td>10</td><td>1</td><td>0</td><td>7</td><td>21</td></tr>
+<tr><td>Kevin Durant</td><td>GF</td><td>21.2</td><td>7-12</td><td>3-7</td><td>2-2</td><td>1</td><td>8</td><td>2</td><td>0</td><td>1</td><td>19</td></tr>
+<tr><td>Shaquille O'Neal</td><td>C</td><td>19.7</td><td>6-7</td><td>0-0</td><td>6-7</td><td>9</td><td>1</td><td>1</td><td>2</td><td>0</td><td>18</td></tr>
+<tr><td>Karl Malone</td><td>PF</td><td>27.8</td><td>5-11</td><td>4-8</td><td>1-1</td><td>11</td><td>1</td><td>1</td><td>1</td><td>3</td><td>15</td></tr>
+<tr><td>Anthony Davis</td><td>FC</td><td>16.3</td><td>1-4</td><td>1-4</td><td>2-2</td><td>6</td><td>0</td><td>0</td><td>2</td><td>0</td><td>5</td></tr>
+<tr><td>Adrian Dantley</td><td>SF</td><td>17.3</td><td>0-2</td><td>0-1</td><td>4-4</td><td>2</td><td>3</td><td>0</td><td>0</td><td>2</td><td>4</td></tr>
+<tr><td>Charles Barkley</td><td>F</td><td>8.6</td><td>0-1</td><td>0-0</td><td>2-2</td><td>3</td><td>0</td><td>0</td><td>0</td><td>1</td><td>2</td></tr>
+<tr><td>Tiny Archibald</td><td>PG</td><td>6.2</td><td>0-1</td><td>0-0</td><td>2-2</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>2</td></tr>
+<tr><td>Chris Mullin</td><td>GF</td><td>7.6</td><td>0-1</td><td>0-1</td><td>0-0</td><td>1</td><td>2</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td>Glen Rice</td><td>SF</td><td>1.5</td><td>0-0</td><td>0-0</td><td>0-0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+
+</tbody>
+</table></div>
+</div>
+<footer class="site-footer"><a href="../rules.html">League Rules</a></footer>
+<script src="../assets/js/sort-table.js"></script>
+</body>
+</html>
