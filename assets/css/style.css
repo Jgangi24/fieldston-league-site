@@ -1045,6 +1045,88 @@ table.compare-table .compare-best {
     font-weight: 600;
 }
 
+/* --- Homepage playoff bracket --- */
+.bracket-inner {
+    display: flex;
+    gap: 16px;
+    min-width: max-content;
+    padding: 4px 2px;
+}
+
+.bracket-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 16px;
+    width: 168px;
+    flex-shrink: 0;
+}
+
+.bracket-column-narrow {
+    width: 150px;
+}
+
+.bracket-round-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 0 2px;
+    text-align: center;
+}
+
+.bracket-matchup {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--card-bg);
+}
+
+.bracket-matchup-tbd {
+    opacity: 0.55;
+}
+
+.bracket-spacer {
+    height: 0;
+}
+
+.bracket-team-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 10px;
+    font-size: 0.85rem;
+}
+
+.bracket-team-row:first-child {
+    border-bottom: 1px solid var(--border);
+}
+
+.bracket-team-winner {
+    background: rgba(26, 127, 55, 0.12);
+    color: var(--win);
+    font-weight: 600;
+}
+
+.bracket-seed {
+    color: var(--muted);
+    font-size: 0.75rem;
+    width: 14px;
+}
+
+.bracket-team-winner .bracket-seed {
+    color: var(--win);
+}
+
+.bracket-team-name {
+    flex: 1;
+}
+
+.bracket-score {
+    font-weight: 600;
+}
+
 /* ==========================================================================
    Mobile responsive pass (phones, ~700px and under)
    No prior @media rules existed in this file -- the site rendered at full
