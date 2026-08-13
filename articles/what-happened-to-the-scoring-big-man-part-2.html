@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>What Happened to the Scoring Big Man? (Part 2) - Fieldston Core Four Fantasy</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<nav class="site-nav">
+    <a class="brand" href="../index.html">Fieldston Core Four Fantasy</a>
+    <button type="button" class="nav-mobile-toggle" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
+
+    <div class="nav-links">
+        <a href="../index.html">Home</a>
+
+        <div class="nav-dropdown">
+            <a href="#" class="nav-dropdown-toggle">GMs &#9662;</a>
+            <div class="nav-dropdown-menu">
+                <a href="../gms/jess.html">Jess</a>
+                <a href="../gms/lew.html">Lew</a>
+                <a href="../gms/mike.html">Mike</a>
+                <a href="../gms/paul.html">Paul</a>
+            </div>
+        </div>
+
+        <div class="nav-dropdown">
+            <a href="#" class="nav-dropdown-toggle">League &#9662;</a>
+            <div class="nav-dropdown-menu">
+                <a href="../standings.html">Standings</a>
+                <a href="../rivalries.html">Rivalries</a>
+                <a href="../game-log.html">Game Log</a>
+                <a href="../all-stories.html">All Stories</a>
+                <a href="../power-rankings.html">Power Rankings</a>
+                <a href="../awards.html">Awards</a>
+            </div>
+        </div>
+
+        <div class="nav-dropdown">
+            <a href="#" class="nav-dropdown-toggle">Stats &#9662;</a>
+            <div class="nav-dropdown-menu">
+                <a href="../leaders.html">League Leaders</a>
+                <a href="../player-ratings.html">Player Ratings</a>
+                <a href="../player-stats.html">Player Stats</a>
+                <a href="../compare.html">Compare Players</a>
+                <a href="../team-stats.html">Team Stats</a>
+                <a href="../league-stats.html">League Stats</a>
+                <a href="../free-agents.html">Free Agents</a>
+            </div>
+        </div>
+
+        <a href="../draft-results.html">Draft Results</a>
+        <a href="../history.html">History</a>
+    </div>
+</nav>
+<script>
+(function () {
+    var MOBILE_BREAKPOINT = 700;
+    var toggle = document.querySelector(".nav-mobile-toggle");
+    var links = document.querySelector(".nav-links");
+    if (!toggle || !links) return;
+
+    toggle.addEventListener("click", function () {
+        var isOpen = links.classList.toggle("nav-links-open");
+        toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    });
+
+    // On mobile, tapping a dropdown toggle (GMs/League/Stats) expands that
+    // submenu in place instead of relying on :hover, which doesn't fire
+    // reliably via touch. Desktop keeps its existing hover behavior --
+    // this only takes over below the mobile breakpoint.
+    document.querySelectorAll(".nav-dropdown-toggle").forEach(function (toggleLink) {
+        toggleLink.addEventListener("click", function (e) {
+            if (window.innerWidth > MOBILE_BREAKPOINT) return;
+            e.preventDefault();
+            var dropdown = toggleLink.closest(".nav-dropdown");
+            var isOpen = dropdown.classList.toggle("nav-dropdown-open");
+            document.querySelectorAll(".nav-dropdown").forEach(function (other) {
+                if (other !== dropdown) other.classList.remove("nav-dropdown-open");
+            });
+        });
+    });
+})();
+</script>
+
+<div class="page">
+<span class="article-tag">Think Piece</span>
+<h1>What Happened to the Scoring Big Man? (Part 2)</h1>
+<p class="dek">Church basements, competitive pumpkin growing, and a very specific kind of pinball rivalry — where the league's greatest scorers went when the ball stopped coming their way.</p>
+<div class="byline">
+<img src="../assets/images/authors/lois-kranberries.jpg" alt="Lois Kranberries" class="author-photo">
+<div>
+<p class="byline-name">By Lois Kranberries</p>
+<p class="byline-date">Fieldston Core Four Fantasy League &middot; August 13, 2026</p>
+</div>
+</div>
+<img src="../assets/images/articles/what-happened-to-the-scoring-big-man-part-2-hero.jpg" alt="What Happened to the Scoring Big Man? (Part 2)" class="article-hero lightbox-trigger">
+<div class="article-body">
+<p><p class="article-hero-caption">Tuesday nights, a church basement two blocks from the arena. Mikan chairs. Nobody outside the room is supposed to know.</p></p>
+<p>There's also a less statistical explanation making the rounds — that some of the league's great scorers simply stopped needing the box score to validate them. Or that they still need it badly, and have just gone looking for it somewhere else entirely.</p>
+<p><strong>“It's Been Fourteen Games Since My Last Thirty”</strong></p>
+<p>They meet Tuesday nights in the basement of a church two blocks off the Flamington arena. Folding chairs, a coffee urn nobody trusts, and a hand-lettered sign taped to the door that just says BIGS. Nobody outside the room is supposed to know the meetings happen at all, which is exactly why everybody in the league already does.</p>
+<p>George Mikan chairs it, by seniority if nothing else. He opens the same way most weeks.</p>
+<p>“It's been fourteen games since my last thirty-point night,” he said, to a round of murmured solidarity that would not sound out of place in any other basement in any other city, for any other kind of meeting. “I used to be the whole offense. Now I'm a Tuesday-night confession.”</p>
+<p>The format doesn't change much. Someone shares. The room nods. Somebody else admits they've been eyeing box scores from forty years ago just to feel something. Nobody is cured by the end of the hour, and nobody expects to be — the point, several attendees say, isn't fixing it. It's saying it out loud in a room full of people who used to average what you used to average, and don't anymore either.</p>
+<p>“You go around a whole season getting complimented on your rebounding,” one recent attendee said, declining to be named for fear of “breaking the room's trust.” “And no one asks how it feels. This is the one place they ask.”</p>
+<p><figure class="article-inline-image"><img src="../assets/images/articles/scoring-big-man-part-2-wilt-volleyball.jpg" alt="Wilt Chamberlain spiking a volleyball over the net at a recreational co-ed game" loading="lazy"><figcaption>Tuesday co-ed volleyball, 6:30. The one gym in town where nobody's redefined Wilt Chamberlain's role for him.</figcaption></figure></p>
+<p><strong>The One Room Where Wilt Is Still Wilt</strong></p>
+<p>Not every big man in the league is looking for a room to grieve in. At least one found a gym where nothing has to be mourned at all.</p>
+<p>Wilt Chamberlain took up competitive volleyball after his basketball career ended — a matter of public record, not league legend — and by most accounts became good enough, fast enough, to help push the sport toward the mainstream popularity it enjoys today. He is, by a wide margin, the most successful basketball-to-volleyball crossover the sport has ever produced.</p>
+<p>He's kept it up this season, and teammates say it shows in how he talks about it. There's no fourteen-games-since language when the subject turns to volleyball. No confession, no basement, no folding chair.</p>
+<p>“Different sport, same net effect,” Chamberlain said, allowing himself the pun. “I'm still the tallest guy in the building. I still get the ball whenever I want it. Nobody's decided I'm better used standing under the rim collecting boards over there. I go, I play, I dominate. It's the simplest my week gets.”</p>
+<p>It's not lost on his teammates that the one place Chamberlain seems entirely at peace is the one place nobody's tried to redefine his role for him.</p>
+<p><figure class="article-inline-image"><img src="../assets/images/articles/scoring-big-man-part-2-kareem-baskin-robbins.jpg" alt="Kareem Abdul-Jabbar leaping to catch a ball behind the counter of a Baskin-Robbins ice cream shop, in a Baskin-Robbins uniform" loading="lazy"><figcaption>“Please do not ask Kareem to dunk your scoop.” Same shot, same release — just softer on the landing.</figcaption></figure></p>
+<p><strong>The Most Unstoppable Shot in Basketball, Relocated</strong></p>
+<p>Nobody ever solved the skyhook. Not in twenty seasons, not with a hand in his face, not with two. Kareem Abdul-Jabbar built the single most unblockable shot the sport has ever seen, and to this day, nobody has found a real answer for it.</p>
+<p>Which makes it all the stranger that the one man on the floor who can stop him from using it is Michael Jordan — not by guarding it, but by glaring at it.</p>
+<p>“Every time Kareem winds up for that thing in a game, Mike just stops and stares at him,” one teammate said. “Like, are you kidding me right now? I'm Michael Jordan. I've got a movie with Bugs Bunny. I've got sneakers with my name on them. And you're out here flinging some over-the-shoulder hook shot instead of just giving me the ball?”</p>
+<p>Kareem, for his part, has mostly stopped arguing about it on the floor. He's found another place to use the shot instead — one where nobody glares at him for it.</p>
+<p>Several nights a week, he can be found behind the counter of a Baskin-Robbins in Queens, sky-hooking scoops of ice cream from a good three feet back into waffle cones, to the visible delight of everyone in line. Regulars say he never misses. Somebody clocked it on a phone once and the scoop landed dead center, no rim, no drip, no wasted motion — the same shot, the same release, just softer on the landing.</p>
+<p>“Out there, I get the look from Mike,” Abdul-Jabbar said. “In here, I get a kid asking for extra sprinkles and a high five. I know which one I look forward to more.”</p>
+<p><figure class="article-inline-image"><img src="../assets/images/articles/scoring-big-man-part-2-pinball.jpg" alt="Four NBA legends, including a US Postal Service uniformed Joel Embiid, huddled over a pinball machine" loading="lazy"><figcaption>“No guards. Just big men. 3 balls. Infinite pride.” Mikan, Malone, Cousins, and Embiid — an odd mix of eras that the scoreboard doesn't check ID on.</figcaption></figure></p>
+<p><strong>High Score</strong></p>
+<p>For a smaller contingent, the fix wasn't therapy, or a new sport, or a basement confessional. It was finding a scoreboard that still goes up instead of down.</p>
+<p>A pinball league has quietly formed among several of the league's centers, meeting at a bar with a back room full of machines old enough to remember when these men were averaging thirty a night themselves. The core group — George Mikan, Moses Malone, and DeMarcus Cousins — is an odd mix of eras, but nobody in the room seems to notice the decades between them. The scoreboard doesn't check ID.</p>
+<p>There's a fourth regular, too, and his story cuts differently than the others'. Joel Embiid never got a call from a single franchise in this league — no team ever offered him a roster spot, for reasons nobody in the room quite agrees on — and he's spent the season delivering mail for the postal service, second-floor walkups and all, still showing up to pinball night in uniform straight off his route. He's not chasing a number he used to have. He's chasing one he never got the chance to.</p>
+<p>“You put a quarter in, and the score just climbs,” Cousins said, watching a six-digit number tick over on a machine older than every player standing around it except Mikan. “Nobody's grading me on efficiency. Nobody's telling me my value is in what I do off the ball. I hit the ball. The number goes up. That's it. That's the whole thing.”</p>
+<p>Embiid, for his part, has reportedly become the group's most dangerous player almost overnight — a fact Malone attributes less to skill than to spite. “Joel treats every flipper like somebody just passed him over in a draft that doesn't even exist yet,” Malone said. “I've never seen a man take a silver ball this personally. Then again, I get it. He didn't even get the rejection letter. He just never got the call.”</p>
+<p>Mikan, the group's elder statesman by several decades, holds the standing high score on the oldest machine in the room and does not let anyone forget it. “I was putting up numbers before any of these men were born,” he said. “Turns out I still can. Just not the way anybody expects anymore.”</p>
+<p>League standings, unofficially, are taken almost as seriously as the real ones. There is reportedly a running grudge between Embiid and Cousins over a disputed high score that has outlasted several actual playoff races.</p>
+<p>“Out there,” Cousins said, nodding toward the arena a few blocks away, “I get a rebound and a pat on the back. In here, I get a hundred thousand points and my name on a piece of tape at the top of the machine. I know which one feels better.” Embiid, mid-route with a mail bag still over one shoulder, didn't say much. He just nodded at the machine and racked another game.</p>
+<p><figure class="article-inline-image"><img src="../assets/images/articles/scoring-big-man-part-2-jokic-pumpkin.jpg" alt="Nikola Jokić kneeling beside a giant prize-winning pumpkin at a county fair, a horse looking on" loading="lazy"><figcaption>County Fair Giant Pumpkin Weigh-Off, first place: N. Jokić, Flamington, 1,847 lbs. The horse was already there.</figcaption></figure></p>
+<p><strong>Not Everyone Found a Hobby. Some Found a Pumpkin.</strong></p>
+<p>Of everyone who's found a second life away from the box score, nobody's commitment runs stranger, or deeper, than Nikola Jokić's.</p>
+<p>Jokić has taken up competitive giant-pumpkin growing this season, and by all accounts it is not a passing interest. He's a fixture at the county fair circuit around Flamington, and this fall he walked away with first place at the Giant Pumpkin Weigh-Off — a gourd that, per the posted sign, tipped the scale at 1,847 pounds. He did not do it alone. His horses were there for all of it.</p>
+<p>“He talks to the horses about the pumpkins,” one teammate said. “Not near them. To them. Like they're consulting on it.”</p>
+<p>Nobody in the locker room has fully worked out whether the horses are actual collaborators in the growing process or simply present for moral support, and Jokić hasn't clarified much when asked. He measured the winning pumpkin himself, tape in hand, with the same unhurried, unbothered expression he wears setting up a possession in the fourth quarter — like the size of the thing was never really in question.</p>
+<p>“You spend your whole career being told you're big,” Jokić said, one hand still resting on the pumpkin. “Then one day nobody's throwing you the ball, and you realize — I can still make something enormous. Nobody's boxing out my pumpkin.”</p>
+<p>Asked whether he missed carrying more of the offensive load, he didn't really answer the question. He just glanced over at the horse, like it might.</p>
+<p><figure class="article-inline-image"><img src="../assets/images/articles/scoring-big-man-part-2-blumberg.jpg" alt="A bearded therapist taking notes across from a seated, dejected Patrick Ewing in a sports psychology office, with a framed sign reading You Are Not Your Points Per Game" loading="lazy"><figcaption>Dr. Peter Blumberg's office, Flamington. Patient P.E., presenting issue: “Nobody posts me up anymore.”</figcaption></figure></p>
+<p><strong>“You Are Not Your Points Per Game”</strong></p>
+<p>If the pinball leagues and the pumpkin growing are the coping mechanisms, Dr. Peter Blumberg is the one trying to get to the root of it.</p>
+<p>Blumberg runs a small practice out of Flamington specializing in what he calls “statistical identity collapse” — athletes whose entire sense of self was constructed around a number that quietly stopped being about them. He says he's seen more centers walk through his door this season than in the previous three combined.</p>
+<p>“These are men who spent their whole careers being told, implicitly, that their value was the box score,” Blumberg said. “And then one day the box score changes, and nobody explains why, and they're left asking: if I'm not averaging thirty anymore, who exactly am I?”</p>
+<p>His approach, by his own description, borrows equally from cognitive therapy and something closer to a guided meditation. Sessions reportedly end with a mantra he has each player repeat: I am not my points per game.</p>
+<p>“Some of them get there faster than others,” he said. “The ones with pumpkins usually get there fastest, honestly. They've already found something else enormous to be proud of.”</p>
+<p>Whether any of this is contentment or resignation depends on who in the locker room — or the church basement, or the pinball bar — you ask.</p>
+<p><strong>No Clean Answer</strong></p>
+<p>The honest conclusion is probably some combination of all three: a league that rewards two-way wings over back-to-the-basket volume, a class of defensive giants who've made rim protection the more valuable path to winning, and a handful of legendary scorers who — willingly or not — have found other ways to spend their competitive energy, from a church basement to a volleyball net to a pinball machine older than most of them. Whatever the mix, the numbers don't lie. The most dominant collection of offensive big men basketball has ever produced is sitting behind a 13.3-point-per-game leader, and most of them have found somewhere else to put the rest of it.</p>
+<p>Mikan's still got the high score on that pinball machine, though. Some things don't change.</p>
+
+</div>
+
+
+
+
+</div>
+<footer class="site-footer"><a href="../rules.html">League Rules</a></footer>
+<script src="../assets/js/sort-table.js"></script>
+<script src="../assets/js/lightbox.js"></script>
+</body>
+</html>

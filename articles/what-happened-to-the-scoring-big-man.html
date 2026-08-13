@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>What Happened to the Scoring Big Man? (Part 1) - Fieldston Core Four Fantasy</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<nav class="site-nav">
+    <a class="brand" href="../index.html">Fieldston Core Four Fantasy</a>
+    <button type="button" class="nav-mobile-toggle" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
+
+    <div class="nav-links">
+        <a href="../index.html">Home</a>
+
+        <div class="nav-dropdown">
+            <a href="#" class="nav-dropdown-toggle">GMs &#9662;</a>
+            <div class="nav-dropdown-menu">
+                <a href="../gms/jess.html">Jess</a>
+                <a href="../gms/lew.html">Lew</a>
+                <a href="../gms/mike.html">Mike</a>
+                <a href="../gms/paul.html">Paul</a>
+            </div>
+        </div>
+
+        <div class="nav-dropdown">
+            <a href="#" class="nav-dropdown-toggle">League &#9662;</a>
+            <div class="nav-dropdown-menu">
+                <a href="../standings.html">Standings</a>
+                <a href="../rivalries.html">Rivalries</a>
+                <a href="../game-log.html">Game Log</a>
+                <a href="../all-stories.html">All Stories</a>
+                <a href="../power-rankings.html">Power Rankings</a>
+                <a href="../awards.html">Awards</a>
+            </div>
+        </div>
+
+        <div class="nav-dropdown">
+            <a href="#" class="nav-dropdown-toggle">Stats &#9662;</a>
+            <div class="nav-dropdown-menu">
+                <a href="../leaders.html">League Leaders</a>
+                <a href="../player-ratings.html">Player Ratings</a>
+                <a href="../player-stats.html">Player Stats</a>
+                <a href="../compare.html">Compare Players</a>
+                <a href="../team-stats.html">Team Stats</a>
+                <a href="../league-stats.html">League Stats</a>
+                <a href="../free-agents.html">Free Agents</a>
+            </div>
+        </div>
+
+        <a href="../draft-results.html">Draft Results</a>
+        <a href="../history.html">History</a>
+    </div>
+</nav>
+<script>
+(function () {
+    var MOBILE_BREAKPOINT = 700;
+    var toggle = document.querySelector(".nav-mobile-toggle");
+    var links = document.querySelector(".nav-links");
+    if (!toggle || !links) return;
+
+    toggle.addEventListener("click", function () {
+        var isOpen = links.classList.toggle("nav-links-open");
+        toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    });
+
+    // On mobile, tapping a dropdown toggle (GMs/League/Stats) expands that
+    // submenu in place instead of relying on :hover, which doesn't fire
+    // reliably via touch. Desktop keeps its existing hover behavior --
+    // this only takes over below the mobile breakpoint.
+    document.querySelectorAll(".nav-dropdown-toggle").forEach(function (toggleLink) {
+        toggleLink.addEventListener("click", function (e) {
+            if (window.innerWidth > MOBILE_BREAKPOINT) return;
+            e.preventDefault();
+            var dropdown = toggleLink.closest(".nav-dropdown");
+            var isOpen = dropdown.classList.toggle("nav-dropdown-open");
+            document.querySelectorAll(".nav-dropdown").forEach(function (other) {
+                if (other !== dropdown) other.classList.remove("nav-dropdown-open");
+            });
+        });
+    });
+})();
+</script>
+
+<div class="page">
+<span class="article-tag">Think Piece</span>
+<h1>What Happened to the Scoring Big Man? (Part 1)</h1>
+<p class="dek">The league's highest-scoring center is averaging 13.3 points a night. On a roster full of the most dominant offensive big men in basketball history, that should be impossible. So what happened?</p>
+<div class="byline">
+<img src="../assets/images/authors/lois-kranberries.jpg" alt="Lois Kranberries" class="author-photo">
+<div>
+<p class="byline-name">By Lois Kranberries</p>
+<p class="byline-date">Fieldston Core Four Fantasy League &middot; August 13, 2026</p>
+</div>
+</div>
+<img src="../assets/images/articles/what-happened-to-the-scoring-big-man-hero.jpg" alt="What Happened to the Scoring Big Man? (Part 1)" class="article-hero lightbox-trigger">
+<div class="article-body">
+<p>FLAMINGTON — Here is a sentence that should not be possible in this league: the leading scorer among true centers this season is Shaquille O'Neal, at 13.3 points a game. Even folding in the hybrid forward-centers doesn't save the position much — Bob Pettit leads that group at 15.2, which is still a full 35 points a game short of what a man his size once proved was possible.</p>
+<p>Not Wilt Chamberlain, who once averaged 50.4 points across an entire NBA season and is on record insisting that number was more a matter of coaches not throwing him the ball enough than any real ceiling on his game. Not George Mikan, the sport's first true offensive giant. Not Kareem Abdul-Jabbar, owner of the most unblockable shot the game has ever produced. Not Bob Pettit, Bill Walton, Moses Malone, David Robinson, Hakeem Olajuwon, Patrick Ewing, Victor Wembanyama, or Nikola Jokić — a list that, assembled anywhere else, would be the single greatest offensive frontcourt ever fielded. Assembled here, it's producing a league leader averaging barely half of what Wilt did in his quietest season.</p>
+<p>So what happened? A few theories, none of them satisfying on their own.</p>
+<p><figure class="article-inline-image"><img src="../assets/images/articles/scoring-big-man-part-1-chart.jpg" alt="Bar chart comparing each center's real-NBA career-high scoring season to their scoring average this Fieldston Core Four season" loading="lazy"><figcaption>Every man on this list once proved a center could carry an offense by himself. This season, none of them are being asked to try.</figcaption></figure></p>
+<p><strong>Theory One: The Game Moved On Without Them</strong></p>
+<p>The easy explanation is that the sport simply passed the back-to-the-basket center by — that a league built around Gervin, Jordan, Baylor, Magic, and West doesn't leave enough usage on the table for a traditional five to eat. There's something to this. When your roster construction rewards versatile wings above almost everything else, as this league's own MVP and Sixth Man ballots have shown all season, a center's box score becomes a rounding error next to what the perimeter talent is doing with the ball.</p>
+<p>But that theory has a hole in it. Wilt averaged 50 points a game in an era that had plenty of its own perimeter stars. Kareem won six MVPs surrounded by some of the most stacked rosters in league history. Great scoring bigs have always found a way to get theirs regardless of who else is on the floor. Something else is going on.</p>
+<p><strong>Theory Two: The Defensive Specialists Ate the Offense</strong></p>
+<p>A more interesting read: maybe it's not that bigs can't score in this league — it's that the other bigs won't let them. Bill Russell, Tim Duncan, and Shaq himself have spent this season proving that rim protection and rebounding alone can carry a roster to the top of the standings without needing to put up big numbers on the other end. If the highest-value version of a center in this league is a defensive anchor, why would anyone build a five around one who just scores?</p>
+<p>Put differently: the scoring bigs aren't extinct. They're just competing for playing time against a version of themselves that wins more games doing less on offense.</p>
+<p><a href="what-happened-to-the-scoring-big-man-part-2.html" class="article-continue-link">Continue to Part 2: Where They Went Instead &#8594;</a></p>
+
+</div>
+
+
+
+
+</div>
+<footer class="site-footer"><a href="../rules.html">League Rules</a></footer>
+<script src="../assets/js/sort-table.js"></script>
+<script src="../assets/js/lightbox.js"></script>
+</body>
+</html>

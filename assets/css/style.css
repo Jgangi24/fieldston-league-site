@@ -1127,6 +1127,47 @@ table.compare-table .compare-best {
     font-weight: 600;
 }
 
+/* --- Inline images within article body text (for articles with too many
+   photos to fit the fixed hero + 3-photo-strip slots) --- */
+.article-inline-image {
+    margin: 24px 0;
+}
+
+.article-inline-image img {
+    width: 100%;
+    border-radius: 8px;
+    display: block;
+}
+
+.article-inline-image figcaption {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 6px;
+    font-style: italic;
+}
+
+.article-continue-link {
+    display: block;
+    margin-top: 32px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--navy);
+    text-decoration: none;
+}
+
+.article-continue-link:hover {
+    color: var(--accent);
+}
+
+.article-hero-caption {
+    font-size: 13px;
+    color: var(--muted);
+    font-style: italic;
+    margin: 0 0 20px;
+}
+
 /* ==========================================================================
    Mobile responsive pass (phones, ~700px and under)
    No prior @media rules existed in this file -- the site rendered at full
