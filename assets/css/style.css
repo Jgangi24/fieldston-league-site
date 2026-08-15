@@ -1077,10 +1077,17 @@ table.compare-table .compare-best {
 }
 
 .bracket-matchup {
+    display: block;
     border: 1px solid var(--border);
     border-radius: 8px;
     overflow: hidden;
     background: var(--card-bg);
+    text-decoration: none;
+    color: inherit;
+}
+
+.bracket-matchup-link:hover {
+    border-color: var(--accent);
 }
 
 .bracket-matchup-tbd {
