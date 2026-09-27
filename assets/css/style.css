@@ -129,17 +129,25 @@ body {
         box-shadow: none;
         padding: 6px;
         /* Bigger gap than the mobile bar needs -- these pills got taller
-           and wider, and a 4px gap meant two lit-up neighbors (current +
+           and wider, and a tight gap meant two lit-up neighbors (current +
            hovered) touched and fused into one blobby shape instead of
            reading as two separate pills. */
-        gap: 10px;
+        gap: 16px;
         align-items: center;
     }
 
     .bottom-nav .tb {
+        /* The base rule sets flex:1 for the mobile bar, where every tab
+           should claim an equal share of the full-width bar. At desktop
+           the bar is only as wide as its content (width:fit-content), so
+           flex:1 instead forced every tab to the SAME width regardless of
+           label length -- "Standings" (the longest label) barely fit and
+           its text actually overflowed past its own pill's edge, while
+           short labels like "GMs" sat in a box padded with leftover
+           unused space. flex:none lets each pill size to its own content. */
+        flex: none;
         flex-direction: row;
         gap: 8px;
-        min-width: 100px;
         padding: 13px 22px;
         font-size: 0.95rem;
     }
