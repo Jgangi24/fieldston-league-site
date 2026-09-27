@@ -98,11 +98,15 @@ body {
     }
 }
 
-/* The tab for whatever section you're currently on -- set once on page
-   load by the small script in nav.html, not by :hover/:active, so it
-   stays lit instead of fading the moment you lift your thumb. */
+/* The tab for whatever section you're currently on -- baked in at build
+   time (see league_utils.build_nav), not set by :hover/:active, so it
+   stays lit instead of fading the moment you lift your thumb. Same
+   background weight as the hover/active states above so every pill
+   reads as the same size/shape -- it previously used a lighter 0.12
+   wash than hover's 0.15, which made the current tab's pill look
+   smaller and misaligned next to a hovered one. */
 .bottom-nav .tb.tb-current {
-    background: rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.15);
     color: var(--accent);
 }
 
@@ -119,23 +123,26 @@ body {
         right: auto;
         bottom: auto;
         width: fit-content;
-        margin: 0 24px 14px auto;
+        /* auto on both sides centers the pill across the full page width,
+           instead of the old right-aligned "sits next to the brand" spot. */
+        margin: 16px auto 20px;
         box-shadow: none;
-        padding: 4px;
+        padding: 6px;
         gap: 4px;
+        align-items: center;
     }
 
     .bottom-nav .tb {
         flex-direction: row;
-        gap: 6px;
-        min-width: 90px;
-        padding: 8px 16px;
-        font-size: 0.9rem;
+        gap: 8px;
+        min-width: 100px;
+        padding: 13px 22px;
+        font-size: 0.95rem;
     }
 
     .bottom-nav .tb svg {
-        width: 18px;
-        height: 18px;
+        width: 19px;
+        height: 19px;
     }
 
     body {
