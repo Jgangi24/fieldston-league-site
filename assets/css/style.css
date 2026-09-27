@@ -128,7 +128,11 @@ body {
         margin: 16px auto 20px;
         box-shadow: none;
         padding: 6px;
-        gap: 4px;
+        /* Bigger gap than the mobile bar needs -- these pills got taller
+           and wider, and a 4px gap meant two lit-up neighbors (current +
+           hovered) touched and fused into one blobby shape instead of
+           reading as two separate pills. */
+        gap: 10px;
         align-items: center;
     }
 
