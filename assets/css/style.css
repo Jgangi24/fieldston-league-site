@@ -22,90 +22,167 @@ body {
     line-height: 1.5;
 }
 
-.site-nav {
+/* Nav: mobile-first. Base rules below are the phone layout -- a slim
+   brand header up top, and a floating rounded pill tab bar hovering
+   above the bottom edge (thumb's reach, matches Fieldston-Draft-App /
+   Average-Height-Points-Travel). The min-width override further down
+   turns the same bottom-nav element into a compact pill row up near the
+   header for desktop -- pure CSS, no JS measuring window width. */
+.site-header {
     background: var(--navy);
-    padding: 16px 24px;
-    display: flex;
-    align-items: center;
-    gap: 24px;
-    flex-wrap: wrap;
+    padding: 14px 16px;
+    position: sticky;
+    top: 0;
+    z-index: 20;
 }
 
-.site-nav .brand {
+.site-header .brand {
     color: #fff;
     font-weight: 700;
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     text-decoration: none;
-    margin-right: 8px;
 }
 
-.site-nav a {
+.bottom-nav {
+    position: fixed;
+    left: 12px;
+    right: 12px;
+    bottom: max(12px, env(safe-area-inset-bottom));
+    display: flex;
+    gap: 2px;
+    background: var(--navy);
+    border-radius: 999px;
+    padding: 6px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+    z-index: 20;
+}
+
+.bottom-nav .tb {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
     color: #cbd5e1;
     text-decoration: none;
-    font-size: 0.95rem;
+    font-size: 0.68rem;
+    padding: 8px 2px 7px;
+    border-radius: 999px;
+    /* Without this, iOS/Android apply their own translucent gray/white
+       flash on tap before the page even starts navigating away -- that's
+       what read as a "sputter" between our own colors. The reference
+       apps turn this off everywhere they have custom tap feedback;
+       this nav never did. */
+    -webkit-tap-highlight-color: transparent;
 }
 
-.site-nav a:hover {
+.bottom-nav .tb svg {
+    width: 20px;
+    height: 20px;
+    flex: none;
+}
+
+.bottom-nav .tb:active {
+    background: rgba(255, 255, 255, 0.15);
     color: #fff;
 }
 
-.nav-dropdown {
-    position: relative;
+/* :hover only for devices that actually have a pointer -- on touch,
+   :hover can "stick" after a tap until you touch elsewhere, which reads
+   as yet another flash/lag once the highlight above is gone. */
+@media (hover: hover) {
+    .bottom-nav .tb:hover {
+        background: rgba(255, 255, 255, 0.15);
+        color: #fff;
+    }
 }
 
-.nav-dropdown-toggle {
-    cursor: pointer;
+/* The tab for whatever section you're currently on -- set once on page
+   load by the small script in nav.html, not by :hover/:active, so it
+   stays lit instead of fading the moment you lift your thumb. */
+.bottom-nav .tb.tb-current {
+    background: rgba(255, 255, 255, 0.12);
+    color: var(--accent);
 }
 
-.nav-dropdown-menu {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background: #ffffff;
+/* Room at the bottom of every page so the floating tab bar never covers
+   the last bit of content or the footer. */
+body {
+    padding-bottom: 96px;
+}
+
+@media (min-width: 700px) {
+    .bottom-nav {
+        position: static;
+        left: auto;
+        right: auto;
+        bottom: auto;
+        width: fit-content;
+        margin: 0 24px 14px auto;
+        box-shadow: none;
+        padding: 4px;
+        gap: 4px;
+    }
+
+    .bottom-nav .tb {
+        flex-direction: row;
+        gap: 6px;
+        min-width: 90px;
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
+
+    .bottom-nav .tb svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    body {
+        padding-bottom: 0;
+    }
+}
+
+/* Hub pages (GMs / Stats / More): a simple tappable card grid, one column
+   on phones, two columns once there's room. */
+.hub-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+}
+
+.hub-link {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2px;
+    min-height: 44px;
+    background: var(--card-bg);
     border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 6px 0;
-    min-width: 170px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-    z-index: 10;
+    border-radius: 10px;
+    padding: 16px 18px;
+    text-decoration: none;
+    color: var(--text);
+    -webkit-tap-highlight-color: transparent;
 }
 
-.nav-dropdown:hover .nav-dropdown-menu,
-.nav-dropdown:focus-within .nav-dropdown-menu {
-    display: block;
+.hub-link:hover {
+    border-color: var(--navy);
 }
 
-.nav-dropdown-menu a {
-    display: block;
-    color: var(--text) !important;
-    padding: 8px 16px;
-    font-size: 0.92rem;
+.hub-link-label {
+    font-weight: 600;
 }
 
-.nav-dropdown-menu a:hover {
-    background: var(--bg);
-    color: var(--navy) !important;
+.hub-link-sub {
+    font-size: 0.85rem;
+    color: var(--muted);
 }
 
-.nav-mobile-toggle {
-    display: none;
-    background: none;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    color: #fff;
-    font-size: 1.25rem;
-    line-height: 1;
-    padding: 4px 10px;
-    border-radius: 6px;
-    cursor: pointer;
-    margin-left: auto;
-}
-
-.nav-links {
-    /* On desktop this wrapper is invisible to layout -- its children
-       (Home, the three dropdowns, Draft Results, History) become direct
-       flex items of .site-nav exactly as before this wrapper existed. */
-    display: contents;
+@media (min-width: 700px) {
+    .hub-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 .placeholder-page {
@@ -898,6 +975,18 @@ table.stats-table tbody tr:hover {
     -webkit-overflow-scrolling: touch;
 }
 
+/* The table stays a genuine display:table element (untouched) so its
+   normal column-layout algorithm keeps header/body columns aligned --
+   width:max-content lets it grow past the wrapper's width when the
+   content needs it, min-width:100% keeps it filling the wrapper when it
+   doesn't. .table-scroll's overflow-x:auto above is what actually makes
+   the excess scrollable instead of clipped or forcing the whole page to
+   scroll sideways. */
+.table-scroll table.stats-table {
+    width: max-content;
+    min-width: 100%;
+}
+
 /* --- Article image lightbox (click hero/photo-strip images to expand) --- */
 .lightbox-trigger {
     cursor: zoom-in;
@@ -1183,79 +1272,6 @@ table.compare-table .compare-best {
    ========================================================================== */
 @media (max-width: 700px) {
 
-    /* Nav: tighter spacing so more links fit before wrapping. The dropdown
-       menus (GMs/League/Stats) still rely on :hover / :focus-within, which
-       doesn't work well via touch -- that's a separate, bigger fix (needs
-       a tap-to-toggle button) tracked separately, not solved by this pass. */
-    .site-nav {
-        padding: 12px 16px;
-        gap: 12px 16px;
-    }
-
-    .site-nav .brand {
-        font-size: 1rem;
-        margin-right: 0;
-    }
-
-    .site-nav a {
-        font-size: 0.88rem;
-    }
-
-    /* Hamburger button: shown only on mobile, sits at the far right of the
-       brand row via margin-left:auto set on .nav-mobile-toggle above */
-    .nav-mobile-toggle {
-        display: inline-block;
-    }
-
-    /* Links collapse into a hidden panel by default, full-width and
-       stacked, revealed by JS toggling .nav-links-open on tap */
-    .nav-links {
-        display: none;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 2px;
-        width: 100%;
-    }
-
-    .nav-links.nav-links-open {
-        display: flex;
-    }
-
-    /* Submenus (GMs/League/Stats) no longer open on hover/focus at mobile
-       width -- :hover doesn't fire reliably via touch. They're controlled
-       entirely by the .nav-dropdown-open class the tap handler toggles. */
-    .nav-dropdown:hover .nav-dropdown-menu,
-    .nav-dropdown:focus-within .nav-dropdown-menu {
-        display: none;
-    }
-
-    .nav-dropdown {
-        width: 100%;
-    }
-
-    .nav-dropdown-toggle {
-        display: block;
-        padding: 6px 0;
-    }
-
-    .nav-dropdown.nav-dropdown-open .nav-dropdown-menu {
-        display: block;
-        position: static;
-        box-shadow: none;
-        border: none;
-        padding: 0 0 4px 16px;
-        background: transparent;
-    }
-
-    .nav-dropdown-menu a {
-        color: #cbd5e1 !important;
-    }
-
-    .nav-dropdown-menu a:hover {
-        background: rgba(255, 255, 255, 0.08);
-        color: #fff !important;
-    }
-
     /* Page padding: reclaim horizontal space on narrow screens */
     .page,
     .page-wide {
@@ -1263,22 +1279,12 @@ table.compare-table .compare-best {
         padding: 20px 14px 48px;
     }
 
-    /* Any stats-style table becomes horizontally scrollable within its own
-       width, even if a build script forgot to wrap it in .table-scroll.
-       thead/tbody/tr keep their table display so columns still align;
-       only the outer <table> becomes the scroll container. */
+    /* Wide tables scroll via .table-scroll + the width:max-content rule
+       above (every build script that emits a many-column stats-table now
+       wraps it in .table-scroll). Anything still narrow enough to render
+       unwrapped just needs its text not to wrap mid-cell. */
     table.stats-table {
-        display: block;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
         white-space: nowrap;
-    }
-
-    table.stats-table thead,
-    table.stats-table tbody,
-    table.stats-table tr {
-        display: table;
-        width: 100%;
     }
 
     /* Two-column layouts collapse to one column and stack */
