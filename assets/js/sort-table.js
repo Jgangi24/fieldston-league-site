@@ -23,7 +23,7 @@ function sortTableByColumn(table, colIndex, th, headers) {
     var segments = [[]];
     var dividers = [];
     allRows.forEach(function (row) {
-        if (row.classList.contains("bench-divider")) {
+        if (row.classList.contains("bench-divider") || row.classList.contains("ir-divider")) {
             dividers.push(row);
             segments.push([]);
         } else {

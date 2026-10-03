@@ -25,6 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
         ["ast", "AST", true],
         ["stl", "STL", true],
         ["blk", "BLK", true],
+        ["tpm", "3PM", true],
         ["tov", "TOV", false],
         ["fg_pct", "FG%", true],
         ["fg3_pct", "3P%", true],

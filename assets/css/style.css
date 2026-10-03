@@ -453,8 +453,7 @@ table.stats-table th abbr {
 
 .team-banner img {
     width: 100%;
-    max-width: 1200px;
-    max-height: 320px;
+    max-height: 340px;
     object-fit: cover;
     border-radius: 10px;
     display: block;
@@ -2213,3 +2212,235 @@ a.sch-tile:hover { background: rgba(10, 37, 64, 0.04); }
 .mu-flash { animation: mu-flash 2s ease-out; }
 @keyframes mu-flash { from { background: rgba(217, 130, 43, 0.25); } to { background: transparent; } }
 .banner-card .stats-table a { color: var(--navy); text-decoration: none; font-weight: 600; }
+
+/* Stats hub: headed groups (Players / Teams) */
+.hub-group-title { margin: 22px 0 10px; padding-bottom: 6px; font-size: 1.1rem; }
+.hub-group-title:first-of-type { margin-top: 14px; }
+
+
+/* Icon tiles inside banner cards (Stats hub, GMs hub).
+   1px gaps over a border-coloured background draw the dividers, so nothing overlaps the banner.
+   Phones: always 2 across, an odd last tile spans the row. Wider screens: one row per group
+   (--cols tiles), so every card ends exactly where its tiles end. */
+.stat-tiles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; background: var(--border); }
+.stat-tiles > :last-child:nth-child(odd) { grid-column: 1 / -1; }
+@media (min-width: 700px) {
+    .stat-tiles { grid-template-columns: repeat(var(--cols, 4), minmax(0, 1fr)); }
+    .stat-tiles > :last-child:nth-child(odd) { grid-column: auto; }
+}
+.stat-tile, .gm-tile { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 3px;
+    padding: 16px 12px 14px; background: var(--card-bg); text-decoration: none; color: var(--text);
+    -webkit-tap-highlight-color: transparent; min-width: 0; }
+.stat-tile:hover, .gm-tile:hover { background: #f4f6f9; }
+.stat-icon { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    background: var(--navy); color: var(--accent); margin-bottom: 6px; }
+.stat-icon svg { width: 21px; height: 21px; }
+.stat-label { font-weight: 700; font-size: 0.95rem; }
+.stat-sub { font-size: 0.78rem; color: var(--muted); line-height: 1.25; }
+
+/* GMs hub: one banner card per GM, two team tiles inside */
+.gm-cards { display: grid; grid-template-columns: 1fr; gap: 14px; }
+@media (min-width: 700px) { .gm-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.gm-cards .banner-card { margin-bottom: 0; }
+.gm-cards .banner-head a { color: #fff; text-decoration: none; display: flex; justify-content: space-between; align-items: baseline; width: 100%; }
+.gm-cards .stat-tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.gm-logo { width: 62px; height: 68px; object-fit: contain; }
+.gm-team { font-weight: 700; font-size: 0.95rem; line-height: 1.2; }
+.gm-rec { font-size: 0.78rem; color: var(--muted); }
+
+/* ---- Add / Drop as round + and - buttons ---- */
+.fa-add-btn, .roster-drop-btn {
+    width: 32px; height: 32px; padding: 0; border-radius: 50%;
+    font-size: 1.4rem; font-weight: 700; line-height: 1; text-align: center;
+    align-items: center; justify-content: center;
+}
+.fa-add-btn { display: inline-flex; background: #1a7f37; }
+/* The drop button stays hidden until the GM is choosing who to drop (.is-adding). */
+.roster-drop-btn { background: #b3261e; }
+.is-adding .roster-drop-btn { display: inline-flex; }
+.fa-add-btn:active, .roster-drop-btn:active { transform: scale(0.94); }
+
+/* ---- "W" = on waivers (Free Agents page) ---- */
+.w-badge {
+    display: inline-block; min-width: 18px; padding: 0 5px; border-radius: 9px;
+    background: #fff4d6; color: #8a5a00; border: 1px solid #e3c463;
+    font-size: 0.68rem; font-weight: 800; line-height: 16px; text-align: center; vertical-align: 1px; cursor: help;
+}
+.fa-legend { color: var(--muted); font-size: 0.85rem; margin: 0 0 10px; }
+
+/* ---- Injured reserve rows on a GM's own roster ---- */
+.roster-table tr.ir-divider td {
+    background: #7a1f1a; color: #fff; font-weight: 700; font-size: 0.65rem; line-height: 1.2;
+    letter-spacing: 0.05em; text-transform: uppercase; padding: 2px 10px; text-align: left;
+}
+.roster-table tr.ir-divider td span { position: sticky; left: 10px; }
+.roster-table tr.is-ir td { opacity: 0.62; }
+.roster-table tr.is-ir td.col-pos, .roster-table tr.is-ir td.col-player { opacity: 1; color: var(--muted); }
+.ir-badge {
+    display: inline-block; margin-left: 6px; padding: 0 5px; border-radius: 4px;
+    background: #b3261e; color: #fff; font-size: 0.65rem; font-weight: 800; line-height: 15px; vertical-align: 1px;
+}
+
+/* ---- Tweaks: waiver line stands out; smaller, exactly-centered + / - buttons ---- */
+.roster-waiver-priority { font-size: 0.95rem; font-weight: 700; color: var(--navy); }
+.fa-add-btn, .roster-drop-btn {
+    position: relative; width: 26px; height: 26px; font-size: 0; vertical-align: middle;
+}
+/* The + and - are drawn as bars (not text), so they sit dead-center in the circle. */
+.fa-add-btn::before, .fa-add-btn::after, .roster-drop-btn::before {
+    content: ""; position: absolute; left: 50%; top: 50%; background: #fff; border-radius: 1px;
+    transform: translate(-50%, -50%);
+}
+.fa-add-btn::before, .roster-drop-btn::before { width: 11px; height: 2.5px; }
+.fa-add-btn::after { width: 2.5px; height: 11px; }
+.fa-add-cell, .roster-move-cell { vertical-align: middle; }
+
+/* ---- Free-agent doorways: GM page link + home banner ---- */
+.roster-waiver-row {
+    display: flex; justify-content: flex-start; align-items: baseline; gap: 14px; flex-wrap: wrap;
+    margin: 0 0 8px; padding-bottom: 6px; border-bottom: 1px solid var(--border);
+}
+.roster-waiver-row .roster-waiver-priority { margin: 0; padding: 0; border: 0; }
+.fa-doorway { font-size: 0.9rem; font-weight: 600; white-space: nowrap; color: #1a56db; text-decoration: underline; }
+.waiver-banner {
+    display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;
+    margin: 14px 0 0; padding: 10px 14px; border-radius: 10px;
+    background: #fff4d6; border: 1px solid #e3c463; border-left: 5px solid var(--accent); font-size: 0.92rem;
+}
+.waiver-banner[hidden] { display: none; }
+.waiver-banner a { font-weight: 700; color: var(--navy); white-space: nowrap; }
+
+/* ---- Even smaller + / - and move buttons ---- */
+.fa-add-btn, .roster-drop-btn { width: 22px; height: 22px; }
+.fa-add-btn::before, .roster-drop-btn::before { width: 9px; height: 2.2px; }
+.fa-add-btn::after { width: 2.2px; height: 9px; }
+.roster-move-btn { width: 24px; height: 24px; font-size: 0.8rem; border-width: 1.5px; padding: 0; }
+
+/* ---- Home: waivers-open strip (navy, with an orange button), above League News ---- */
+.waiver-banner {
+    flex-wrap: nowrap; margin: 6px 0 14px; padding: 8px 10px 8px 14px; border: 0; border-radius: 12px;
+    border-left: 5px solid var(--accent); color: #fff; background: linear-gradient(90deg, var(--navy), #16406b);
+}
+.waiver-banner-text { display: flex; align-items: center; gap: 9px; font-weight: 700; font-size: 0.92rem; }
+.waiver-dot { width: 9px; height: 9px; border-radius: 50%; background: #4ade80; box-shadow: 0 0 0 3px rgba(74, 222, 128, 0.25); flex: none; }
+.waiver-banner .waiver-banner-btn {
+    background: var(--accent); color: #fff; text-decoration: none; font-weight: 700; font-size: 0.88rem;
+    padding: 7px 14px; border-radius: 999px; white-space: nowrap;
+}
+
+/* ---- Round 2: GM-page "Free agents" as a small button; lighter, slimmer home strip ---- */
+.roster-waiver-row { align-items: center; }
+.fa-doorway {
+    background: var(--accent); color: #fff; text-decoration: none; font-size: 0.8rem; font-weight: 700;
+    padding: 4px 12px; border-radius: 999px; line-height: 1.2;
+}
+.waiver-banner {
+    background: var(--card-bg); color: var(--text); border: 1px solid var(--border); border-left: 4px solid var(--accent);
+    padding: 5px 6px 5px 12px; border-radius: 10px; margin: 4px 0 10px;
+}
+.waiver-banner-text { font-size: 0.85rem; color: var(--navy); }
+.waiver-dot { width: 8px; height: 8px; background: #22a455; box-shadow: 0 0 0 3px rgba(34, 164, 85, 0.18); }
+.waiver-banner .waiver-banner-btn { padding: 4px 12px; font-size: 0.8rem; }
+
+/* ---- Round 3: more breathing room around the button; button sits right after the text ---- */
+.waiver-banner { justify-content: flex-start; gap: 14px; padding: 9px 14px 9px 12px; }
+.waiver-banner .waiver-banner-btn { padding: 4px 12px; }
+.waiver-banner { margin-bottom: 16px; }
+
+
+/* ---- Waivers strip, final: main row (+ pick-order row on phones / right side on computers) ---- */
+.waiver-banner { flex-wrap: wrap; align-items: center; }
+.waiver-main { display: flex; align-items: center; gap: 14px; }
+.waiver-order { display: flex; align-items: center; gap: 10px; flex: 1 1 100%; margin-top: 8px; padding-top: 8px; border-top: 1px dashed var(--border); }
+.waiver-order[hidden] { display: none; }
+.wo-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
+.wo-logos { display: flex; flex: 1; justify-content: space-between; align-items: center; }
+.wo-item { position: relative; display: inline-flex; }
+.wo-item img { width: 24px; height: 26px; object-fit: contain; }
+.wo-n { position: absolute; top: -5px; left: -5px; z-index: 1; min-width: 12px; height: 12px; border-radius: 6px; background: var(--navy);
+    color: #fff; font-size: 0.55rem; font-weight: 800; line-height: 12px; text-align: center; padding: 0 2px; }
+@media (min-width: 760px) {
+    .waiver-banner { flex-wrap: nowrap; }
+    .waiver-order { flex: 0 0 auto; margin: 0 0 0 auto; padding: 0 0 0 18px; border-top: 0; border-left: 1px solid var(--border); gap: 14px; }
+    .wo-logos { flex: none; gap: 12px; }
+    .wo-n { position: static; background: none; color: var(--muted); font-size: 0.72rem; line-height: 1; min-width: 8px; height: auto; margin-right: 4px; align-self: center; }
+}
+
+/* ---- Waivers strip, balanced: equal-height rows (phone), two equal halves (computer), stronger divider ---- */
+.waiver-banner { display: grid; grid-template-columns: 1fr; padding: 0 14px 0 12px; gap: 0; }
+.waiver-main { justify-content: center; min-height: 46px; padding: 0; }
+.waiver-order {
+    min-height: 46px; margin: 0; padding: 0; border-top: 2px dashed #aab3c0; border-left: 0; gap: 10px;
+}
+.waiver-order[hidden] { display: none; }
+@media (min-width: 760px) {
+    .waiver-banner { grid-template-columns: 1fr 1fr; padding: 0 14px 0 12px; }
+    .waiver-main { min-height: 52px; justify-content: center; }
+    .waiver-order {
+        min-height: 0; margin: 8px 0; padding: 0; border-top: 0; border-left: 2px solid #aab3c0;
+        justify-content: center; gap: 14px;
+    }
+}
+@media (min-width: 760px) { .waiver-order { padding: 0 8px 0 18px; gap: 12px; } .wo-logos { gap: 9px; } }
+
+/* ---- Waivers strip, desktop symmetry: halves span the full strip, padding lives inside each half ---- */
+@media (min-width: 760px) {
+    .waiver-banner { padding: 0; }
+    .waiver-main { padding: 0 14px; }
+    .waiver-order { padding: 0 14px 0 14px; }
+}
+
+
+/* ---- Dialogs (add-to-team, move player, confirmations): navy header like the site's banners ---- */
+.roster-picker { border-radius: 14px; overflow-y: auto; }
+.roster-picker-header {
+    background: linear-gradient(90deg, var(--navy), #16406b); border-bottom: 0; border-left: 5px solid var(--accent);
+    padding: 16px 16px 14px 14px;
+}
+.roster-picker-header h3 { color: #fff; }
+.roster-picker-sub { color: rgba(255, 255, 255, 0.82); }
+.roster-picker-close { background: rgba(255, 255, 255, 0.12); border-color: rgba(255, 255, 255, 0.4); color: #fff; }
+.roster-picker-close:hover { background: rgba(255, 255, 255, 0.22); }
+.picker-player {
+    display: inline-block; padding: 0 8px; border-radius: 999px; background: var(--accent); color: #fff; font-weight: 700; line-height: 1.5;
+}
+.roster-picker-option { border-left: 4px solid transparent; transition: background 0.12s, border-color 0.12s; }
+.roster-picker-option:hover, .roster-picker-option:active { border-left-color: var(--accent); }
+.roster-picker-option.has-logo { justify-content: flex-start; gap: 14px; }
+.roster-picker-option.has-logo strong { flex: 1; }
+.roster-picker-option.has-logo > span {
+    flex: none; padding: 2px 9px; border-radius: 999px; background: var(--bg); border: 1px solid var(--border);
+    font-weight: 700; color: var(--navy);
+}
+.picker-team-logo { width: 46px; height: 50px; object-fit: contain; flex: none; }
+
+/* ---- Pick order: bigger logos, number badges overlaid at every size ---- */
+.wo-item img { width: 27px; height: 29px; }
+.wo-n { position: absolute; top: -5px; left: -5px; z-index: 1; min-width: 12px; height: 12px; border-radius: 6px; padding: 0 2px;
+    background: var(--navy); color: #fff; font-size: 0.55rem; font-weight: 800; line-height: 12px; text-align: center; }
+@media (min-width: 760px) {
+    .wo-item img { width: 32px; height: 35px; }
+    .wo-n { position: absolute; margin: 0; min-width: 14px; height: 14px; border-radius: 7px; font-size: 0.62rem; line-height: 14px; background: var(--navy); color: #fff; align-self: auto; }
+    .wo-logos { gap: 9px; }
+    .waiver-order { gap: 12px; }
+}
+
+
+/* ---- Round 2: taller waivers strip; wider, slimmer dialogs ---- */
+.waiver-main { min-height: 56px; }
+.waiver-order { min-height: 56px; }
+@media (min-width: 760px) {
+    .waiver-main { min-height: 72px; }
+    .waiver-order { min-height: 0; margin: 10px 0; }
+}
+.roster-picker { width: min(560px, 92vw); }
+.roster-picker-header { padding: 11px 14px 10px; gap: 10px; align-items: center; }
+.roster-picker-header h3 { margin: 0 0 1px; font-size: 1.05rem; }
+.roster-picker-sub { font-size: 0.85rem; line-height: 1.35; }
+.roster-picker-close { width: 30px; height: 30px; font-size: 1.15rem; }
+.picker-player { line-height: 1.4; padding: 0 8px; }
+@media (max-width: 640px) { .roster-picker { width: 100%; } }
+
+/* ---- Dialog header: more space between the title and the "Adding [name]" line ---- */
+.roster-picker-header h3 { margin-bottom: 7px; }
+.roster-picker-header { padding-bottom: 12px; }

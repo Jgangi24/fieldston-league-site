@@ -83,15 +83,24 @@
                 if (e.key === "Escape") pickerEl.hidden = true;
             });
         }
-        pickerEl.querySelector(".roster-picker-sub").textContent =
-            "Pick the team that's adding " + name + ". You'll choose who to drop next.";
+        var sub = pickerEl.querySelector(".roster-picker-sub");
+        sub.textContent = "";
+        var chip = document.createElement("strong");
+        chip.className = "picker-player";
+        chip.textContent = name;
+        sub.appendChild(document.createTextNode("Adding "));
+        sub.appendChild(chip);
+        sub.appendChild(document.createTextNode(" \u00b7 you'll choose who to drop next."));
         var list = pickerEl.querySelector(".roster-picker-list");
         list.innerHTML = "";
         myTeams.forEach(function (team) {
             var btn = document.createElement("button");
             btn.type = "button";
-            btn.className = "roster-picker-option";
-            btn.innerHTML = "<strong></strong><span></span>";
+            btn.className = "roster-picker-option has-logo";
+            btn.innerHTML = '<img class="picker-team-logo" alt=""><strong></strong><span></span>';
+            var logo = btn.querySelector("img");
+            logo.src = "assets/images/bbgm-logos/" + String(team.abbrev).toLowerCase() + "-secondary.png";
+            logo.onerror = function () { logo.style.visibility = "hidden"; };
             btn.querySelector("strong").textContent = team.full_name;
             btn.querySelector("span").textContent = team.abbrev;
             btn.addEventListener("click", function () { goToRoster(team.tid, pid, name); });

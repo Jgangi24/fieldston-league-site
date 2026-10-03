@@ -15,7 +15,7 @@
     // in or not. It comes from a static file the weekly sync writes
     // (scripts/sync_portal.py), since the database only lets signed-in users
     // read it.
-    fetch("../data/waiver_priority.json")
+    fetch("../data/waiver_priority.json?t=" + Date.now())
         .then(function (res) { return res.ok ? res.json() : null; })
         .then(function (data) {
             if (!data) return;
@@ -115,6 +115,11 @@
         // The lineup as saved. A GM can also click a stats column header to
         // sort the table for viewing; that only changes what's on screen, so
         // swaps always work from this saved order instead of the DOM order.
+        tbodies.forEach(function (tbody) {
+            Object.keys(irByPid).forEach(function (pid) {
+                if (irByPid[pid]) setRowIr(tbody, parseInt(pid, 10), true);
+            });
+        });
         lineupByTid[tid] = orderMap(tbodies[0]);
 
         Array.prototype.forEach.call(panel.querySelectorAll("tr[data-pid]"), function (row) {
@@ -140,6 +145,8 @@
                 irCheckbox.addEventListener("change", async function () {
                     var checked = irCheckbox.checked;
                     forEachRowForPid(panel, pid, function (r) { r.querySelector(".roster-ir-toggle").checked = checked; });
+                    tbodies.forEach(function (tbody) { setRowIr(tbody, pid, checked); });
+                    lineupByTid[tid] = orderMap(tbodies[0]);
                     await saveAndRefresh(panel, tid, function () {
                         return upsertPendingRequest(tid, "ir_toggle", pid, { to_ir: checked });
                     });
@@ -208,7 +215,7 @@
     function startAdding(panel) {
         panel.classList.add("is-adding");
         Array.prototype.forEach.call(panel.querySelectorAll(".roster-adding-banner"), function (banner) {
-            banner.innerHTML = "<span>Adding <strong></strong> &mdash; tap <b>Drop</b> next to the player you want to release.</span>" +
+            banner.innerHTML = "<span>Adding <strong></strong> &mdash; tap the <b>&minus;</b> next to the player you want to release.</span>" +
                 ' <button type="button" class="roster-adding-cancel">Cancel</button>';
             banner.querySelector("strong").textContent = addName;
             banner.querySelector(".roster-adding-cancel").addEventListener("click", function () { stopAdding(panel); });
@@ -508,7 +515,7 @@
 
     function getManagedRows(tbody) {
         return Array.prototype.filter.call(tbody.children, function (el) {
-            return el.tagName === "TR" && el.dataset.pid;
+            return el.tagName === "TR" && el.dataset.pid && !el.classList.contains("is-ir");
         });
     }
 
@@ -526,6 +533,55 @@
             return av - bv;
         });
         withIndex.forEach(function (entry) { tbody.appendChild(entry.row); });
+        layoutIrSection(tbody);   // also re-places the Bench divider
+    }
+
+    // ---- Injured reserve: IR players drop to the bottom, under their own divider ----
+
+    function setRowIr(tbody, pid, onIr) {
+        var row = tbody.querySelector("tr[data-pid='" + pid + "']");
+        if (!row) return;
+        row.classList.toggle("is-ir", onIr);
+        var nameCell = row.querySelector(".col-player");
+        var badge = row.querySelector(".ir-badge");
+        if (onIr && !badge && nameCell) {
+            badge = document.createElement("span");
+            badge.className = "ir-badge";
+            badge.textContent = "IR";
+            badge.title = "On injured reserve";
+            nameCell.appendChild(badge);
+        }
+        if (!onIr) {
+            if (badge) badge.remove();
+            // back to the bottom of the active players (end of the bench)
+            var divider = tbody.querySelector(".ir-divider");
+            if (divider) tbody.insertBefore(row, divider); else tbody.appendChild(row);
+        }
+        layoutIrSection(tbody);
+    }
+
+    function layoutIrSection(tbody) {
+        var irRows = Array.prototype.filter.call(tbody.children, function (el) {
+            return el.tagName === "TR" && el.dataset.pid && el.classList.contains("is-ir");
+        });
+        var divider = tbody.querySelector(".ir-divider");
+        if (!irRows.length) {
+            if (divider) divider.remove();
+            repositionDivider(tbody);
+            return;
+        }
+        if (!divider) {
+            divider = document.createElement("tr");
+            divider.className = "ir-divider";
+            var cell = document.createElement("td");
+            cell.colSpan = tbody.parentElement.querySelectorAll("thead th").length;
+            var label = document.createElement("span");
+            label.textContent = "Injured Reserve";
+            cell.appendChild(label);
+            divider.appendChild(cell);
+        }
+        tbody.appendChild(divider);
+        irRows.forEach(function (row) { tbody.appendChild(row); });
         repositionDivider(tbody);
     }
 
@@ -537,7 +593,7 @@
         if (firstBench) {
             tbody.insertBefore(divider, firstBench);
         } else {
-            tbody.appendChild(divider);
+            tbody.insertBefore(divider, tbody.querySelector(".ir-divider"));
         }
     }
 })();

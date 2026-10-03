@@ -33,11 +33,11 @@
     </a>
     <a href="standings.html" class="tb" data-section="standings">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4h8v5a4 4 0 0 1-8 0V4z"/><path d="M8 5H5a3 3 0 0 0 3 4"/><path d="M16 5h3a3 3 0 0 1-3 4"/><path d="M12 13v3"/><path d="M9 20h6"/><path d="M10 16h4v4h-4z"/></svg>
-        <span>Standings</span>
+        <span>Season</span>
     </a>
     <a href="stats.html" class="tb" data-section="players">
-        <span class="tb-icon tb-icon-player" aria-hidden="true"></span>
-        <span>Players</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10"/><path d="M12 20V4"/><path d="M20 20v-7"/></svg>
+        <span>Stats</span>
     </a>
     <a href="more.html" class="tb" data-section="more">
         <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>
@@ -46,6 +46,14 @@
 </nav>
 
 <div class="page">
+    <div class="waiver-banner" id="waiver-banner" hidden>
+        <div class="waiver-main">
+            <span class="waiver-banner-text"><span class="waiver-dot"></span><span>Waivers open &middot; Week <span id="waiver-banner-week"></span></span></span>
+            <a class="waiver-banner-btn" href="free-agents.html">Free agents &rarr;</a>
+        </div>
+        <div class="waiver-order" id="waiver-order" hidden><span class="wo-label">Pick order</span><span class="wo-logos" id="wo-logos"></span></div>
+    </div>
+
     <div class="home-news-head">
         <h2>League News</h2>
         <span class="home-updated">Updated October 03, 2026</span>
@@ -53,6 +61,40 @@
     <div class="card">
         <p class="placeholder">No stories yet &mdash; check back after a few games.</p>
     </div>
+
+    <script>
+    fetch("data/waiver_priority.json?t=" + Date.now())
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (d) {
+            if (!d || !d.priority || !Object.keys(d.priority).length) return;
+            document.getElementById("waiver-banner-week").textContent = d.week;
+            document.getElementById("waiver-banner").hidden = false;
+
+            // Pick order as small team logos, #1 first (wide screens only; see CSS).
+            var teams = {"0": ["GA", "Gentlemen's Agreement"], "1": ["NT", "Nipple-Teets"], "2": ["PP", "Paint Patrol"], "3": ["OMB", "Outer Mission Burritos"], "4": ["JHLC", "Lew Crew"], "5": ["LC2", "Lew Crew 2"], "6": ["RGH", "Russell Got The Hustle"], "7": ["HM", "Hail Mary's"]};
+            var order = document.getElementById("waiver-order");
+            Object.keys(d.priority)
+                .sort(function (a, b) { return d.priority[a] - d.priority[b]; })
+                .forEach(function (tid) {
+                    var t = teams[tid];
+                    if (!t) return;
+                    var item = document.createElement("span");
+                    item.className = "wo-item";
+                    item.title = d.priority[tid] + ". " + t[1];
+                    var n = document.createElement("span");
+                    n.className = "wo-n";
+                    n.textContent = d.priority[tid];
+                    var img = document.createElement("img");
+                    img.src = "assets/images/bbgm-logos/" + t[0].toLowerCase() + "-secondary.png";
+                    img.alt = t[1];
+                    item.appendChild(n);
+                    item.appendChild(img);
+                    document.getElementById("wo-logos").appendChild(item);
+                });
+            order.hidden = false;
+        })
+        .catch(function () { /* no file: leave the banner hidden */ });
+    </script>
 
     <h2>Standings</h2>
     <div class="card">

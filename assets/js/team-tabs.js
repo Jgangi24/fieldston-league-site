@@ -19,4 +19,12 @@ document.addEventListener('DOMContentLoaded', function () {
     if (!targetId) return;
     var tab = document.querySelector('.team-tab[data-target="' + targetId + '"]');
     if (tab) showTeamPanel(tab, targetId);
+
+    // The #panel-<tid> hash makes the browser jump DOWN to that panel, past the GM's name,
+    // team tabs, waiver priority and the Free agents link. Those are the controls people
+    // want first, so always start at the top of the page.
+    if (tab) {
+        window.scrollTo(0, 0);
+        window.addEventListener('load', function () { window.scrollTo(0, 0); });
+    }
 });

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Players - Fieldston Core Four Fantasy</title>
+    <title>Stats - Fieldston Core Four Fantasy</title>
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/images/app/favicon-32.png">
     <link rel="apple-touch-icon" href="assets/images/app/apple-touch-icon.png">
@@ -33,11 +33,11 @@
     </a>
     <a href="standings.html" class="tb" data-section="standings">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4h8v5a4 4 0 0 1-8 0V4z"/><path d="M8 5H5a3 3 0 0 0 3 4"/><path d="M16 5h3a3 3 0 0 1-3 4"/><path d="M12 13v3"/><path d="M9 20h6"/><path d="M10 16h4v4h-4z"/></svg>
-        <span>Standings</span>
+        <span>Season</span>
     </a>
     <a href="stats.html" class="tb tb-current" data-section="players">
-        <span class="tb-icon tb-icon-player" aria-hidden="true"></span>
-        <span>Players</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10"/><path d="M12 20V4"/><path d="M20 20v-7"/></svg>
+        <span>Stats</span>
     </a>
     <a href="more.html" class="tb" data-section="more">
         <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>
@@ -46,30 +46,8 @@
 </nav>
 
 <div class="page">
-<h1>Players</h1>
-<div class="hub-grid">
-    <a class="hub-link" href="free-agents.html">
-        <span class="hub-link-label">Free Agents</span>
-        <span class="hub-link-sub">Undrafted legends</span>
-    </a>
-    <a class="hub-link" href="player-stats.html">
-        <span class="hub-link-label">Player Stats</span>
-        <span class="hub-link-sub">Season stat lines</span>
-    </a>
-    <a class="hub-link" href="player-ratings.html">
-        <span class="hub-link-label">Player Ratings</span>
-        <span class="hub-link-sub">Full BBGM ratings</span>
-    </a>
-    <a class="hub-link" href="leaders.html">
-        <span class="hub-link-label">League Leaders</span>
-        <span class="hub-link-sub">Top players by category</span>
-    </a>
-    <a class="hub-link" href="compare.html">
-        <span class="hub-link-label">Compare Players</span>
-        <span class="hub-link-sub">Side-by-side comparison</span>
-    </a>
-
-</div>
+<h1>Stats</h1>
+<section class="banner-card"><div class="banner-head"><strong>Players</strong></div><div class="stat-tiles" style="--cols:5"><a class="stat-tile" href="free-agents.html"><span class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.5 3-6 6.5-6s6.5 2.5 6.5 6"/><path d="M19 8v6M16 11h6"/></svg></span><span class="stat-label">Free Agents</span><span class="stat-sub">Available on waivers</span></a><a class="stat-tile" href="player-stats.html"><span class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span><span class="stat-label">Player Stats</span><span class="stat-sub">Season stat lines</span></a><a class="stat-tile" href="player-ratings.html"><span class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg></span><span class="stat-label">Player Ratings</span><span class="stat-sub">Full BBGM ratings</span></a><a class="stat-tile" href="leaders.html"><span class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4h8v5a4 4 0 0 1-8 0V4z"/><path d="M8 5H5a3 3 0 0 0 3 4"/><path d="M16 5h3a3 3 0 0 1-3 4"/><path d="M12 13v3"/><path d="M9 20h6"/></svg></span><span class="stat-label">League Leaders</span><span class="stat-sub">Top players by category</span></a><a class="stat-tile" href="compare.html"><span class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h16M16 4l4 4-4 4"/><path d="M20 16H4M8 12l-4 4 4 4"/></svg></span><span class="stat-label">Compare Players</span><span class="stat-sub">Side-by-side comparison</span></a></div></section><section class="banner-card"><div class="banner-head"><strong>Teams</strong></div><div class="stat-tiles" style="--cols:4"><a class="stat-tile" href="team-stats.html"><span class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M9 4v16"/></svg></span><span class="stat-label">Team Stats</span><span class="stat-sub">Per-game team numbers</span></a><a class="stat-tile" href="league-stats.html"><span class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg></span><span class="stat-label">League Stats</span><span class="stat-sub">League-wide totals</span></a><a class="stat-tile" href="power-rankings.html"><span class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h18M5 20v-7h4v7M10 20V6h4v14M15 20v-10h4v10"/></svg></span><span class="stat-label">Power Rankings</span><span class="stat-sub">Our own weekly ranking</span></a><a class="stat-tile" href="rivalries.html"><span class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></span><span class="stat-label">Rivalries</span><span class="stat-sub">GM vs GM head-to-head</span></a></div></section>
 </div>
 <footer class="site-footer"><a href="rules.html">League Rules</a></footer>
 
