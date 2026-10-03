@@ -12,16 +12,21 @@
     if (!script || !script.src) return;
     var base = script.src.replace(/js\/splash\.js.*$/, "images/app/");
     var phone = window.innerWidth < 700 || window.innerHeight > window.innerWidth;
-    var image = base + (phone ? "splash-mobile.jpg" : "splash-desktop.jpg");
+    var image = base + (phone ? "splash-mobile.jpg" : "splash-desktop.jpg") + "?v=2";
 
     var css = document.createElement("style");
     css.textContent =
-        "#fcf-splash{position:fixed;inset:0;z-index:99999;background:#05070d url('" + image + "') center/" +
-        (phone ? "cover" : "contain") + " no-repeat;cursor:pointer;transition:opacity .5s ease;opacity:1}" +
-        "#fcf-splash.fcf-out{opacity:0;pointer-events:none}";
+        "#fcf-splash{position:fixed;inset:0;z-index:99999;overflow:hidden;background:#05070d;cursor:pointer;" +
+        "transition:opacity .5s ease;opacity:1}" +
+        "#fcf-splash.fcf-out{opacity:0;pointer-events:none}" +
+        // Fill the whole screen. Phones centre the picture; computers anchor it to the TOP so any
+        // cropping happens at the bottom and the logo is never cut off.
+        "#fcf-splash div{position:absolute;inset:0;background:url('" + image + "') " +
+        (phone ? "center" : "center top") + "/cover no-repeat}";
     var el = document.createElement("div");
     el.id = "fcf-splash";
     el.setAttribute("aria-hidden", "true");
+    el.appendChild(document.createElement("div"));
 
     var preload = new Image();   // don't show an empty dark box while the picture loads
     preload.src = image;
