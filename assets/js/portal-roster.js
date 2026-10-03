@@ -148,8 +148,8 @@
 
             var select = row.querySelector(".roster-pt-select");
             if (select) {
-                var shownBadge = row.querySelector(".pt-badge");
-                var shownLevel = shownBadge ? shownBadge.textContent.replace("PT ", "") : "normal";
+                var shownCell = row.querySelector(".roster-pt-view");
+                var shownLevel = shownCell && shownCell.dataset.pt ? shownCell.dataset.pt : "normal";
                 select.value = ptByPid[pid] || shownLevel;
                 select.addEventListener("change", async function () {
                     var value = select.value;
@@ -523,23 +523,13 @@
         if (result.error) throw result.error;
     }
 
-    // Read-only playing-time marker beside the player's name (nothing for normal).
+    // Read-only playing-time column cell for everyone not managing this team.
+    var PT_SHOWN = { "0": "0", "-": "\u2212", "normal": "\u2713", "+": "+", "++": "++" };
     function setPtBadge(row, level) {
-        var nameCell = row.querySelector(".col-player");
-        if (!nameCell) return;
-        var badge = nameCell.querySelector(".pt-badge");
-        if (level === "normal") {
-            if (badge) badge.remove();
-            return;
-        }
-        if (!badge) {
-            badge = document.createElement("span");
-            badge.className = "pt-badge";
-            badge.title = "Playing time";
-            nameCell.appendChild(badge);
-        }
-        badge.textContent = "PT " + level;
-        badge.classList.toggle("pt-zero", level === "0");
+        var cell = row.querySelector(".roster-pt-view");
+        if (!cell) return;
+        cell.dataset.pt = level;
+        cell.textContent = PT_SHOWN[level] || level;
     }
 
     // Finds (or creates) this week's pending row for this exact

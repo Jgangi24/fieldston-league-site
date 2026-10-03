@@ -2445,10 +2445,7 @@ a.sch-tile:hover { background: rgba(10, 37, 64, 0.04); }
 .roster-picker-header h3 { margin-bottom: 7px; }
 .roster-picker-header { padding-bottom: 12px; }
 
-/* ---- Public playing-time marker (hidden for the GM, who has the dropdown) ---- */
-.pt-badge {
-    display: inline-block; margin-left: 6px; padding: 0 5px; border-radius: 4px;
-    background: var(--navy); color: #fff; font-size: 0.65rem; font-weight: 800; line-height: 15px; vertical-align: 1px;
-}
-.pt-badge.pt-zero { background: #b3261e; }
-.is-managing .pt-badge { display: none; }
+/* ---- Public playing-time column (the GM's own team shows the dropdown instead) ---- */
+.roster-table .roster-pt-view { text-align: center; font-weight: 700; color: var(--navy); }
+.roster-table .roster-pt-view[data-pt="0"] { color: #b3261e; }
+.is-managing .roster-table .roster-pt-view { display: none; }
