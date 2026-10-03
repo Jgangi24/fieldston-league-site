@@ -9,7 +9,10 @@
 <body>
 <header class="site-header">
     <a class="brand" href="index.html">Fieldston Core Four Fantasy</a>
+    <div id="portal-auth-widget" class="portal-auth-widget"></div>
 </header>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+<script src="assets/js/portal-auth.js" defer></script>
 <nav class="bottom-nav">
     <a href="index.html" class="tb" data-section="home">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>
@@ -19,15 +22,15 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3 2.5-5 6-5s6 2 6 5"/><circle cx="17" cy="9" r="2.5"/><path d="M15.5 14.2c2.6.4 4.5 2.1 4.5 5.8"/></svg>
         <span>GMs</span>
     </a>
-    <a href="standings.html" class="tb" data-section="standings">
+    <a href="standings.html" class="tb tb-current" data-section="standings">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4h8v5a4 4 0 0 1-8 0V4z"/><path d="M8 5H5a3 3 0 0 0 3 4"/><path d="M16 5h3a3 3 0 0 1-3 4"/><path d="M12 13v3"/><path d="M9 20h6"/><path d="M10 16h4v4h-4z"/></svg>
         <span>Standings</span>
     </a>
-    <a href="stats.html" class="tb" data-section="stats">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10"/><path d="M12 20V4"/><path d="M20 20v-7"/></svg>
-        <span>Stats</span>
+    <a href="stats.html" class="tb" data-section="players">
+        <span class="tb-icon tb-icon-player" aria-hidden="true"></span>
+        <span>Players</span>
     </a>
-    <a href="more.html" class="tb tb-current" data-section="more">
+    <a href="more.html" class="tb" data-section="more">
         <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>
         <span>More</span>
     </a>
@@ -35,6 +38,7 @@
 
 <div class="page">
 <h1>Power Rankings</h1>
+<nav class="section-tabs"><a class="section-tab-link" href="standings.html">Standings</a><a class="section-tab-link" href="matchups.html">Matchups</a><a class="section-tab-link" href="schedule.html">Schedule</a><a class="section-tab-link" href="bbgm-standings.html">BBGM Standings</a><a class="section-tab-link active" href="power-rankings.html">Power Rankings</a><a class="section-tab-link" href="rivalries.html">Rivalries</a><a class="section-tab-link" href="team-stats.html">Team Stats</a><a class="section-tab-link" href="league-stats.html">League Stats</a></nav>
 <p class="subtitle">A house ranking, not an official BBGM stat &mdash; fully automated and
 recalculated every time the site regenerates. <strong>Power Score = (0.6 &times; Season MOV)
 + (0.4 &times; Last-5-Games MOV)</strong>, blending full-season quality with recent form so a
@@ -49,14 +53,14 @@ team on a hot or cold streak moves accordingly.</p>
 <th><abbr title="Power Score = (0.6 x Season MOV) + (0.4 x Last-5 MOV)">Power Score</abbr></th>
 </tr></thead>
 <tbody>
-<tr><td>1</td><td>Jackson Heights Lew Crew (JH)</td><td data-value='67'>67-30</td><td data-value='5.8'>+5.8</td><td data-value='6.2'>+6.2 <span class='placeholder'>(5 gm)</span></td><td data-value='6.0'><strong>+6.0</strong></td></tr>
-<tr><td>2</td><td>Los Angeles Magic Wiltworthy Kobronabitches (LA)</td><td data-value='54'>54-44</td><td data-value='1.0'>+1.0</td><td data-value='-0.2'>-0.2 <span class='placeholder'>(5 gm)</span></td><td data-value='0.5'><strong>+0.5</strong></td></tr>
-<tr><td>3</td><td>Queens Lew Crew 2, Electric Boogaloo (QNS)</td><td data-value='50'>50-41</td><td data-value='1.2'>+1.2</td><td data-value='-0.6'>-0.6 <span class='placeholder'>(5 gm)</span></td><td data-value='0.5'><strong>+0.5</strong></td></tr>
-<tr><td>4</td><td>Blankendorf Monstrosities (BLNK)</td><td data-value='40'>40-49</td><td data-value='0.5'>+0.5</td><td data-value='-2.8'>-2.8 <span class='placeholder'>(5 gm)</span></td><td data-value='-0.8'><strong>-0.8</strong></td></tr>
-<tr><td>5</td><td>Laurel Canyon Naughty Chauffeurs (LC)</td><td data-value='49'>49-40</td><td data-value='2.3'>+2.3</td><td data-value='-6.6'>-6.6 <span class='placeholder'>(5 gm)</span></td><td data-value='-1.3'><strong>-1.3</strong></td></tr>
-<tr><td>6</td><td>Flamington Tuxedos (FLM)</td><td data-value='54'>54-47</td><td data-value='0.8'>+0.8</td><td data-value='-6.2'>-6.2 <span class='placeholder'>(5 gm)</span></td><td data-value='-2.0'><strong>-2.0</strong></td></tr>
-<tr><td>7</td><td>Oakland Paint Patrol (OAK)</td><td data-value='42'>42-51</td><td data-value='-1.1'>-1.1</td><td data-value='-15.4'>-15.4 <span class='placeholder'>(5 gm)</span></td><td data-value='-6.8'><strong>-6.8</strong></td></tr>
-<tr><td>8</td><td>San Francisco 3 Deep (SF)</td><td data-value='17'>17-71</td><td data-value='-11.3'>-11.3</td><td data-value='-21.6'>-21.6 <span class='placeholder'>(5 gm)</span></td><td data-value='-15.4'><strong>-15.4</strong></td></tr>
+<tr><td>1</td><td>Arlington Gentlemen's Agreement (GA)</td><td data-value='0'>0-0</td><td data-value='0.0'>+0.0</td><td data-value='0.0'>+0.0 <span class='placeholder'>(0 gm)</span></td><td data-value='0.0'><strong>+0.0</strong></td></tr>
+<tr><td>2</td><td>New York Nipple-Teets (NT)</td><td data-value='0'>0-0</td><td data-value='0.0'>+0.0</td><td data-value='0.0'>+0.0 <span class='placeholder'>(0 gm)</span></td><td data-value='0.0'><strong>+0.0</strong></td></tr>
+<tr><td>3</td><td>Oakland Paint Patrol (PP)</td><td data-value='0'>0-0</td><td data-value='0.0'>+0.0</td><td data-value='0.0'>+0.0 <span class='placeholder'>(0 gm)</span></td><td data-value='0.0'><strong>+0.0</strong></td></tr>
+<tr><td>4</td><td>San Francisco Outer Mission Burritos (OMB)</td><td data-value='0'>0-0</td><td data-value='0.0'>+0.0</td><td data-value='0.0'>+0.0 <span class='placeholder'>(0 gm)</span></td><td data-value='0.0'><strong>+0.0</strong></td></tr>
+<tr><td>5</td><td>Jackson Heights Lew Crew (JHLC)</td><td data-value='0'>0-0</td><td data-value='0.0'>+0.0</td><td data-value='0.0'>+0.0 <span class='placeholder'>(0 gm)</span></td><td data-value='0.0'><strong>+0.0</strong></td></tr>
+<tr><td>6</td><td>Queens Lew Crew 2 (LC2)</td><td data-value='0'>0-0</td><td data-value='0.0'>+0.0</td><td data-value='0.0'>+0.0 <span class='placeholder'>(0 gm)</span></td><td data-value='0.0'><strong>+0.0</strong></td></tr>
+<tr><td>7</td><td>Los Angeles Russell Got The Hustle (RGH)</td><td data-value='0'>0-0</td><td data-value='0.0'>+0.0</td><td data-value='0.0'>+0.0 <span class='placeholder'>(0 gm)</span></td><td data-value='0.0'><strong>+0.0</strong></td></tr>
+<tr><td>8</td><td>Laurel Canyon Hail Mary's (HM)</td><td data-value='0'>0-0</td><td data-value='0.0'>+0.0</td><td data-value='0.0'>+0.0 <span class='placeholder'>(0 gm)</span></td><td data-value='0.0'><strong>+0.0</strong></td></tr>
 
 </tbody>
 </table>

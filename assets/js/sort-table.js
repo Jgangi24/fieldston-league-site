@@ -14,7 +14,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function sortTableByColumn(table, colIndex, th, headers) {
     var tbody = table.querySelector("tbody");
-    var rows = Array.prototype.slice.call(tbody.querySelectorAll("tr"));
+    var allRows = Array.prototype.slice.call(tbody.querySelectorAll("tr"));
+
+    // Roster tables have a "Bench" separator row with no stat cells. It
+    // can't be sorted (and used to crash this function), so the rows above
+    // and below it are sorted separately and the separator stays between
+    // them -- starters stay starters, bench stays bench.
+    var segments = [[]];
+    var dividers = [];
+    allRows.forEach(function (row) {
+        if (row.classList.contains("bench-divider")) {
+            dividers.push(row);
+            segments.push([]);
+        } else {
+            segments[segments.length - 1].push(row);
+        }
+    });
+    var rows = [].concat.apply([], segments);
 
     var currentlyAscending = th.classList.contains("sort-asc");
     headers.forEach(function (h) {
@@ -23,18 +39,19 @@ function sortTableByColumn(table, colIndex, th, headers) {
     var ascending = !currentlyAscending;
     th.classList.add(ascending ? "sort-asc" : "sort-desc");
 
+    function cellValue(row) {
+        var cell = row.children[colIndex];
+        return cell.getAttribute("data-value") || cell.textContent.trim();
+    }
+
     var isNumeric = rows.every(function (row) {
-        var cellText = row.children[colIndex].getAttribute("data-value")
-            || row.children[colIndex].textContent.trim();
+        var cellText = cellValue(row);
         return cellText === "" || !isNaN(parseFloat(cellText));
     });
 
-    rows.sort(function (a, b) {
-        var aCell = a.children[colIndex];
-        var bCell = b.children[colIndex];
-        var aVal = aCell.getAttribute("data-value") || aCell.textContent.trim();
-        var bVal = bCell.getAttribute("data-value") || bCell.textContent.trim();
-
+    function compare(a, b) {
+        var aVal = cellValue(a);
+        var bVal = cellValue(b);
         if (isNumeric) {
             aVal = parseFloat(aVal) || 0;
             bVal = parseFloat(bVal) || 0;
@@ -43,14 +60,17 @@ function sortTableByColumn(table, colIndex, th, headers) {
         return ascending
             ? aVal.localeCompare(bVal)
             : bVal.localeCompare(aVal);
-    });
+    }
 
     // Batch all the moves into one DOM operation instead of one per row —
     // moving rows one at a time forces the browser to recalculate layout
     // after each move, which gets very slow on large tables.
     var fragment = document.createDocumentFragment();
-    rows.forEach(function (row) {
-        fragment.appendChild(row);
+    segments.forEach(function (segment, i) {
+        segment.sort(compare).forEach(function (row) {
+            fragment.appendChild(row);
+        });
+        if (dividers[i]) fragment.appendChild(dividers[i]);
     });
     tbody.appendChild(fragment);
 }

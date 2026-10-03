@@ -34,6 +34,10 @@ body {
     position: sticky;
     top: 0;
     z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
 }
 
 .site-header .brand {
@@ -41,6 +45,89 @@ body {
     font-weight: 700;
     font-size: 1.05rem;
     text-decoration: none;
+}
+
+.portal-auth-widget {
+    position: relative;
+    flex: none;
+}
+
+.portal-auth-toggle {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: #fff;
+    font-size: 0.85rem;
+    padding: 7px 12px;
+    border-radius: 999px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.portal-auth-toggle:hover {
+    background: rgba(255, 255, 255, 0.18);
+}
+
+.portal-auth-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px;
+    min-width: 220px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    z-index: 30;
+}
+
+.portal-auth-menu a,
+.portal-auth-menu button[data-action="sign-out"] {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    padding: 8px 4px;
+    font-size: 0.9rem;
+    color: var(--text);
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+.portal-auth-menu a:hover,
+.portal-auth-menu button[data-action="sign-out"]:hover {
+    background: var(--bg);
+}
+
+.portal-auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.portal-auth-form input {
+    padding: 8px 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 0.95rem;
+    width: 100%;
+}
+
+.portal-auth-form button[type="submit"] {
+    background: var(--navy);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 9px;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.portal-auth-error {
+    color: var(--loss);
+    font-size: 0.82rem;
+    margin: 0;
 }
 
 .bottom-nav {
@@ -81,6 +168,22 @@ body {
     width: 20px;
     height: 20px;
     flex: none;
+}
+
+/* Image icon drawn in the tab's current text color via a mask, so it follows
+   the same inactive / active / hover colors as the SVG icons. */
+.bottom-nav .tb .tb-icon {
+    width: 20px;
+    height: 20px;
+    flex: none;
+    background-color: currentColor;
+    -webkit-mask: center / contain no-repeat;
+    mask: center / contain no-repeat;
+}
+
+.bottom-nav .tb .tb-icon-player {
+    -webkit-mask-image: url("../images/icons/player.png");
+    mask-image: url("../images/icons/player.png");
 }
 
 .bottom-nav .tb:active {
@@ -370,16 +473,28 @@ table.stats-table th abbr {
     padding-top: 8px;
 }
 
+/* GM name + the two team-logo tabs share one row to save vertical space. */
+.gm-header-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px 14px;
+    margin-bottom: 6px;
+}
+
+.gm-header-row h1 {
+    margin: 0;
+}
+
 .team-tabs {
     display: flex;
-    gap: 12px;
-    margin: 8px 0 16px;
-    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0;
 }
 
 .team-tab {
-    flex: 0 1 220px;
-    max-width: 240px;
+    flex: 0 0 auto;
+    width: 118px;
     padding: 0;
     border: 2px solid var(--border);
     border-radius: 10px;
@@ -401,17 +516,134 @@ table.stats-table th abbr {
 
 .team-tab img {
     width: 100%;
-    height: 70px;
+    height: 40px;
     object-fit: cover;
     display: block;
 }
 
 .team-tab-fallback {
     display: block;
-    line-height: 1.4;
-    padding: 24px 16px;
+    line-height: 1.2;
+    padding: 8px 6px;
+    font-size: 0.75rem;
     font-weight: 700;
     color: var(--navy);
+}
+
+@media (min-width: 700px) {
+    .team-tab {
+        width: 150px;
+    }
+
+    .team-tab img {
+        height: 48px;
+    }
+}
+
+.team-name-row {
+    margin: 10px 0 4px;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+/* On phones the name may wrap onto a second line, but the record stays
+   pinned on the first line beside it. */
+@media (max-width: 640px) {
+    .gm-page h2.team-name-row {
+        font-size: 1.05rem;
+        gap: 8px;
+        flex-wrap: nowrap;
+    }
+
+    .team-name-text {
+        min-width: 0;
+    }
+
+    .team-name-row .record {
+        flex: none;
+        font-size: 0.95rem;
+    }
+
+    /* The 8-column Team Stats table is just a bit wider than a phone card at
+       normal padding; tighter cells let it fit without sideways scrolling
+       (it still scrolls if a very narrow phone needs it). */
+    table.stats-table.team-stats-table th,
+    table.stats-table.team-stats-table td {
+        padding-left: 4px;
+        padding-right: 4px;
+        font-size: 0.82rem;
+    }
+}
+
+/* Waiver priority sits right under the team name; only shown once the
+   sync has set it (and only to signed-in visitors -- see portal-roster.js). */
+.roster-waiver-priority {
+    margin: 0 0 8px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.82rem;
+    color: var(--muted);
+}
+
+/* Section tabs: Roster | Team Leaders | Last Week's Games | ... */
+.section-tabs {
+    display: flex;
+    gap: 20px;
+    margin: 10px 0 12px;
+    border-bottom: 1px solid var(--border);
+    overflow-x: auto;
+    /* Without this, overflow-x:auto turns overflow-y into auto too, and the
+       row could be dragged up and down by a pixel or two. */
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+
+.section-tabs::-webkit-scrollbar {
+    display: none;
+}
+
+.section-tab-link {
+    padding: 8px 2px;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    border-bottom: 2px solid transparent;
+    flex: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.section-tab-link.active {
+    color: var(--navy);
+    font-weight: 700;
+    border-bottom-color: var(--navy);
+}
+
+.brand-pair {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.brand-pair figure {
+    margin: 0;
+}
+
+.brand-pair img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    display: block;
+}
+
+.brand-pair figcaption {
+    margin-top: 6px;
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--muted);
 }
 
 .team-banner-placeholder code {
@@ -425,35 +657,266 @@ table.stats-table th abbr {
     background: var(--navy);
     color: #fff;
     font-weight: 700;
-    font-size: 0.8rem;
+    font-size: 0.65rem;
+    line-height: 1.2;
     letter-spacing: 0.05em;
     text-transform: uppercase;
-    padding: 6px 10px;
-    text-align: center;
+    padding: 2px 10px;
+    text-align: left;
 }
 
-.roster-table .drag-handle {
-    cursor: grab;
-    color: var(--muted);
-    text-align: center;
-    width: 20px;
-    letter-spacing: -2px;
+/* The divider cell spans the whole (scrolling) row, so the label sticks to
+   the left edge instead of drifting off-screen. */
+.roster-table tr.bench-divider td span {
+    position: sticky;
+    left: 10px;
 }
 
-.roster-table tr[draggable="true"].dragging {
-    opacity: 0.4;
+/* Pos + Player stay put while the stats scroll sideways. Opaque background
+   so scrolled cells pass underneath instead of showing through. */
+.roster-table .col-pos,
+.roster-table .col-player {
+    position: sticky;
+    z-index: 1;
+    background: var(--card-bg);
+}
+
+.roster-table .col-pos {
+    left: 0;
+    width: 38px;
+    min-width: 38px;
+    max-width: 38px;
+    box-sizing: border-box;
+}
+
+.roster-table .col-player {
+    left: 38px;
+    white-space: nowrap;
+    box-shadow: 2px 0 3px -1px rgba(0, 0, 0, 0.15);
+}
+
+/* The move + PT columns only exist for a GM looking at their own team;
+   portal-roster.js adds .is-managing to that team's panel. Everyone else
+   sees the roster table exactly as generated. */
+.roster-table .roster-manage-cell {
+    display: none;
+}
+
+.is-managing .roster-table .roster-manage-cell {
+    display: table-cell;
+    width: 1%;
+    white-space: nowrap;
+    padding: 6px 8px !important;
+}
+
+.roster-manage-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.roster-move-btn {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 1.5px solid var(--navy);
+    background: var(--card-bg);
+    color: var(--navy);
+    font-size: 1rem;
+    line-height: 1;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.roster-move-btn:hover {
     background: var(--bg);
 }
 
-.roster-table tr[draggable="true"]:hover {
-    background: #fafbfc;
+.roster-pt-select {
+    padding: 6px 8px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 0.9rem;
+    background: var(--card-bg);
 }
 
-.drag-hint {
+.roster-ir-label {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.78rem;
+    color: var(--muted);
+    white-space: nowrap;
+}
+
+.roster-ir-label[hidden] {
+    display: none;
+}
+
+.roster-manage-hint {
     color: var(--muted);
     font-size: 0.82rem;
     font-style: italic;
     margin-top: 8px;
+}
+
+.roster-manage-hint[hidden] {
+    display: none;
+}
+
+/* Starter/bench swap picker: centered dialog on desktop, bottom sheet on phones. */
+.roster-picker-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.roster-picker-backdrop[hidden] {
+    display: none;
+}
+
+.roster-picker {
+    background: var(--card-bg);
+    border-radius: 12px;
+    width: min(440px, 92vw);
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.roster-picker-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px 16px 12px;
+    border-bottom: 1px solid var(--border);
+}
+
+.roster-picker-header h3 {
+    margin: 0 0 4px;
+    font-size: 1.1rem;
+}
+
+.roster-picker-sub {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.88rem;
+}
+
+.roster-picker-close {
+    flex: none;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: var(--card-bg);
+    font-size: 1.3rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.roster-picker-current,
+.roster-picker-option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 14px 16px;
+    font-size: 1rem;
+    text-align: left;
+}
+
+.roster-picker-current {
+    background: var(--bg);
+}
+
+.roster-picker-option {
+    background: var(--card-bg);
+    border: none;
+    border-top: 1px solid var(--border);
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.roster-picker-option:hover,
+.roster-picker-option:active {
+    background: var(--bg);
+}
+
+.roster-picker-current span,
+.roster-picker-option span {
+    color: var(--muted);
+    font-size: 0.85rem;
+}
+
+.roster-picker-heading {
+    padding: 10px 16px 6px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+.roster-picker-empty {
+    padding: 8px 16px 16px;
+    color: var(--muted);
+}
+
+@media (max-width: 640px) {
+    .roster-picker-backdrop {
+        align-items: flex-end;
+    }
+
+    .roster-picker {
+        width: 100%;
+        max-height: 75vh;
+        border-radius: 16px 16px 0 0;
+        animation: roster-picker-up 0.2s ease-out;
+    }
+
+    .roster-picker-option {
+        padding: 18px 16px;
+    }
+}
+
+@keyframes roster-picker-up {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+}
+
+.portal-toast {
+    position: fixed;
+    left: 50%;
+    bottom: 24px;
+    transform: translateX(-50%);
+    background: var(--navy);
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    z-index: 1100;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s;
+}
+
+.portal-toast.is-visible {
+    opacity: 1;
+}
+
+.portal-toast.is-ok {
+    background: var(--win);
+}
+
+.portal-toast.is-error {
+    background: #b3261e;
 }
 
 table.stats-table tbody tr:hover {
@@ -960,6 +1423,7 @@ table.stats-table tbody tr:hover {
 
 .two-col-cards > .card,
 .two-col-cards > .card + .card {
+    min-width: 0;
     margin-top: 0;
     margin-bottom: 0;
 }
@@ -1309,7 +1773,11 @@ table.compare-table .compare-best {
     /* Two-column layouts collapse to one column and stack */
     .two-col-cards,
     .team-value-columns {
-        grid-template-columns: 1fr;
+        /* minmax(0, 1fr), not 1fr: a plain 1fr track won't shrink below its
+           widest child, so a wide stats table inside a card stretched the
+           whole page past the screen width (leaving a gap beside the
+           header). */
+        grid-template-columns: minmax(0, 1fr);
     }
 
     /* Last Week's Games list: was a rigid 2-column grid (grid-auto-flow:
@@ -1345,3 +1813,403 @@ table.compare-table .compare-best {
         padding: 16px 16px;
     }
 }
+
+/* Free agents: "Add" column, shown only to a signed-in GM (body.fa-managing). */
+.fa-add-cell {
+    display: none;
+}
+
+.fa-managing .fa-add-cell {
+    display: table-cell;
+    width: 1%;
+    white-space: nowrap;
+}
+
+.fa-add-btn,
+.roster-drop-btn,
+.roster-confirm-yes,
+.roster-adding-cancel,
+.roster-claim-cancel {
+    background: var(--navy);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.fa-add-hint[hidden] {
+    display: none;
+}
+
+.fa-add-hint {
+    color: var(--muted);
+    font-size: 0.88rem;
+    margin: -8px 0 12px;
+}
+
+/* Shown instead of the Add hint while waivers are closed (before week 1 is played). */
+.fa-add-hint.fa-add-closed {
+    color: var(--loss);
+    font-weight: 700;
+    font-size: 0.95rem;
+}
+
+/* Roster "pick who to drop" mode, entered from the free agents page. */
+.roster-drop-btn {
+    display: none;
+    background: #b3261e;
+}
+
+.is-adding .roster-drop-btn {
+    display: inline-block;
+}
+
+.is-adding .roster-move-btn {
+    display: none;
+}
+
+.roster-adding-banner {
+    background: #fff4d6;
+    border: 1px solid #e3c463;
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-bottom: 10px;
+    font-size: 0.92rem;
+}
+
+.roster-adding-banner[hidden] {
+    display: none;
+}
+
+.roster-adding-cancel,
+.roster-claim-cancel {
+    background: var(--card-bg);
+    color: var(--text);
+    border: 1px solid var(--border);
+    margin-left: 6px;
+    padding: 3px 10px;
+    font-weight: 500;
+}
+
+.roster-claim[hidden] {
+    display: none;
+}
+
+.roster-claim {
+    margin: 0 0 6px;
+    font-size: 0.92rem;
+}
+
+.roster-confirm-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    padding: 14px 16px 16px;
+}
+
+.roster-confirm-no {
+    background: var(--card-bg);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-size: 0.85rem;
+    cursor: pointer;
+}
+
+/* Commissioner dashboard (admin.html) */
+.admin-page .card {
+    margin-bottom: 16px;
+}
+
+.admin-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.admin-week {
+    font-size: 1.05rem;
+    min-width: 70px;
+    text-align: center;
+}
+
+.admin-check {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.9rem;
+    color: var(--muted);
+}
+
+.admin-note {
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin: 6px 0 0;
+}
+
+.admin-btn {
+    background: var(--navy);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 9px 16px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.admin-btn:disabled {
+    opacity: 0.4;
+    cursor: default;
+}
+
+.admin-btn-secondary {
+    background: var(--card-bg);
+    color: var(--navy);
+    border: 1.5px solid var(--navy);
+}
+
+.admin-btn-ghost {
+    background: var(--card-bg);
+    color: var(--navy);
+    border: 1px solid var(--border);
+    padding: 6px 12px;
+}
+
+.admin-btn-small {
+    padding: 5px 12px;
+    font-size: 0.8rem;
+}
+
+.admin-group {
+    border-top: 1px solid var(--border);
+    padding: 12px 0;
+}
+
+.admin-group:first-of-type {
+    border-top: none;
+}
+
+.admin-contested {
+    background: #fff9e6;
+    border-radius: 8px;
+    padding: 12px;
+    margin: 8px 0;
+    border-top: none;
+}
+
+.admin-group-title {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 6px;
+}
+
+.admin-line {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 4px 0;
+    font-size: 0.92rem;
+}
+
+.admin-line-text {
+    flex: 1 1 240px;
+}
+
+.admin-line-p {
+    margin: 2px 0;
+    font-size: 0.92rem;
+}
+
+.admin-group .admin-btn-small {
+    margin-top: 6px;
+}
+
+.admin-line .admin-btn-small {
+    margin-top: 0;
+}
+
+.admin-badge {
+    display: inline-block;
+    border-radius: 10px;
+    padding: 2px 9px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    background: var(--bg);
+    color: var(--muted);
+}
+
+.admin-badge-pending { background: #fff1c2; color: #7a5b00; }
+.admin-badge-won { background: #d9f2df; color: var(--win); }
+.admin-badge-lost { background: #fde0de; color: #b3261e; }
+.admin-badge-applied { background: #e3e8ef; color: var(--navy); }
+.admin-badge-contested { background: #ffe4b5; color: #8a4b00; }
+
+.admin-details summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--navy);
+    padding: 6px 0;
+}
+
+.admin-ir-row {
+    padding: 4px 0;
+    color: var(--text);
+}
+
+/* History page and archived-season banner */
+.history-season { margin-bottom: 16px; }
+.history-year { font-weight: 400; color: var(--muted); font-size: 0.9rem; }
+.history-champ { margin: 6px 0 10px; }
+.history-browse { font-weight: 600; }
+.archive-banner {
+    background: var(--accent);
+    color: #fff;
+    font-size: 0.8rem;
+    text-align: center;
+    padding: 6px 10px;
+}
+.archive-banner a { color: #fff; text-decoration: underline; }
+.history-gm { font-size: 0.78rem; color: var(--muted); }
+.history-season td:last-child { white-space: normal; }
+
+/* Matchups page */
+.week-tabs { gap: 14px; }
+.mu-info { margin: 0 0 10px; font-size: 0.85rem; color: var(--muted); }
+.mu-status { font-weight: 700; }
+.mu-status-complete { color: var(--win); }
+.mu-status-in_progress { color: var(--accent); }
+.matchup-card { padding: 12px; margin-bottom: 12px; }
+.mu-head {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    align-items: center;
+    gap: 8px;
+}
+.mu-team { display: flex; flex-direction: column; align-items: center; text-align: center; min-width: 0; }
+.mu-logo { width: 44px; height: 48px; object-fit: contain; }
+.mu-abbrev { font-weight: 700; margin-top: 2px; }
+.mu-gm, .mu-rec { font-size: 0.75rem; color: var(--muted); }
+.mu-score { display: flex; align-items: baseline; gap: 6px; font-size: 1.6rem; font-weight: 600; color: var(--muted); }
+.mu-pts.mu-lead { color: var(--navy); font-weight: 800; }
+.mu-dash { font-size: 1rem; }
+.mu-vs { font-size: 0.95rem; font-weight: 600; }
+.mu-details { margin-top: 10px; border-top: 1px solid var(--border); padding-top: 6px; }
+.mu-details summary { cursor: pointer; font-size: 0.85rem; color: var(--muted); padding: 6px 0; min-height: 32px; }
+.mu-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+.mu-table th { width: 56px; font-size: 0.75rem; color: var(--muted); font-weight: 600; text-align: center; }
+.mu-table td { text-align: center; padding: 5px 4px; border-top: 1px solid var(--border); }
+.mu-table th { border-top: 1px solid var(--border); }
+.mu-table td.mu-win { font-weight: 800; color: var(--navy); background: rgba(10, 37, 64, 0.07); }
+.mu-table tr.mu-gp td, .mu-table tr.mu-gp th { font-size: 0.75rem; color: var(--muted); border-top: 0; }
+
+/* Fantasy standings */
+.fs-team-inner { display: flex; align-items: center; gap: 8px; }
+.fs-logo { width: 26px; height: 28px; object-fit: contain; flex: none; }
+.fs-name { display: flex; flex-direction: column; line-height: 1.2; min-width: 0; }
+.fantasy-standings td, .fantasy-standings th { white-space: nowrap; }
+.fantasy-standings tr.playoff-cutoff td { border-bottom: 2px solid var(--accent); }
+table.fantasy-standings th, table.fantasy-standings td { padding: 8px 5px; font-size: 0.9rem; }
+table.fantasy-standings td:first-child, table.fantasy-standings th:first-child { padding-left: 2px; width: 22px; }
+.fantasy-standings a { text-decoration: none; }
+
+
+/* Season reminder at the top of the commissioner dashboard */
+.admin-reminder {
+    margin: 0 0 12px;
+    padding: 10px 12px;
+    background: #fff4e5;
+    border-left: 4px solid var(--accent);
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 0.92rem;
+}
+.mu-name { font-weight: 700; font-size: 0.95rem; line-height: 1.15; margin-top: 2px; overflow-wrap: anywhere; }
+
+/* GMs hub: team logos beside each GM */
+.hub-link-has-logos { flex-direction: row; align-items: center; justify-content: space-between; gap: 12px; }
+.hub-link-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.hub-link-logos { display: flex; gap: 8px; flex: none; }
+.hub-logo { width: 40px; height: 44px; object-fit: contain; }
+
+/* Schedule page */
+.sch-week { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-bottom: 12px; }
+.sch-week-head { display: flex; justify-content: space-between; align-items: baseline; padding: 8px 14px;
+    background: linear-gradient(90deg, var(--navy), #16406b); color: #fff; border-left: 5px solid var(--accent); }
+.sch-week-head span { font-size: 0.78rem; opacity: 0.85; }
+.sch-tiles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.sch-tile { padding: 10px 6px 8px; text-align: center; border-top: 1px solid var(--border); }
+.sch-tile:nth-child(-n+2) { border-top: 0; }
+.sch-tile:nth-child(odd) { border-right: 1px solid var(--border); }
+.sch-faceoff { display: flex; align-items: center; justify-content: center; gap: 8px; }
+.sch-logo { width: 38px; height: 42px; object-fit: contain; }
+.sch-mid { font-size: 0.8rem; color: var(--muted); font-weight: 600; min-width: 34px; }
+.sch-mid.sch-score { color: var(--navy); font-size: 0.95rem; font-weight: 800; }
+.sch-names { display: flex; justify-content: space-around; font-weight: 700; font-size: 0.85rem; margin-top: 4px; }
+.sch-team-head { display: flex; align-items: center; gap: 12px; margin: 4px 0 10px; }
+.sch-team-head > div { display: flex; flex-direction: column; }
+.sch-logo-lg { width: 52px; height: 56px; object-fit: contain; }
+.sch-logo-sm { width: 26px; height: 28px; object-fit: contain; flex: none; }
+.sch-opp { display: flex; align-items: center; gap: 8px; }
+.sch-opp > span { display: flex; flex-direction: column; line-height: 1.2; }
+.sch-table th, .sch-table td { padding: 8px 5px; font-size: 0.9rem; }
+.sch-res { font-weight: 700; }
+.sch-res-W { color: var(--win); }
+.sch-res-L { color: var(--loss); }
+.sch-res.sch-live { color: var(--accent); }
+table.fantasy-standings { width: 100%; }
+table.fantasy-standings td.fs-team { white-space: normal; width: 100%; }
+table.fantasy-standings .fs-name strong { white-space: normal; overflow-wrap: anywhere; }
+table.fantasy-standings td, table.fantasy-standings th { padding-left: 4px; padding-right: 4px; }
+.table-scroll table.stats-table.fantasy-standings { width: 100%; min-width: 0; }
+table.fantasy-standings td, table.fantasy-standings th { font-size: 0.85rem; padding-left: 3px; padding-right: 3px; }
+.fantasy-standings .fs-logo { width: 22px; height: 24px; }
+.fantasy-standings .fs-team-inner { gap: 6px; }
+.sch-names a, .sch-opp a { color: var(--text); text-decoration: none; }
+table.sch-table { width: 100%; }
+.sch-wk { white-space: nowrap; line-height: 1.2; }
+.sch-wk > span { display: block; }
+table.sch-table td.sch-opp-cell, .sch-table td:nth-child(2) { white-space: normal; }
+
+/* Shared banner-card look: navy banner header, used on Schedule, Matchups, Standings, History */
+.banner-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-bottom: 12px; }
+.banner-head { display: flex; justify-content: space-between; align-items: baseline; padding: 8px 14px;
+    background: linear-gradient(90deg, var(--navy), #16406b); color: #fff; border-left: 5px solid var(--accent); }
+.banner-head span { font-size: 0.78rem; opacity: 0.85; }
+.banner-body { padding: 12px 14px; }
+.mu-item { padding: 12px; border-top: 1px solid var(--border); }
+.banner-head + .mu-item { border-top: 0; }
+
+/* Schedule tiles: logo above a centered abbreviation, one column per side */
+.sch-faceoff { align-items: flex-start; }
+.sch-side { display: flex; flex-direction: column; align-items: center; gap: 4px; flex: 1; min-width: 0; }
+.sch-faceoff .sch-mid { align-self: center; flex: none; text-align: center; }
+.sch-ab { font-weight: 700; font-size: 0.85rem; text-align: center; }
+
+/* Fantasy standings: Record and GB centered under their headers, with room to breathe */
+table.fantasy-standings th:nth-child(n+3), table.fantasy-standings td:nth-child(n+3) { text-align: center; padding-left: 12px; padding-right: 12px; }
+.sch-ab a { color: var(--text); text-decoration: none; }
+.history-season .table-scroll table.stats-table { width: 100%; min-width: 0; }
+
+/* Home: "Updated <date>" right-aligned on the League News heading row to save vertical space */
+.home-news-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px;
+    margin: 6px 0 12px; padding-bottom: 8px; border-bottom: 2px solid var(--border); }
+.home-news-head h2 { margin: 0; padding: 0; border: 0; }
+.home-updated { color: var(--muted); font-size: 0.8rem; white-space: nowrap; }
+a.sch-tile { display: block; text-decoration: none; color: inherit; }
+a.sch-tile:hover { background: rgba(10, 37, 64, 0.04); }
+.sch-tile .sch-ab { color: var(--text); }
+.mu-flash { animation: mu-flash 2s ease-out; }
+@keyframes mu-flash { from { background: rgba(217, 130, 43, 0.25); } to { background: transparent; } }
+.banner-card .stats-table a { color: var(--navy); text-decoration: none; font-weight: 600; }

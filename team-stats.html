@@ -9,7 +9,10 @@
 <body>
 <header class="site-header">
     <a class="brand" href="index.html">Fieldston Core Four Fantasy</a>
+    <div id="portal-auth-widget" class="portal-auth-widget"></div>
 </header>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+<script src="assets/js/portal-auth.js" defer></script>
 <nav class="bottom-nav">
     <a href="index.html" class="tb" data-section="home">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>
@@ -19,13 +22,13 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3 2.5-5 6-5s6 2 6 5"/><circle cx="17" cy="9" r="2.5"/><path d="M15.5 14.2c2.6.4 4.5 2.1 4.5 5.8"/></svg>
         <span>GMs</span>
     </a>
-    <a href="standings.html" class="tb" data-section="standings">
+    <a href="standings.html" class="tb tb-current" data-section="standings">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4h8v5a4 4 0 0 1-8 0V4z"/><path d="M8 5H5a3 3 0 0 0 3 4"/><path d="M16 5h3a3 3 0 0 1-3 4"/><path d="M12 13v3"/><path d="M9 20h6"/><path d="M10 16h4v4h-4z"/></svg>
         <span>Standings</span>
     </a>
-    <a href="stats.html" class="tb tb-current" data-section="stats">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10"/><path d="M12 20V4"/><path d="M20 20v-7"/></svg>
-        <span>Stats</span>
+    <a href="stats.html" class="tb" data-section="players">
+        <span class="tb-icon tb-icon-player" aria-hidden="true"></span>
+        <span>Players</span>
     </a>
     <a href="more.html" class="tb" data-section="more">
         <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>
@@ -35,27 +38,10 @@
 
 <div class="page">
 <h1>Team Stats</h1>
+<nav class="section-tabs"><a class="section-tab-link" href="standings.html">Standings</a><a class="section-tab-link" href="matchups.html">Matchups</a><a class="section-tab-link" href="schedule.html">Schedule</a><a class="section-tab-link" href="bbgm-standings.html">BBGM Standings</a><a class="section-tab-link" href="power-rankings.html">Power Rankings</a><a class="section-tab-link" href="rivalries.html">Rivalries</a><a class="section-tab-link active" href="team-stats.html">Team Stats</a><a class="section-tab-link" href="league-stats.html">League Stats</a></nav>
 <p class="subtitle">Per-game averages, sorted by points per game (click a column to re-sort)</p>
 <div class="card">
-<div class="table-scroll">
-<table class="stats-table">
-<thead><tr>
-<th>Team</th><th>PPG</th><th>RPG</th><th>APG</th><th>SPG</th><th>BPG</th>
-<th>FG%</th><th>Opp PPG</th>
-</tr></thead>
-<tbody>
-<tr><td>Blankendorf Monstrosities (BLNK)</td><td data-value='125.7'>125.7</td><td data-value='42.2'>42.2</td><td data-value='27.1'>27.1</td><td data-value='5.6'>5.6</td><td data-value='6.9'>6.9</td><td data-value='47.2'>47.2%</td><td data-value='125.2'>125.2</td></tr>
-<tr><td>Jackson Heights Lew Crew (JH)</td><td data-value='124.3'>124.3</td><td data-value='44.5'>44.5</td><td data-value='25.1'>25.1</td><td data-value='6.4'>6.4</td><td data-value='9.4'>9.4</td><td data-value='47.7'>47.7%</td><td data-value='118.5'>118.5</td></tr>
-<tr><td>Queens Lew Crew 2, Electric Boogaloo (QNS)</td><td data-value='123.6'>123.6</td><td data-value='43.2'>43.2</td><td data-value='25.5'>25.5</td><td data-value='6.0'>6.0</td><td data-value='9.0'>9.0</td><td data-value='47.8'>47.8%</td><td data-value='122.4'>122.4</td></tr>
-<tr><td>Laurel Canyon Naughty Chauffeurs (LC)</td><td data-value='123.6'>123.6</td><td data-value='44.6'>44.6</td><td data-value='26.1'>26.1</td><td data-value='6.1'>6.1</td><td data-value='8.5'>8.5</td><td data-value='47.8'>47.8%</td><td data-value='121.3'>121.3</td></tr>
-<tr><td>Flamington Tuxedos (FLM)</td><td data-value='123.4'>123.4</td><td data-value='42.6'>42.6</td><td data-value='25.0'>25.0</td><td data-value='6.4'>6.4</td><td data-value='9.0'>9.0</td><td data-value='47.9'>47.9%</td><td data-value='122.6'>122.6</td></tr>
-<tr><td>Oakland Paint Patrol (OAK)</td><td data-value='122.4'>122.4</td><td data-value='43.7'>43.7</td><td data-value='26.4'>26.4</td><td data-value='5.5'>5.5</td><td data-value='7.7'>7.7</td><td data-value='47.1'>47.1%</td><td data-value='123.5'>123.5</td></tr>
-<tr><td>Los Angeles Magic Wiltworthy Kobronabitches (LA)</td><td data-value='122.1'>122.1</td><td data-value='43.1'>43.1</td><td data-value='25.9'>25.9</td><td data-value='6.1'>6.1</td><td data-value='8.8'>8.8</td><td data-value='46.5'>46.5%</td><td data-value='121.1'>121.1</td></tr>
-<tr><td>San Francisco 3 Deep (SF)</td><td data-value='119.8'>119.8</td><td data-value='40.0'>40.0</td><td data-value='26.8'>26.8</td><td data-value='4.9'>4.9</td><td data-value='5.4'>5.4</td><td data-value='44.9'>44.9%</td><td data-value='131.1'>131.1</td></tr>
-
-</tbody>
-</table>
-</div>
+<p class="placeholder">No games played yet &mdash; export your Game Stats CSV once games have been simulated.</p>
 </div>
 </div>
 <footer class="site-footer"><a href="rules.html">League Rules</a></footer>

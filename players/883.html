@@ -9,7 +9,10 @@
 <body>
 <header class="site-header">
     <a class="brand" href="../index.html">Fieldston Core Four Fantasy</a>
+    <div id="portal-auth-widget" class="portal-auth-widget"></div>
 </header>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+<script src="../assets/js/portal-auth.js" defer></script>
 <nav class="bottom-nav">
     <a href="../index.html" class="tb" data-section="home">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>
@@ -23,9 +26,9 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4h8v5a4 4 0 0 1-8 0V4z"/><path d="M8 5H5a3 3 0 0 0 3 4"/><path d="M16 5h3a3 3 0 0 1-3 4"/><path d="M12 13v3"/><path d="M9 20h6"/><path d="M10 16h4v4h-4z"/></svg>
         <span>Standings</span>
     </a>
-    <a href="../stats.html" class="tb tb-current" data-section="stats">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10"/><path d="M12 20V4"/><path d="M20 20v-7"/></svg>
-        <span>Stats</span>
+    <a href="../stats.html" class="tb tb-current" data-section="players">
+        <span class="tb-icon tb-icon-player" aria-hidden="true"></span>
+        <span>Players</span>
     </a>
     <a href="../more.html" class="tb" data-section="more">
         <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>
@@ -35,7 +38,7 @@
 
 <div class="page">
 <h1>Fat Lever</h1>
-<p class="subtitle">G &middot; Free Agent &middot; 6'3", 170 lbs</p>
+<p class="subtitle">G &middot; San Francisco Outer Mission Burritos &middot; 6'3", 170 lbs</p>
 
 <p class="team-stats-tabs">
 <a href="#" data-tab-link data-tab-group="player-tabs" data-tab-target="gamelog" class="team-stats-tab-link active">Game Log</a>
