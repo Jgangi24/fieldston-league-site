@@ -34,6 +34,7 @@
         window.location.reload();
     });
 
+    var PT_SHOWN = { "0": "0", "-": "\u2212", "normal": "\u2713", "+": "+", "++": "++" };
     var STARTER_COUNT = 5; // BBGM's starting five; everyone after is bench
 
     var user = window.Portal.getUser();
@@ -524,7 +525,6 @@
     }
 
     // Read-only playing-time column cell for everyone not managing this team.
-    var PT_SHOWN = { "0": "0", "-": "\u2212", "normal": "\u2713", "+": "+", "++": "++" };
     function setPtBadge(row, level) {
         var cell = row.querySelector(".roster-pt-view");
         if (!cell) return;
