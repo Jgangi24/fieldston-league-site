@@ -34,10 +34,36 @@
         window.location.reload();
     });
 
-    var user = window.Portal.getUser();
-    if (!user) return; // signed out -- every panel stays exactly as generated
+    var STARTER_COUNT = 5; // BBGM's starting five; everyone after is bench
 
+    var user = window.Portal.getUser();
     var client = window.Portal.getClient();
+
+    // Lineup order and playing time are saved the moment a GM changes them
+    // and are public: everyone sees each team's real current choices, which
+    // may be newer than the last BBGM export the page was built from.
+    var lineupResult = await client.from("lineup_state").select("pid,tid,pt_level,roster_order");
+    var lineupRows = lineupResult.data || [];
+    var lineupPtByPid = {};
+    var lineupOrderByTid = {};
+    lineupRows.forEach(function (row) {
+        if (row.pt_level) lineupPtByPid[row.pid] = row.pt_level;
+        if (row.roster_order !== null && row.roster_order !== undefined) {
+            (lineupOrderByTid[row.tid] = lineupOrderByTid[row.tid] || {})[row.pid] = row.roster_order;
+        }
+    });
+    Array.prototype.forEach.call(document.querySelectorAll(".team-panel[data-tid]"), function (panel) {
+        var order = lineupOrderByTid[panel.dataset.tid];
+        Array.prototype.forEach.call(panel.querySelectorAll(".roster-table tbody"), function (tbody) {
+            if (order) applyOrder(tbody, order);
+        });
+        Array.prototype.forEach.call(panel.querySelectorAll("tr[data-pid]"), function (row) {
+            var level = lineupPtByPid[parseInt(row.dataset.pid, 10)];
+            if (level) setPtBadge(row, level);
+        });
+    });
+
+    if (!user) return; // signed out -- panels show the public view only
 
     var stateResult = await client.from("sync_state").select("current_week_number").eq("id", 1).single();
     var weekNumber = stateResult.data ? stateResult.data.current_week_number : null;
@@ -53,8 +79,6 @@
         function (panel) { return myTidStrings.indexOf(panel.dataset.tid) !== -1; }
     );
     if (!panels.length) return;
-
-    var STARTER_COUNT = 5; // BBGM's starting five; everyone after is bench
 
     // Handed over from the free agents page: ?add=<pid>&addname=<name>
     // plus #panel-<tid>. Puts that team's roster into "pick who to drop"
@@ -79,9 +103,11 @@
         );
         if (!pidsInPanel.length) return;
 
-        var [playersResult, pendingResult] = await Promise.all([
+        var [playersResult, pendingResult, irResult] = await Promise.all([
             client.from("players_mirror").select("pid,ir_eligible").in("pid", pidsInPanel),
             client.from("gm_requests").select("id,type,tid,payload").eq("gm_id", user.id).eq("tid", tid).eq("week_number", weekNumber).eq("status", "pending"),
+            client.from("gm_requests").select("payload,submitted_at").eq("gm_id", user.id).eq("tid", tid).eq("week_number", weekNumber)
+                .eq("type", "ir_toggle").in("status", ["pending", "applied"]).order("submitted_at", { ascending: true }),
         ]);
 
         (pendingResult.data || []).forEach(function (req) {
@@ -92,17 +118,12 @@
         var irEligibleByPid = {};
         (playersResult.data || []).forEach(function (p) { irEligibleByPid[p.pid] = p.ir_eligible; });
 
-        var ptByPid = {};
+        var ptByPid = lineupPtByPid;
         var irByPid = {};
-        var pendingOrderByPid = {};
-        (pendingResult.data || []).forEach(function (req) {
-            if (req.type === "pt_order_change") {
-                if (req.payload.pt_level) ptByPid[req.payload.pid] = req.payload.pt_level;
-                if (req.payload.roster_order !== undefined && req.payload.roster_order !== null) {
-                    pendingOrderByPid[req.payload.pid] = req.payload.roster_order;
-                }
-            }
-            if (req.type === "ir_toggle") irByPid[req.payload.pid] = req.payload.to_ir;
+        var pendingOrderByPid = lineupOrderByTid[tid] || {};
+        // Latest IR choice wins, whether or not the commissioner has ticked it off.
+        (irResult.data || []).forEach(function (req) {
+            irByPid[req.payload.pid] = req.payload.to_ir;
         });
 
         // Re-sort every window-tab's table to match the last SAVED order
@@ -127,12 +148,14 @@
 
             var select = row.querySelector(".roster-pt-select");
             if (select) {
-                if (ptByPid[pid]) select.value = ptByPid[pid];
+                var shownBadge = row.querySelector(".pt-badge");
+                var shownLevel = shownBadge ? shownBadge.textContent.replace("PT ", "") : "normal";
+                select.value = ptByPid[pid] || shownLevel;
                 select.addEventListener("change", async function () {
                     var value = select.value;
-                    forEachRowForPid(panel, pid, function (r) { r.querySelector(".roster-pt-select").value = value; });
+                    forEachRowForPid(panel, pid, function (r) { r.querySelector(".roster-pt-select").value = value; setPtBadge(r, value); });
                     await saveAndRefresh(panel, tid, function () {
-                        return upsertPendingRequest(tid, "pt_order_change", pid, { pt_level: value });
+                        return saveLineup(tid, pid, { pt_level: value });
                     });
                 });
             }
@@ -458,9 +481,7 @@
         // Every player's slot is written, not just the two swapped, so the
         // saved order is always complete and consistent.
         var ok = await saveAndRefresh(panel, tid, function () {
-            return Promise.all(Object.keys(after).map(function (pid) {
-                return upsertPendingRequest(tid, "pt_order_change", parseInt(pid, 10), { roster_order: after[pid] });
-            }));
+            return saveLineupOrder(tid, after);
         });
         if (!ok) {
             lineupByTid[tid] = before;
@@ -482,6 +503,43 @@
         if (!el || !priorityRow) return;
         el.textContent = "Waiver priority: #" + priorityRow.priority_rank + " of 8";
         el.hidden = false;
+    }
+
+    // Lineup/PT rows are one per player, saved straight away (no approval).
+    async function saveLineup(tid, pid, patch) {
+        var result = await client.from("lineup_state").upsert(
+            Object.assign({ pid: pid, tid: tid, updated_by: user.id, updated_at: new Date().toISOString() }, patch),
+            { onConflict: "pid" }
+        );
+        if (result.error) throw result.error;
+    }
+
+    async function saveLineupOrder(tid, orderByPid) {
+        var stamp = new Date().toISOString();
+        var rows = Object.keys(orderByPid).map(function (pid) {
+            return { pid: parseInt(pid, 10), tid: tid, roster_order: orderByPid[pid], updated_by: user.id, updated_at: stamp };
+        });
+        var result = await client.from("lineup_state").upsert(rows, { onConflict: "pid" });
+        if (result.error) throw result.error;
+    }
+
+    // Read-only playing-time marker beside the player's name (nothing for normal).
+    function setPtBadge(row, level) {
+        var nameCell = row.querySelector(".col-player");
+        if (!nameCell) return;
+        var badge = nameCell.querySelector(".pt-badge");
+        if (level === "normal") {
+            if (badge) badge.remove();
+            return;
+        }
+        if (!badge) {
+            badge = document.createElement("span");
+            badge.className = "pt-badge";
+            badge.title = "Playing time";
+            nameCell.appendChild(badge);
+        }
+        badge.textContent = "PT " + level;
+        badge.classList.toggle("pt-zero", level === "0");
     }
 
     // Finds (or creates) this week's pending row for this exact

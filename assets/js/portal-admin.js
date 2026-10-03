@@ -31,7 +31,7 @@
     var refs = await Promise.all([
         client.from("teams_mirror").select("tid,abbrev,full_name,gm_id").order("tid"),
         client.from("gms").select("id,name"),
-        client.from("players_mirror").select("pid,first_name,last_name,tid,ir_eligible,roster_order").limit(2000),
+        client.from("players_mirror").select("pid,first_name,last_name,tid,ir_eligible,roster_order,pt_modifier").limit(2000),
         client.from("sync_state").select("current_week_number").eq("id", 1).single(),
     ]);
     if (refs.some(function (r) { return r.error; })) {
@@ -51,6 +51,7 @@
     if (!currentWeek) return showMessage("No weekly sync has run yet -- there's nothing to manage.");
 
     var state = { week: currentWeek, showApplied: false };
+    var lineupRows = [];
 
     // ---- Small helpers --------------------------------------------------
 
@@ -150,13 +151,15 @@
         var results = await Promise.all([
             client.from("gm_requests").select("id,gm_id,tid,type,status,payload,submitted_at").eq("week_number", state.week).order("submitted_at"),
             client.from("waiver_priority").select("tid,priority_rank").eq("week_number", state.week),
+            client.from("lineup_state").select("pid,tid,pt_level,roster_order"),
         ]);
-        if (results[0].error || results[1].error) {
+        if (results[0].error || results[1].error || results[2].error) {
             console.error("Portal admin: load failed", results);
             return showMessage("Couldn't load this week's requests -- check your connection and refresh.");
         }
 
         var allRequests = results[0].data;
+        lineupRows = results[2].data;
         var rankByTid = {};
         results[1].data.forEach(function (w) { rankByTid[w.tid] = w.priority_rank; });
 
@@ -170,7 +173,6 @@
         root.appendChild(renderToolbar(allRequests, visible, rankByTid));
 
         var addDrops = visible.filter(function (r) { return r.type === "add_drop"; });
-        var lineups = visible.filter(function (r) { return r.type === "pt_order_change"; });
         var irToggles = visible.filter(function (r) { return r.type === "ir_toggle"; });
 
         if (!visible.length) {
@@ -180,7 +182,7 @@
         }
 
         root.appendChild(renderAddDrops(addDrops, rankByTid));
-        root.appendChild(renderLineups(lineups));
+        root.appendChild(renderLineups());
         root.appendChild(renderIrToggles(irToggles));
         root.appendChild(renderIrEligibility());
     }
@@ -322,54 +324,65 @@
             .map(function (p) { return p.pid; });
     }
 
-    function renderLineups(lineups) {
+    var PT_BY_MODIFIER = [[0, "0"], [0.75, "-"], [1, "normal"], [1.25, "+"], [1.75, "++"]];
+    function bbgmPtLevel(modifier) {
+        var m = parseFloat(modifier);
+        if (isNaN(m)) m = 1;
+        var best = PT_BY_MODIFIER[0];
+        PT_BY_MODIFIER.forEach(function (pair) { if (Math.abs(pair[0] - m) < Math.abs(best[0] - m)) best = pair; });
+        return best[1];
+    }
+
+    // GMs' lineup and PT choices save instantly (no approval). This lists, per
+    // team, only what still differs from BBGM's last export -- i.e. what the
+    // commissioner has left to enter. It empties itself after the next sync.
+    function renderLineups() {
         var card = el("div", "card");
-        card.appendChild(el("h3", "", "Lineups & Playing Time"));
-        if (!lineups.length) {
-            card.appendChild(el("p", "placeholder", "No lineup or playing-time changes."));
-            return card;
-        }
+        card.appendChild(el("h3", "", "Lineups & Playing Time to enter in BBGM"));
+        var any = false;
 
-        var byTid = {};
-        lineups.forEach(function (r) { (byTid[r.tid] = byTid[r.tid] || []).push(r); });
-
-        Object.keys(byTid).forEach(function (tidKey) {
-            var tid = parseInt(tidKey, 10);
-            var reqs = byTid[tidKey];
-            var group = el("div", "admin-group");
-
-            var title = el("div", "admin-group-title");
-            title.appendChild(el("strong", "", teamLabel(tid)));
-            var statuses = {};
-            reqs.forEach(function (r) { statuses[r.status] = true; });
-            Object.keys(statuses).forEach(function (s) { title.appendChild(badge(s)); });
-            group.appendChild(title);
-
-            var ordered = reqs
-                .filter(function (r) { return r.payload.roster_order !== undefined && r.payload.roster_order !== null; })
-                .sort(function (a, b) { return a.payload.roster_order - b.payload.roster_order; })
-                .map(function (r) { return r.payload.pid; });
-
-            if (ordered.length) {
-                var current = bbgmOrder(tid);
-                var same = current.length === ordered.length && current.every(function (pid, i) { return pid === ordered[i]; });
-                var names = ordered.map(playerName);
-                group.appendChild(lineText("Starters", names.slice(0, 5).join(", ")));
-                if (names.length > 5) group.appendChild(lineText("Bench", names.slice(5).join(", ")));
-                if (same) group.appendChild(el("p", "admin-note", "Same as BBGM's current order — nothing to change."));
-            }
-
-            reqs.filter(function (r) { return r.payload.pt_level; }).forEach(function (r) {
-                var level = r.payload.pt_level === "normal" ? "✓" : r.payload.pt_level;
-                group.appendChild(lineText("Playing time", playerName(r.payload.pid) + " → " + level));
+        teams.forEach(function (t) {
+            var tid = t.tid;
+            var mine = lineupRows.filter(function (r) { return r.tid === tid; });
+            var orderByPid = {};
+            mine.forEach(function (r) { if (r.roster_order !== null && r.roster_order !== undefined) orderByPid[r.pid] = r.roster_order; });
+            var ptChanges = mine.filter(function (r) {
+                var p = playerByPid[r.pid];
+                return r.pt_level && p && p.tid === tid && r.pt_level !== bbgmPtLevel(p.pt_modifier);
             });
 
-            var applyable = reqs.filter(canApply);
-            if (applyable.length) {
-                group.appendChild(button("Mark applied", "admin-btn admin-btn-small", function () { markApplied(applyable); }));
+            var current = bbgmOrder(tid);
+            var wanted = current.slice();
+            if (Object.keys(orderByPid).length) {
+                wanted.sort(function (a, b) {
+                    var av = orderByPid[a], bv = orderByPid[b];
+                    if (av === undefined && bv === undefined) return current.indexOf(a) - current.indexOf(b);
+                    if (av === undefined) return 1;
+                    if (bv === undefined) return -1;
+                    return av - bv;
+                });
             }
+            var orderChanged = wanted.some(function (pid, i) { return pid !== current[i]; });
+            if (!orderChanged && !ptChanges.length) return;
+            any = true;
+
+            var group = el("div", "admin-group");
+            var title = el("div", "admin-group-title");
+            title.appendChild(el("strong", "", teamLabel(tid)));
+            group.appendChild(title);
+            if (orderChanged) {
+                var names = wanted.map(playerName);
+                group.appendChild(lineText("Starters", names.slice(0, 5).join(", ")));
+                if (names.length > 5) group.appendChild(lineText("Bench", names.slice(5).join(", ")));
+            }
+            ptChanges.forEach(function (r) {
+                var level = r.pt_level === "normal" ? "\u2713" : r.pt_level;
+                group.appendChild(lineText("Playing time", playerName(r.pid) + " \u2192 " + level));
+            });
             card.appendChild(group);
         });
+
+        if (!any) card.appendChild(el("p", "placeholder", "Nothing to enter -- BBGM matches every GM's lineup and playing time."));
         return card;
     }
 
