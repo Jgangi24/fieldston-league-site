@@ -195,7 +195,7 @@
         // Reveals the move/PT columns (they're display:none until now).
         panel.classList.add("is-managing");
 
-        if (addPid && "#" + panel.id === window.location.hash) startAdding(panel);
+        if (addPid && "#" + panel.id === (window.linkedPanelHash || window.location.hash)) startAdding(panel);
     }
 
     function forEachRowForPid(panel, pid, fn) {

@@ -2449,3 +2449,144 @@ a.sch-tile:hover { background: rgba(10, 37, 64, 0.04); }
 .roster-table .roster-pt-view { text-align: center; font-weight: 700; color: var(--navy); }
 .roster-table .roster-pt-view[data-pt="0"] { color: #b3261e; }
 .is-managing .roster-table .roster-pt-view { display: none; }
+
+/* ---- Home page: banner cards for News / Standings / Leaders ---- */
+.news-card .carousel { border: 0; border-radius: 0; }
+.banner-body .placeholder { margin: 6px 0; }
+.banner-link { margin: 12px 0 0; font-size: 0.9rem; }
+.banner-link a { color: var(--navy); font-weight: 600; }
+.banner-body .leaders-grid { gap: 12px; }
+.banner-body .leader-card { padding: 12px 14px; border-radius: 10px; background: var(--bg, #f5f7fa); }
+.banner-body .leader-card ol { padding-left: 18px; margin: 8px 0 0; font-size: 0.9rem; }
+.banner-body .leader-card li { margin-bottom: 4px; }
+.banner-body .leader-card a { color: var(--navy); font-weight: 600; text-decoration: none; }
+
+/* ---- Injuries ---- */
+.inj-badge {
+    display: inline-block; margin-left: 4px; padding: 0 5px; border-radius: 4px;
+    background: #b3261e; color: #fff; font-size: 0.65rem; font-weight: 800; line-height: 15px; vertical-align: 1px;
+}
+.inj-note { display: block; color: #b3261e; font-size: 0.72rem; font-weight: 600; line-height: 1.2; margin-top: 2px; }
+.inj-banner { margin: 6px 0 14px; font-weight: 600; color: #b3261e; }
+.inj-banner .inj-badge { margin-left: 0; margin-right: 6px; }
+.inj-note-sub { color: var(--muted); font-weight: 500; }
+
+/* ---- Home: Injury Report (two to a row) ---- */
+.ir-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; background: var(--border); }
+.ir-grid:has(.ir-cell:nth-child(odd):last-child) { padding-bottom: 0; }
+.ir-cell { display: flex; align-items: center; gap: 8px; padding: 9px 10px; background: var(--card-bg);
+    color: inherit; text-decoration: none; min-width: 0; }
+.ir-cell:hover { background: #f1f4f8; }
+.ir-cell .fs-logo { width: 26px; height: 28px; }
+.ir-text { display: flex; flex-direction: column; min-width: 0; line-height: 1.25; }
+.ir-top { display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap; }
+.ir-top strong { color: var(--navy); font-size: 0.9rem; }
+.ir-out { color: var(--muted); font-size: 0.74rem; font-weight: 600; }
+.ir-kind { color: #b3261e; font-weight: 700; font-size: 0.74rem; }
+.ir-back { color: var(--muted); font-size: 0.72rem; display: block; }
+.ir-back { display: inline; }
+@media (min-width: 700px) {
+    .ir-back::before { content: "\00b7  "; }
+}
+.banner-card > .banner-link { padding: 10px 14px; margin: 0; border-top: 1px solid var(--border); }
+.leader-note { display: block; font-size: 0.7rem; color: var(--muted); margin-top: 2px; }
+.stats-table td.dnp { color: #b3261e; font-weight: 700; font-size: 0.8rem; }
+
+/* ---- Home: Matchups widget (full team names, two matchups to a row) ---- */
+.mw-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; background: var(--border); }
+.mw-tile { display: flex; flex-direction: column; justify-content: center; gap: 6px; padding: 10px;
+    background: var(--card-bg); color: inherit; text-decoration: none; min-width: 0; }
+.mw-tile:hover { background: #f1f4f8; }
+.mw-row { display: flex; align-items: center; gap: 7px; color: var(--muted); }
+.mw-row img { width: 28px; height: 30px; object-fit: contain; flex: none; }
+.mw-name { flex: 1; min-width: 0; font-size: 0.85rem; font-weight: 600; line-height: 1.15; }
+.mw-pts { font-size: 1.15rem; font-weight: 600; min-width: 1.4em; text-align: right; font-variant-numeric: tabular-nums; }
+.mw-row.mw-lead { color: var(--navy); }
+.mw-row.mw-lead .mw-name, .mw-pts.mw-lead { font-weight: 800; }
+
+/* Home standings: no extra space between the banner and the column headings */
+.banner-body:has(> .table-scroll:first-child) { padding-top: 0; }
+.banner-body > .table-scroll:first-child .fantasy-standings thead th { padding-top: 6px; }
+.ir-top { flex-wrap: nowrap; gap: 5px; }
+.ir-top strong { font-size: 0.85rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ir-out { font-size: 0.7rem; white-space: nowrap; }
+.mw-name { font-size: 0.8rem; }
+.ir-top { flex-wrap: wrap; }
+.ir-top strong { overflow: visible; text-overflow: clip; }
+/* Home leaders: "M. Jordan ........ 26.6". Team abbreviation only where there's room (wide screens). */
+.banner-body .leader-card ol { padding-left: 15px; margin: 8px 0 0; font-size: 0.85rem; }
+.banner-body .leader-card li { margin-bottom: 4px; }
+.ld-row { display: flex; align-items: baseline; justify-content: space-between; gap: 6px; text-decoration: none; }
+.ld-name { min-width: 0; font-weight: 600; color: var(--navy); line-height: 1.25; }
+.ld-val { flex: none; color: var(--text); font-variant-numeric: tabular-nums; }
+.banner-body:has(> .leaders-grid) { padding: 10px 8px; }
+.banner-body:has(> .leaders-grid) .leaders-grid { gap: 8px; }
+.banner-body .leader-card { padding: 9px 9px; }
+.banner-body .leader-card ol { padding-left: 13px; }
+
+/* Scrollable tab strips: edge fade + chevron when more tabs are off-screen (tab-hints.js) */
+.tabs-hint { position: relative; }
+.tabs-hint .section-tabs { margin-bottom: 12px; }
+.tabs-hint-btn {
+    position: absolute; top: 0; bottom: 13px; width: 38px; padding: 0; border: 0; cursor: pointer;
+    font-size: 1.7rem; font-weight: 700; line-height: 1; color: var(--navy); z-index: 2;
+    display: flex; align-items: center;
+}
+.tabs-hint-btn[hidden] { display: none; }
+.tabs-hint-right { right: 0; justify-content: flex-end; padding-right: 4px;
+    background: linear-gradient(to right, rgba(245, 246, 248, 0), var(--bg) 62%); }
+.tabs-hint-left { left: 0; justify-content: flex-start; padding-left: 4px;
+    background: linear-gradient(to left, rgba(245, 246, 248, 0), var(--bg) 62%); }
+.banner-body .leader-card ol { font-size: 0.8rem; padding-left: 14px; }
+.banner-body .leader-card { padding: 9px 8px; }
+/* Tab-strip chevrons: centred on the label row (the strip's margin sits outside the wrapper) */
+.tabs-hint-btn { bottom: 1px; align-items: center; padding-bottom: 3px; }
+/* Home leaders: long names get an ellipsis instead of breaking onto a second line */
+.ld-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* GM page header: fantasy + BBGM records, each labelled */
+.team-name-row .records { display: inline-flex; gap: 14px; flex: none; align-items: flex-start; }
+.team-name-row .record { display: inline-flex; flex-direction: column; align-items: center; line-height: 1.1; }
+.team-name-row .record b { font-size: 1.15rem; font-weight: 700; }
+.team-name-row .record small { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); margin-top: 2px; }
+.team-name-row .rec-fantasy b { color: var(--navy); }
+@media (max-width: 640px) { .team-name-row .record b { font-size: 1rem; } .team-name-row .records { gap: 10px; } }
+
+/* ---- Box Scores page: games grouped by week, one tappable tile per game ---- */
+.bx-grid { display: grid; grid-template-columns: 1fr; gap: 1px; background: var(--border); }
+@media (min-width: 700px) { .bx-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1100px) { .bx-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.bx-tile { display: flex; flex-direction: column; gap: 6px; padding: 10px 12px; background: var(--card-bg);
+    color: inherit; text-decoration: none; min-width: 0; }
+.bx-tile:hover { background: #f1f4f8; }
+.bx-row { display: flex; align-items: center; gap: 8px; color: var(--muted); }
+.bx-row img { width: 28px; height: 30px; object-fit: contain; flex: none; }
+.bx-name { flex: 1; min-width: 0; font-weight: 600; font-size: 0.92rem; line-height: 1.15; }
+.bx-score { font-size: 1.15rem; font-weight: 600; font-variant-numeric: tabular-nums; }
+.bx-row.bx-win { color: var(--navy); }
+.bx-row.bx-win .bx-name, .bx-row.bx-win .bx-score { font-weight: 800; }
+.bx-meta { font-size: 0.74rem; color: var(--muted); text-align: right; }
+
+/* ---- Individual box score pages ---- */
+.bxh-body { display: grid; grid-template-columns: 1fr; gap: 1px; background: var(--border); }
+@media (min-width: 700px) { .bxh-body { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.bxh-team { display: flex; align-items: center; gap: 12px; padding: 14px 16px; background: var(--card-bg); color: var(--muted); }
+.bxh-team img { width: 48px; height: 52px; object-fit: contain; flex: none; }
+.bxh-name { flex: 1; min-width: 0; font-size: 1.05rem; font-weight: 600; line-height: 1.15; }
+.bxh-name a { color: inherit; text-decoration: none; }
+.bxh-score { font-size: 1.9rem; font-weight: 600; font-variant-numeric: tabular-nums; }
+.bxh-team.bxh-win { color: var(--navy); }
+.bxh-team.bxh-win .bxh-name, .bxh-team.bxh-win .bxh-score { font-weight: 800; }
+.bx-table td, .bx-table th { text-align: center; white-space: nowrap; }
+.bx-table td.bx-player, .bx-table th.bx-player { text-align: left; position: sticky; left: 0; background: var(--card-bg); z-index: 1; }
+.bx-table th.bx-player { background: var(--card-bg); }
+.bx-table td.bx-player a { color: var(--navy); font-weight: 600; text-decoration: none; }
+.bx-table td.bx-pts { font-weight: 800; color: var(--navy); }
+.bx-table tr.bx-dnp td { color: var(--muted); }
+.bx-table tr.bx-dnp td.bx-player a { color: var(--muted); font-weight: 500; }
+.bx-table tr.bx-total td { font-weight: 700; border-top: 2px solid var(--border); background: #f1f4f8; }
+.bx-table tr.bx-total td.bx-player { background: #f1f4f8; }
+.banner-card > .table-scroll { padding: 0 4px 6px; }
+.table-scroll table.stats-table.bx-table { width: max-content; min-width: 100%; }
+.bx-table td, .bx-table th { padding: 8px 9px; }
+.bx-table td.bx-player, .bx-table th.bx-player { padding-left: 12px; }

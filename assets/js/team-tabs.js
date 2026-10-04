@@ -18,13 +18,15 @@ document.addEventListener('DOMContentLoaded', function () {
     var targetId = window.location.hash.slice(1);
     if (!targetId) return;
     var tab = document.querySelector('.team-tab[data-target="' + targetId + '"]');
-    if (tab) showTeamPanel(tab, targetId);
+    if (!tab) return;
+    showTeamPanel(tab, targetId);
 
     // The #panel-<tid> hash makes the browser jump DOWN to that panel, past the GM's name,
     // team tabs, waiver priority and the Free agents link. Those are the controls people
-    // want first, so always start at the top of the page.
-    if (tab) {
-        window.scrollTo(0, 0);
-        window.addEventListener('load', function () { window.scrollTo(0, 0); });
-    }
+    // want first, so always start at the top of the page. Removing the hash from the address
+    // stops the browser from scrolling to it (even after the page finishes loading); other
+    // scripts that need to know which panel was linked read window.linkedPanelHash.
+    window.linkedPanelHash = window.location.hash;
+    history.replaceState(null, '', window.location.pathname + window.location.search);
+    window.scrollTo(0, 0);
 });
