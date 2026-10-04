@@ -90,7 +90,7 @@
         chip.textContent = name;
         sub.appendChild(document.createTextNode("Adding "));
         sub.appendChild(chip);
-        sub.appendChild(document.createTextNode(" \u00b7 you'll choose who to drop next."));
+        sub.appendChild(document.createTextNode(" \u00b7 next you'll choose who to drop, or add without a drop if you have an open roster spot."));
         var list = pickerEl.querySelector(".roster-picker-list");
         list.innerHTML = "";
         myTeams.forEach(function (team) {

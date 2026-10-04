@@ -2598,3 +2598,32 @@ a.sch-tile:hover { background: rgba(10, 37, 64, 0.04); }
 .admin-chip-ir { background: var(--win); color: #fff; }
 .admin-ir-row.is-eligible .admin-chip-ir { display: inline-block; }
 .admin-chip-inj { display: inline-block; background: #b3261e; color: #fff; }
+
+/* ---- Stats > Teams pages (Team Stats, League Stats, Power Rankings, Rivalries) ---- */
+.tm-cell { display: inline-flex; align-items: center; gap: 8px; }
+.tm-logo { width: 26px; height: 28px; object-fit: contain; flex: none; }
+.tm-name { font-weight: 700; color: var(--navy); }
+.tm-name a { color: var(--navy); text-decoration: none; }
+.tm-table th, .tm-table td { text-align: center; white-space: nowrap; padding: 9px 10px; }
+.tm-table th.tm-first, .tm-table td.tm-first { text-align: left; position: sticky; left: 0; background: var(--card-bg); z-index: 1; }
+.banner-card > .table-scroll { padding: 0 4px 6px; }
+.ls-tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--border); }
+.ls-tile { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; padding: 16px 8px;
+    background: var(--card-bg); text-align: center; }
+.ls-tile b { font-size: 1.7rem; font-weight: 800; color: var(--navy); line-height: 1; }
+.ls-tile span { font-size: 0.74rem; color: var(--muted); line-height: 1.2; }
+.rv-grid { display: grid; grid-template-columns: 1fr; gap: 1px; background: var(--border); }
+@media (min-width: 700px) { .rv-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.rv-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 14px 16px; background: var(--card-bg); }
+.rv-gm { flex: 1; font-weight: 600; font-size: 1rem; color: var(--muted); }
+.rv-gm.rv-right { text-align: right; }
+.rv-gm.rv-lead { color: var(--navy); font-weight: 800; }
+.rv-score { font-size: 1.4rem; font-weight: 700; color: var(--navy); font-variant-numeric: tabular-nums; }
+
+/* Move dialog: the Injured Reserve choice stands out from the swap options */
+.roster-picker-option.roster-picker-ir { border-color: #b3261e; background: #fdf1f0; }
+.roster-picker-option.roster-picker-ir strong { color: #b3261e; }
+.roster-picker-option.roster-picker-ir { flex-direction: column; align-items: flex-start; gap: 2px; }
+.roster-picker-option.roster-picker-ir { border-left: 4px solid #b3261e; }
+.roster-adding-nodrop { margin-left: 6px; padding: 6px 12px; border: 0; border-radius: 6px; background: var(--accent); color: #fff; font-weight: 700; cursor: pointer; }
+.roster-picker-option:disabled { opacity: 0.55; cursor: not-allowed; }

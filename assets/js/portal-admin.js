@@ -299,7 +299,7 @@
             claims.forEach(function (claim, i) {
                 var row = el("div", "admin-line");
                 var text = el("span", "admin-line-text");
-                text.textContent = teamLabel(claim.tid) + " — drop " + playerName(claim.payload.drop_pid) +
+                text.textContent = teamLabel(claim.tid) + (claim.payload.drop_pid ? " — drop " + playerName(claim.payload.drop_pid) : " — no drop (open roster spot)") +
                     (rankByTid[claim.tid] ? " — priority #" + rankByTid[claim.tid] : "");
                 row.appendChild(text);
                 if (contested && anyPending && claim.status === "pending" && i === 0) {

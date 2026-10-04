@@ -35,6 +35,8 @@
     });
 
     var PT_SHOWN = { "0": "0", "-": "\u2212", "normal": "\u2713", "+": "+", "++": "++" };
+    var ROSTER_LIMIT = 12; // active players per team; IR spots are extra
+    var IR_SPOTS = 2;
     var STARTER_COUNT = 5; // BBGM's starting five; everyone after is bench
 
     var user = window.Portal.getUser();
@@ -161,21 +163,10 @@
                 });
             }
 
-            var irLabel = row.querySelector(".roster-ir-label");
-            var irCheckbox = row.querySelector(".roster-ir-toggle");
-            if (irLabel && irEligibleByPid[pid]) {
-                irLabel.hidden = false;
-                irCheckbox.checked = !!irByPid[pid];
-                irCheckbox.addEventListener("change", async function () {
-                    var checked = irCheckbox.checked;
-                    forEachRowForPid(panel, pid, function (r) { r.querySelector(".roster-ir-toggle").checked = checked; });
-                    tbodies.forEach(function (tbody) { setRowIr(tbody, pid, checked); });
-                    lineupByTid[tid] = orderMap(tbodies[0]);
-                    await saveAndRefresh(panel, tid, function () {
-                        return upsertPendingRequest(tid, "ir_toggle", pid, { to_ir: checked });
-                    });
-                });
-            }
+            // IR is handled from the Move dialog: eligible players get an "Injured Reserve"
+            // choice there (and players already on IR get "Move back to the roster").
+            if (irEligibleByPid[pid]) row.dataset.irEligible = "1";
+            row.dataset.tid = String(tid);
 
             var dropBtn = row.querySelector(".roster-drop-btn");
             if (dropBtn) {
@@ -196,6 +187,16 @@
         panel.classList.add("is-managing");
 
         if (addPid && "#" + panel.id === (window.linkedPanelHash || window.location.hash)) startAdding(panel);
+    }
+
+    function activeCount(panel) {
+        var tbody = panel.querySelector(".roster-table tbody");
+        return tbody ? getManagedRows(tbody).length : 0;
+    }
+
+    function irCount(panel) {
+        var tbody = panel.querySelector(".roster-table tbody");
+        return tbody ? tbody.querySelectorAll("tr.is-ir[data-pid]").length : 0;
     }
 
     function forEachRowForPid(panel, pid, fn) {
@@ -239,9 +240,17 @@
     function startAdding(panel) {
         panel.classList.add("is-adding");
         Array.prototype.forEach.call(panel.querySelectorAll(".roster-adding-banner"), function (banner) {
-            banner.innerHTML = "<span>Adding <strong></strong> &mdash; tap the <b>&minus;</b> next to the player you want to release.</span>" +
+            var open = activeCount(panel) < ROSTER_LIMIT;   // e.g. someone is on IR
+            banner.innerHTML = "<span>Adding <strong></strong> &mdash; " +
+                (open
+                    ? "you have an open roster spot, so you can add without dropping anyone, or tap the <b>&minus;</b> next to a player to release."
+                    : "tap the <b>&minus;</b> next to the player you want to release.") +
+                "</span>" +
+                (open ? ' <button type="button" class="roster-adding-nodrop">Add without dropping</button>' : "") +
                 ' <button type="button" class="roster-adding-cancel">Cancel</button>';
             banner.querySelector("strong").textContent = addName;
+            var noDrop = banner.querySelector(".roster-adding-nodrop");
+            if (noDrop) noDrop.addEventListener("click", function () { submitClaim(panel, parseInt(panel.dataset.tid, 10), null); });
             banner.querySelector(".roster-adding-cancel").addEventListener("click", function () { stopAdding(panel); });
             banner.hidden = false;
         });
@@ -258,7 +267,7 @@
 
     function claimText(req) {
         return "add " + (req.payload.add_name || "#" + req.payload.add_pid) +
-            ", drop " + (req.payload.drop_name || "#" + req.payload.drop_pid);
+            (req.payload.drop_pid ? ", drop " + (req.payload.drop_name || "#" + req.payload.drop_pid) : " (no drop)");
     }
 
     // The claim is shown on the team it belongs to, with a way to withdraw it.
@@ -304,15 +313,16 @@
     }
 
     async function submitClaim(panel, tid, row) {
-        var dropPid = parseInt(row.dataset.pid, 10);
-        var dropName = rowName(row);
+        var dropPid = row ? parseInt(row.dataset.pid, 10) : null;   // null: adding into an open roster spot
+        var dropName = row ? rowName(row) : null;
 
         // One add/drop per GM per week (enforced by the database too), so a
         // new claim replaces any pending one -- say so before doing it.
         var existing = await client.from("gm_requests").select("id,tid,payload")
             .eq("gm_id", user.id).eq("type", "add_drop").eq("week_number", weekNumber).eq("status", "pending").maybeSingle();
 
-        var message = "Add " + addName + " and drop " + dropName + "?";
+        var message = dropPid ? "Add " + addName + " and drop " + dropName + "?"
+                              : "Add " + addName + " without dropping anyone? (You have an open roster spot.)";
         if (existing.data) {
             message += " You can only make one add/drop per week, so this replaces your current claim (" + claimText(existing.data) + ").";
         }
@@ -422,6 +432,15 @@
             .map(function (otherPid) { return row.parentElement.querySelector("tr[data-pid='" + otherPid + "']"); })
             .filter(Boolean);
 
+        var onIr = row.classList.contains("is-ir");
+        var canIr = !onIr && row.dataset.irEligible === "1";
+        var irFull = canIr && irCount(panel) >= IR_SPOTS;
+
+        if (onIr) {
+            openIrActivatePicker(row, panel, tid, tbodies);
+            return;
+        }
+
         pickerEl.querySelector("h3").textContent = "Move Player";
         pickerEl.querySelector(".roster-picker-sub").textContent = isStarter
             ? "Pick a bench player to swap " + rowName(row) + " with, or keep them a starter."
@@ -462,7 +481,73 @@
             list.appendChild(btn);
         });
 
+        if (canIr) {
+            var irHeading = document.createElement("div");
+            irHeading.className = "roster-picker-heading";
+            irHeading.textContent = "Or";
+            list.appendChild(irHeading);
+            var irBtn = document.createElement("button");
+            irBtn.type = "button";
+            irBtn.className = "roster-picker-option roster-picker-ir";
+            irBtn.innerHTML = "<strong>Injured Reserve</strong><span></span>";
+            irBtn.querySelector("span").textContent = irFull
+                ? "Both IR spots are full"
+                : "Take " + rowName(row) + " off the active roster";
+            irBtn.disabled = irFull;
+            irBtn.addEventListener("click", function () {
+                if (!irFull) setIr(row, panel, tid, tbodies, true);
+            });
+            list.appendChild(irBtn);
+        }
+
         pickerEl.hidden = false;
+    }
+
+    // Move dialog for a player who is on IR: the only move is back to the active roster.
+    function openIrActivatePicker(row, panel, tid, tbodies) {
+        pickerEl.querySelector("h3").textContent = "Injured Reserve";
+        pickerEl.querySelector(".roster-picker-sub").textContent =
+            rowName(row) + " is on IR. Move them back to the active roster (the end of the bench), or leave them on IR.";
+        var list = pickerEl.querySelector(".roster-picker-list");
+        list.innerHTML = "";
+        var current = document.createElement("div");
+        current.className = "roster-picker-current";
+        current.innerHTML = "<strong></strong><span></span>";
+        current.querySelector("strong").textContent = rowName(row);
+        current.querySelector("span").textContent = "Injured Reserve \u00b7 " + rowPos(row);
+        list.appendChild(current);
+        var btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "roster-picker-option";
+        btn.innerHTML = "<strong>Move back to active roster</strong><span></span>";
+        var full = activeCount(panel) >= ROSTER_LIMIT;
+        btn.querySelector("span").textContent = full
+            ? "Roster is full (" + ROSTER_LIMIT + ") \u2014 release someone first"
+            : "Joins the bench";
+        btn.disabled = full;
+        btn.addEventListener("click", function () {
+            if (!full) setIr(row, panel, tid, tbodies, false);
+        });
+        list.appendChild(btn);
+        pickerEl.hidden = false;
+    }
+
+    async function setIr(row, panel, tid, tbodies, toIr) {
+        if (pickerBusy) return;
+        pickerBusy = true;
+        closePicker();
+        var pid = parseInt(row.dataset.pid, 10);
+        var before = lineupByTid[tid];
+        tbodies.forEach(function (tbody) { setRowIr(tbody, pid, toIr); });
+        lineupByTid[tid] = orderMap(tbodies[0]);
+        var ok = await saveAndRefresh(panel, tid, function () {
+            return upsertPendingRequest(tid, "ir_toggle", pid, { to_ir: toIr });
+        });
+        if (!ok) {   // put it back the way it was
+            tbodies.forEach(function (tbody) { setRowIr(tbody, pid, !toIr); });
+            lineupByTid[tid] = before;
+        }
+        pickerBusy = false;
     }
 
     async function swapPlayers(rowA, rowB, panel, tid, tbodies) {
