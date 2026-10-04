@@ -455,7 +455,7 @@
                 label.appendChild(cb);
                 label.appendChild(document.createTextNode(" " + playerName(p.pid)));
                 label.appendChild(el("span", "admin-chip admin-chip-ir", "IR ELIGIBLE"));
-                if (p.injury_status) label.appendChild(el("span", "admin-chip admin-chip-inj", "INJ \u00b7 " + p.injury_status));
+                if (p.injury_status && p.injury_status !== "Healthy") label.appendChild(el("span", "admin-chip admin-chip-inj", "INJ \u00b7 " + p.injury_status));
                 block.appendChild(label);
             });
             details.appendChild(block);
