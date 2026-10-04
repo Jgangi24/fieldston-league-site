@@ -31,7 +31,7 @@
     var refs = await Promise.all([
         client.from("teams_mirror").select("tid,abbrev,full_name,gm_id").order("tid"),
         client.from("gms").select("id,name"),
-        client.from("players_mirror").select("pid,first_name,last_name,tid,ir_eligible,roster_order,pt_modifier").limit(2000),
+        client.from("players_mirror").select("pid,first_name,last_name,tid,ir_eligible,roster_order,pt_modifier,injury_status").limit(2000),
         client.from("sync_state").select("current_week_number").eq("id", 1).single(),
     ]);
     if (refs.some(function (r) { return r.error; })) {
@@ -418,8 +418,13 @@
     function renderIrEligibility() {
         var card = el("div", "card");
         card.appendChild(el("h3", "", "IR Eligibility"));
-        var eligibleCount = players.filter(function (p) { return p.ir_eligible; }).length;
-        card.appendChild(el("p", "admin-note", "Tick a player to let their GM move them to IR. " + eligibleCount + " currently eligible."));
+        var countNote = el("p", "admin-note");
+        function updateCount() {
+            var n = players.filter(function (p) { return p.ir_eligible; }).length;
+            countNote.textContent = "Tick a player to let their GM move them to IR. " + n + " currently eligible (highlighted green).";
+        }
+        updateCount();
+        card.appendChild(countNote);
 
         var details = el("details", "admin-details");
         details.appendChild(el("summary", "", "Show rosters"));
@@ -430,7 +435,7 @@
             var block = el("div", "admin-group");
             block.appendChild(el("div", "admin-group-title")).appendChild(el("strong", "", teamLabel(team.tid)));
             roster.forEach(function (p) {
-                var label = el("label", "admin-check admin-ir-row");
+                var label = el("label", "admin-check admin-ir-row" + (p.ir_eligible ? " is-eligible" : ""));
                 var cb = document.createElement("input");
                 cb.type = "checkbox";
                 cb.checked = !!p.ir_eligible;
@@ -443,10 +448,14 @@
                         return;
                     }
                     p.ir_eligible = cb.checked;
+                    label.classList.toggle("is-eligible", cb.checked);
+                    updateCount();
                     toast(playerName(p.pid) + (cb.checked ? " is IR-eligible" : " is no longer IR-eligible") + " ✓", "ok");
                 });
                 label.appendChild(cb);
                 label.appendChild(document.createTextNode(" " + playerName(p.pid)));
+                label.appendChild(el("span", "admin-chip admin-chip-ir", "IR ELIGIBLE"));
+                if (p.injury_status) label.appendChild(el("span", "admin-chip admin-chip-inj", "INJ \u00b7 " + p.injury_status));
                 block.appendChild(label);
             });
             details.appendChild(block);

@@ -2590,3 +2590,11 @@ a.sch-tile:hover { background: rgba(10, 37, 64, 0.04); }
 .table-scroll table.stats-table.bx-table { width: max-content; min-width: 100%; }
 .bx-table td, .bx-table th { padding: 8px 9px; }
 .bx-table td.bx-player, .bx-table th.bx-player { padding-left: 12px; }
+
+/* Admin IR eligibility: eligible players are highlighted, injured ones tagged */
+.admin-ir-row { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; padding: 5px 8px; border-left: 4px solid transparent; border-radius: 6px; }
+.admin-ir-row.is-eligible { background: #e8f5ec; border-left-color: var(--win); font-weight: 700; }
+.admin-chip { display: none; font-size: 0.65rem; font-weight: 800; letter-spacing: 0.03em; padding: 1px 6px; border-radius: 4px; line-height: 15px; }
+.admin-chip-ir { background: var(--win); color: #fff; }
+.admin-ir-row.is-eligible .admin-chip-ir { display: inline-block; }
+.admin-chip-inj { display: inline-block; background: #b3261e; color: #fff; }
