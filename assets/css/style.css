@@ -2666,4 +2666,4 @@ a.sch-tile:hover { background: rgba(10, 37, 64, 0.04); }
     .feat-body p { font-size: 17px; }
 }
 
-.roster-picker-note { margin: 10px 4px 2px; font-size: 0.8rem; line-height: 1.35; color: var(--muted); }
+.roster-picker-note { margin: 12px 20px 16px; font-size: 0.8rem; line-height: 1.35; color: var(--muted); }
