@@ -515,6 +515,7 @@
                 if (!irFull) setIr(row, panel, tid, tbodies, true);
             });
             list.appendChild(irBtn);
+            list.appendChild(irNote("BBGM has no IR slot, so while a player is on IR the commissioner sets his playing time to 0 there. It goes back to normal when he returns."));
         }
 
         pickerEl.hidden = false;
@@ -546,7 +547,15 @@
             if (!full) setIr(row, panel, tid, tbodies, false);
         });
         list.appendChild(btn);
+        list.appendChild(irNote("His playing time goes back to normal (or whatever you set) once the commissioner enters the move in BBGM."));
         pickerEl.hidden = false;
+    }
+
+    function irNote(text) {
+        var note = document.createElement("p");
+        note.className = "roster-picker-note";
+        note.textContent = text;
+        return note;
     }
 
     async function setIr(row, panel, tid, tbodies, toIr) {
