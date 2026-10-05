@@ -166,14 +166,20 @@
             client.from("gm_requests").select("id,gm_id,tid,type,status,payload,submitted_at").eq("week_number", state.week).order("submitted_at"),
             client.from("waiver_priority").select("tid,priority_rank").eq("week_number", state.week),
             client.from("lineup_state").select("pid,tid,pt_level,roster_order"),
+            client.from("ir_public").select("pid,tid"),
         ]);
-        if (results[0].error || results[1].error || results[2].error) {
+        if (results[0].error || results[1].error || results[2].error || results[3].error) {
             console.error("Portal admin: load failed", results);
             return showMessage("Couldn't load this week's requests -- check your connection and refresh.");
         }
 
         var allRequests = results[0].data;
         lineupRows = results[2].data;
+        // Who is on IR: the public list, overridden by this week's latest IR request per player.
+        irByPid = {};
+        results[3].data.forEach(function (r) { irByPid[r.pid] = true; });
+        allRequests.filter(function (r) { return r.type === "ir_toggle" && r.status !== "cancelled"; })
+            .forEach(function (r) { irByPid[r.payload.pid] = !!r.payload.to_ir; });
         var rankByTid = {};
         results[1].data.forEach(function (w) { rankByTid[w.tid] = w.priority_rank; });
 
@@ -350,6 +356,8 @@
     // GMs' lineup and PT choices save instantly (no approval). This lists, per
     // team, only what still differs from BBGM's last export -- i.e. what the
     // commissioner has left to enter. It empties itself after the next sync.
+    var irByPid = {};   // pid -> true (on IR) / false (just moved back to active)
+
     function renderLineups() {
         var card = el("div", "card");
         card.appendChild(el("h3", "", "Lineups & Playing Time to enter in BBGM"));
@@ -362,7 +370,18 @@
             mine.forEach(function (r) { if (r.roster_order !== null && r.roster_order !== undefined) orderByPid[r.pid] = r.roster_order; });
             var ptChanges = mine.filter(function (r) {
                 var p = playerByPid[r.pid];
-                return r.pt_level && p && p.tid === tid && r.pt_level !== bbgmPtLevel(p.pt_modifier);
+                return r.pt_level && p && p.tid === tid && !irByPid[r.pid] && r.pt_level !== bbgmPtLevel(p.pt_modifier);
+            });
+            // Players on IR must be set to 0 playing time in BBGM; players just
+            // moved back to active need it put back (unless the GM chose a level).
+            var irZero = [];
+            var irBack = [];
+            players.forEach(function (p) {
+                if (p.tid !== tid || !(p.pid in irByPid)) return;
+                var bbgmLevel = bbgmPtLevel(p.pt_modifier);
+                if (irByPid[p.pid] && bbgmLevel !== "0") irZero.push(p.pid);
+                var chosen = mine.some(function (r) { return r.pid === p.pid && r.pt_level; });
+                if (!irByPid[p.pid] && bbgmLevel === "0" && !chosen) irBack.push(p.pid);
             });
 
             var current = bbgmOrder(tid);
@@ -377,7 +396,7 @@
                 });
             }
             var orderChanged = wanted.some(function (pid, i) { return pid !== current[i]; });
-            if (!orderChanged && !ptChanges.length) return;
+            if (!orderChanged && !ptChanges.length && !irZero.length && !irBack.length) return;
             any = true;
 
             var group = el("div", "admin-group");
@@ -392,6 +411,12 @@
             ptChanges.forEach(function (r) {
                 var level = r.pt_level === "normal" ? "\u2713" : r.pt_level;
                 group.appendChild(lineText("Playing time", playerName(r.pid) + " \u2192 " + level));
+            });
+            irZero.forEach(function (pid) {
+                group.appendChild(lineText("On IR", playerName(pid) + " \u2192 set playing time to 0"));
+            });
+            irBack.forEach(function (pid) {
+                group.appendChild(lineText("Back from IR", playerName(pid) + " \u2192 set playing time back to \u2713"));
             });
             card.appendChild(group);
         });
