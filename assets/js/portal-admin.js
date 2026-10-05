@@ -116,6 +116,20 @@
             toast("Couldn't save -- try again.", "error");
             return;
         }
+        // IR moves become public once applied: copy them to ir_public.
+        var irMoves = reqs.filter(function (r) { return canApply(r) && r.type === "ir_toggle"; });
+        for (var i = 0; i < irMoves.length; i++) {
+            var move = irMoves[i];
+            var irResult = move.payload.to_ir
+                ? await client.from("ir_public").upsert({ pid: move.payload.pid, tid: move.tid, updated_at: new Date().toISOString() }, { onConflict: "pid" })
+                : await client.from("ir_public").delete().eq("pid", move.payload.pid);
+            if (irResult.error) {
+                console.error("Portal admin: public IR update failed", irResult.error);
+                toast("Applied, but the public IR list didn't update -- is SQL 020 run?", "error");
+                render();
+                return;
+            }
+        }
         toast("Marked applied ✓", "ok");
         render();
     }

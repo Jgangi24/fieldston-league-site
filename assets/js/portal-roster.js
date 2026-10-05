@@ -66,6 +66,20 @@
         });
     });
 
+    // Players the commissioner has moved to IR (and marked applied) show on
+    // IR for everyone.
+    var irPublicResult = await client.from("ir_public").select("pid,tid");
+    var irPublicByPid = {};
+    (irPublicResult.data || []).forEach(function (row) { irPublicByPid[row.pid] = row.tid; });
+    Array.prototype.forEach.call(document.querySelectorAll(".team-panel[data-tid]"), function (panel) {
+        Array.prototype.forEach.call(panel.querySelectorAll(".roster-table tbody"), function (tbody) {
+            Array.prototype.forEach.call(tbody.querySelectorAll("tr[data-pid]"), function (row) {
+                var pid = parseInt(row.dataset.pid, 10);
+                if (String(irPublicByPid[pid]) === panel.dataset.tid) setRowIr(tbody, pid, true);
+            });
+        });
+    });
+
     if (!user) return; // signed out -- panels show the public view only
 
     var stateResult = await client.from("sync_state").select("current_week_number").eq("id", 1).single();
@@ -141,8 +155,11 @@
         // swaps always work from this saved order instead of the DOM order.
         tbodies.forEach(function (tbody) {
             Object.keys(irByPid).forEach(function (pid) {
-                if (irByPid[pid]) setRowIr(tbody, parseInt(pid, 10), true);
+                // Latest choice wins: a pending "move back to active" beats the public IR list.
+                var irRow = tbody.querySelector("tr[data-pid='" + pid + "']");
+                if (irRow && irRow.classList.contains("is-ir") !== !!irByPid[pid]) setRowIr(tbody, parseInt(pid, 10), !!irByPid[pid]);
             });
+            if (Object.keys(pendingOrderByPid).length) applyOrder(tbody, pendingOrderByPid);
         });
         lineupByTid[tid] = orderMap(tbodies[0]);
 
