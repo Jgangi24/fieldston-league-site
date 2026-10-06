@@ -2681,3 +2681,26 @@ a.sch-tile:hover { background: rgba(10, 37, 64, 0.04); }
 .roster-picker-option.is-bench:disabled strong { color: var(--muted); font-weight: 600; }
 
 .roster-picker-spot-note { margin-left: 8px; font-size: 0.78rem; font-weight: 500; color: var(--muted); }
+
+/* Core Four Score breakdown on player pages */
+.c4s-total { margin: 0 0 12px; font-size: 1.05rem; }
+.c4s-total strong { font-size: 1.6rem; color: var(--navy); }
+.c4s-sub { margin-left: 8px; color: var(--muted); font-size: 0.9rem; }
+.c4s-row { display: grid; grid-template-columns: 42px 54px 1fr 40px; align-items: center; gap: 8px; padding: 5px 0; border-bottom: 1px solid var(--border); font-size: 0.92rem; }
+.c4s-label { font-weight: 700; color: var(--navy); }
+.c4s-val { color: var(--text); text-align: right; font-variant-numeric: tabular-nums; }
+.c4s-bar { position: relative; height: 12px; background: #eef0f4; border-radius: 6px; overflow: hidden; }
+.c4s-bar::after { content: ""; position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; margin-left: -1px; background: #9aa3b2; }
+.c4s-fill { position: absolute; top: 0; bottom: 0; }
+.c4s-fill.pos { background: var(--win); }
+.c4s-fill.neg { background: var(--loss); }
+.c4s-z { text-align: right; font-weight: 700; font-variant-numeric: tabular-nums; }
+.c4s-z.pos { color: var(--win); }
+.c4s-z.neg { color: var(--loss); }
+.c4s-note { margin: 12px 0 0; font-size: 0.8rem; line-height: 1.4; color: var(--muted); }
+
+.needs-line { margin: 0 0 6px; font-size: 0.95rem; }
+.needs-weak strong { color: var(--loss); }
+.needs-strong { margin-bottom: 12px; }
+.needs-strong strong { color: var(--win); }
+.c4s-sub { white-space: nowrap; }

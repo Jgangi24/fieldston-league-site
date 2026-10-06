@@ -64,7 +64,7 @@
 <div class="team-banner">
     <img src="../assets/images/banners/ga.png" alt="GA starting five">
 </div>
-<nav class="section-tabs"><a href="#" data-tab-link data-tab-group="section-GA" data-tab-target="roster" class="section-tab-link active">Roster</a><a href="#" data-tab-link data-tab-group="section-GA" data-tab-target="leaders" class="section-tab-link">Team Leaders</a><a href="#" data-tab-link data-tab-group="section-GA" data-tab-target="games" class="section-tab-link">Last Week's Games</a><a href="#" data-tab-link data-tab-group="section-GA" data-tab-target="stats" class="section-tab-link">Team Stats</a><a href="#" data-tab-link data-tab-group="section-GA" data-tab-target="brand" class="section-tab-link">Brand Guide/Jersey Pack</a></nav>
+<nav class="section-tabs"><a href="#" data-tab-link data-tab-group="section-GA" data-tab-target="roster" class="section-tab-link active">Roster</a><a href="#" data-tab-link data-tab-group="section-GA" data-tab-target="leaders" class="section-tab-link">Team Leaders</a><a href="#" data-tab-link data-tab-group="section-GA" data-tab-target="games" class="section-tab-link">Last Week's Games</a><a href="#" data-tab-link data-tab-group="section-GA" data-tab-target="stats" class="section-tab-link">Team Stats</a><a href="#" data-tab-link data-tab-group="section-GA" data-tab-target="needs" class="section-tab-link">Category Needs</a><a href="#" data-tab-link data-tab-group="section-GA" data-tab-target="brand" class="section-tab-link">Brand Guide/Jersey Pack</a></nav>
 <div data-tab-panel-group="section-GA" data-tab-panel="roster"><div class="card">
     <p class="team-stats-tabs">
     <a href="#" data-tab-link data-tab-group="roster-view-GA" data-tab-target="stats" class="team-stats-tab-link active">Player Stats</a>
@@ -75,7 +75,7 @@
 <table class="stats-table roster-table">
 <thead><tr>
 <th class="roster-manage-cell"></th><th class="col-pos">Pos</th><th class="col-player">Player</th><th class="roster-manage-cell">PT</th><th class="roster-pt-view">PT</th><th>GP</th><th>MIN</th><th>PTS</th><th>REB</th>
-<th>AST</th><th>STL</th><th>BLK</th><th><abbr title="3-pointers made per game">3PM</abbr></th><th><abbr title="Personal Fouls per game">PF</abbr></th><th>TOV</th><th>FG%</th><th>3P%</th><th>FT%</th><th><abbr title="Game Score — a per-game efficiency rating combining scoring, rebounding, and other stats into one number">GmSc</abbr></th><th><abbr title="Plus/Minus — the team's net point differential while this player is on the court, averaged per game">+/-</abbr></th>
+<th>AST</th><th>STL</th><th>BLK</th><th><abbr title="3-pointers made per game">3PM</abbr></th><th><abbr title="Personal Fouls per game">PF</abbr></th><th>TOV</th><th>FG%</th><th>3P%</th><th>FT%</th><th><abbr title="Core Four Score: how much he helps win our 9 player categories, per game. Above 0 beats the average rostered player.">C4S</abbr></th><th><abbr title="Core Four Score per 36 minutes: how good he is when he plays, whatever his minutes. Shown at 10+ minutes per game.">C4S/36</abbr></th><th><abbr title="Plus/Minus — the team's net point differential while this player is on the court, averaged per game">+/-</abbr></th>
 </tr></thead>
 <tbody>
 <tr data-pid='798'><td class="roster-manage-cell roster-move-cell"><button type="button" class="roster-move-btn" aria-label="Move player">&#8645;</button><button type="button" class="roster-drop-btn" aria-label="Drop player" title="Drop player">&minus;</button></td><td class='col-pos'>G</td><td class='col-player'><a href='../players/798.html' title="James Harden">J. Harden</a></td><td class="roster-manage-cell roster-pt-cell">
@@ -88,7 +88,7 @@
             <option value="++">++</option>
         </select>
     </div>
-</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='7'>7</td><td data-value='31.5'>31.5</td><td data-value='23.3'>23.3</td><td data-value='2.3'>2.3</td><td data-value='6.9'>6.9</td><td data-value='0.4'>0.4</td><td data-value='0.4'>0.4</td><td data-value='3.3'>3.3</td><td data-value='3.0'>3.0</td><td data-value='2.1'>2.1</td><td data-value='56.0'>56.0%</td><td data-value='54.8'>54.8%</td><td data-value='93.9'>93.9%</td><td data-value='20.6'>20.6</td><td data-value='4.6'>+4.6</td></tr>
+</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='7'>7</td><td data-value='31.5'>31.5</td><td data-value='23.3'>23.3</td><td data-value='2.3'>2.3</td><td data-value='6.9'>6.9</td><td data-value='0.4'>0.4</td><td data-value='0.4'>0.4</td><td data-value='3.3'>3.3</td><td data-value='3.0'>3.0</td><td data-value='2.1'>2.1</td><td data-value='56.0'>56.0%</td><td data-value='54.8'>54.8%</td><td data-value='93.9'>93.9%</td><td data-value='5.61'>+5.6</td><td data-value='4.55'>+4.5</td><td data-value='4.6'>+4.6</td></tr>
 <tr data-pid='827'><td class="roster-manage-cell roster-move-cell"><button type="button" class="roster-move-btn" aria-label="Move player">&#8645;</button><button type="button" class="roster-drop-btn" aria-label="Drop player" title="Drop player">&minus;</button></td><td class='col-pos'>GF</td><td class='col-player'><a href='../players/827.html' title="George Gervin">G. Gervin</a></td><td class="roster-manage-cell roster-pt-cell">
     <div class="roster-manage-controls">
         <select class="roster-pt-select" aria-label="Playing time">
@@ -99,7 +99,7 @@
             <option value="++">++</option>
         </select>
     </div>
-</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='7'>7</td><td data-value='32.8'>32.8</td><td data-value='21.0'>21.0</td><td data-value='6.6'>6.6</td><td data-value='0.9'>0.9</td><td data-value='1.0'>1.0</td><td data-value='2.0'>2.0</td><td data-value='1.7'>1.7</td><td data-value='3.4'>3.4</td><td data-value='1.4'>1.4</td><td data-value='49.4'>49.4%</td><td data-value='35.3'>35.3%</td><td data-value='94.0'>94.0%</td><td data-value='16.9'>16.9</td><td data-value='8.3'>+8.3</td></tr>
+</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='7'>7</td><td data-value='32.8'>32.8</td><td data-value='21.0'>21.0</td><td data-value='6.6'>6.6</td><td data-value='0.9'>0.9</td><td data-value='1.0'>1.0</td><td data-value='2.0'>2.0</td><td data-value='1.7'>1.7</td><td data-value='3.4'>3.4</td><td data-value='1.4'>1.4</td><td data-value='49.4'>49.4%</td><td data-value='35.3'>35.3%</td><td data-value='94.0'>94.0%</td><td data-value='5.41'>+5.4</td><td data-value='3.64'>+3.6</td><td data-value='8.3'>+8.3</td></tr>
 <tr data-pid='806'><td class="roster-manage-cell roster-move-cell"><button type="button" class="roster-move-btn" aria-label="Move player">&#8645;</button><button type="button" class="roster-drop-btn" aria-label="Drop player" title="Drop player">&minus;</button></td><td class='col-pos'>PG</td><td class='col-player'><a href='../players/806.html' title="Derrick Rose">D. Rose</a></td><td class="roster-manage-cell roster-pt-cell">
     <div class="roster-manage-controls">
         <select class="roster-pt-select" aria-label="Playing time">
@@ -110,7 +110,7 @@
             <option value="++">++</option>
         </select>
     </div>
-</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='7'>7</td><td data-value='30.8'>30.8</td><td data-value='13.6'>13.6</td><td data-value='1.6'>1.6</td><td data-value='6.6'>6.6</td><td data-value='0.1'>0.1</td><td data-value='0.6'>0.6</td><td data-value='1.3'>1.3</td><td data-value='3.0'>3.0</td><td data-value='2.1'>2.1</td><td data-value='42.0'>42.0%</td><td data-value='32.1'>32.1%</td><td data-value='82.4'>82.4%</td><td data-value='10.5'>10.5</td><td data-value='5.4'>+5.4</td></tr>
+</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='7'>7</td><td data-value='30.8'>30.8</td><td data-value='13.6'>13.6</td><td data-value='1.6'>1.6</td><td data-value='6.6'>6.6</td><td data-value='0.1'>0.1</td><td data-value='0.6'>0.6</td><td data-value='1.3'>1.3</td><td data-value='3.0'>3.0</td><td data-value='2.1'>2.1</td><td data-value='42.0'>42.0%</td><td data-value='32.1'>32.1%</td><td data-value='82.4'>82.4%</td><td data-value='-2.80'>-2.8</td><td data-value='-3.49'>-3.5</td><td data-value='5.4'>+5.4</td></tr>
 <tr data-pid='834'><td class="roster-manage-cell roster-move-cell"><button type="button" class="roster-move-btn" aria-label="Move player">&#8645;</button><button type="button" class="roster-drop-btn" aria-label="Drop player" title="Drop player">&minus;</button></td><td class='col-pos'>GF</td><td class='col-player'><a href='../players/834.html' title="Magic Johnson">M. Johnson</a></td><td class="roster-manage-cell roster-pt-cell">
     <div class="roster-manage-controls">
         <select class="roster-pt-select" aria-label="Playing time">
@@ -121,7 +121,7 @@
             <option value="++">++</option>
         </select>
     </div>
-</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='5'>5</td><td data-value='37.1'>37.1</td><td data-value='22.2'>22.2</td><td data-value='7.4'>7.4</td><td data-value='11.6'>11.6</td><td data-value='1.0'>1.0</td><td data-value='1.6'>1.6</td><td data-value='3.0'>3.0</td><td data-value='2.6'>2.6</td><td data-value='5.0'>5.0</td><td data-value='57.4'>57.4%</td><td data-value='45.5'>45.5%</td><td data-value='81.8'>81.8%</td><td data-value='22.5'>22.5</td><td data-value='13.2'>+13.2</td></tr>
+</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='5'>5</td><td data-value='37.1'>37.1</td><td data-value='22.2'>22.2</td><td data-value='7.4'>7.4</td><td data-value='11.6'>11.6</td><td data-value='1.0'>1.0</td><td data-value='1.6'>1.6</td><td data-value='3.0'>3.0</td><td data-value='2.6'>2.6</td><td data-value='5.0'>5.0</td><td data-value='57.4'>57.4%</td><td data-value='45.5'>45.5%</td><td data-value='81.8'>81.8%</td><td data-value='6.23'>+6.2</td><td data-value='3.29'>+3.3</td><td data-value='13.2'>+13.2</td></tr>
 <tr data-pid='838'><td class="roster-manage-cell roster-move-cell"><button type="button" class="roster-move-btn" aria-label="Move player">&#8645;</button><button type="button" class="roster-drop-btn" aria-label="Drop player" title="Drop player">&minus;</button></td><td class='col-pos'>C</td><td class='col-player'><a href='../players/838.html' title="Wilt Chamberlain">W. Chamberlain</a></td><td class="roster-manage-cell roster-pt-cell">
     <div class="roster-manage-controls">
         <select class="roster-pt-select" aria-label="Playing time">
@@ -132,8 +132,8 @@
             <option value="++">++</option>
         </select>
     </div>
-</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='7'>7</td><td data-value='24.8'>24.8</td><td data-value='8.0'>8.0</td><td data-value='8.6'>8.6</td><td data-value='1.1'>1.1</td><td data-value='0.3'>0.3</td><td data-value='3.9'>3.9</td><td data-value='0.0'>0.0</td><td data-value='3.6'>3.6</td><td data-value='1.6'>1.6</td><td data-value='59.5'>59.5%</td><td data-value='0.0'>0.0%</td><td data-value='70.6'>70.6%</td><td data-value='9.7'>9.7</td><td data-value='6.3'>+6.3</td></tr>
-<tr class="bench-divider"><td colspan="20"><span>Bench</span></td></tr>
+</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='7'>7</td><td data-value='24.8'>24.8</td><td data-value='8.0'>8.0</td><td data-value='8.6'>8.6</td><td data-value='1.1'>1.1</td><td data-value='0.3'>0.3</td><td data-value='3.9'>3.9</td><td data-value='0.0'>0.0</td><td data-value='3.6'>3.6</td><td data-value='1.6'>1.6</td><td data-value='59.5'>59.5%</td><td data-value='0.0'>0.0%</td><td data-value='70.6'>70.6%</td><td data-value='0.69'>+0.7</td><td data-value='0.88'>+0.9</td><td data-value='6.3'>+6.3</td></tr>
+<tr class="bench-divider"><td colspan="21"><span>Bench</span></td></tr>
 <tr data-pid='805'><td class="roster-manage-cell roster-move-cell"><button type="button" class="roster-move-btn" aria-label="Move player">&#8645;</button><button type="button" class="roster-drop-btn" aria-label="Drop player" title="Drop player">&minus;</button></td><td class='col-pos'>GF</td><td class='col-player'><a href='../players/805.html' title="Marques Johnson">M. Johnson</a></td><td class="roster-manage-cell roster-pt-cell">
     <div class="roster-manage-controls">
         <select class="roster-pt-select" aria-label="Playing time">
@@ -144,7 +144,7 @@
             <option value="++">++</option>
         </select>
     </div>
-</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='7'>7</td><td data-value='29.9'>29.9</td><td data-value='15.4'>15.4</td><td data-value='5.4'>5.4</td><td data-value='1.4'>1.4</td><td data-value='0.3'>0.3</td><td data-value='0.4'>0.4</td><td data-value='1.3'>1.3</td><td data-value='1.7'>1.7</td><td data-value='1.6'>1.6</td><td data-value='44.0'>44.0%</td><td data-value='30.0'>30.0%</td><td data-value='75.8'>75.8%</td><td data-value='9.9'>9.9</td><td data-value='-1.9'>-1.9</td></tr>
+</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='7'>7</td><td data-value='29.9'>29.9</td><td data-value='15.4'>15.4</td><td data-value='5.4'>5.4</td><td data-value='1.4'>1.4</td><td data-value='0.3'>0.3</td><td data-value='0.4'>0.4</td><td data-value='1.3'>1.3</td><td data-value='1.7'>1.7</td><td data-value='1.6'>1.6</td><td data-value='44.0'>44.0%</td><td data-value='30.0'>30.0%</td><td data-value='75.8'>75.8%</td><td data-value='-2.79'>-2.8</td><td data-value='-3.47'>-3.5</td><td data-value='-1.9'>-1.9</td></tr>
 <tr data-pid='791'><td class="roster-manage-cell roster-move-cell"><button type="button" class="roster-move-btn" aria-label="Move player">&#8645;</button><button type="button" class="roster-drop-btn" aria-label="Drop player" title="Drop player">&minus;</button></td><td class='col-pos'>FC</td><td class='col-player'><a href='../players/791.html' title="Anthony Davis">A. Davis</a></td><td class="roster-manage-cell roster-pt-cell">
     <div class="roster-manage-controls">
         <select class="roster-pt-select" aria-label="Playing time">
@@ -155,7 +155,7 @@
             <option value="++">++</option>
         </select>
     </div>
-</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='7'>7</td><td data-value='20.5'>20.5</td><td data-value='7.4'>7.4</td><td data-value='7.1'>7.1</td><td data-value='1.0'>1.0</td><td data-value='0.4'>0.4</td><td data-value='1.3'>1.3</td><td data-value='0.9'>0.9</td><td data-value='2.4'>2.4</td><td data-value='0.4'>0.4</td><td data-value='43.6'>43.6%</td><td data-value='27.3'>27.3%</td><td data-value='92.3'>92.3%</td><td data-value='8.3'>8.3</td><td data-value='2.6'>+2.6</td></tr>
+</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='7'>7</td><td data-value='20.5'>20.5</td><td data-value='7.4'>7.4</td><td data-value='7.1'>7.1</td><td data-value='1.0'>1.0</td><td data-value='0.4'>0.4</td><td data-value='1.3'>1.3</td><td data-value='0.9'>0.9</td><td data-value='2.4'>2.4</td><td data-value='0.4'>0.4</td><td data-value='43.6'>43.6%</td><td data-value='27.3'>27.3%</td><td data-value='92.3'>92.3%</td><td data-value='-0.50'>-0.5</td><td data-value='1.14'>+1.1</td><td data-value='2.6'>+2.6</td></tr>
 <tr data-pid='840'><td class="roster-manage-cell roster-move-cell"><button type="button" class="roster-move-btn" aria-label="Move player">&#8645;</button><button type="button" class="roster-drop-btn" aria-label="Drop player" title="Drop player">&minus;</button></td><td class='col-pos'>SF</td><td class='col-player'><a href='../players/840.html' title="Rick Barry">R. Barry</a></td><td class="roster-manage-cell roster-pt-cell">
     <div class="roster-manage-controls">
         <select class="roster-pt-select" aria-label="Playing time">
@@ -166,7 +166,7 @@
             <option value="++">++</option>
         </select>
     </div>
-</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='6'>6</td><td data-value='24.2'>24.2</td><td data-value='13.5'>13.5</td><td data-value='5.3'>5.3</td><td data-value='1.0'>1.0</td><td data-value='0.3'>0.3</td><td data-value='0.3'>0.3</td><td data-value='1.8'>1.8</td><td data-value='3.0'>3.0</td><td data-value='2.3'>2.3</td><td data-value='43.1'>43.1%</td><td data-value='42.3'>42.3%</td><td data-value='87.5'>87.5%</td><td data-value='7.5'>7.5</td><td data-value='-3.3'>-3.3</td></tr>
+</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='6'>6</td><td data-value='24.2'>24.2</td><td data-value='13.5'>13.5</td><td data-value='5.3'>5.3</td><td data-value='1.0'>1.0</td><td data-value='0.3'>0.3</td><td data-value='0.3'>0.3</td><td data-value='1.8'>1.8</td><td data-value='3.0'>3.0</td><td data-value='2.3'>2.3</td><td data-value='43.1'>43.1%</td><td data-value='42.3'>42.3%</td><td data-value='87.5'>87.5%</td><td data-value='-2.66'>-2.7</td><td data-value='-2.19'>-2.2</td><td data-value='-3.3'>-3.3</td></tr>
 <tr data-pid='914'><td class="roster-manage-cell roster-move-cell"><button type="button" class="roster-move-btn" aria-label="Move player">&#8645;</button><button type="button" class="roster-drop-btn" aria-label="Drop player" title="Drop player">&minus;</button></td><td class='col-pos'>C</td><td class='col-player'><a href='../players/914.html' title="Marc Gasol">M. Gasol</a></td><td class="roster-manage-cell roster-pt-cell">
     <div class="roster-manage-controls">
         <select class="roster-pt-select" aria-label="Playing time">
@@ -177,7 +177,7 @@
             <option value="++">++</option>
         </select>
     </div>
-</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='6'>6</td><td data-value='7.4'>7.4</td><td data-value='2.2'>2.2</td><td data-value='2.7'>2.7</td><td data-value='0.2'>0.2</td><td data-value='0.0'>0.0</td><td data-value='0.2'>0.2</td><td data-value='0.3'>0.3</td><td data-value='0.8'>0.8</td><td data-value='0.0'>0.0</td><td data-value='57.1'>57.1%</td><td data-value='100.0'>100.0%</td><td data-value='100.0'>100.0%</td><td data-value='2.7'>2.7</td><td data-value='4.3'>+4.3</td></tr>
+</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='6'>6</td><td data-value='7.4'>7.4</td><td data-value='2.2'>2.2</td><td data-value='2.7'>2.7</td><td data-value='0.2'>0.2</td><td data-value='0.0'>0.0</td><td data-value='0.2'>0.2</td><td data-value='0.3'>0.3</td><td data-value='0.8'>0.8</td><td data-value='0.0'>0.0</td><td data-value='57.1'>57.1%</td><td data-value='100.0'>100.0%</td><td data-value='100.0'>100.0%</td><td data-value='-4.70'>-4.7</td><td data-value=''>-</td><td data-value='4.3'>+4.3</td></tr>
 <tr data-pid='895'><td class="roster-manage-cell roster-move-cell"><button type="button" class="roster-move-btn" aria-label="Move player">&#8645;</button><button type="button" class="roster-drop-btn" aria-label="Drop player" title="Drop player">&minus;</button></td><td class='col-pos'>C</td><td class='col-player'><a href='../players/895.html' title="DeMarcus Cousins">D. Cousins</a></td><td class="roster-manage-cell roster-pt-cell">
     <div class="roster-manage-controls">
         <select class="roster-pt-select" aria-label="Playing time">
@@ -188,7 +188,7 @@
             <option value="++">++</option>
         </select>
     </div>
-</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='6'>6</td><td data-value='5.6'>5.6</td><td data-value='1.5'>1.5</td><td data-value='2.0'>2.0</td><td data-value='0.2'>0.2</td><td data-value='0.0'>0.0</td><td data-value='0.0'>0.0</td><td data-value='0.2'>0.2</td><td data-value='1.3'>1.3</td><td data-value='0.0'>0.0</td><td data-value='28.6'>28.6%</td><td data-value='11.1'>11.1%</td><td data-value='0.0'>0.0%</td><td data-value='0.6'>0.6</td><td data-value='-2.5'>-2.5</td></tr>
+</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='6'>6</td><td data-value='5.6'>5.6</td><td data-value='1.5'>1.5</td><td data-value='2.0'>2.0</td><td data-value='0.2'>0.2</td><td data-value='0.0'>0.0</td><td data-value='0.0'>0.0</td><td data-value='0.2'>0.2</td><td data-value='1.3'>1.3</td><td data-value='0.0'>0.0</td><td data-value='28.6'>28.6%</td><td data-value='11.1'>11.1%</td><td data-value='0.0'>0.0%</td><td data-value='-6.39'>-6.4</td><td data-value=''>-</td><td data-value='-2.5'>-2.5</td></tr>
 <tr data-pid='797'><td class="roster-manage-cell roster-move-cell"><button type="button" class="roster-move-btn" aria-label="Move player">&#8645;</button><button type="button" class="roster-drop-btn" aria-label="Drop player" title="Drop player">&minus;</button></td><td class='col-pos'>SF</td><td class='col-player'><a href='../players/797.html' title="Glen Rice">G. Rice</a></td><td class="roster-manage-cell roster-pt-cell">
     <div class="roster-manage-controls">
         <select class="roster-pt-select" aria-label="Playing time">
@@ -199,7 +199,7 @@
             <option value="++">++</option>
         </select>
     </div>
-</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='7'>7</td><td data-value='7.8'>7.8</td><td data-value='5.3'>5.3</td><td data-value='0.6'>0.6</td><td data-value='0.1'>0.1</td><td data-value='0.0'>0.0</td><td data-value='0.0'>0.0</td><td data-value='0.9'>0.9</td><td data-value='1.3'>1.3</td><td data-value='0.1'>0.1</td><td data-value='44.8'>44.8%</td><td data-value='37.5'>37.5%</td><td data-value='71.4'>71.4%</td><td data-value='2.7'>2.7</td><td data-value='-3.3'>-3.3</td></tr>
+</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='7'>7</td><td data-value='7.8'>7.8</td><td data-value='5.3'>5.3</td><td data-value='0.6'>0.6</td><td data-value='0.1'>0.1</td><td data-value='0.0'>0.0</td><td data-value='0.0'>0.0</td><td data-value='0.9'>0.9</td><td data-value='1.3'>1.3</td><td data-value='0.1'>0.1</td><td data-value='44.8'>44.8%</td><td data-value='37.5'>37.5%</td><td data-value='71.4'>71.4%</td><td data-value='-5.41'>-5.4</td><td data-value=''>-</td><td data-value='-3.3'>-3.3</td></tr>
 <tr data-pid='820'><td class="roster-manage-cell roster-move-cell"><button type="button" class="roster-move-btn" aria-label="Move player">&#8645;</button><button type="button" class="roster-drop-btn" aria-label="Drop player" title="Drop player">&minus;</button></td><td class='col-pos'>G</td><td class='col-player'><a href='../players/820.html' title="Kyrie Irving">K. Irving</a></td><td class="roster-manage-cell roster-pt-cell">
     <div class="roster-manage-controls">
         <select class="roster-pt-select" aria-label="Playing time">
@@ -210,14 +210,14 @@
             <option value="++">++</option>
         </select>
     </div>
-</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='5'>5</td><td data-value='4.9'>4.9</td><td data-value='1.8'>1.8</td><td data-value='0.4'>0.4</td><td data-value='1.4'>1.4</td><td data-value='0.0'>0.0</td><td data-value='0.0'>0.0</td><td data-value='0.2'>0.2</td><td data-value='0.8'>0.8</td><td data-value='0.0'>0.0</td><td data-value='100.0'>100.0%</td><td data-value='100.0'>100.0%</td><td data-value='100.0'>100.0%</td><td data-value='2.5'>2.5</td><td data-value='-1.2'>-1.2</td></tr>
+</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='5'>5</td><td data-value='4.9'>4.9</td><td data-value='1.8'>1.8</td><td data-value='0.4'>0.4</td><td data-value='1.4'>1.4</td><td data-value='0.0'>0.0</td><td data-value='0.0'>0.0</td><td data-value='0.2'>0.2</td><td data-value='0.8'>0.8</td><td data-value='0.0'>0.0</td><td data-value='100.0'>100.0%</td><td data-value='100.0'>100.0%</td><td data-value='100.0'>100.0%</td><td data-value='-5.06'>-5.1</td><td data-value=''>-</td><td data-value='-1.2'>-1.2</td></tr>
 
 </tbody>
 </table></div></div><div data-tab-panel-group="roster-stats-GA" data-tab-panel="14" style="display:none"><div class="table-scroll"><div class="roster-adding-banner" hidden></div>
 <table class="stats-table roster-table">
 <thead><tr>
 <th class="roster-manage-cell"></th><th class="col-pos">Pos</th><th class="col-player">Player</th><th class="roster-manage-cell">PT</th><th class="roster-pt-view">PT</th><th>GP</th><th>MIN</th><th>PTS</th><th>REB</th>
-<th>AST</th><th>STL</th><th>BLK</th><th><abbr title="3-pointers made per game">3PM</abbr></th><th><abbr title="Personal Fouls per game">PF</abbr></th><th>TOV</th><th>FG%</th><th>3P%</th><th>FT%</th><th><abbr title="Game Score — a per-game efficiency rating combining scoring, rebounding, and other stats into one number">GmSc</abbr></th><th><abbr title="Plus/Minus — the team's net point differential while this player is on the court, averaged per game">+/-</abbr></th>
+<th>AST</th><th>STL</th><th>BLK</th><th><abbr title="3-pointers made per game">3PM</abbr></th><th><abbr title="Personal Fouls per game">PF</abbr></th><th>TOV</th><th>FG%</th><th>3P%</th><th>FT%</th><th><abbr title="Core Four Score: how much he helps win our 9 player categories, per game. Above 0 beats the average rostered player.">C4S</abbr></th><th><abbr title="Core Four Score per 36 minutes: how good he is when he plays, whatever his minutes. Shown at 10+ minutes per game.">C4S/36</abbr></th><th><abbr title="Plus/Minus — the team's net point differential while this player is on the court, averaged per game">+/-</abbr></th>
 </tr></thead>
 <tbody>
 <tr data-pid='798'><td class="roster-manage-cell roster-move-cell"><button type="button" class="roster-move-btn" aria-label="Move player">&#8645;</button><button type="button" class="roster-drop-btn" aria-label="Drop player" title="Drop player">&minus;</button></td><td class='col-pos'>G</td><td class='col-player'><a href='../players/798.html' title="James Harden">J. Harden</a></td><td class="roster-manage-cell roster-pt-cell">
@@ -230,7 +230,7 @@
             <option value="++">++</option>
         </select>
     </div>
-</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='13'>13</td><td data-value='31.2'>31.2</td><td data-value='22.5'>22.5</td><td data-value='2.0'>2.0</td><td data-value='6.9'>6.9</td><td data-value='0.4'>0.4</td><td data-value='0.5'>0.5</td><td data-value='3.8'>3.8</td><td data-value='3.4'>3.4</td><td data-value='2.5'>2.5</td><td data-value='54.4'>54.4%</td><td data-value='53.8'>53.8%</td><td data-value='92.0'>92.0%</td><td data-value='19.1'>19.1</td><td data-value='4.5'>+4.5</td></tr>
+</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='13'>13</td><td data-value='31.2'>31.2</td><td data-value='22.5'>22.5</td><td data-value='2.0'>2.0</td><td data-value='6.9'>6.9</td><td data-value='0.4'>0.4</td><td data-value='0.5'>0.5</td><td data-value='3.8'>3.8</td><td data-value='3.4'>3.4</td><td data-value='2.5'>2.5</td><td data-value='54.4'>54.4%</td><td data-value='53.8'>53.8%</td><td data-value='92.0'>92.0%</td><td data-value='5.92'>+5.9</td><td data-value='4.52'>+4.5</td><td data-value='4.5'>+4.5</td></tr>
 <tr data-pid='827'><td class="roster-manage-cell roster-move-cell"><button type="button" class="roster-move-btn" aria-label="Move player">&#8645;</button><button type="button" class="roster-drop-btn" aria-label="Drop player" title="Drop player">&minus;</button></td><td class='col-pos'>GF</td><td class='col-player'><a href='../players/827.html' title="George Gervin">G. Gervin</a></td><td class="roster-manage-cell roster-pt-cell">
     <div class="roster-manage-controls">
         <select class="roster-pt-select" aria-label="Playing time">
@@ -241,7 +241,7 @@
             <option value="++">++</option>
         </select>
     </div>
-</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='13'>13</td><td data-value='32.3'>32.3</td><td data-value='21.3'>21.3</td><td data-value='5.9'>5.9</td><td data-value='1.0'>1.0</td><td data-value='1.2'>1.2</td><td data-value='2.1'>2.1</td><td data-value='2.4'>2.4</td><td data-value='2.8'>2.8</td><td data-value='1.2'>1.2</td><td data-value='50.3'>50.3%</td><td data-value='41.9'>41.9%</td><td data-value='92.1'>92.1%</td><td data-value='18.0'>18.0</td><td data-value='7.2'>+7.2</td></tr>
+</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='13'>13</td><td data-value='32.3'>32.3</td><td data-value='21.3'>21.3</td><td data-value='5.9'>5.9</td><td data-value='1.0'>1.0</td><td data-value='1.2'>1.2</td><td data-value='2.1'>2.1</td><td data-value='2.4'>2.4</td><td data-value='2.8'>2.8</td><td data-value='1.2'>1.2</td><td data-value='50.3'>50.3%</td><td data-value='41.9'>41.9%</td><td data-value='92.1'>92.1%</td><td data-value='7.89'>+7.9</td><td data-value='5.58'>+5.6</td><td data-value='7.2'>+7.2</td></tr>
 <tr data-pid='806'><td class="roster-manage-cell roster-move-cell"><button type="button" class="roster-move-btn" aria-label="Move player">&#8645;</button><button type="button" class="roster-drop-btn" aria-label="Drop player" title="Drop player">&minus;</button></td><td class='col-pos'>PG</td><td class='col-player'><a href='../players/806.html' title="Derrick Rose">D. Rose</a></td><td class="roster-manage-cell roster-pt-cell">
     <div class="roster-manage-controls">
         <select class="roster-pt-select" aria-label="Playing time">
@@ -252,7 +252,7 @@
             <option value="++">++</option>
         </select>
     </div>
-</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='13'>13</td><td data-value='30.6'>30.6</td><td data-value='15.2'>15.2</td><td data-value='1.7'>1.7</td><td data-value='6.2'>6.2</td><td data-value='0.2'>0.2</td><td data-value='0.6'>0.6</td><td data-value='1.3'>1.3</td><td data-value='2.5'>2.5</td><td data-value='1.9'>1.9</td><td data-value='43.8'>43.8%</td><td data-value='32.1'>32.1%</td><td data-value='88.2'>88.2%</td><td data-value='12.5'>12.5</td><td data-value='5.7'>+5.7</td></tr>
+</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='13'>13</td><td data-value='30.6'>30.6</td><td data-value='15.2'>15.2</td><td data-value='1.7'>1.7</td><td data-value='6.2'>6.2</td><td data-value='0.2'>0.2</td><td data-value='0.6'>0.6</td><td data-value='1.3'>1.3</td><td data-value='2.5'>2.5</td><td data-value='1.9'>1.9</td><td data-value='43.8'>43.8%</td><td data-value='32.1'>32.1%</td><td data-value='88.2'>88.2%</td><td data-value='-1.23'>-1.2</td><td data-value='-2.40'>-2.4</td><td data-value='5.7'>+5.7</td></tr>
 <tr data-pid='834'><td class="roster-manage-cell roster-move-cell"><button type="button" class="roster-move-btn" aria-label="Move player">&#8645;</button><button type="button" class="roster-drop-btn" aria-label="Drop player" title="Drop player">&minus;</button></td><td class='col-pos'>GF</td><td class='col-player'><a href='../players/834.html' title="Magic Johnson">M. Johnson</a></td><td class="roster-manage-cell roster-pt-cell">
     <div class="roster-manage-controls">
         <select class="roster-pt-select" aria-label="Playing time">
@@ -263,7 +263,7 @@
             <option value="++">++</option>
         </select>
     </div>
-</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='11'>11</td><td data-value='36.7'>36.7</td><td data-value='21.6'>21.6</td><td data-value='5.9'>5.9</td><td data-value='8.9'>8.9</td><td data-value='0.9'>0.9</td><td data-value='1.2'>1.2</td><td data-value='2.6'>2.6</td><td data-value='2.8'>2.8</td><td data-value='4.5'>4.5</td><td data-value='54.9'>54.9%</td><td data-value='41.4'>41.4%</td><td data-value='86.9'>86.9%</td><td data-value='19.8'>19.8</td><td data-value='7.6'>+7.6</td></tr>
+</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='11'>11</td><td data-value='36.7'>36.7</td><td data-value='21.6'>21.6</td><td data-value='5.9'>5.9</td><td data-value='8.9'>8.9</td><td data-value='0.9'>0.9</td><td data-value='1.2'>1.2</td><td data-value='2.6'>2.6</td><td data-value='2.8'>2.8</td><td data-value='4.5'>4.5</td><td data-value='54.9'>54.9%</td><td data-value='41.4'>41.4%</td><td data-value='86.9'>86.9%</td><td data-value='5.97'>+6.0</td><td data-value='2.39'>+2.4</td><td data-value='7.6'>+7.6</td></tr>
 <tr data-pid='838'><td class="roster-manage-cell roster-move-cell"><button type="button" class="roster-move-btn" aria-label="Move player">&#8645;</button><button type="button" class="roster-drop-btn" aria-label="Drop player" title="Drop player">&minus;</button></td><td class='col-pos'>C</td><td class='col-player'><a href='../players/838.html' title="Wilt Chamberlain">W. Chamberlain</a></td><td class="roster-manage-cell roster-pt-cell">
     <div class="roster-manage-controls">
         <select class="roster-pt-select" aria-label="Playing time">
@@ -274,8 +274,8 @@
             <option value="++">++</option>
         </select>
     </div>
-</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='13'>13</td><td data-value='24.2'>24.2</td><td data-value='7.8'>7.8</td><td data-value='9.5'>9.5</td><td data-value='1.0'>1.0</td><td data-value='0.5'>0.5</td><td data-value='4.0'>4.0</td><td data-value='0.1'>0.1</td><td data-value='3.4'>3.4</td><td data-value='1.5'>1.5</td><td data-value='58.9'>58.9%</td><td data-value='25.0'>25.0%</td><td data-value='51.7'>51.7%</td><td data-value='9.9'>9.9</td><td data-value='5.8'>+5.8</td></tr>
-<tr class="bench-divider"><td colspan="20"><span>Bench</span></td></tr>
+</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='13'>13</td><td data-value='24.2'>24.2</td><td data-value='7.8'>7.8</td><td data-value='9.5'>9.5</td><td data-value='1.0'>1.0</td><td data-value='0.5'>0.5</td><td data-value='4.0'>4.0</td><td data-value='0.1'>0.1</td><td data-value='3.4'>3.4</td><td data-value='1.5'>1.5</td><td data-value='58.9'>58.9%</td><td data-value='25.0'>25.0%</td><td data-value='51.7'>51.7%</td><td data-value='1.29'>+1.3</td><td data-value='1.00'>+1.0</td><td data-value='5.8'>+5.8</td></tr>
+<tr class="bench-divider"><td colspan="21"><span>Bench</span></td></tr>
 <tr data-pid='805'><td class="roster-manage-cell roster-move-cell"><button type="button" class="roster-move-btn" aria-label="Move player">&#8645;</button><button type="button" class="roster-drop-btn" aria-label="Drop player" title="Drop player">&minus;</button></td><td class='col-pos'>GF</td><td class='col-player'><a href='../players/805.html' title="Marques Johnson">M. Johnson</a></td><td class="roster-manage-cell roster-pt-cell">
     <div class="roster-manage-controls">
         <select class="roster-pt-select" aria-label="Playing time">
@@ -286,7 +286,7 @@
             <option value="++">++</option>
         </select>
     </div>
-</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='13'>13</td><td data-value='28.5'>28.5</td><td data-value='15.5'>15.5</td><td data-value='5.8'>5.8</td><td data-value='1.2'>1.2</td><td data-value='0.3'>0.3</td><td data-value='0.5'>0.5</td><td data-value='1.7'>1.7</td><td data-value='1.9'>1.9</td><td data-value='1.2'>1.2</td><td data-value='47.2'>47.2%</td><td data-value='38.6'>38.6%</td><td data-value='81.5'>81.5%</td><td data-value='11.1'>11.1</td><td data-value='5.1'>+5.1</td></tr>
+</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='13'>13</td><td data-value='28.5'>28.5</td><td data-value='15.5'>15.5</td><td data-value='5.8'>5.8</td><td data-value='1.2'>1.2</td><td data-value='0.3'>0.3</td><td data-value='0.5'>0.5</td><td data-value='1.7'>1.7</td><td data-value='1.9'>1.9</td><td data-value='1.2'>1.2</td><td data-value='47.2'>47.2%</td><td data-value='38.6'>38.6%</td><td data-value='81.5'>81.5%</td><td data-value='-0.67'>-0.7</td><td data-value='-1.45'>-1.5</td><td data-value='5.1'>+5.1</td></tr>
 <tr data-pid='791'><td class="roster-manage-cell roster-move-cell"><button type="button" class="roster-move-btn" aria-label="Move player">&#8645;</button><button type="button" class="roster-drop-btn" aria-label="Drop player" title="Drop player">&minus;</button></td><td class='col-pos'>FC</td><td class='col-player'><a href='../players/791.html' title="Anthony Davis">A. Davis</a></td><td class="roster-manage-cell roster-pt-cell">
     <div class="roster-manage-controls">
         <select class="roster-pt-select" aria-label="Playing time">
@@ -297,7 +297,7 @@
             <option value="++">++</option>
         </select>
     </div>
-</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='13'>13</td><td data-value='21.4'>21.4</td><td data-value='9.2'>9.2</td><td data-value='6.1'>6.1</td><td data-value='1.0'>1.0</td><td data-value='0.4'>0.4</td><td data-value='1.5'>1.5</td><td data-value='0.8'>0.8</td><td data-value='2.6'>2.6</td><td data-value='0.6'>0.6</td><td data-value='47.4'>47.4%</td><td data-value='29.4'>29.4%</td><td data-value='80.0'>80.0%</td><td data-value='9.0'>9.0</td><td data-value='4.6'>+4.6</td></tr>
+</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='13'>13</td><td data-value='21.4'>21.4</td><td data-value='9.2'>9.2</td><td data-value='6.1'>6.1</td><td data-value='1.0'>1.0</td><td data-value='0.4'>0.4</td><td data-value='1.5'>1.5</td><td data-value='0.8'>0.8</td><td data-value='2.6'>2.6</td><td data-value='0.6'>0.6</td><td data-value='47.4'>47.4%</td><td data-value='29.4'>29.4%</td><td data-value='80.0'>80.0%</td><td data-value='-0.80'>-0.8</td><td data-value='0.14'>+0.1</td><td data-value='4.6'>+4.6</td></tr>
 <tr data-pid='840'><td class="roster-manage-cell roster-move-cell"><button type="button" class="roster-move-btn" aria-label="Move player">&#8645;</button><button type="button" class="roster-drop-btn" aria-label="Drop player" title="Drop player">&minus;</button></td><td class='col-pos'>SF</td><td class='col-player'><a href='../players/840.html' title="Rick Barry">R. Barry</a></td><td class="roster-manage-cell roster-pt-cell">
     <div class="roster-manage-controls">
         <select class="roster-pt-select" aria-label="Playing time">
@@ -308,7 +308,7 @@
             <option value="++">++</option>
         </select>
     </div>
-</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='12'>12</td><td data-value='22.2'>22.2</td><td data-value='11.5'>11.5</td><td data-value='5.7'>5.7</td><td data-value='1.5'>1.5</td><td data-value='0.2'>0.2</td><td data-value='0.2'>0.2</td><td data-value='1.1'>1.1</td><td data-value='2.3'>2.3</td><td data-value='1.9'>1.9</td><td data-value='41.7'>41.7%</td><td data-value='35.1'>35.1%</td><td data-value='94.6'>94.6%</td><td data-value='7.5'>7.5</td><td data-value='1.3'>+1.3</td></tr>
+</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='12'>12</td><td data-value='22.2'>22.2</td><td data-value='11.5'>11.5</td><td data-value='5.7'>5.7</td><td data-value='1.5'>1.5</td><td data-value='0.2'>0.2</td><td data-value='0.2'>0.2</td><td data-value='1.1'>1.1</td><td data-value='2.3'>2.3</td><td data-value='1.9'>1.9</td><td data-value='41.7'>41.7%</td><td data-value='35.1'>35.1%</td><td data-value='94.6'>94.6%</td><td data-value='-3.22'>-3.2</td><td data-value='-2.82'>-2.8</td><td data-value='1.3'>+1.3</td></tr>
 <tr data-pid='914'><td class="roster-manage-cell roster-move-cell"><button type="button" class="roster-move-btn" aria-label="Move player">&#8645;</button><button type="button" class="roster-drop-btn" aria-label="Drop player" title="Drop player">&minus;</button></td><td class='col-pos'>C</td><td class='col-player'><a href='../players/914.html' title="Marc Gasol">M. Gasol</a></td><td class="roster-manage-cell roster-pt-cell">
     <div class="roster-manage-controls">
         <select class="roster-pt-select" aria-label="Playing time">
@@ -319,7 +319,7 @@
             <option value="++">++</option>
         </select>
     </div>
-</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='12'>12</td><td data-value='7.8'>7.8</td><td data-value='2.2'>2.2</td><td data-value='2.5'>2.5</td><td data-value='0.3'>0.3</td><td data-value='0.0'>0.0</td><td data-value='0.1'>0.1</td><td data-value='0.3'>0.3</td><td data-value='1.1'>1.1</td><td data-value='0.5'>0.5</td><td data-value='43.5'>43.5%</td><td data-value='44.4'>44.4%</td><td data-value='100.0'>100.0%</td><td data-value='1.7'>1.7</td><td data-value='0.2'>+0.2</td></tr>
+</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='12'>12</td><td data-value='7.8'>7.8</td><td data-value='2.2'>2.2</td><td data-value='2.5'>2.5</td><td data-value='0.3'>0.3</td><td data-value='0.0'>0.0</td><td data-value='0.1'>0.1</td><td data-value='0.3'>0.3</td><td data-value='1.1'>1.1</td><td data-value='0.5'>0.5</td><td data-value='43.5'>43.5%</td><td data-value='44.4'>44.4%</td><td data-value='100.0'>100.0%</td><td data-value='-6.13'>-6.1</td><td data-value=''>-</td><td data-value='0.2'>+0.2</td></tr>
 <tr data-pid='895'><td class="roster-manage-cell roster-move-cell"><button type="button" class="roster-move-btn" aria-label="Move player">&#8645;</button><button type="button" class="roster-drop-btn" aria-label="Drop player" title="Drop player">&minus;</button></td><td class='col-pos'>C</td><td class='col-player'><a href='../players/895.html' title="DeMarcus Cousins">D. Cousins</a></td><td class="roster-manage-cell roster-pt-cell">
     <div class="roster-manage-controls">
         <select class="roster-pt-select" aria-label="Playing time">
@@ -330,7 +330,7 @@
             <option value="++">++</option>
         </select>
     </div>
-</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='9'>9</td><td data-value='5.9'>5.9</td><td data-value='1.4'>1.4</td><td data-value='2.0'>2.0</td><td data-value='0.1'>0.1</td><td data-value='0.0'>0.0</td><td data-value='0.0'>0.0</td><td data-value='0.1'>0.1</td><td data-value='1.3'>1.3</td><td data-value='0.2'>0.2</td><td data-value='29.4'>29.4%</td><td data-value='10.0'>10.0%</td><td data-value='66.7'>66.7%</td><td data-value='0.4'>0.4</td><td data-value='-2.3'>-2.3</td></tr>
+</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='9'>9</td><td data-value='5.9'>5.9</td><td data-value='1.4'>1.4</td><td data-value='2.0'>2.0</td><td data-value='0.1'>0.1</td><td data-value='0.0'>0.0</td><td data-value='0.0'>0.0</td><td data-value='0.1'>0.1</td><td data-value='1.3'>1.3</td><td data-value='0.2'>0.2</td><td data-value='29.4'>29.4%</td><td data-value='10.0'>10.0%</td><td data-value='66.7'>66.7%</td><td data-value='-7.37'>-7.4</td><td data-value=''>-</td><td data-value='-2.3'>-2.3</td></tr>
 <tr data-pid='797'><td class="roster-manage-cell roster-move-cell"><button type="button" class="roster-move-btn" aria-label="Move player">&#8645;</button><button type="button" class="roster-drop-btn" aria-label="Drop player" title="Drop player">&minus;</button></td><td class='col-pos'>SF</td><td class='col-player'><a href='../players/797.html' title="Glen Rice">G. Rice</a></td><td class="roster-manage-cell roster-pt-cell">
     <div class="roster-manage-controls">
         <select class="roster-pt-select" aria-label="Playing time">
@@ -341,7 +341,7 @@
             <option value="++">++</option>
         </select>
     </div>
-</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='11'>11</td><td data-value='7.4'>7.4</td><td data-value='5.3'>5.3</td><td data-value='0.7'>0.7</td><td data-value='0.2'>0.2</td><td data-value='0.1'>0.1</td><td data-value='0.0'>0.0</td><td data-value='0.8'>0.8</td><td data-value='0.9'>0.9</td><td data-value='0.2'>0.2</td><td data-value='47.4'>47.4%</td><td data-value='40.9'>40.9%</td><td data-value='81.2'>81.2%</td><td data-value='3.4'>3.4</td><td data-value='-1.7'>-1.7</td></tr>
+</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='11'>11</td><td data-value='7.4'>7.4</td><td data-value='5.3'>5.3</td><td data-value='0.7'>0.7</td><td data-value='0.2'>0.2</td><td data-value='0.1'>0.1</td><td data-value='0.0'>0.0</td><td data-value='0.8'>0.8</td><td data-value='0.9'>0.9</td><td data-value='0.2'>0.2</td><td data-value='47.4'>47.4%</td><td data-value='40.9'>40.9%</td><td data-value='81.2'>81.2%</td><td data-value='-5.24'>-5.2</td><td data-value=''>-</td><td data-value='-1.7'>-1.7</td></tr>
 <tr data-pid='820'><td class="roster-manage-cell roster-move-cell"><button type="button" class="roster-move-btn" aria-label="Move player">&#8645;</button><button type="button" class="roster-drop-btn" aria-label="Drop player" title="Drop player">&minus;</button></td><td class='col-pos'>G</td><td class='col-player'><a href='../players/820.html' title="Kyrie Irving">K. Irving</a></td><td class="roster-manage-cell roster-pt-cell">
     <div class="roster-manage-controls">
         <select class="roster-pt-select" aria-label="Playing time">
@@ -352,14 +352,14 @@
             <option value="++">++</option>
         </select>
     </div>
-</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='9'>9</td><td data-value='3.8'>3.8</td><td data-value='1.6'>1.6</td><td data-value='0.2'>0.2</td><td data-value='0.9'>0.9</td><td data-value='0.0'>0.0</td><td data-value='0.0'>0.0</td><td data-value='0.2'>0.2</td><td data-value='0.6'>0.6</td><td data-value='0.0'>0.0</td><td data-value='71.4'>71.4%</td><td data-value='50.0'>50.0%</td><td data-value='100.0'>100.0%</td><td data-value='1.7'>1.7</td><td data-value='-1.7'>-1.7</td></tr>
+</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='9'>9</td><td data-value='3.8'>3.8</td><td data-value='1.6'>1.6</td><td data-value='0.2'>0.2</td><td data-value='0.9'>0.9</td><td data-value='0.0'>0.0</td><td data-value='0.0'>0.0</td><td data-value='0.2'>0.2</td><td data-value='0.6'>0.6</td><td data-value='0.0'>0.0</td><td data-value='71.4'>71.4%</td><td data-value='50.0'>50.0%</td><td data-value='100.0'>100.0%</td><td data-value='-5.89'>-5.9</td><td data-value=''>-</td><td data-value='-1.7'>-1.7</td></tr>
 
 </tbody>
 </table></div></div><div data-tab-panel-group="roster-stats-GA" data-tab-panel="full" style="display:none"><div class="table-scroll"><div class="roster-adding-banner" hidden></div>
 <table class="stats-table roster-table">
 <thead><tr>
 <th class="roster-manage-cell"></th><th class="col-pos">Pos</th><th class="col-player">Player</th><th class="roster-manage-cell">PT</th><th class="roster-pt-view">PT</th><th>GP</th><th>MIN</th><th>PTS</th><th>REB</th>
-<th>AST</th><th>STL</th><th>BLK</th><th><abbr title="3-pointers made per game">3PM</abbr></th><th><abbr title="Personal Fouls per game">PF</abbr></th><th>TOV</th><th>FG%</th><th>3P%</th><th>FT%</th><th><abbr title="Game Score — a per-game efficiency rating combining scoring, rebounding, and other stats into one number">GmSc</abbr></th><th><abbr title="Plus/Minus — the team's net point differential while this player is on the court, averaged per game">+/-</abbr></th>
+<th>AST</th><th>STL</th><th>BLK</th><th><abbr title="3-pointers made per game">3PM</abbr></th><th><abbr title="Personal Fouls per game">PF</abbr></th><th>TOV</th><th>FG%</th><th>3P%</th><th>FT%</th><th><abbr title="Core Four Score: how much he helps win our 9 player categories, per game. Above 0 beats the average rostered player.">C4S</abbr></th><th><abbr title="Core Four Score per 36 minutes: how good he is when he plays, whatever his minutes. Shown at 10+ minutes per game.">C4S/36</abbr></th><th><abbr title="Plus/Minus — the team's net point differential while this player is on the court, averaged per game">+/-</abbr></th>
 </tr></thead>
 <tbody>
 <tr data-pid='798'><td class="roster-manage-cell roster-move-cell"><button type="button" class="roster-move-btn" aria-label="Move player">&#8645;</button><button type="button" class="roster-drop-btn" aria-label="Drop player" title="Drop player">&minus;</button></td><td class='col-pos'>G</td><td class='col-player'><a href='../players/798.html' title="James Harden">J. Harden</a></td><td class="roster-manage-cell roster-pt-cell">
@@ -372,7 +372,7 @@
             <option value="++">++</option>
         </select>
     </div>
-</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='13'>13</td><td data-value='31.2'>31.2</td><td data-value='22.5'>22.5</td><td data-value='2.0'>2.0</td><td data-value='6.9'>6.9</td><td data-value='0.4'>0.4</td><td data-value='0.5'>0.5</td><td data-value='3.8'>3.8</td><td data-value='3.4'>3.4</td><td data-value='2.5'>2.5</td><td data-value='54.4'>54.4%</td><td data-value='53.8'>53.8%</td><td data-value='92.0'>92.0%</td><td data-value='19.1'>19.1</td><td data-value='4.5'>+4.5</td></tr>
+</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='13'>13</td><td data-value='31.2'>31.2</td><td data-value='22.5'>22.5</td><td data-value='2.0'>2.0</td><td data-value='6.9'>6.9</td><td data-value='0.4'>0.4</td><td data-value='0.5'>0.5</td><td data-value='3.8'>3.8</td><td data-value='3.4'>3.4</td><td data-value='2.5'>2.5</td><td data-value='54.4'>54.4%</td><td data-value='53.8'>53.8%</td><td data-value='92.0'>92.0%</td><td data-value='5.92'>+5.9</td><td data-value='4.52'>+4.5</td><td data-value='4.5'>+4.5</td></tr>
 <tr data-pid='827'><td class="roster-manage-cell roster-move-cell"><button type="button" class="roster-move-btn" aria-label="Move player">&#8645;</button><button type="button" class="roster-drop-btn" aria-label="Drop player" title="Drop player">&minus;</button></td><td class='col-pos'>GF</td><td class='col-player'><a href='../players/827.html' title="George Gervin">G. Gervin</a></td><td class="roster-manage-cell roster-pt-cell">
     <div class="roster-manage-controls">
         <select class="roster-pt-select" aria-label="Playing time">
@@ -383,7 +383,7 @@
             <option value="++">++</option>
         </select>
     </div>
-</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='13'>13</td><td data-value='32.3'>32.3</td><td data-value='21.3'>21.3</td><td data-value='5.9'>5.9</td><td data-value='1.0'>1.0</td><td data-value='1.2'>1.2</td><td data-value='2.1'>2.1</td><td data-value='2.4'>2.4</td><td data-value='2.8'>2.8</td><td data-value='1.2'>1.2</td><td data-value='50.3'>50.3%</td><td data-value='41.9'>41.9%</td><td data-value='92.1'>92.1%</td><td data-value='18.0'>18.0</td><td data-value='7.2'>+7.2</td></tr>
+</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='13'>13</td><td data-value='32.3'>32.3</td><td data-value='21.3'>21.3</td><td data-value='5.9'>5.9</td><td data-value='1.0'>1.0</td><td data-value='1.2'>1.2</td><td data-value='2.1'>2.1</td><td data-value='2.4'>2.4</td><td data-value='2.8'>2.8</td><td data-value='1.2'>1.2</td><td data-value='50.3'>50.3%</td><td data-value='41.9'>41.9%</td><td data-value='92.1'>92.1%</td><td data-value='7.89'>+7.9</td><td data-value='5.58'>+5.6</td><td data-value='7.2'>+7.2</td></tr>
 <tr data-pid='806'><td class="roster-manage-cell roster-move-cell"><button type="button" class="roster-move-btn" aria-label="Move player">&#8645;</button><button type="button" class="roster-drop-btn" aria-label="Drop player" title="Drop player">&minus;</button></td><td class='col-pos'>PG</td><td class='col-player'><a href='../players/806.html' title="Derrick Rose">D. Rose</a></td><td class="roster-manage-cell roster-pt-cell">
     <div class="roster-manage-controls">
         <select class="roster-pt-select" aria-label="Playing time">
@@ -394,7 +394,7 @@
             <option value="++">++</option>
         </select>
     </div>
-</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='13'>13</td><td data-value='30.6'>30.6</td><td data-value='15.2'>15.2</td><td data-value='1.7'>1.7</td><td data-value='6.2'>6.2</td><td data-value='0.2'>0.2</td><td data-value='0.6'>0.6</td><td data-value='1.3'>1.3</td><td data-value='2.5'>2.5</td><td data-value='1.9'>1.9</td><td data-value='43.8'>43.8%</td><td data-value='32.1'>32.1%</td><td data-value='88.2'>88.2%</td><td data-value='12.5'>12.5</td><td data-value='5.7'>+5.7</td></tr>
+</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='13'>13</td><td data-value='30.6'>30.6</td><td data-value='15.2'>15.2</td><td data-value='1.7'>1.7</td><td data-value='6.2'>6.2</td><td data-value='0.2'>0.2</td><td data-value='0.6'>0.6</td><td data-value='1.3'>1.3</td><td data-value='2.5'>2.5</td><td data-value='1.9'>1.9</td><td data-value='43.8'>43.8%</td><td data-value='32.1'>32.1%</td><td data-value='88.2'>88.2%</td><td data-value='-1.23'>-1.2</td><td data-value='-2.40'>-2.4</td><td data-value='5.7'>+5.7</td></tr>
 <tr data-pid='834'><td class="roster-manage-cell roster-move-cell"><button type="button" class="roster-move-btn" aria-label="Move player">&#8645;</button><button type="button" class="roster-drop-btn" aria-label="Drop player" title="Drop player">&minus;</button></td><td class='col-pos'>GF</td><td class='col-player'><a href='../players/834.html' title="Magic Johnson">M. Johnson</a></td><td class="roster-manage-cell roster-pt-cell">
     <div class="roster-manage-controls">
         <select class="roster-pt-select" aria-label="Playing time">
@@ -405,7 +405,7 @@
             <option value="++">++</option>
         </select>
     </div>
-</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='11'>11</td><td data-value='36.7'>36.7</td><td data-value='21.6'>21.6</td><td data-value='5.9'>5.9</td><td data-value='8.9'>8.9</td><td data-value='0.9'>0.9</td><td data-value='1.2'>1.2</td><td data-value='2.6'>2.6</td><td data-value='2.8'>2.8</td><td data-value='4.5'>4.5</td><td data-value='54.9'>54.9%</td><td data-value='41.4'>41.4%</td><td data-value='86.9'>86.9%</td><td data-value='19.8'>19.8</td><td data-value='7.6'>+7.6</td></tr>
+</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='11'>11</td><td data-value='36.7'>36.7</td><td data-value='21.6'>21.6</td><td data-value='5.9'>5.9</td><td data-value='8.9'>8.9</td><td data-value='0.9'>0.9</td><td data-value='1.2'>1.2</td><td data-value='2.6'>2.6</td><td data-value='2.8'>2.8</td><td data-value='4.5'>4.5</td><td data-value='54.9'>54.9%</td><td data-value='41.4'>41.4%</td><td data-value='86.9'>86.9%</td><td data-value='5.97'>+6.0</td><td data-value='2.39'>+2.4</td><td data-value='7.6'>+7.6</td></tr>
 <tr data-pid='838'><td class="roster-manage-cell roster-move-cell"><button type="button" class="roster-move-btn" aria-label="Move player">&#8645;</button><button type="button" class="roster-drop-btn" aria-label="Drop player" title="Drop player">&minus;</button></td><td class='col-pos'>C</td><td class='col-player'><a href='../players/838.html' title="Wilt Chamberlain">W. Chamberlain</a></td><td class="roster-manage-cell roster-pt-cell">
     <div class="roster-manage-controls">
         <select class="roster-pt-select" aria-label="Playing time">
@@ -416,8 +416,8 @@
             <option value="++">++</option>
         </select>
     </div>
-</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='13'>13</td><td data-value='24.2'>24.2</td><td data-value='7.8'>7.8</td><td data-value='9.5'>9.5</td><td data-value='1.0'>1.0</td><td data-value='0.5'>0.5</td><td data-value='4.0'>4.0</td><td data-value='0.1'>0.1</td><td data-value='3.4'>3.4</td><td data-value='1.5'>1.5</td><td data-value='58.9'>58.9%</td><td data-value='25.0'>25.0%</td><td data-value='51.7'>51.7%</td><td data-value='9.9'>9.9</td><td data-value='5.8'>+5.8</td></tr>
-<tr class="bench-divider"><td colspan="20"><span>Bench</span></td></tr>
+</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='13'>13</td><td data-value='24.2'>24.2</td><td data-value='7.8'>7.8</td><td data-value='9.5'>9.5</td><td data-value='1.0'>1.0</td><td data-value='0.5'>0.5</td><td data-value='4.0'>4.0</td><td data-value='0.1'>0.1</td><td data-value='3.4'>3.4</td><td data-value='1.5'>1.5</td><td data-value='58.9'>58.9%</td><td data-value='25.0'>25.0%</td><td data-value='51.7'>51.7%</td><td data-value='1.29'>+1.3</td><td data-value='1.00'>+1.0</td><td data-value='5.8'>+5.8</td></tr>
+<tr class="bench-divider"><td colspan="21"><span>Bench</span></td></tr>
 <tr data-pid='805'><td class="roster-manage-cell roster-move-cell"><button type="button" class="roster-move-btn" aria-label="Move player">&#8645;</button><button type="button" class="roster-drop-btn" aria-label="Drop player" title="Drop player">&minus;</button></td><td class='col-pos'>GF</td><td class='col-player'><a href='../players/805.html' title="Marques Johnson">M. Johnson</a></td><td class="roster-manage-cell roster-pt-cell">
     <div class="roster-manage-controls">
         <select class="roster-pt-select" aria-label="Playing time">
@@ -428,7 +428,7 @@
             <option value="++">++</option>
         </select>
     </div>
-</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='13'>13</td><td data-value='28.5'>28.5</td><td data-value='15.5'>15.5</td><td data-value='5.8'>5.8</td><td data-value='1.2'>1.2</td><td data-value='0.3'>0.3</td><td data-value='0.5'>0.5</td><td data-value='1.7'>1.7</td><td data-value='1.9'>1.9</td><td data-value='1.2'>1.2</td><td data-value='47.2'>47.2%</td><td data-value='38.6'>38.6%</td><td data-value='81.5'>81.5%</td><td data-value='11.1'>11.1</td><td data-value='5.1'>+5.1</td></tr>
+</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='13'>13</td><td data-value='28.5'>28.5</td><td data-value='15.5'>15.5</td><td data-value='5.8'>5.8</td><td data-value='1.2'>1.2</td><td data-value='0.3'>0.3</td><td data-value='0.5'>0.5</td><td data-value='1.7'>1.7</td><td data-value='1.9'>1.9</td><td data-value='1.2'>1.2</td><td data-value='47.2'>47.2%</td><td data-value='38.6'>38.6%</td><td data-value='81.5'>81.5%</td><td data-value='-0.67'>-0.7</td><td data-value='-1.45'>-1.5</td><td data-value='5.1'>+5.1</td></tr>
 <tr data-pid='791'><td class="roster-manage-cell roster-move-cell"><button type="button" class="roster-move-btn" aria-label="Move player">&#8645;</button><button type="button" class="roster-drop-btn" aria-label="Drop player" title="Drop player">&minus;</button></td><td class='col-pos'>FC</td><td class='col-player'><a href='../players/791.html' title="Anthony Davis">A. Davis</a></td><td class="roster-manage-cell roster-pt-cell">
     <div class="roster-manage-controls">
         <select class="roster-pt-select" aria-label="Playing time">
@@ -439,7 +439,7 @@
             <option value="++">++</option>
         </select>
     </div>
-</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='13'>13</td><td data-value='21.4'>21.4</td><td data-value='9.2'>9.2</td><td data-value='6.1'>6.1</td><td data-value='1.0'>1.0</td><td data-value='0.4'>0.4</td><td data-value='1.5'>1.5</td><td data-value='0.8'>0.8</td><td data-value='2.6'>2.6</td><td data-value='0.6'>0.6</td><td data-value='47.4'>47.4%</td><td data-value='29.4'>29.4%</td><td data-value='80.0'>80.0%</td><td data-value='9.0'>9.0</td><td data-value='4.6'>+4.6</td></tr>
+</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='13'>13</td><td data-value='21.4'>21.4</td><td data-value='9.2'>9.2</td><td data-value='6.1'>6.1</td><td data-value='1.0'>1.0</td><td data-value='0.4'>0.4</td><td data-value='1.5'>1.5</td><td data-value='0.8'>0.8</td><td data-value='2.6'>2.6</td><td data-value='0.6'>0.6</td><td data-value='47.4'>47.4%</td><td data-value='29.4'>29.4%</td><td data-value='80.0'>80.0%</td><td data-value='-0.80'>-0.8</td><td data-value='0.14'>+0.1</td><td data-value='4.6'>+4.6</td></tr>
 <tr data-pid='840'><td class="roster-manage-cell roster-move-cell"><button type="button" class="roster-move-btn" aria-label="Move player">&#8645;</button><button type="button" class="roster-drop-btn" aria-label="Drop player" title="Drop player">&minus;</button></td><td class='col-pos'>SF</td><td class='col-player'><a href='../players/840.html' title="Rick Barry">R. Barry</a></td><td class="roster-manage-cell roster-pt-cell">
     <div class="roster-manage-controls">
         <select class="roster-pt-select" aria-label="Playing time">
@@ -450,7 +450,7 @@
             <option value="++">++</option>
         </select>
     </div>
-</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='12'>12</td><td data-value='22.2'>22.2</td><td data-value='11.5'>11.5</td><td data-value='5.7'>5.7</td><td data-value='1.5'>1.5</td><td data-value='0.2'>0.2</td><td data-value='0.2'>0.2</td><td data-value='1.1'>1.1</td><td data-value='2.3'>2.3</td><td data-value='1.9'>1.9</td><td data-value='41.7'>41.7%</td><td data-value='35.1'>35.1%</td><td data-value='94.6'>94.6%</td><td data-value='7.5'>7.5</td><td data-value='1.3'>+1.3</td></tr>
+</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='12'>12</td><td data-value='22.2'>22.2</td><td data-value='11.5'>11.5</td><td data-value='5.7'>5.7</td><td data-value='1.5'>1.5</td><td data-value='0.2'>0.2</td><td data-value='0.2'>0.2</td><td data-value='1.1'>1.1</td><td data-value='2.3'>2.3</td><td data-value='1.9'>1.9</td><td data-value='41.7'>41.7%</td><td data-value='35.1'>35.1%</td><td data-value='94.6'>94.6%</td><td data-value='-3.22'>-3.2</td><td data-value='-2.82'>-2.8</td><td data-value='1.3'>+1.3</td></tr>
 <tr data-pid='914'><td class="roster-manage-cell roster-move-cell"><button type="button" class="roster-move-btn" aria-label="Move player">&#8645;</button><button type="button" class="roster-drop-btn" aria-label="Drop player" title="Drop player">&minus;</button></td><td class='col-pos'>C</td><td class='col-player'><a href='../players/914.html' title="Marc Gasol">M. Gasol</a></td><td class="roster-manage-cell roster-pt-cell">
     <div class="roster-manage-controls">
         <select class="roster-pt-select" aria-label="Playing time">
@@ -461,7 +461,7 @@
             <option value="++">++</option>
         </select>
     </div>
-</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='12'>12</td><td data-value='7.8'>7.8</td><td data-value='2.2'>2.2</td><td data-value='2.5'>2.5</td><td data-value='0.3'>0.3</td><td data-value='0.0'>0.0</td><td data-value='0.1'>0.1</td><td data-value='0.3'>0.3</td><td data-value='1.1'>1.1</td><td data-value='0.5'>0.5</td><td data-value='43.5'>43.5%</td><td data-value='44.4'>44.4%</td><td data-value='100.0'>100.0%</td><td data-value='1.7'>1.7</td><td data-value='0.2'>+0.2</td></tr>
+</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='12'>12</td><td data-value='7.8'>7.8</td><td data-value='2.2'>2.2</td><td data-value='2.5'>2.5</td><td data-value='0.3'>0.3</td><td data-value='0.0'>0.0</td><td data-value='0.1'>0.1</td><td data-value='0.3'>0.3</td><td data-value='1.1'>1.1</td><td data-value='0.5'>0.5</td><td data-value='43.5'>43.5%</td><td data-value='44.4'>44.4%</td><td data-value='100.0'>100.0%</td><td data-value='-6.13'>-6.1</td><td data-value=''>-</td><td data-value='0.2'>+0.2</td></tr>
 <tr data-pid='895'><td class="roster-manage-cell roster-move-cell"><button type="button" class="roster-move-btn" aria-label="Move player">&#8645;</button><button type="button" class="roster-drop-btn" aria-label="Drop player" title="Drop player">&minus;</button></td><td class='col-pos'>C</td><td class='col-player'><a href='../players/895.html' title="DeMarcus Cousins">D. Cousins</a></td><td class="roster-manage-cell roster-pt-cell">
     <div class="roster-manage-controls">
         <select class="roster-pt-select" aria-label="Playing time">
@@ -472,7 +472,7 @@
             <option value="++">++</option>
         </select>
     </div>
-</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='9'>9</td><td data-value='5.9'>5.9</td><td data-value='1.4'>1.4</td><td data-value='2.0'>2.0</td><td data-value='0.1'>0.1</td><td data-value='0.0'>0.0</td><td data-value='0.0'>0.0</td><td data-value='0.1'>0.1</td><td data-value='1.3'>1.3</td><td data-value='0.2'>0.2</td><td data-value='29.4'>29.4%</td><td data-value='10.0'>10.0%</td><td data-value='66.7'>66.7%</td><td data-value='0.4'>0.4</td><td data-value='-2.3'>-2.3</td></tr>
+</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='9'>9</td><td data-value='5.9'>5.9</td><td data-value='1.4'>1.4</td><td data-value='2.0'>2.0</td><td data-value='0.1'>0.1</td><td data-value='0.0'>0.0</td><td data-value='0.0'>0.0</td><td data-value='0.1'>0.1</td><td data-value='1.3'>1.3</td><td data-value='0.2'>0.2</td><td data-value='29.4'>29.4%</td><td data-value='10.0'>10.0%</td><td data-value='66.7'>66.7%</td><td data-value='-7.37'>-7.4</td><td data-value=''>-</td><td data-value='-2.3'>-2.3</td></tr>
 <tr data-pid='797'><td class="roster-manage-cell roster-move-cell"><button type="button" class="roster-move-btn" aria-label="Move player">&#8645;</button><button type="button" class="roster-drop-btn" aria-label="Drop player" title="Drop player">&minus;</button></td><td class='col-pos'>SF</td><td class='col-player'><a href='../players/797.html' title="Glen Rice">G. Rice</a></td><td class="roster-manage-cell roster-pt-cell">
     <div class="roster-manage-controls">
         <select class="roster-pt-select" aria-label="Playing time">
@@ -483,7 +483,7 @@
             <option value="++">++</option>
         </select>
     </div>
-</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='11'>11</td><td data-value='7.4'>7.4</td><td data-value='5.3'>5.3</td><td data-value='0.7'>0.7</td><td data-value='0.2'>0.2</td><td data-value='0.1'>0.1</td><td data-value='0.0'>0.0</td><td data-value='0.8'>0.8</td><td data-value='0.9'>0.9</td><td data-value='0.2'>0.2</td><td data-value='47.4'>47.4%</td><td data-value='40.9'>40.9%</td><td data-value='81.2'>81.2%</td><td data-value='3.4'>3.4</td><td data-value='-1.7'>-1.7</td></tr>
+</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='11'>11</td><td data-value='7.4'>7.4</td><td data-value='5.3'>5.3</td><td data-value='0.7'>0.7</td><td data-value='0.2'>0.2</td><td data-value='0.1'>0.1</td><td data-value='0.0'>0.0</td><td data-value='0.8'>0.8</td><td data-value='0.9'>0.9</td><td data-value='0.2'>0.2</td><td data-value='47.4'>47.4%</td><td data-value='40.9'>40.9%</td><td data-value='81.2'>81.2%</td><td data-value='-5.24'>-5.2</td><td data-value=''>-</td><td data-value='-1.7'>-1.7</td></tr>
 <tr data-pid='820'><td class="roster-manage-cell roster-move-cell"><button type="button" class="roster-move-btn" aria-label="Move player">&#8645;</button><button type="button" class="roster-drop-btn" aria-label="Drop player" title="Drop player">&minus;</button></td><td class='col-pos'>G</td><td class='col-player'><a href='../players/820.html' title="Kyrie Irving">K. Irving</a></td><td class="roster-manage-cell roster-pt-cell">
     <div class="roster-manage-controls">
         <select class="roster-pt-select" aria-label="Playing time">
@@ -494,7 +494,7 @@
             <option value="++">++</option>
         </select>
     </div>
-</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='9'>9</td><td data-value='3.8'>3.8</td><td data-value='1.6'>1.6</td><td data-value='0.2'>0.2</td><td data-value='0.9'>0.9</td><td data-value='0.0'>0.0</td><td data-value='0.0'>0.0</td><td data-value='0.2'>0.2</td><td data-value='0.6'>0.6</td><td data-value='0.0'>0.0</td><td data-value='71.4'>71.4%</td><td data-value='50.0'>50.0%</td><td data-value='100.0'>100.0%</td><td data-value='1.7'>1.7</td><td data-value='-1.7'>-1.7</td></tr>
+</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='9'>9</td><td data-value='3.8'>3.8</td><td data-value='1.6'>1.6</td><td data-value='0.2'>0.2</td><td data-value='0.9'>0.9</td><td data-value='0.0'>0.0</td><td data-value='0.0'>0.0</td><td data-value='0.2'>0.2</td><td data-value='0.6'>0.6</td><td data-value='0.0'>0.0</td><td data-value='71.4'>71.4%</td><td data-value='50.0'>50.0%</td><td data-value='100.0'>100.0%</td><td data-value='-5.89'>-5.9</td><td data-value=''>-</td><td data-value='-1.7'>-1.7</td></tr>
 
 </tbody>
 </table></div></div>
@@ -533,7 +533,7 @@
 <li><strong>FG%:</strong> <a href='../players/838.html'>Wilt Chamberlain</a> (58.9%)</li>
 <li><strong>3P%:</strong> <a href='../players/798.html'>James Harden</a> (53.8%)</li>
 <li><strong>FT%:</strong> <a href='../players/840.html'>Rick Barry</a> (94.6%)</li>
-<li><strong>GmSc:</strong> <a href='../players/834.html'>Magic Johnson</a> (19.8)</li>
+<li><strong>C4S:</strong> <a href='../players/827.html'>George Gervin</a> (+7.9)</li>
 </ul></div></div><div data-tab-panel-group="section-GA" data-tab-panel="games" style="display:none"><div class="card"><ul class="result-list" style="grid-template-rows: repeat(4, auto);"><li><a href="../games/30.html" class="result-link"><span><span class="badge win">W</span>Game 7 &middot; vs HM</span><span class="result-score">134-114<span class="result-chevron">&#8250;</span></span></a></li>
 <li><a href="../games/31.html" class="result-link"><span><span class="badge loss">L</span>Game 8 &middot; at RGH</span><span class="result-score">114-125<span class="result-chevron">&#8250;</span></span></a></li>
 <li><a href="../games/36.html" class="result-link"><span><span class="badge loss">L</span>Game 9 &middot; at HM</span><span class="result-score">121-135<span class="result-chevron">&#8250;</span></span></a></li>
@@ -580,6 +580,11 @@
 </tr>
 </tbody>
 </table></div></div>
+</div></div><div data-tab-panel-group="section-GA" data-tab-panel="needs" style="display:none"><div class="card c4s-card">
+<p class="needs-line needs-weak">Weakest categories: <strong>STL</strong> (8th), <strong>TOV</strong> (8th), <strong>3PM</strong> (4th)</p>
+<p class="needs-line needs-strong">Strongest categories: <strong>BLK</strong> (1st), <strong>PTS</strong> (1st), <strong>REB</strong> (1st)</p>
+<div class="c4s-rows"><div class="c4s-row"><span class="c4s-label">PTS</span><span class="c4s-val">129.2</span><span class="c4s-bar"><i class="c4s-fill pos" style="left:50.0%;width:27.2%"></i></span><span class="c4s-z pos">1st</span></div><div class="c4s-row"><span class="c4s-label">REB</span><span class="c4s-val">45.6</span><span class="c4s-bar"><i class="c4s-fill pos" style="left:50.0%;width:26.8%"></i></span><span class="c4s-z pos">1st</span></div><div class="c4s-row"><span class="c4s-label">AST</span><span class="c4s-val">27.4</span><span class="c4s-bar"><i class="c4s-fill pos" style="left:50.0%;width:9.7%"></i></span><span class="c4s-z pos">3rd</span></div><div class="c4s-row"><span class="c4s-label">STL</span><span class="c4s-val">4.1</span><span class="c4s-bar"><i class="c4s-fill neg" style="left:24.4%;width:25.6%"></i></span><span class="c4s-z neg">8th</span></div><div class="c4s-row"><span class="c4s-label">BLK</span><span class="c4s-val">10.5</span><span class="c4s-bar"><i class="c4s-fill pos" style="left:50.0%;width:30.6%"></i></span><span class="c4s-z pos">1st</span></div><div class="c4s-row"><span class="c4s-label">3PM</span><span class="c4s-val">14.5</span><span class="c4s-bar"><i class="c4s-fill pos" style="left:50.0%;width:0.8%"></i></span><span class="c4s-z pos">4th</span></div><div class="c4s-row"><span class="c4s-label">TOV</span><span class="c4s-val">15.3</span><span class="c4s-bar"><i class="c4s-fill neg" style="left:31.5%;width:18.5%"></i></span><span class="c4s-z neg">8th</span></div><div class="c4s-row"><span class="c4s-label">FG%</span><span class="c4s-val">49.4%</span><span class="c4s-bar"><i class="c4s-fill pos" style="left:50.0%;width:22.2%"></i></span><span class="c4s-z pos">1st</span></div><div class="c4s-row"><span class="c4s-label">FT%</span><span class="c4s-val">85.9%</span><span class="c4s-bar"><i class="c4s-fill pos" style="left:50.0%;width:19.2%"></i></span><span class="c4s-z pos">1st</span></div></div>
+<p class="c4s-note">Each team's per-game total in the nine player categories, ranked against all 8 teams (1st is best; for turnovers, fewest ranks first). Bars show how far above (right) or below (left) the average team, full season. W and L aren't included. Use this to decide which waiver pickups to chase.</p>
 </div></div><div data-tab-panel-group="section-GA" data-tab-panel="brand" style="display:none"><div class="card"><div class="brand-pair"><figure><a href="../assets/images/brand/ga-logo.png" target="_blank"><img src="../assets/images/brand/ga-logo.png" alt="Brand Guide"></a><figcaption>Brand Guide</figcaption></figure><figure><a href="../assets/images/brand/ga-jersey.png" target="_blank"><img src="../assets/images/brand/ga-jersey.png" alt="Jersey Pack"></a><figcaption>Jersey Pack</figcaption></figure></div></div></div>
 </div>
 
@@ -591,7 +596,7 @@
 <div class="team-banner">
     <img src="../assets/images/banners/nt.png" alt="NT starting five">
 </div>
-<nav class="section-tabs"><a href="#" data-tab-link data-tab-group="section-NT" data-tab-target="roster" class="section-tab-link active">Roster</a><a href="#" data-tab-link data-tab-group="section-NT" data-tab-target="leaders" class="section-tab-link">Team Leaders</a><a href="#" data-tab-link data-tab-group="section-NT" data-tab-target="games" class="section-tab-link">Last Week's Games</a><a href="#" data-tab-link data-tab-group="section-NT" data-tab-target="stats" class="section-tab-link">Team Stats</a><a href="#" data-tab-link data-tab-group="section-NT" data-tab-target="brand" class="section-tab-link">Brand Guide/Jersey Pack</a></nav>
+<nav class="section-tabs"><a href="#" data-tab-link data-tab-group="section-NT" data-tab-target="roster" class="section-tab-link active">Roster</a><a href="#" data-tab-link data-tab-group="section-NT" data-tab-target="leaders" class="section-tab-link">Team Leaders</a><a href="#" data-tab-link data-tab-group="section-NT" data-tab-target="games" class="section-tab-link">Last Week's Games</a><a href="#" data-tab-link data-tab-group="section-NT" data-tab-target="stats" class="section-tab-link">Team Stats</a><a href="#" data-tab-link data-tab-group="section-NT" data-tab-target="needs" class="section-tab-link">Category Needs</a><a href="#" data-tab-link data-tab-group="section-NT" data-tab-target="brand" class="section-tab-link">Brand Guide/Jersey Pack</a></nav>
 <div data-tab-panel-group="section-NT" data-tab-panel="roster"><div class="card">
     <p class="team-stats-tabs">
     <a href="#" data-tab-link data-tab-group="roster-view-NT" data-tab-target="stats" class="team-stats-tab-link active">Player Stats</a>
@@ -602,7 +607,7 @@
 <table class="stats-table roster-table">
 <thead><tr>
 <th class="roster-manage-cell"></th><th class="col-pos">Pos</th><th class="col-player">Player</th><th class="roster-manage-cell">PT</th><th class="roster-pt-view">PT</th><th>GP</th><th>MIN</th><th>PTS</th><th>REB</th>
-<th>AST</th><th>STL</th><th>BLK</th><th><abbr title="3-pointers made per game">3PM</abbr></th><th><abbr title="Personal Fouls per game">PF</abbr></th><th>TOV</th><th>FG%</th><th>3P%</th><th>FT%</th><th><abbr title="Game Score — a per-game efficiency rating combining scoring, rebounding, and other stats into one number">GmSc</abbr></th><th><abbr title="Plus/Minus — the team's net point differential while this player is on the court, averaged per game">+/-</abbr></th>
+<th>AST</th><th>STL</th><th>BLK</th><th><abbr title="3-pointers made per game">3PM</abbr></th><th><abbr title="Personal Fouls per game">PF</abbr></th><th>TOV</th><th>FG%</th><th>3P%</th><th>FT%</th><th><abbr title="Core Four Score: how much he helps win our 9 player categories, per game. Above 0 beats the average rostered player.">C4S</abbr></th><th><abbr title="Core Four Score per 36 minutes: how good he is when he plays, whatever his minutes. Shown at 10+ minutes per game.">C4S/36</abbr></th><th><abbr title="Plus/Minus — the team's net point differential while this player is on the court, averaged per game">+/-</abbr></th>
 </tr></thead>
 <tbody>
 <tr data-pid='810'><td class="roster-manage-cell roster-move-cell"><button type="button" class="roster-move-btn" aria-label="Move player">&#8645;</button><button type="button" class="roster-drop-btn" aria-label="Drop player" title="Drop player">&minus;</button></td><td class='col-pos'>PG</td><td class='col-player'><a href='../players/810.html' title="John Stockton">J. Stockton</a></td><td class="roster-manage-cell roster-pt-cell">
@@ -615,7 +620,7 @@
             <option value="++">++</option>
         </select>
     </div>
-</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='7'>7</td><td data-value='33.2'>33.2</td><td data-value='11.4'>11.4</td><td data-value='1.1'>1.1</td><td data-value='10.7'>10.7</td><td data-value='0.6'>0.6</td><td data-value='0.4'>0.4</td><td data-value='1.7'>1.7</td><td data-value='0.7'>0.7</td><td data-value='1.7'>1.7</td><td data-value='50.0'>50.0%</td><td data-value='44.4'>44.4%</td><td data-value='82.4'>82.4%</td><td data-value='14.1'>14.1</td><td data-value='-7.1'>-7.1</td></tr>
+</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='7'>7</td><td data-value='33.2'>33.2</td><td data-value='11.4'>11.4</td><td data-value='1.1'>1.1</td><td data-value='10.7'>10.7</td><td data-value='0.6'>0.6</td><td data-value='0.4'>0.4</td><td data-value='1.7'>1.7</td><td data-value='0.7'>0.7</td><td data-value='1.7'>1.7</td><td data-value='50.0'>50.0%</td><td data-value='44.4'>44.4%</td><td data-value='82.4'>82.4%</td><td data-value='0.65'>+0.6</td><td data-value='-0.86'>-0.9</td><td data-value='-7.1'>-7.1</td></tr>
 <tr data-pid='835'><td class="roster-manage-cell roster-move-cell"><button type="button" class="roster-move-btn" aria-label="Move player">&#8645;</button><button type="button" class="roster-drop-btn" aria-label="Drop player" title="Drop player">&minus;</button></td><td class='col-pos'>GF</td><td class='col-player'><a href='../players/835.html' title="Kobe Bryant">K. Bryant</a></td><td class="roster-manage-cell roster-pt-cell">
     <div class="roster-manage-controls">
         <select class="roster-pt-select" aria-label="Playing time">
@@ -626,7 +631,7 @@
             <option value="++">++</option>
         </select>
     </div>
-</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='3'>3</td><td data-value='35.1'>35.1</td><td data-value='24.3'>24.3</td><td data-value='1.7'>1.7</td><td data-value='5.7'>5.7</td><td data-value='1.7'>1.7</td><td data-value='0.3'>0.3</td><td data-value='3.0'>3.0</td><td data-value='2.7'>2.7</td><td data-value='2.7'>2.7</td><td data-value='52.4'>52.4%</td><td data-value='37.5'>37.5%</td><td data-value='80.0'>80.0%</td><td data-value='19.7'>19.7</td><td data-value='3.3'>+3.3</td></tr>
+</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='3'>3</td><td data-value='35.1'>35.1</td><td data-value='24.3'>24.3</td><td data-value='1.7'>1.7</td><td data-value='5.7'>5.7</td><td data-value='1.7'>1.7</td><td data-value='0.3'>0.3</td><td data-value='3.0'>3.0</td><td data-value='2.7'>2.7</td><td data-value='2.7'>2.7</td><td data-value='52.4'>52.4%</td><td data-value='37.5'>37.5%</td><td data-value='80.0'>80.0%</td><td data-value='4.07'>+4.1</td><td data-value='2.27'>+2.3</td><td data-value='3.3'>+3.3</td></tr>
 <tr data-pid='779'><td class="roster-manage-cell roster-move-cell"><button type="button" class="roster-move-btn" aria-label="Move player">&#8645;</button><button type="button" class="roster-drop-btn" aria-label="Drop player" title="Drop player">&minus;</button></td><td class='col-pos'>SG</td><td class='col-player'><a href='../players/779.html' title="Clyde Drexler">C. Drexler</a></td><td class="roster-manage-cell roster-pt-cell">
     <div class="roster-manage-controls">
         <select class="roster-pt-select" aria-label="Playing time">
@@ -637,7 +642,7 @@
             <option value="++">++</option>
         </select>
     </div>
-</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='7'>7</td><td data-value='32.3'>32.3</td><td data-value='21.1'>21.1</td><td data-value='4.3'>4.3</td><td data-value='1.7'>1.7</td><td data-value='0.6'>0.6</td><td data-value='3.3'>3.3</td><td data-value='1.9'>1.9</td><td data-value='3.6'>3.6</td><td data-value='1.3'>1.3</td><td data-value='50.5'>50.5%</td><td data-value='26.0'>26.0%</td><td data-value='76.7'>76.7%</td><td data-value='16.3'>16.3</td><td data-value='0.3'>+0.3</td></tr>
+</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='7'>7</td><td data-value='32.3'>32.3</td><td data-value='21.1'>21.1</td><td data-value='4.3'>4.3</td><td data-value='1.7'>1.7</td><td data-value='0.6'>0.6</td><td data-value='3.3'>3.3</td><td data-value='1.9'>1.9</td><td data-value='3.6'>3.6</td><td data-value='1.3'>1.3</td><td data-value='50.5'>50.5%</td><td data-value='26.0'>26.0%</td><td data-value='76.7'>76.7%</td><td data-value='3.40'>+3.4</td><td data-value='2.06'>+2.1</td><td data-value='0.3'>+0.3</td></tr>
 <tr data-pid='789'><td class="roster-manage-cell roster-move-cell"><button type="button" class="roster-move-btn" aria-label="Move player">&#8645;</button><button type="button" class="roster-drop-btn" aria-label="Drop player" title="Drop player">&minus;</button></td><td class='col-pos'>PF</td><td class='col-player'><a href='../players/789.html' title="Karl Malone">K. Malone</a></td><td class="roster-manage-cell roster-pt-cell">
     <div class="roster-manage-controls">
         <select class="roster-pt-select" aria-label="Playing time">
@@ -648,7 +653,7 @@
             <option value="++">++</option>
         </select>
     </div>
-</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='7'>7</td><td data-value='31.0'>31.0</td><td data-value='13.3'>13.3</td><td data-value='15.0'>15.0</td><td data-value='1.1'>1.1</td><td data-value='0.9'>0.9</td><td data-value='1.1'>1.1</td><td data-value='1.6'>1.6</td><td data-value='4.3'>4.3</td><td data-value='2.0'>2.0</td><td data-value='45.9'>45.9%</td><td data-value='30.6'>30.6%</td><td data-value='87.5'>87.5%</td><td data-value='12.8'>12.8</td><td data-value='-0.4'>-0.4</td></tr>
+</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='7'>7</td><td data-value='31.0'>31.0</td><td data-value='13.3'>13.3</td><td data-value='15.0'>15.0</td><td data-value='1.1'>1.1</td><td data-value='0.9'>0.9</td><td data-value='1.1'>1.1</td><td data-value='1.6'>1.6</td><td data-value='4.3'>4.3</td><td data-value='2.0'>2.0</td><td data-value='45.9'>45.9%</td><td data-value='30.6'>30.6%</td><td data-value='87.5'>87.5%</td><td data-value='2.56'>+2.6</td><td data-value='1.12'>+1.1</td><td data-value='-0.4'>-0.4</td></tr>
 <tr data-pid='804'><td class="roster-manage-cell roster-move-cell"><button type="button" class="roster-move-btn" aria-label="Move player">&#8645;</button><button type="button" class="roster-drop-btn" aria-label="Drop player" title="Drop player">&minus;</button></td><td class='col-pos'>FC</td><td class='col-player'><a href='../players/804.html' title="Dwight Howard">D. Howard</a></td><td class="roster-manage-cell roster-pt-cell">
     <div class="roster-manage-controls">
         <select class="roster-pt-select" aria-label="Playing time">
@@ -659,8 +664,8 @@
             <option value="++">++</option>
         </select>
     </div>
-</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='7'>7</td><td data-value='24.5'>24.5</td><td data-value='3.7'>3.7</td><td data-value='9.6'>9.6</td><td data-value='0.6'>0.6</td><td data-value='0.7'>0.7</td><td data-value='2.4'>2.4</td><td data-value='0.0'>0.0</td><td data-value='3.1'>3.1</td><td data-value='0.7'>0.7</td><td data-value='34.5'>34.5%</td><td data-value='0.0'>0.0%</td><td data-value='50.0'>50.0%</td><td data-value='5.7'>5.7</td><td data-value='-3.0'>-3.0</td></tr>
-<tr class="bench-divider"><td colspan="20"><span>Bench</span></td></tr>
+</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='7'>7</td><td data-value='24.5'>24.5</td><td data-value='3.7'>3.7</td><td data-value='9.6'>9.6</td><td data-value='0.6'>0.6</td><td data-value='0.7'>0.7</td><td data-value='2.4'>2.4</td><td data-value='0.0'>0.0</td><td data-value='3.1'>3.1</td><td data-value='0.7'>0.7</td><td data-value='34.5'>34.5%</td><td data-value='0.0'>0.0%</td><td data-value='50.0'>50.0%</td><td data-value='-2.05'>-2.0</td><td data-value='-2.40'>-2.4</td><td data-value='-3.0'>-3.0</td></tr>
+<tr class="bench-divider"><td colspan="21"><span>Bench</span></td></tr>
 <tr data-pid='799'><td class="roster-manage-cell roster-move-cell"><button type="button" class="roster-move-btn" aria-label="Move player">&#8645;</button><button type="button" class="roster-drop-btn" aria-label="Drop player" title="Drop player">&minus;</button></td><td class='col-pos'>G</td><td class='col-player'><a href='../players/799.html' title="Shai Gilgeous-Alexander">S. Gilgeous-Alexander</a></td><td class="roster-manage-cell roster-pt-cell">
     <div class="roster-manage-controls">
         <select class="roster-pt-select" aria-label="Playing time">
@@ -671,7 +676,7 @@
             <option value="++">++</option>
         </select>
     </div>
-</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='7'>7</td><td data-value='23.1'>23.1</td><td data-value='15.0'>15.0</td><td data-value='1.7'>1.7</td><td data-value='4.6'>4.6</td><td data-value='0.4'>0.4</td><td data-value='0.4'>0.4</td><td data-value='1.9'>1.9</td><td data-value='3.6'>3.6</td><td data-value='2.6'>2.6</td><td data-value='41.5'>41.5%</td><td data-value='34.2'>34.2%</td><td data-value='85.7'>85.7%</td><td data-value='9.1'>9.1</td><td data-value='-6.0'>-6.0</td></tr>
+</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='7'>7</td><td data-value='23.1'>23.1</td><td data-value='15.0'>15.0</td><td data-value='1.7'>1.7</td><td data-value='4.6'>4.6</td><td data-value='0.4'>0.4</td><td data-value='0.4'>0.4</td><td data-value='1.9'>1.9</td><td data-value='3.6'>3.6</td><td data-value='2.6'>2.6</td><td data-value='41.5'>41.5%</td><td data-value='34.2'>34.2%</td><td data-value='85.7'>85.7%</td><td data-value='-2.61'>-2.6</td><td data-value='-1.38'>-1.4</td><td data-value='-6.0'>-6.0</td></tr>
 <tr data-pid='800'><td class="roster-manage-cell roster-move-cell"><button type="button" class="roster-move-btn" aria-label="Move player">&#8645;</button><button type="button" class="roster-drop-btn" aria-label="Drop player" title="Drop player">&minus;</button></td><td class='col-pos'>GF</td><td class='col-player'><a href='../players/800.html' title="Paul George">P. George</a></td><td class="roster-manage-cell roster-pt-cell">
     <div class="roster-manage-controls">
         <select class="roster-pt-select" aria-label="Playing time">
@@ -682,7 +687,7 @@
             <option value="++">++</option>
         </select>
     </div>
-</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='7'>7</td><td data-value='25.4'>25.4</td><td data-value='17.1'>17.1</td><td data-value='4.3'>4.3</td><td data-value='1.6'>1.6</td><td data-value='0.6'>0.6</td><td data-value='0.6'>0.6</td><td data-value='1.7'>1.7</td><td data-value='2.1'>2.1</td><td data-value='1.6'>1.6</td><td data-value='47.4'>47.4%</td><td data-value='35.3'>35.3%</td><td data-value='85.7'>85.7%</td><td data-value='12.5'>12.5</td><td data-value='-3.0'>-3.0</td></tr>
+</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='7'>7</td><td data-value='25.4'>25.4</td><td data-value='17.1'>17.1</td><td data-value='4.3'>4.3</td><td data-value='1.6'>1.6</td><td data-value='0.6'>0.6</td><td data-value='0.6'>0.6</td><td data-value='1.7'>1.7</td><td data-value='2.1'>2.1</td><td data-value='1.6'>1.6</td><td data-value='47.4'>47.4%</td><td data-value='35.3'>35.3%</td><td data-value='85.7'>85.7%</td><td data-value='0.09'>+0.1</td><td data-value='0.84'>+0.8</td><td data-value='-3.0'>-3.0</td></tr>
 <tr data-pid='787'><td class="roster-manage-cell roster-move-cell"><button type="button" class="roster-move-btn" aria-label="Move player">&#8645;</button><button type="button" class="roster-drop-btn" aria-label="Drop player" title="Drop player">&minus;</button></td><td class='col-pos'>GF</td><td class='col-player'><a href='../players/787.html' title="Chris Mullin">C. Mullin</a></td><td class="roster-manage-cell roster-pt-cell">
     <div class="roster-manage-controls">
         <select class="roster-pt-select" aria-label="Playing time">
@@ -693,7 +698,7 @@
             <option value="++">++</option>
         </select>
     </div>
-</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='7'>7</td><td data-value='18.5'>18.5</td><td data-value='9.0'>9.0</td><td data-value='0.6'>0.6</td><td data-value='0.6'>0.6</td><td data-value='0.1'>0.1</td><td data-value='0.0'>0.0</td><td data-value='1.6'>1.6</td><td data-value='1.6'>1.6</td><td data-value='0.6'>0.6</td><td data-value='47.5'>47.5%</td><td data-value='40.7'>40.7%</td><td data-value='100.0'>100.0%</td><td data-value='5.6'>5.6</td><td data-value='-4.1'>-4.1</td></tr>
+</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='7'>7</td><td data-value='18.5'>18.5</td><td data-value='9.0'>9.0</td><td data-value='0.6'>0.6</td><td data-value='0.6'>0.6</td><td data-value='0.1'>0.1</td><td data-value='0.0'>0.0</td><td data-value='1.6'>1.6</td><td data-value='1.6'>1.6</td><td data-value='0.6'>0.6</td><td data-value='47.5'>47.5%</td><td data-value='40.7'>40.7%</td><td data-value='100.0'>100.0%</td><td data-value='-2.92'>-2.9</td><td data-value='-1.37'>-1.4</td><td data-value='-4.1'>-4.1</td></tr>
 <tr data-pid='807'><td class="roster-manage-cell roster-move-cell"><button type="button" class="roster-move-btn" aria-label="Move player">&#8645;</button><button type="button" class="roster-drop-btn" aria-label="Drop player" title="Drop player">&minus;</button></td><td class='col-pos'>FC</td><td class='col-player'><a href='../players/807.html' title="Alonzo Mourning">A. Mourning</a></td><td class="roster-manage-cell roster-pt-cell">
     <div class="roster-manage-controls">
         <select class="roster-pt-select" aria-label="Playing time">
@@ -704,7 +709,7 @@
             <option value="++">++</option>
         </select>
     </div>
-</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='7'>7</td><td data-value='5.9'>5.9</td><td data-value='2.0'>2.0</td><td data-value='2.0'>2.0</td><td data-value='0.1'>0.1</td><td data-value='0.1'>0.1</td><td data-value='0.1'>0.1</td><td data-value='0.1'>0.1</td><td data-value='0.6'>0.6</td><td data-value='0.0'>0.0</td><td data-value='85.7'>85.7%</td><td data-value='100.0'>100.0%</td><td data-value='33.3'>33.3%</td><td data-value='2.3'>2.3</td><td data-value='-0.6'>-0.6</td></tr>
+</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='7'>7</td><td data-value='5.9'>5.9</td><td data-value='2.0'>2.0</td><td data-value='2.0'>2.0</td><td data-value='0.1'>0.1</td><td data-value='0.1'>0.1</td><td data-value='0.1'>0.1</td><td data-value='0.1'>0.1</td><td data-value='0.6'>0.6</td><td data-value='0.0'>0.0</td><td data-value='85.7'>85.7%</td><td data-value='100.0'>100.0%</td><td data-value='33.3'>33.3%</td><td data-value='-5.10'>-5.1</td><td data-value=''>-</td><td data-value='-0.6'>-0.6</td></tr>
 <tr data-pid='785'><td class="roster-manage-cell roster-move-cell"><button type="button" class="roster-move-btn" aria-label="Move player">&#8645;</button><button type="button" class="roster-drop-btn" aria-label="Drop player" title="Drop player">&minus;</button></td><td class='col-pos'>SF</td><td class='col-player'><a href='../players/785.html' title="Bernard King">B. King</a></td><td class="roster-manage-cell roster-pt-cell">
     <div class="roster-manage-controls">
         <select class="roster-pt-select" aria-label="Playing time">
@@ -715,7 +720,7 @@
             <option value="++">++</option>
         </select>
     </div>
-</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='7'>7</td><td data-value='11.5'>11.5</td><td data-value='7.1'>7.1</td><td data-value='1.3'>1.3</td><td data-value='0.4'>0.4</td><td data-value='0.1'>0.1</td><td data-value='0.7'>0.7</td><td data-value='0.1'>0.1</td><td data-value='1.6'>1.6</td><td data-value='0.9'>0.9</td><td data-value='38.9'>38.9%</td><td data-value='20.0'>20.0%</td><td data-value='91.3'>91.3%</td><td data-value='4.1'>4.1</td><td data-value='-3.3'>-3.3</td></tr>
+</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='7'>7</td><td data-value='11.5'>11.5</td><td data-value='7.1'>7.1</td><td data-value='1.3'>1.3</td><td data-value='0.4'>0.4</td><td data-value='0.1'>0.1</td><td data-value='0.7'>0.7</td><td data-value='0.1'>0.1</td><td data-value='1.6'>1.6</td><td data-value='0.9'>0.9</td><td data-value='38.9'>38.9%</td><td data-value='20.0'>20.0%</td><td data-value='91.3'>91.3%</td><td data-value='-4.76'>-4.8</td><td data-value='-1.95'>-2.0</td><td data-value='-3.3'>-3.3</td></tr>
 <tr data-pid='844'><td class="roster-manage-cell roster-move-cell"><button type="button" class="roster-move-btn" aria-label="Move player">&#8645;</button><button type="button" class="roster-drop-btn" aria-label="Drop player" title="Drop player">&minus;</button></td><td class='col-pos'>FC</td><td class='col-player'><a href='../players/844.html' title="Jerry Lucas">J. Lucas</a></td><td class="roster-manage-cell roster-pt-cell">
     <div class="roster-manage-controls">
         <select class="roster-pt-select" aria-label="Playing time">
@@ -726,7 +731,7 @@
             <option value="++">++</option>
         </select>
     </div>
-</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='6'>6</td><td data-value='4.8'>4.8</td><td data-value='1.2'>1.2</td><td data-value='1.2'>1.2</td><td data-value='0.2'>0.2</td><td data-value='0.0'>0.0</td><td data-value='0.0'>0.0</td><td data-value='0.2'>0.2</td><td data-value='0.5'>0.5</td><td data-value='0.2'>0.2</td><td data-value='25.0'>25.0%</td><td data-value='20.0'>20.0%</td><td data-value='100.0'>100.0%</td><td data-value='0.7'>0.7</td><td data-value='-4.5'>-4.5</td></tr>
+</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='6'>6</td><td data-value='4.8'>4.8</td><td data-value='1.2'>1.2</td><td data-value='1.2'>1.2</td><td data-value='0.2'>0.2</td><td data-value='0.0'>0.0</td><td data-value='0.0'>0.0</td><td data-value='0.2'>0.2</td><td data-value='0.5'>0.5</td><td data-value='0.2'>0.2</td><td data-value='25.0'>25.0%</td><td data-value='20.0'>20.0%</td><td data-value='100.0'>100.0%</td><td data-value='-6.50'>-6.5</td><td data-value=''>-</td><td data-value='-4.5'>-4.5</td></tr>
 <tr data-pid='852'><td class="roster-manage-cell roster-move-cell"><button type="button" class="roster-move-btn" aria-label="Move player">&#8645;</button><button type="button" class="roster-drop-btn" aria-label="Drop player" title="Drop player">&minus;</button></td><td class='col-pos'>GF</td><td class='col-player'><a href='../players/852.html' title="Jerry Stackhouse">J. Stackhouse</a></td><td class="roster-manage-cell roster-pt-cell">
     <div class="roster-manage-controls">
         <select class="roster-pt-select" aria-label="Playing time">
@@ -737,14 +742,14 @@
             <option value="++">++</option>
         </select>
     </div>
-</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='7'>7</td><td data-value='15.4'>15.4</td><td data-value='8.6'>8.6</td><td data-value='0.7'>0.7</td><td data-value='0.6'>0.6</td><td data-value='0.0'>0.0</td><td data-value='0.9'>0.9</td><td data-value='0.7'>0.7</td><td data-value='1.9'>1.9</td><td data-value='0.1'>0.1</td><td data-value='35.3'>35.3%</td><td data-value='21.7'>21.7%</td><td data-value='95.0'>95.0%</td><td data-value='4.8'>4.8</td><td data-value='-1.0'>-1.0</td></tr>
+</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='7'>7</td><td data-value='15.4'>15.4</td><td data-value='8.6'>8.6</td><td data-value='0.7'>0.7</td><td data-value='0.6'>0.6</td><td data-value='0.0'>0.0</td><td data-value='0.9'>0.9</td><td data-value='0.7'>0.7</td><td data-value='1.9'>1.9</td><td data-value='0.1'>0.1</td><td data-value='35.3'>35.3%</td><td data-value='21.7'>21.7%</td><td data-value='95.0'>95.0%</td><td data-value='-4.09'>-4.1</td><td data-value='-2.10'>-2.1</td><td data-value='-1.0'>-1.0</td></tr>
 
 </tbody>
 </table></div></div><div data-tab-panel-group="roster-stats-NT" data-tab-panel="14" style="display:none"><div class="table-scroll"><div class="roster-adding-banner" hidden></div>
 <table class="stats-table roster-table">
 <thead><tr>
 <th class="roster-manage-cell"></th><th class="col-pos">Pos</th><th class="col-player">Player</th><th class="roster-manage-cell">PT</th><th class="roster-pt-view">PT</th><th>GP</th><th>MIN</th><th>PTS</th><th>REB</th>
-<th>AST</th><th>STL</th><th>BLK</th><th><abbr title="3-pointers made per game">3PM</abbr></th><th><abbr title="Personal Fouls per game">PF</abbr></th><th>TOV</th><th>FG%</th><th>3P%</th><th>FT%</th><th><abbr title="Game Score — a per-game efficiency rating combining scoring, rebounding, and other stats into one number">GmSc</abbr></th><th><abbr title="Plus/Minus — the team's net point differential while this player is on the court, averaged per game">+/-</abbr></th>
+<th>AST</th><th>STL</th><th>BLK</th><th><abbr title="3-pointers made per game">3PM</abbr></th><th><abbr title="Personal Fouls per game">PF</abbr></th><th>TOV</th><th>FG%</th><th>3P%</th><th>FT%</th><th><abbr title="Core Four Score: how much he helps win our 9 player categories, per game. Above 0 beats the average rostered player.">C4S</abbr></th><th><abbr title="Core Four Score per 36 minutes: how good he is when he plays, whatever his minutes. Shown at 10+ minutes per game.">C4S/36</abbr></th><th><abbr title="Plus/Minus — the team's net point differential while this player is on the court, averaged per game">+/-</abbr></th>
 </tr></thead>
 <tbody>
 <tr data-pid='810'><td class="roster-manage-cell roster-move-cell"><button type="button" class="roster-move-btn" aria-label="Move player">&#8645;</button><button type="button" class="roster-drop-btn" aria-label="Drop player" title="Drop player">&minus;</button></td><td class='col-pos'>PG</td><td class='col-player'><a href='../players/810.html' title="John Stockton">J. Stockton</a></td><td class="roster-manage-cell roster-pt-cell">
@@ -757,7 +762,7 @@
             <option value="++">++</option>
         </select>
     </div>
-</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='14'>14</td><td data-value='35.5'>35.5</td><td data-value='11.9'>11.9</td><td data-value='1.5'>1.5</td><td data-value='11.4'>11.4</td><td data-value='1.0'>1.0</td><td data-value='0.4'>0.4</td><td data-value='1.8'>1.8</td><td data-value='0.8'>0.8</td><td data-value='1.9'>1.9</td><td data-value='46.3'>46.3%</td><td data-value='35.7'>35.7%</td><td data-value='77.1'>77.1%</td><td data-value='14.6'>14.6</td><td data-value='-6.1'>-6.1</td></tr>
+</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='14'>14</td><td data-value='35.5'>35.5</td><td data-value='11.9'>11.9</td><td data-value='1.5'>1.5</td><td data-value='11.4'>11.4</td><td data-value='1.0'>1.0</td><td data-value='0.4'>0.4</td><td data-value='1.8'>1.8</td><td data-value='0.8'>0.8</td><td data-value='1.9'>1.9</td><td data-value='46.3'>46.3%</td><td data-value='35.7'>35.7%</td><td data-value='77.1'>77.1%</td><td data-value='1.48'>+1.5</td><td data-value='-1.22'>-1.2</td><td data-value='-6.1'>-6.1</td></tr>
 <tr data-pid='835'><td class="roster-manage-cell roster-move-cell"><button type="button" class="roster-move-btn" aria-label="Move player">&#8645;</button><button type="button" class="roster-drop-btn" aria-label="Drop player" title="Drop player">&minus;</button></td><td class='col-pos'>GF</td><td class='col-player'><a href='../players/835.html' title="Kobe Bryant">K. Bryant</a></td><td class="roster-manage-cell roster-pt-cell">
     <div class="roster-manage-controls">
         <select class="roster-pt-select" aria-label="Playing time">
@@ -768,7 +773,7 @@
             <option value="++">++</option>
         </select>
     </div>
-</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='6'>6</td><td data-value='30.6'>30.6</td><td data-value='21.7'>21.7</td><td data-value='1.0'>1.0</td><td data-value='5.2'>5.2</td><td data-value='1.5'>1.5</td><td data-value='0.3'>0.3</td><td data-value='2.3'>2.3</td><td data-value='2.3'>2.3</td><td data-value='2.8'>2.8</td><td data-value='46.5'>46.5%</td><td data-value='32.6'>32.6%</td><td data-value='83.7'>83.7%</td><td data-value='15.9'>15.9</td><td data-value='-3.0'>-3.0</td></tr>
+</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='6'>6</td><td data-value='30.6'>30.6</td><td data-value='21.7'>21.7</td><td data-value='1.0'>1.0</td><td data-value='5.2'>5.2</td><td data-value='1.5'>1.5</td><td data-value='0.3'>0.3</td><td data-value='2.3'>2.3</td><td data-value='2.3'>2.3</td><td data-value='2.8'>2.8</td><td data-value='46.5'>46.5%</td><td data-value='32.6'>32.6%</td><td data-value='83.7'>83.7%</td><td data-value='2.28'>+2.3</td><td data-value='1.79'>+1.8</td><td data-value='-3.0'>-3.0</td></tr>
 <tr data-pid='779'><td class="roster-manage-cell roster-move-cell"><button type="button" class="roster-move-btn" aria-label="Move player">&#8645;</button><button type="button" class="roster-drop-btn" aria-label="Drop player" title="Drop player">&minus;</button></td><td class='col-pos'>SG</td><td class='col-player'><a href='../players/779.html' title="Clyde Drexler">C. Drexler</a></td><td class="roster-manage-cell roster-pt-cell">
     <div class="roster-manage-controls">
         <select class="roster-pt-select" aria-label="Playing time">
@@ -779,7 +784,7 @@
             <option value="++">++</option>
         </select>
     </div>
-</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='14'>14</td><td data-value='33.0'>33.0</td><td data-value='21.9'>21.9</td><td data-value='4.5'>4.5</td><td data-value='1.5'>1.5</td><td data-value='0.4'>0.4</td><td data-value='2.6'>2.6</td><td data-value='2.5'>2.5</td><td data-value='3.4'>3.4</td><td data-value='1.6'>1.6</td><td data-value='51.4'>51.4%</td><td data-value='35.4'>35.4%</td><td data-value='80.6'>80.6%</td><td data-value='16.2'>16.2</td><td data-value='-4.3'>-4.3</td></tr>
+</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='14'>14</td><td data-value='33.0'>33.0</td><td data-value='21.9'>21.9</td><td data-value='4.5'>4.5</td><td data-value='1.5'>1.5</td><td data-value='0.4'>0.4</td><td data-value='2.6'>2.6</td><td data-value='2.5'>2.5</td><td data-value='3.4'>3.4</td><td data-value='1.6'>1.6</td><td data-value='51.4'>51.4%</td><td data-value='35.4'>35.4%</td><td data-value='80.6'>80.6%</td><td data-value='4.24'>+4.2</td><td data-value='2.10'>+2.1</td><td data-value='-4.3'>-4.3</td></tr>
 <tr data-pid='789'><td class="roster-manage-cell roster-move-cell"><button type="button" class="roster-move-btn" aria-label="Move player">&#8645;</button><button type="button" class="roster-drop-btn" aria-label="Drop player" title="Drop player">&minus;</button></td><td class='col-pos'>PF</td><td class='col-player'><a href='../players/789.html' title="Karl Malone">K. Malone</a></td><td class="roster-manage-cell roster-pt-cell">
     <div class="roster-manage-controls">
         <select class="roster-pt-select" aria-label="Playing time">
@@ -790,7 +795,7 @@
             <option value="++">++</option>
         </select>
     </div>
-</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='14'>14</td><td data-value='31.6'>31.6</td><td data-value='14.1'>14.1</td><td data-value='13.5'>13.5</td><td data-value='1.1'>1.1</td><td data-value='0.8'>0.8</td><td data-value='1.1'>1.1</td><td data-value='1.9'>1.9</td><td data-value='4.5'>4.5</td><td data-value='2.1'>2.1</td><td data-value='42.7'>42.7%</td><td data-value='31.0'>31.0%</td><td data-value='89.3'>89.3%</td><td data-value='11.5'>11.5</td><td data-value='-2.1'>-2.1</td></tr>
+</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='14'>14</td><td data-value='31.6'>31.6</td><td data-value='14.1'>14.1</td><td data-value='13.5'>13.5</td><td data-value='1.1'>1.1</td><td data-value='0.8'>0.8</td><td data-value='1.1'>1.1</td><td data-value='1.9'>1.9</td><td data-value='4.5'>4.5</td><td data-value='2.1'>2.1</td><td data-value='42.7'>42.7%</td><td data-value='31.0'>31.0%</td><td data-value='89.3'>89.3%</td><td data-value='1.78'>+1.8</td><td data-value='-0.10'>-0.1</td><td data-value='-2.1'>-2.1</td></tr>
 <tr data-pid='804'><td class="roster-manage-cell roster-move-cell"><button type="button" class="roster-move-btn" aria-label="Move player">&#8645;</button><button type="button" class="roster-drop-btn" aria-label="Drop player" title="Drop player">&minus;</button></td><td class='col-pos'>FC</td><td class='col-player'><a href='../players/804.html' title="Dwight Howard">D. Howard</a></td><td class="roster-manage-cell roster-pt-cell">
     <div class="roster-manage-controls">
         <select class="roster-pt-select" aria-label="Playing time">
@@ -801,8 +806,8 @@
             <option value="++">++</option>
         </select>
     </div>
-</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='14'>14</td><td data-value='25.2'>25.2</td><td data-value='6.4'>6.4</td><td data-value='9.3'>9.3</td><td data-value='0.9'>0.9</td><td data-value='0.6'>0.6</td><td data-value='2.4'>2.4</td><td data-value='0.0'>0.0</td><td data-value='3.4'>3.4</td><td data-value='0.6'>0.6</td><td data-value='42.9'>42.9%</td><td data-value='0.0'>0.0%</td><td data-value='60.0'>60.0%</td><td data-value='7.9'>7.9</td><td data-value='-3.5'>-3.5</td></tr>
-<tr class="bench-divider"><td colspan="20"><span>Bench</span></td></tr>
+</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='14'>14</td><td data-value='25.2'>25.2</td><td data-value='6.4'>6.4</td><td data-value='9.3'>9.3</td><td data-value='0.9'>0.9</td><td data-value='0.6'>0.6</td><td data-value='2.4'>2.4</td><td data-value='0.0'>0.0</td><td data-value='3.4'>3.4</td><td data-value='0.6'>0.6</td><td data-value='42.9'>42.9%</td><td data-value='0.0'>0.0%</td><td data-value='60.0'>60.0%</td><td data-value='-1.35'>-1.4</td><td data-value='-2.22'>-2.2</td><td data-value='-3.5'>-3.5</td></tr>
+<tr class="bench-divider"><td colspan="21"><span>Bench</span></td></tr>
 <tr data-pid='799'><td class="roster-manage-cell roster-move-cell"><button type="button" class="roster-move-btn" aria-label="Move player">&#8645;</button><button type="button" class="roster-drop-btn" aria-label="Drop player" title="Drop player">&minus;</button></td><td class='col-pos'>G</td><td class='col-player'><a href='../players/799.html' title="Shai Gilgeous-Alexander">S. Gilgeous-Alexander</a></td><td class="roster-manage-cell roster-pt-cell">
     <div class="roster-manage-controls">
         <select class="roster-pt-select" aria-label="Playing time">
@@ -813,7 +818,7 @@
             <option value="++">++</option>
         </select>
     </div>
-</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='14'>14</td><td data-value='23.9'>23.9</td><td data-value='15.5'>15.5</td><td data-value='1.7'>1.7</td><td data-value='5.4'>5.4</td><td data-value='0.4'>0.4</td><td data-value='0.4'>0.4</td><td data-value='1.6'>1.6</td><td data-value='3.4'>3.4</td><td data-value='3.1'>3.1</td><td data-value='48.1'>48.1%</td><td data-value='34.9'>34.9%</td><td data-value='88.7'>88.7%</td><td data-value='10.4'>10.4</td><td data-value='-3.6'>-3.6</td></tr>
+</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='14'>14</td><td data-value='23.9'>23.9</td><td data-value='15.5'>15.5</td><td data-value='1.7'>1.7</td><td data-value='5.4'>5.4</td><td data-value='0.4'>0.4</td><td data-value='0.4'>0.4</td><td data-value='1.6'>1.6</td><td data-value='3.4'>3.4</td><td data-value='3.1'>3.1</td><td data-value='48.1'>48.1%</td><td data-value='34.9'>34.9%</td><td data-value='88.7'>88.7%</td><td data-value='-1.64'>-1.6</td><td data-value='-0.84'>-0.8</td><td data-value='-3.6'>-3.6</td></tr>
 <tr data-pid='800'><td class="roster-manage-cell roster-move-cell"><button type="button" class="roster-move-btn" aria-label="Move player">&#8645;</button><button type="button" class="roster-drop-btn" aria-label="Drop player" title="Drop player">&minus;</button></td><td class='col-pos'>GF</td><td class='col-player'><a href='../players/800.html' title="Paul George">P. George</a></td><td class="roster-manage-cell roster-pt-cell">
     <div class="roster-manage-controls">
         <select class="roster-pt-select" aria-label="Playing time">
@@ -824,7 +829,7 @@
             <option value="++">++</option>
         </select>
     </div>
-</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='14'>14</td><td data-value='25.9'>25.9</td><td data-value='14.9'>14.9</td><td data-value='4.6'>4.6</td><td data-value='1.1'>1.1</td><td data-value='0.6'>0.6</td><td data-value='1.1'>1.1</td><td data-value='1.4'>1.4</td><td data-value='2.5'>2.5</td><td data-value='1.5'>1.5</td><td data-value='46.5'>46.5%</td><td data-value='31.7'>31.7%</td><td data-value='90.7'>90.7%</td><td data-value='11.2'>11.2</td><td data-value='-2.7'>-2.7</td></tr>
+</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='14'>14</td><td data-value='25.9'>25.9</td><td data-value='14.9'>14.9</td><td data-value='4.6'>4.6</td><td data-value='1.1'>1.1</td><td data-value='0.6'>0.6</td><td data-value='1.1'>1.1</td><td data-value='1.4'>1.4</td><td data-value='2.5'>2.5</td><td data-value='1.5'>1.5</td><td data-value='46.5'>46.5%</td><td data-value='31.7'>31.7%</td><td data-value='90.7'>90.7%</td><td data-value='0.71'>+0.7</td><td data-value='0.79'>+0.8</td><td data-value='-2.7'>-2.7</td></tr>
 <tr data-pid='787'><td class="roster-manage-cell roster-move-cell"><button type="button" class="roster-move-btn" aria-label="Move player">&#8645;</button><button type="button" class="roster-drop-btn" aria-label="Drop player" title="Drop player">&minus;</button></td><td class='col-pos'>GF</td><td class='col-player'><a href='../players/787.html' title="Chris Mullin">C. Mullin</a></td><td class="roster-manage-cell roster-pt-cell">
     <div class="roster-manage-controls">
         <select class="roster-pt-select" aria-label="Playing time">
@@ -835,7 +840,7 @@
             <option value="++">++</option>
         </select>
     </div>
-</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='14'>14</td><td data-value='18.4'>18.4</td><td data-value='9.0'>9.0</td><td data-value='0.6'>0.6</td><td data-value='0.6'>0.6</td><td data-value='0.4'>0.4</td><td data-value='0.1'>0.1</td><td data-value='1.6'>1.6</td><td data-value='1.9'>1.9</td><td data-value='0.9'>0.9</td><td data-value='53.8'>53.8%</td><td data-value='44.9'>44.9%</td><td data-value='95.2'>95.2%</td><td data-value='5.6'>5.6</td><td data-value='-2.3'>-2.3</td></tr>
+</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='14'>14</td><td data-value='18.4'>18.4</td><td data-value='9.0'>9.0</td><td data-value='0.6'>0.6</td><td data-value='0.6'>0.6</td><td data-value='0.4'>0.4</td><td data-value='0.1'>0.1</td><td data-value='1.6'>1.6</td><td data-value='1.9'>1.9</td><td data-value='0.9'>0.9</td><td data-value='53.8'>53.8%</td><td data-value='44.9'>44.9%</td><td data-value='95.2'>95.2%</td><td data-value='-2.35'>-2.4</td><td data-value='-0.61'>-0.6</td><td data-value='-2.3'>-2.3</td></tr>
 <tr data-pid='807'><td class="roster-manage-cell roster-move-cell"><button type="button" class="roster-move-btn" aria-label="Move player">&#8645;</button><button type="button" class="roster-drop-btn" aria-label="Drop player" title="Drop player">&minus;</button></td><td class='col-pos'>FC</td><td class='col-player'><a href='../players/807.html' title="Alonzo Mourning">A. Mourning</a></td><td class="roster-manage-cell roster-pt-cell">
     <div class="roster-manage-controls">
         <select class="roster-pt-select" aria-label="Playing time">
@@ -846,7 +851,7 @@
             <option value="++">++</option>
         </select>
     </div>
-</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='14'>14</td><td data-value='5.2'>5.2</td><td data-value='2.0'>2.0</td><td data-value='1.8'>1.8</td><td data-value='0.2'>0.2</td><td data-value='0.1'>0.1</td><td data-value='0.1'>0.1</td><td data-value='0.1'>0.1</td><td data-value='0.4'>0.4</td><td data-value='0.0'>0.0</td><td data-value='75.0'>75.0%</td><td data-value='100.0'>100.0%</td><td data-value='81.8'>81.8%</td><td data-value='2.3'>2.3</td><td data-value='0.0'>+0.0</td></tr>
+</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='14'>14</td><td data-value='5.2'>5.2</td><td data-value='2.0'>2.0</td><td data-value='1.8'>1.8</td><td data-value='0.2'>0.2</td><td data-value='0.1'>0.1</td><td data-value='0.1'>0.1</td><td data-value='0.1'>0.1</td><td data-value='0.4'>0.4</td><td data-value='0.0'>0.0</td><td data-value='75.0'>75.0%</td><td data-value='100.0'>100.0%</td><td data-value='81.8'>81.8%</td><td data-value='-5.42'>-5.4</td><td data-value=''>-</td><td data-value='0.0'>+0.0</td></tr>
 <tr data-pid='785'><td class="roster-manage-cell roster-move-cell"><button type="button" class="roster-move-btn" aria-label="Move player">&#8645;</button><button type="button" class="roster-drop-btn" aria-label="Drop player" title="Drop player">&minus;</button></td><td class='col-pos'>SF</td><td class='col-player'><a href='../players/785.html' title="Bernard King">B. King</a></td><td class="roster-manage-cell roster-pt-cell">
     <div class="roster-manage-controls">
         <select class="roster-pt-select" aria-label="Playing time">
@@ -857,7 +862,7 @@
             <option value="++">++</option>
         </select>
     </div>
-</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='14'>14</td><td data-value='10.7'>10.7</td><td data-value='7.5'>7.5</td><td data-value='1.1'>1.1</td><td data-value='0.5'>0.5</td><td data-value='0.1'>0.1</td><td data-value='0.8'>0.8</td><td data-value='0.4'>0.4</td><td data-value='1.1'>1.1</td><td data-value='0.6'>0.6</td><td data-value='50.0'>50.0%</td><td data-value='41.7'>41.7%</td><td data-value='92.3'>92.3%</td><td data-value='5.5'>5.5</td><td data-value='1.8'>+1.8</td></tr>
+</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='14'>14</td><td data-value='10.7'>10.7</td><td data-value='7.5'>7.5</td><td data-value='1.1'>1.1</td><td data-value='0.5'>0.5</td><td data-value='0.1'>0.1</td><td data-value='0.8'>0.8</td><td data-value='0.4'>0.4</td><td data-value='1.1'>1.1</td><td data-value='0.6'>0.6</td><td data-value='50.0'>50.0%</td><td data-value='41.7'>41.7%</td><td data-value='92.3'>92.3%</td><td data-value='-3.45'>-3.4</td><td data-value='2.36'>+2.4</td><td data-value='1.8'>+1.8</td></tr>
 <tr data-pid='844'><td class="roster-manage-cell roster-move-cell"><button type="button" class="roster-move-btn" aria-label="Move player">&#8645;</button><button type="button" class="roster-drop-btn" aria-label="Drop player" title="Drop player">&minus;</button></td><td class='col-pos'>FC</td><td class='col-player'><a href='../players/844.html' title="Jerry Lucas">J. Lucas</a></td><td class="roster-manage-cell roster-pt-cell">
     <div class="roster-manage-controls">
         <select class="roster-pt-select" aria-label="Playing time">
@@ -868,7 +873,7 @@
             <option value="++">++</option>
         </select>
     </div>
-</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='13'>13</td><td data-value='6.2'>6.2</td><td data-value='2.1'>2.1</td><td data-value='2.2'>2.2</td><td data-value='0.2'>0.2</td><td data-value='0.0'>0.0</td><td data-value='0.0'>0.0</td><td data-value='0.3'>0.3</td><td data-value='0.7'>0.7</td><td data-value='0.4'>0.4</td><td data-value='37.0'>37.0%</td><td data-value='28.6'>28.6%</td><td data-value='100.0'>100.0%</td><td data-value='1.4'>1.4</td><td data-value='-3.3'>-3.3</td></tr>
+</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='13'>13</td><td data-value='6.2'>6.2</td><td data-value='2.1'>2.1</td><td data-value='2.2'>2.2</td><td data-value='0.2'>0.2</td><td data-value='0.0'>0.0</td><td data-value='0.0'>0.0</td><td data-value='0.3'>0.3</td><td data-value='0.7'>0.7</td><td data-value='0.4'>0.4</td><td data-value='37.0'>37.0%</td><td data-value='28.6'>28.6%</td><td data-value='100.0'>100.0%</td><td data-value='-6.60'>-6.6</td><td data-value=''>-</td><td data-value='-3.3'>-3.3</td></tr>
 <tr data-pid='852'><td class="roster-manage-cell roster-move-cell"><button type="button" class="roster-move-btn" aria-label="Move player">&#8645;</button><button type="button" class="roster-drop-btn" aria-label="Drop player" title="Drop player">&minus;</button></td><td class='col-pos'>GF</td><td class='col-player'><a href='../players/852.html' title="Jerry Stackhouse">J. Stackhouse</a></td><td class="roster-manage-cell roster-pt-cell">
     <div class="roster-manage-controls">
         <select class="roster-pt-select" aria-label="Playing time">
@@ -879,14 +884,14 @@
             <option value="++">++</option>
         </select>
     </div>
-</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='14'>14</td><td data-value='13.5'>13.5</td><td data-value='7.1'>7.1</td><td data-value='0.6'>0.6</td><td data-value='0.5'>0.5</td><td data-value='0.2'>0.2</td><td data-value='0.5'>0.5</td><td data-value='0.6'>0.6</td><td data-value='1.6'>1.6</td><td data-value='0.4'>0.4</td><td data-value='41.1'>41.1%</td><td data-value='29.0'>29.0%</td><td data-value='86.1'>86.1%</td><td data-value='4.4'>4.4</td><td data-value='-1.4'>-1.4</td></tr>
+</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='14'>14</td><td data-value='13.5'>13.5</td><td data-value='7.1'>7.1</td><td data-value='0.6'>0.6</td><td data-value='0.5'>0.5</td><td data-value='0.2'>0.2</td><td data-value='0.5'>0.5</td><td data-value='0.6'>0.6</td><td data-value='1.6'>1.6</td><td data-value='0.4'>0.4</td><td data-value='41.1'>41.1%</td><td data-value='29.0'>29.0%</td><td data-value='86.1'>86.1%</td><td data-value='-4.74'>-4.7</td><td data-value='-2.54'>-2.5</td><td data-value='-1.4'>-1.4</td></tr>
 
 </tbody>
 </table></div></div><div data-tab-panel-group="roster-stats-NT" data-tab-panel="full" style="display:none"><div class="table-scroll"><div class="roster-adding-banner" hidden></div>
 <table class="stats-table roster-table">
 <thead><tr>
 <th class="roster-manage-cell"></th><th class="col-pos">Pos</th><th class="col-player">Player</th><th class="roster-manage-cell">PT</th><th class="roster-pt-view">PT</th><th>GP</th><th>MIN</th><th>PTS</th><th>REB</th>
-<th>AST</th><th>STL</th><th>BLK</th><th><abbr title="3-pointers made per game">3PM</abbr></th><th><abbr title="Personal Fouls per game">PF</abbr></th><th>TOV</th><th>FG%</th><th>3P%</th><th>FT%</th><th><abbr title="Game Score — a per-game efficiency rating combining scoring, rebounding, and other stats into one number">GmSc</abbr></th><th><abbr title="Plus/Minus — the team's net point differential while this player is on the court, averaged per game">+/-</abbr></th>
+<th>AST</th><th>STL</th><th>BLK</th><th><abbr title="3-pointers made per game">3PM</abbr></th><th><abbr title="Personal Fouls per game">PF</abbr></th><th>TOV</th><th>FG%</th><th>3P%</th><th>FT%</th><th><abbr title="Core Four Score: how much he helps win our 9 player categories, per game. Above 0 beats the average rostered player.">C4S</abbr></th><th><abbr title="Core Four Score per 36 minutes: how good he is when he plays, whatever his minutes. Shown at 10+ minutes per game.">C4S/36</abbr></th><th><abbr title="Plus/Minus — the team's net point differential while this player is on the court, averaged per game">+/-</abbr></th>
 </tr></thead>
 <tbody>
 <tr data-pid='810'><td class="roster-manage-cell roster-move-cell"><button type="button" class="roster-move-btn" aria-label="Move player">&#8645;</button><button type="button" class="roster-drop-btn" aria-label="Drop player" title="Drop player">&minus;</button></td><td class='col-pos'>PG</td><td class='col-player'><a href='../players/810.html' title="John Stockton">J. Stockton</a></td><td class="roster-manage-cell roster-pt-cell">
@@ -899,7 +904,7 @@
             <option value="++">++</option>
         </select>
     </div>
-</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='14'>14</td><td data-value='35.5'>35.5</td><td data-value='11.9'>11.9</td><td data-value='1.5'>1.5</td><td data-value='11.4'>11.4</td><td data-value='1.0'>1.0</td><td data-value='0.4'>0.4</td><td data-value='1.8'>1.8</td><td data-value='0.8'>0.8</td><td data-value='1.9'>1.9</td><td data-value='46.3'>46.3%</td><td data-value='35.7'>35.7%</td><td data-value='77.1'>77.1%</td><td data-value='14.6'>14.6</td><td data-value='-6.1'>-6.1</td></tr>
+</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='14'>14</td><td data-value='35.5'>35.5</td><td data-value='11.9'>11.9</td><td data-value='1.5'>1.5</td><td data-value='11.4'>11.4</td><td data-value='1.0'>1.0</td><td data-value='0.4'>0.4</td><td data-value='1.8'>1.8</td><td data-value='0.8'>0.8</td><td data-value='1.9'>1.9</td><td data-value='46.3'>46.3%</td><td data-value='35.7'>35.7%</td><td data-value='77.1'>77.1%</td><td data-value='1.48'>+1.5</td><td data-value='-1.22'>-1.2</td><td data-value='-6.1'>-6.1</td></tr>
 <tr data-pid='835'><td class="roster-manage-cell roster-move-cell"><button type="button" class="roster-move-btn" aria-label="Move player">&#8645;</button><button type="button" class="roster-drop-btn" aria-label="Drop player" title="Drop player">&minus;</button></td><td class='col-pos'>GF</td><td class='col-player'><a href='../players/835.html' title="Kobe Bryant">K. Bryant</a></td><td class="roster-manage-cell roster-pt-cell">
     <div class="roster-manage-controls">
         <select class="roster-pt-select" aria-label="Playing time">
@@ -910,7 +915,7 @@
             <option value="++">++</option>
         </select>
     </div>
-</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='6'>6</td><td data-value='30.6'>30.6</td><td data-value='21.7'>21.7</td><td data-value='1.0'>1.0</td><td data-value='5.2'>5.2</td><td data-value='1.5'>1.5</td><td data-value='0.3'>0.3</td><td data-value='2.3'>2.3</td><td data-value='2.3'>2.3</td><td data-value='2.8'>2.8</td><td data-value='46.5'>46.5%</td><td data-value='32.6'>32.6%</td><td data-value='83.7'>83.7%</td><td data-value='15.9'>15.9</td><td data-value='-3.0'>-3.0</td></tr>
+</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='6'>6</td><td data-value='30.6'>30.6</td><td data-value='21.7'>21.7</td><td data-value='1.0'>1.0</td><td data-value='5.2'>5.2</td><td data-value='1.5'>1.5</td><td data-value='0.3'>0.3</td><td data-value='2.3'>2.3</td><td data-value='2.3'>2.3</td><td data-value='2.8'>2.8</td><td data-value='46.5'>46.5%</td><td data-value='32.6'>32.6%</td><td data-value='83.7'>83.7%</td><td data-value='2.28'>+2.3</td><td data-value='1.79'>+1.8</td><td data-value='-3.0'>-3.0</td></tr>
 <tr data-pid='779'><td class="roster-manage-cell roster-move-cell"><button type="button" class="roster-move-btn" aria-label="Move player">&#8645;</button><button type="button" class="roster-drop-btn" aria-label="Drop player" title="Drop player">&minus;</button></td><td class='col-pos'>SG</td><td class='col-player'><a href='../players/779.html' title="Clyde Drexler">C. Drexler</a></td><td class="roster-manage-cell roster-pt-cell">
     <div class="roster-manage-controls">
         <select class="roster-pt-select" aria-label="Playing time">
@@ -921,7 +926,7 @@
             <option value="++">++</option>
         </select>
     </div>
-</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='14'>14</td><td data-value='33.0'>33.0</td><td data-value='21.9'>21.9</td><td data-value='4.5'>4.5</td><td data-value='1.5'>1.5</td><td data-value='0.4'>0.4</td><td data-value='2.6'>2.6</td><td data-value='2.5'>2.5</td><td data-value='3.4'>3.4</td><td data-value='1.6'>1.6</td><td data-value='51.4'>51.4%</td><td data-value='35.4'>35.4%</td><td data-value='80.6'>80.6%</td><td data-value='16.2'>16.2</td><td data-value='-4.3'>-4.3</td></tr>
+</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='14'>14</td><td data-value='33.0'>33.0</td><td data-value='21.9'>21.9</td><td data-value='4.5'>4.5</td><td data-value='1.5'>1.5</td><td data-value='0.4'>0.4</td><td data-value='2.6'>2.6</td><td data-value='2.5'>2.5</td><td data-value='3.4'>3.4</td><td data-value='1.6'>1.6</td><td data-value='51.4'>51.4%</td><td data-value='35.4'>35.4%</td><td data-value='80.6'>80.6%</td><td data-value='4.24'>+4.2</td><td data-value='2.10'>+2.1</td><td data-value='-4.3'>-4.3</td></tr>
 <tr data-pid='789'><td class="roster-manage-cell roster-move-cell"><button type="button" class="roster-move-btn" aria-label="Move player">&#8645;</button><button type="button" class="roster-drop-btn" aria-label="Drop player" title="Drop player">&minus;</button></td><td class='col-pos'>PF</td><td class='col-player'><a href='../players/789.html' title="Karl Malone">K. Malone</a></td><td class="roster-manage-cell roster-pt-cell">
     <div class="roster-manage-controls">
         <select class="roster-pt-select" aria-label="Playing time">
@@ -932,7 +937,7 @@
             <option value="++">++</option>
         </select>
     </div>
-</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='14'>14</td><td data-value='31.6'>31.6</td><td data-value='14.1'>14.1</td><td data-value='13.5'>13.5</td><td data-value='1.1'>1.1</td><td data-value='0.8'>0.8</td><td data-value='1.1'>1.1</td><td data-value='1.9'>1.9</td><td data-value='4.5'>4.5</td><td data-value='2.1'>2.1</td><td data-value='42.7'>42.7%</td><td data-value='31.0'>31.0%</td><td data-value='89.3'>89.3%</td><td data-value='11.5'>11.5</td><td data-value='-2.1'>-2.1</td></tr>
+</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='14'>14</td><td data-value='31.6'>31.6</td><td data-value='14.1'>14.1</td><td data-value='13.5'>13.5</td><td data-value='1.1'>1.1</td><td data-value='0.8'>0.8</td><td data-value='1.1'>1.1</td><td data-value='1.9'>1.9</td><td data-value='4.5'>4.5</td><td data-value='2.1'>2.1</td><td data-value='42.7'>42.7%</td><td data-value='31.0'>31.0%</td><td data-value='89.3'>89.3%</td><td data-value='1.78'>+1.8</td><td data-value='-0.10'>-0.1</td><td data-value='-2.1'>-2.1</td></tr>
 <tr data-pid='804'><td class="roster-manage-cell roster-move-cell"><button type="button" class="roster-move-btn" aria-label="Move player">&#8645;</button><button type="button" class="roster-drop-btn" aria-label="Drop player" title="Drop player">&minus;</button></td><td class='col-pos'>FC</td><td class='col-player'><a href='../players/804.html' title="Dwight Howard">D. Howard</a></td><td class="roster-manage-cell roster-pt-cell">
     <div class="roster-manage-controls">
         <select class="roster-pt-select" aria-label="Playing time">
@@ -943,8 +948,8 @@
             <option value="++">++</option>
         </select>
     </div>
-</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='14'>14</td><td data-value='25.2'>25.2</td><td data-value='6.4'>6.4</td><td data-value='9.3'>9.3</td><td data-value='0.9'>0.9</td><td data-value='0.6'>0.6</td><td data-value='2.4'>2.4</td><td data-value='0.0'>0.0</td><td data-value='3.4'>3.4</td><td data-value='0.6'>0.6</td><td data-value='42.9'>42.9%</td><td data-value='0.0'>0.0%</td><td data-value='60.0'>60.0%</td><td data-value='7.9'>7.9</td><td data-value='-3.5'>-3.5</td></tr>
-<tr class="bench-divider"><td colspan="20"><span>Bench</span></td></tr>
+</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='14'>14</td><td data-value='25.2'>25.2</td><td data-value='6.4'>6.4</td><td data-value='9.3'>9.3</td><td data-value='0.9'>0.9</td><td data-value='0.6'>0.6</td><td data-value='2.4'>2.4</td><td data-value='0.0'>0.0</td><td data-value='3.4'>3.4</td><td data-value='0.6'>0.6</td><td data-value='42.9'>42.9%</td><td data-value='0.0'>0.0%</td><td data-value='60.0'>60.0%</td><td data-value='-1.35'>-1.4</td><td data-value='-2.22'>-2.2</td><td data-value='-3.5'>-3.5</td></tr>
+<tr class="bench-divider"><td colspan="21"><span>Bench</span></td></tr>
 <tr data-pid='799'><td class="roster-manage-cell roster-move-cell"><button type="button" class="roster-move-btn" aria-label="Move player">&#8645;</button><button type="button" class="roster-drop-btn" aria-label="Drop player" title="Drop player">&minus;</button></td><td class='col-pos'>G</td><td class='col-player'><a href='../players/799.html' title="Shai Gilgeous-Alexander">S. Gilgeous-Alexander</a></td><td class="roster-manage-cell roster-pt-cell">
     <div class="roster-manage-controls">
         <select class="roster-pt-select" aria-label="Playing time">
@@ -955,7 +960,7 @@
             <option value="++">++</option>
         </select>
     </div>
-</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='14'>14</td><td data-value='23.9'>23.9</td><td data-value='15.5'>15.5</td><td data-value='1.7'>1.7</td><td data-value='5.4'>5.4</td><td data-value='0.4'>0.4</td><td data-value='0.4'>0.4</td><td data-value='1.6'>1.6</td><td data-value='3.4'>3.4</td><td data-value='3.1'>3.1</td><td data-value='48.1'>48.1%</td><td data-value='34.9'>34.9%</td><td data-value='88.7'>88.7%</td><td data-value='10.4'>10.4</td><td data-value='-3.6'>-3.6</td></tr>
+</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='14'>14</td><td data-value='23.9'>23.9</td><td data-value='15.5'>15.5</td><td data-value='1.7'>1.7</td><td data-value='5.4'>5.4</td><td data-value='0.4'>0.4</td><td data-value='0.4'>0.4</td><td data-value='1.6'>1.6</td><td data-value='3.4'>3.4</td><td data-value='3.1'>3.1</td><td data-value='48.1'>48.1%</td><td data-value='34.9'>34.9%</td><td data-value='88.7'>88.7%</td><td data-value='-1.64'>-1.6</td><td data-value='-0.84'>-0.8</td><td data-value='-3.6'>-3.6</td></tr>
 <tr data-pid='800'><td class="roster-manage-cell roster-move-cell"><button type="button" class="roster-move-btn" aria-label="Move player">&#8645;</button><button type="button" class="roster-drop-btn" aria-label="Drop player" title="Drop player">&minus;</button></td><td class='col-pos'>GF</td><td class='col-player'><a href='../players/800.html' title="Paul George">P. George</a></td><td class="roster-manage-cell roster-pt-cell">
     <div class="roster-manage-controls">
         <select class="roster-pt-select" aria-label="Playing time">
@@ -966,7 +971,7 @@
             <option value="++">++</option>
         </select>
     </div>
-</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='14'>14</td><td data-value='25.9'>25.9</td><td data-value='14.9'>14.9</td><td data-value='4.6'>4.6</td><td data-value='1.1'>1.1</td><td data-value='0.6'>0.6</td><td data-value='1.1'>1.1</td><td data-value='1.4'>1.4</td><td data-value='2.5'>2.5</td><td data-value='1.5'>1.5</td><td data-value='46.5'>46.5%</td><td data-value='31.7'>31.7%</td><td data-value='90.7'>90.7%</td><td data-value='11.2'>11.2</td><td data-value='-2.7'>-2.7</td></tr>
+</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='14'>14</td><td data-value='25.9'>25.9</td><td data-value='14.9'>14.9</td><td data-value='4.6'>4.6</td><td data-value='1.1'>1.1</td><td data-value='0.6'>0.6</td><td data-value='1.1'>1.1</td><td data-value='1.4'>1.4</td><td data-value='2.5'>2.5</td><td data-value='1.5'>1.5</td><td data-value='46.5'>46.5%</td><td data-value='31.7'>31.7%</td><td data-value='90.7'>90.7%</td><td data-value='0.71'>+0.7</td><td data-value='0.79'>+0.8</td><td data-value='-2.7'>-2.7</td></tr>
 <tr data-pid='787'><td class="roster-manage-cell roster-move-cell"><button type="button" class="roster-move-btn" aria-label="Move player">&#8645;</button><button type="button" class="roster-drop-btn" aria-label="Drop player" title="Drop player">&minus;</button></td><td class='col-pos'>GF</td><td class='col-player'><a href='../players/787.html' title="Chris Mullin">C. Mullin</a></td><td class="roster-manage-cell roster-pt-cell">
     <div class="roster-manage-controls">
         <select class="roster-pt-select" aria-label="Playing time">
@@ -977,7 +982,7 @@
             <option value="++">++</option>
         </select>
     </div>
-</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='14'>14</td><td data-value='18.4'>18.4</td><td data-value='9.0'>9.0</td><td data-value='0.6'>0.6</td><td data-value='0.6'>0.6</td><td data-value='0.4'>0.4</td><td data-value='0.1'>0.1</td><td data-value='1.6'>1.6</td><td data-value='1.9'>1.9</td><td data-value='0.9'>0.9</td><td data-value='53.8'>53.8%</td><td data-value='44.9'>44.9%</td><td data-value='95.2'>95.2%</td><td data-value='5.6'>5.6</td><td data-value='-2.3'>-2.3</td></tr>
+</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='14'>14</td><td data-value='18.4'>18.4</td><td data-value='9.0'>9.0</td><td data-value='0.6'>0.6</td><td data-value='0.6'>0.6</td><td data-value='0.4'>0.4</td><td data-value='0.1'>0.1</td><td data-value='1.6'>1.6</td><td data-value='1.9'>1.9</td><td data-value='0.9'>0.9</td><td data-value='53.8'>53.8%</td><td data-value='44.9'>44.9%</td><td data-value='95.2'>95.2%</td><td data-value='-2.35'>-2.4</td><td data-value='-0.61'>-0.6</td><td data-value='-2.3'>-2.3</td></tr>
 <tr data-pid='807'><td class="roster-manage-cell roster-move-cell"><button type="button" class="roster-move-btn" aria-label="Move player">&#8645;</button><button type="button" class="roster-drop-btn" aria-label="Drop player" title="Drop player">&minus;</button></td><td class='col-pos'>FC</td><td class='col-player'><a href='../players/807.html' title="Alonzo Mourning">A. Mourning</a></td><td class="roster-manage-cell roster-pt-cell">
     <div class="roster-manage-controls">
         <select class="roster-pt-select" aria-label="Playing time">
@@ -988,7 +993,7 @@
             <option value="++">++</option>
         </select>
     </div>
-</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='14'>14</td><td data-value='5.2'>5.2</td><td data-value='2.0'>2.0</td><td data-value='1.8'>1.8</td><td data-value='0.2'>0.2</td><td data-value='0.1'>0.1</td><td data-value='0.1'>0.1</td><td data-value='0.1'>0.1</td><td data-value='0.4'>0.4</td><td data-value='0.0'>0.0</td><td data-value='75.0'>75.0%</td><td data-value='100.0'>100.0%</td><td data-value='81.8'>81.8%</td><td data-value='2.3'>2.3</td><td data-value='0.0'>+0.0</td></tr>
+</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='14'>14</td><td data-value='5.2'>5.2</td><td data-value='2.0'>2.0</td><td data-value='1.8'>1.8</td><td data-value='0.2'>0.2</td><td data-value='0.1'>0.1</td><td data-value='0.1'>0.1</td><td data-value='0.1'>0.1</td><td data-value='0.4'>0.4</td><td data-value='0.0'>0.0</td><td data-value='75.0'>75.0%</td><td data-value='100.0'>100.0%</td><td data-value='81.8'>81.8%</td><td data-value='-5.42'>-5.4</td><td data-value=''>-</td><td data-value='0.0'>+0.0</td></tr>
 <tr data-pid='785'><td class="roster-manage-cell roster-move-cell"><button type="button" class="roster-move-btn" aria-label="Move player">&#8645;</button><button type="button" class="roster-drop-btn" aria-label="Drop player" title="Drop player">&minus;</button></td><td class='col-pos'>SF</td><td class='col-player'><a href='../players/785.html' title="Bernard King">B. King</a></td><td class="roster-manage-cell roster-pt-cell">
     <div class="roster-manage-controls">
         <select class="roster-pt-select" aria-label="Playing time">
@@ -999,7 +1004,7 @@
             <option value="++">++</option>
         </select>
     </div>
-</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='14'>14</td><td data-value='10.7'>10.7</td><td data-value='7.5'>7.5</td><td data-value='1.1'>1.1</td><td data-value='0.5'>0.5</td><td data-value='0.1'>0.1</td><td data-value='0.8'>0.8</td><td data-value='0.4'>0.4</td><td data-value='1.1'>1.1</td><td data-value='0.6'>0.6</td><td data-value='50.0'>50.0%</td><td data-value='41.7'>41.7%</td><td data-value='92.3'>92.3%</td><td data-value='5.5'>5.5</td><td data-value='1.8'>+1.8</td></tr>
+</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='14'>14</td><td data-value='10.7'>10.7</td><td data-value='7.5'>7.5</td><td data-value='1.1'>1.1</td><td data-value='0.5'>0.5</td><td data-value='0.1'>0.1</td><td data-value='0.8'>0.8</td><td data-value='0.4'>0.4</td><td data-value='1.1'>1.1</td><td data-value='0.6'>0.6</td><td data-value='50.0'>50.0%</td><td data-value='41.7'>41.7%</td><td data-value='92.3'>92.3%</td><td data-value='-3.45'>-3.4</td><td data-value='2.36'>+2.4</td><td data-value='1.8'>+1.8</td></tr>
 <tr data-pid='844'><td class="roster-manage-cell roster-move-cell"><button type="button" class="roster-move-btn" aria-label="Move player">&#8645;</button><button type="button" class="roster-drop-btn" aria-label="Drop player" title="Drop player">&minus;</button></td><td class='col-pos'>FC</td><td class='col-player'><a href='../players/844.html' title="Jerry Lucas">J. Lucas</a></td><td class="roster-manage-cell roster-pt-cell">
     <div class="roster-manage-controls">
         <select class="roster-pt-select" aria-label="Playing time">
@@ -1010,7 +1015,7 @@
             <option value="++">++</option>
         </select>
     </div>
-</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='13'>13</td><td data-value='6.2'>6.2</td><td data-value='2.1'>2.1</td><td data-value='2.2'>2.2</td><td data-value='0.2'>0.2</td><td data-value='0.0'>0.0</td><td data-value='0.0'>0.0</td><td data-value='0.3'>0.3</td><td data-value='0.7'>0.7</td><td data-value='0.4'>0.4</td><td data-value='37.0'>37.0%</td><td data-value='28.6'>28.6%</td><td data-value='100.0'>100.0%</td><td data-value='1.4'>1.4</td><td data-value='-3.3'>-3.3</td></tr>
+</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='13'>13</td><td data-value='6.2'>6.2</td><td data-value='2.1'>2.1</td><td data-value='2.2'>2.2</td><td data-value='0.2'>0.2</td><td data-value='0.0'>0.0</td><td data-value='0.0'>0.0</td><td data-value='0.3'>0.3</td><td data-value='0.7'>0.7</td><td data-value='0.4'>0.4</td><td data-value='37.0'>37.0%</td><td data-value='28.6'>28.6%</td><td data-value='100.0'>100.0%</td><td data-value='-6.60'>-6.6</td><td data-value=''>-</td><td data-value='-3.3'>-3.3</td></tr>
 <tr data-pid='852'><td class="roster-manage-cell roster-move-cell"><button type="button" class="roster-move-btn" aria-label="Move player">&#8645;</button><button type="button" class="roster-drop-btn" aria-label="Drop player" title="Drop player">&minus;</button></td><td class='col-pos'>GF</td><td class='col-player'><a href='../players/852.html' title="Jerry Stackhouse">J. Stackhouse</a></td><td class="roster-manage-cell roster-pt-cell">
     <div class="roster-manage-controls">
         <select class="roster-pt-select" aria-label="Playing time">
@@ -1021,7 +1026,7 @@
             <option value="++">++</option>
         </select>
     </div>
-</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='14'>14</td><td data-value='13.5'>13.5</td><td data-value='7.1'>7.1</td><td data-value='0.6'>0.6</td><td data-value='0.5'>0.5</td><td data-value='0.2'>0.2</td><td data-value='0.5'>0.5</td><td data-value='0.6'>0.6</td><td data-value='1.6'>1.6</td><td data-value='0.4'>0.4</td><td data-value='41.1'>41.1%</td><td data-value='29.0'>29.0%</td><td data-value='86.1'>86.1%</td><td data-value='4.4'>4.4</td><td data-value='-1.4'>-1.4</td></tr>
+</td><td class="roster-pt-view" data-pt="normal">✓</td><td data-value='14'>14</td><td data-value='13.5'>13.5</td><td data-value='7.1'>7.1</td><td data-value='0.6'>0.6</td><td data-value='0.5'>0.5</td><td data-value='0.2'>0.2</td><td data-value='0.5'>0.5</td><td data-value='0.6'>0.6</td><td data-value='1.6'>1.6</td><td data-value='0.4'>0.4</td><td data-value='41.1'>41.1%</td><td data-value='29.0'>29.0%</td><td data-value='86.1'>86.1%</td><td data-value='-4.74'>-4.7</td><td data-value='-2.54'>-2.5</td><td data-value='-1.4'>-1.4</td></tr>
 
 </tbody>
 </table></div></div>
@@ -1060,7 +1065,7 @@
 <li><strong>FG%:</strong> <a href='../players/787.html'>Chris Mullin</a> (53.8%)</li>
 <li><strong>3P%:</strong> <a href='../players/787.html'>Chris Mullin</a> (44.9%)</li>
 <li><strong>FT%:</strong> <a href='../players/787.html'>Chris Mullin</a> (95.2%)</li>
-<li><strong>GmSc:</strong> <a href='../players/779.html'>Clyde Drexler</a> (16.2)</li>
+<li><strong>C4S:</strong> <a href='../players/779.html'>Clyde Drexler</a> (+4.2)</li>
 </ul></div></div><div data-tab-panel-group="section-NT" data-tab-panel="games" style="display:none"><div class="card"><ul class="result-list" style="grid-template-rows: repeat(4, auto);"><li><a href="../games/28.html" class="result-link"><span><span class="badge win">W</span>Game 8 &middot; at PP</span><span class="result-score">133-131<span class="result-chevron">&#8250;</span></span></a></li>
 <li><a href="../games/34.html" class="result-link"><span><span class="badge loss">L</span>Game 9 &middot; vs OMB</span><span class="result-score">127-129<span class="result-chevron">&#8250;</span></span></a></li>
 <li><a href="../games/37.html" class="result-link"><span><span class="badge loss">L</span>Game 10 &middot; at PP</span><span class="result-score">110-128<span class="result-chevron">&#8250;</span></span></a></li>
@@ -1107,6 +1112,11 @@
 </tr>
 </tbody>
 </table></div></div>
+</div></div><div data-tab-panel-group="section-NT" data-tab-panel="needs" style="display:none"><div class="card c4s-card">
+<p class="needs-line needs-weak">Weakest categories: <strong>AST</strong> (8th), <strong>3PM</strong> (7th), <strong>PTS</strong> (6th)</p>
+<p class="needs-line needs-strong">Strongest categories: <strong>BLK</strong> (2nd), <strong>FT%</strong> (3rd), <strong>TOV</strong> (4th)</p>
+<div class="c4s-rows"><div class="c4s-row"><span class="c4s-label">PTS</span><span class="c4s-val">121.5</span><span class="c4s-bar"><i class="c4s-fill neg" style="left:37.2%;width:12.8%"></i></span><span class="c4s-z neg">6th</span></div><div class="c4s-row"><span class="c4s-label">REB</span><span class="c4s-val">41.7</span><span class="c4s-bar"><i class="c4s-fill neg" style="left:41.6%;width:8.4%"></i></span><span class="c4s-z neg">5th</span></div><div class="c4s-row"><span class="c4s-label">AST</span><span class="c4s-val">25.6</span><span class="c4s-bar"><i class="c4s-fill neg" style="left:28.2%;width:21.8%"></i></span><span class="c4s-z neg">8th</span></div><div class="c4s-row"><span class="c4s-label">STL</span><span class="c4s-val">5.1</span><span class="c4s-bar"><i class="c4s-fill neg" style="left:42.3%;width:7.7%"></i></span><span class="c4s-z neg">6th</span></div><div class="c4s-row"><span class="c4s-label">BLK</span><span class="c4s-val">9.4</span><span class="c4s-bar"><i class="c4s-fill pos" style="left:50.0%;width:14.6%"></i></span><span class="c4s-z pos">2nd</span></div><div class="c4s-row"><span class="c4s-label">3PM</span><span class="c4s-val">13.1</span><span class="c4s-bar"><i class="c4s-fill neg" style="left:32.7%;width:17.3%"></i></span><span class="c4s-z neg">7th</span></div><div class="c4s-row"><span class="c4s-label">TOV</span><span class="c4s-val">14.1</span><span class="c4s-bar"><i class="c4s-fill pos" style="left:50.0%;width:5.6%"></i></span><span class="c4s-z pos">4th</span></div><div class="c4s-row"><span class="c4s-label">FG%</span><span class="c4s-val">47.2%</span><span class="c4s-bar"><i class="c4s-fill neg" style="left:39.9%;width:10.1%"></i></span><span class="c4s-z neg">6th</span></div><div class="c4s-row"><span class="c4s-label">FT%</span><span class="c4s-val">84.2%</span><span class="c4s-bar"><i class="c4s-fill pos" style="left:50.0%;width:11.0%"></i></span><span class="c4s-z pos">3rd</span></div></div>
+<p class="c4s-note">Each team's per-game total in the nine player categories, ranked against all 8 teams (1st is best; for turnovers, fewest ranks first). Bars show how far above (right) or below (left) the average team, full season. W and L aren't included. Use this to decide which waiver pickups to chase.</p>
 </div></div><div data-tab-panel-group="section-NT" data-tab-panel="brand" style="display:none"><div class="card"><div class="brand-pair"><figure><a href="../assets/images/brand/nt-logo.png" target="_blank"><img src="../assets/images/brand/nt-logo.png" alt="Brand Guide"></a><figcaption>Brand Guide</figcaption></figure><figure><a href="../assets/images/brand/nt-jersey.png" target="_blank"><img src="../assets/images/brand/nt-jersey.png" alt="Jersey Pack"></a><figcaption>Jersey Pack</figcaption></figure></div></div></div>
 </div>
 </div>
