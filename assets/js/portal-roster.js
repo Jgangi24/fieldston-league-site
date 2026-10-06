@@ -86,14 +86,16 @@
     var weekNumber = stateResult.data ? stateResult.data.current_week_number : null;
     if (!weekNumber) return; // no sync has run yet, nothing meaningful to show
 
+    // The commissioner can manage every team's lineup, playing time and IR.
+    var isCommissioner = !!user.is_commissioner;
     var myTeams = await window.Portal.getMyTeams();
-    if (!myTeams.length) return; // signed in, but not a GM with teams here
+    if (!myTeams.length && !isCommissioner) return; // signed in, but not a GM with teams here
 
     var myTidStrings = myTeams.map(function (t) { return String(t.tid); });
 
     var panels = Array.prototype.filter.call(
         document.querySelectorAll(".team-panel[data-tid]"),
-        function (panel) { return myTidStrings.indexOf(panel.dataset.tid) !== -1; }
+        function (panel) { return isCommissioner || myTidStrings.indexOf(panel.dataset.tid) !== -1; }
     );
     if (!panels.length) return;
 
@@ -182,7 +184,7 @@
 
             // IR is handled from the Move dialog: eligible players get an "Injured Reserve"
             // choice there (and players already on IR get "Move back to the roster").
-            if (irEligibleByPid[pid]) row.dataset.irEligible = "1";
+            if (irEligibleByPid[pid] || isCommissioner) row.dataset.irEligible = "1";
             row.dataset.tid = String(tid);
 
             var dropBtn = row.querySelector(".roster-drop-btn");
@@ -567,7 +569,8 @@
         tbodies.forEach(function (tbody) { setRowIr(tbody, pid, toIr); });
         lineupByTid[tid] = orderMap(tbodies[0]);
         var ok = await saveAndRefresh(panel, tid, function () {
-            return upsertPendingRequest(tid, "ir_toggle", pid, { to_ir: toIr });
+            // The commissioner's IR changes go live at once (no request to approve).
+            return isCommissioner ? saveIrAsCommissioner(tid, pid, toIr) : upsertPendingRequest(tid, "ir_toggle", pid, { to_ir: toIr });
         });
         if (!ok) {   // put it back the way it was
             tbodies.forEach(function (tbody) { setRowIr(tbody, pid, !toIr); });
@@ -624,6 +627,20 @@
             { onConflict: "pid" }
         );
         if (result.error) throw result.error;
+    }
+
+    // Writes the public IR list directly, and cancels any GM request for the
+    // same player that says the opposite so it can't override this.
+    async function saveIrAsCommissioner(tid, pid, toIr) {
+        var result = toIr
+            ? await client.from("ir_public").upsert({ pid: pid, tid: tid, updated_at: new Date().toISOString() }, { onConflict: "pid" })
+            : await client.from("ir_public").delete().eq("pid", pid);
+        if (result.error) throw result.error;
+        var cancel = await client.from("gm_requests").update({ status: "cancelled" })
+            .eq("type", "ir_toggle").eq("week_number", weekNumber).neq("status", "cancelled")
+            .filter("payload->>pid", "eq", String(pid))
+            .filter("payload->>to_ir", "eq", String(!toIr));
+        if (cancel.error) throw cancel.error;
     }
 
     async function saveLineupOrder(tid, orderByPid) {

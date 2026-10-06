@@ -174,6 +174,7 @@
         }
 
         var allRequests = results[0].data;
+        irRequests = allRequests.filter(function (r) { return r.type === "ir_toggle"; });
         lineupRows = results[2].data;
         // Who is on IR: the public list, overridden by this week's latest IR request per player.
         irByPid = {};
@@ -204,6 +205,7 @@
         root.appendChild(renderAddDrops(addDrops, rankByTid));
         root.appendChild(renderLineups());
         root.appendChild(renderIrToggles(irToggles));
+        root.appendChild(renderOnIr());
         root.appendChild(renderIrEligibility());
     }
 
@@ -357,6 +359,7 @@
     // team, only what still differs from BBGM's last export -- i.e. what the
     // commissioner has left to enter. It empties itself after the next sync.
     var irByPid = {};   // pid -> true (on IR) / false (just moved back to active)
+    var irRequests = []; // this week's IR requests, to cancel when taking a player off IR
 
     function renderLineups() {
         var card = el("div", "card");
@@ -430,6 +433,40 @@
         p.appendChild(el("strong", "", label + ": "));
         p.appendChild(document.createTextNode(text));
         return p;
+    }
+
+    // Everyone currently on IR, each with a button to take them off (for when a
+    // player is activated in BBGM or the GM hasn't moved him back).
+    function renderOnIr() {
+        var card = el("div", "card");
+        card.appendChild(el("h3", "", "Currently on IR"));
+        var onIr = players.filter(function (p) { return irByPid[p.pid] && p.tid >= 0; });
+        if (!onIr.length) {
+            card.appendChild(el("p", "placeholder", "Nobody is on IR."));
+            return card;
+        }
+        onIr.forEach(function (p) {
+            var row = el("div", "admin-line");
+            row.appendChild(el("span", "admin-line-text", teamLabel(p.tid) + " \u2014 " + playerName(p.pid)));
+            row.appendChild(button("Take off IR", "admin-btn admin-btn-small", async function () {
+                var ok = await confirmDialog("Take " + playerName(p.pid) + " off IR?",
+                    "He goes back to the active roster on the site. If his playing time in BBGM is 0, set it back to normal.", "Take off IR");
+                if (!ok) return;
+                var del = await client.from("ir_public").delete().eq("pid", p.pid);
+                var ids = irRequests.filter(function (r) { return r.payload.pid === p.pid && r.payload.to_ir && r.status !== "cancelled"; })
+                    .map(function (r) { return r.id; });
+                var cancel = ids.length ? await client.from("gm_requests").update({ status: "cancelled" }).in("id", ids) : { error: null };
+                if (del.error || cancel.error) {
+                    console.error("Portal admin: take off IR failed", del.error, cancel.error);
+                    toast("Couldn't save -- try again.", "error");
+                    return;
+                }
+                toast("Taken off IR \u2713", "ok");
+                render();
+            }));
+            card.appendChild(row);
+        });
+        return card;
     }
 
     function renderIrToggles(irToggles) {
