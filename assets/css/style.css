@@ -2667,3 +2667,17 @@ a.sch-tile:hover { background: rgba(10, 37, 64, 0.04); }
 }
 
 .roster-picker-note { margin: 12px 20px 16px; font-size: 0.8rem; line-height: 1.35; color: var(--muted); }
+
+/* Move dialog: starters read as white rows, bench as shaded rows with a heavier divider above each group */
+.roster-picker-option.is-bench { background: #eceff3; }
+.roster-picker-option.is-bench:hover, .roster-picker-option.is-bench:active { background: #e2e6ec; }
+.roster-picker-option.is-starter { background: #fff; }
+.roster-picker-heading { border-top: 2px solid #c9ced6; }
+
+/* "Move to bench spot" reads as a table header row: shaded band, navy text, no heavy line above */
+.roster-picker-heading.roster-picker-heading-bench { border-top: 0; background: var(--navy); color: #fff; padding: 9px 16px; }
+
+.roster-picker-option.is-bench:disabled { opacity: 1; cursor: default; background: #f6f7f9; }
+.roster-picker-option.is-bench:disabled strong { color: var(--muted); font-weight: 600; }
+
+.roster-picker-spot-note { margin-left: 8px; font-size: 0.78rem; font-weight: 500; color: var(--muted); }

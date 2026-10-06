@@ -463,7 +463,7 @@
         pickerEl.querySelector("h3").textContent = "Move Player";
         pickerEl.querySelector(".roster-picker-sub").textContent = isStarter
             ? "Pick a bench player to swap " + rowName(row) + " with, or keep them a starter."
-            : "Pick a starter to swap " + rowName(row) + " with, or keep them on the bench.";
+            : "Swap " + rowName(row) + " with a starter, or move them within the bench.";
 
         var list = pickerEl.querySelector(".roster-picker-list");
         list.innerHTML = "";
@@ -476,7 +476,7 @@
         list.appendChild(current);
 
         var heading = document.createElement("div");
-        heading.className = "roster-picker-heading";
+        heading.className = "roster-picker-heading roster-picker-heading-bench";
         heading.textContent = isStarter ? "Swap with (bench)" : "Swap with (starters)";
         list.appendChild(heading);
 
@@ -490,7 +490,7 @@
         candidates.forEach(function (candidate) {
             var btn = document.createElement("button");
             btn.type = "button";
-            btn.className = "roster-picker-option";
+            btn.className = "roster-picker-option" + (isStarter ? " is-bench" : " is-starter");
             btn.innerHTML = "<strong></strong><span></span>";
             btn.querySelector("strong").textContent = rowName(candidate);
             btn.querySelector("span").textContent = rowPos(candidate);
@@ -499,6 +499,43 @@
             });
             list.appendChild(btn);
         });
+
+        // Bench players can also be put into any other bench spot: the player takes
+        // that spot and everyone in between shifts down (or up) one.
+        if (!isStarter) {
+            var benchPids = Object.keys(lineup)
+                .filter(function (otherPid) { return lineup[otherPid] >= STARTER_COUNT; })
+                .sort(function (a, b) { return lineup[a] - lineup[b]; });
+            var benchHeading = document.createElement("div");
+            benchHeading.className = "roster-picker-heading roster-picker-heading-bench";
+            benchHeading.textContent = "Move to bench spot";
+            list.appendChild(benchHeading);
+            benchPids.forEach(function (otherPid, spot) {
+                var isSelf = String(pid) === otherPid;
+                var occupant = row.parentElement.querySelector("tr[data-pid='" + otherPid + "']");
+                if (!occupant) return;
+                var mbtn = document.createElement("button");
+                mbtn.type = "button";
+                mbtn.className = "roster-picker-option is-bench";
+                mbtn.innerHTML = "<strong></strong><span></span>";
+                mbtn.querySelector("strong").textContent = "Spot " + (spot + 1) + " \u00b7 " + rowName(occupant) + (isSelf ? " (current)" : "");
+                if (spot === 0) {
+                    var firstNote = document.createElement("small");
+                    firstNote.className = "roster-picker-spot-note";
+                    firstNote.textContent = "First off the bench";
+                    mbtn.querySelector("strong").appendChild(firstNote);
+                }
+                mbtn.querySelector("span").textContent = rowPos(occupant);
+                if (isSelf) {
+                    mbtn.disabled = true;
+                } else {
+                    mbtn.addEventListener("click", function () {
+                        moveToSpot(row, lineup[otherPid], panel, tid, tbodies);
+                    });
+                }
+                list.appendChild(mbtn);
+            });
+        }
 
         if (canIr) {
             var irHeading = document.createElement("div");
@@ -601,6 +638,32 @@
         if (!ok) {
             lineupByTid[tid] = before;
             tbodies.forEach(function (tbody) { applyOrder(tbody, before); }); // put the rows back
+        }
+        pickerBusy = false;
+    }
+
+    // Puts a player into a given slot of the lineup, shifting everyone in between by one.
+    async function moveToSpot(row, slot, panel, tid, tbodies) {
+        if (pickerBusy) return;
+        pickerBusy = true;
+        closePicker();
+
+        var before = lineupByTid[tid];
+        var pid = parseInt(row.dataset.pid, 10);
+        var pids = Object.keys(before).map(Number).sort(function (a, b) { return before[a] - before[b]; });
+        pids.splice(pids.indexOf(pid), 1);
+        pids.splice(slot, 0, pid);
+        var after = {};
+        pids.forEach(function (p, i) { after[p] = i; });
+        lineupByTid[tid] = after;
+        tbodies.forEach(function (tbody) { applyOrder(tbody, after); });
+
+        var ok = await saveAndRefresh(panel, tid, function () {
+            return saveLineupOrder(tid, after);
+        });
+        if (!ok) {
+            lineupByTid[tid] = before;
+            tbodies.forEach(function (tbody) { applyOrder(tbody, before); });
         }
         pickerBusy = false;
     }
