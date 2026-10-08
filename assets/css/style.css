@@ -2625,6 +2625,8 @@ a.sch-tile:hover { background: rgba(10, 37, 64, 0.04); }
 .roster-picker-option.roster-picker-ir strong { color: #b3261e; }
 .roster-picker-option.roster-picker-ir { flex-direction: column; align-items: flex-start; gap: 2px; }
 .roster-picker-option.roster-picker-ir { border-left: 4px solid #b3261e; }
+.roster-picker-option.roster-picker-release { flex-direction: column; align-items: flex-start; gap: 2px; border-left: 4px solid #6b7280; }
+.roster-picker-option.roster-picker-release strong { color: #b3261e; }
 .roster-adding-nodrop { margin-left: 6px; padding: 6px 12px; border: 0; border-radius: 6px; background: var(--accent); color: #fff; font-weight: 700; cursor: pointer; }
 .roster-picker-option:disabled { opacity: 0.55; cursor: not-allowed; }
 
@@ -2704,3 +2706,6 @@ a.sch-tile:hover { background: rgba(10, 37, 64, 0.04); }
 .needs-strong { margin-bottom: 12px; }
 .needs-strong strong { color: var(--win); }
 .c4s-sub { white-space: nowrap; }
+
+/* Free Agents: shown instead of the + button for a player this GM dropped this week */
+.fa-dropped-note { font-size: 0.7rem; font-weight: 700; color: #b3261e; white-space: nowrap; }

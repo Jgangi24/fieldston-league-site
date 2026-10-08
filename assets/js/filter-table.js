@@ -9,10 +9,10 @@ document.addEventListener("DOMContentLoaded", function () {
     var table = document.querySelector("table.stats-table");
     if (!table) return;
 
-    var rows = Array.prototype.slice.call(table.querySelectorAll("tbody tr"));
-
     input.addEventListener("input", function () {
         var query = input.value.trim().toLowerCase();
+        // Looked up on each keystroke: pages can add rows after load (e.g. a just-dropped free agent).
+        var rows = Array.prototype.slice.call(table.querySelectorAll("tbody tr"));
         rows.forEach(function (row) {
             var text = row.textContent.toLowerCase();
             row.style.display = text.indexOf(query) === -1 ? "none" : "";

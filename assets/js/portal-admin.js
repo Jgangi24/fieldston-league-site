@@ -167,6 +167,7 @@
             client.from("waiver_priority").select("tid,priority_rank").eq("week_number", state.week),
             client.from("lineup_state").select("pid,tid,pt_level,roster_order"),
             client.from("ir_public").select("pid,tid"),
+            client.from("dropped_public").select("pid,tid,dropped_by,player_name,week_number,dropped_at").order("dropped_at"),
         ]);
         if (results[0].error || results[1].error || results[2].error || results[3].error) {
             console.error("Portal admin: load failed", results);
@@ -181,6 +182,12 @@
         results[3].data.forEach(function (r) { irByPid[r.pid] = true; });
         allRequests.filter(function (r) { return r.type === "ir_toggle" && r.status !== "cancelled"; })
             .forEach(function (r) { irByPid[r.payload.pid] = !!r.payload.to_ir; });
+        // Drops still waiting on the commissioner: the latest BBGM export still has the player on that team.
+        var pendingDrops = (results[4].error ? [] : results[4].data).filter(function (d) {
+            var p = playerByPid[d.pid];
+            return p && p.tid === d.tid;
+        });
+        if (results[4].error) console.error("Portal admin: couldn't load drops (is SQL 021 run?)", results[4].error);
         var rankByTid = {};
         results[1].data.forEach(function (w) { rankByTid[w.tid] = w.priority_rank; });
 
@@ -196,7 +203,9 @@
         var addDrops = visible.filter(function (r) { return r.type === "add_drop"; });
         var irToggles = visible.filter(function (r) { return r.type === "ir_toggle"; });
 
-        if (!visible.length) {
+        if (pendingDrops.length) root.appendChild(renderDrops(pendingDrops));
+
+        if (!visible.length && !pendingDrops.length) {
             var none = el("div", "card");
             none.appendChild(el("p", "placeholder", "Nothing waiting on you for Week " + state.week + "."));
             root.appendChild(none);
@@ -437,6 +446,37 @@
 
     // Everyone currently on IR, each with a button to take them off (for when a
     // player is activated in BBGM or the GM hasn't moved him back).
+    // GMs drop players on the site at once; they are free agents on the site straight away.
+    // The commissioner releases each one in BBGM. A row disappears from this list on its own
+    // after the next export shows the player gone.
+    function renderDrops(drops) {
+        var card = el("div", "card");
+        card.appendChild(el("h3", "", "Drops to release in BBGM"));
+        card.appendChild(el("p", "admin-note",
+            "These players are already off the roster and listed as free agents on the site. Release each one in BBGM before the next sim (do this before entering waiver claims). " +
+            "They clear from this list after the next export shows them released."));
+        drops.forEach(function (d) {
+            var row = el("div", "admin-line");
+            row.appendChild(el("span", "admin-line-text",
+                teamLabel(d.tid) + " \u2014 release " + playerName(d.pid) + " (dropped in week " + d.week_number + ")"));
+            row.appendChild(button("Undo drop", "admin-btn admin-btn-small admin-btn-ghost", async function () {
+                var ok = await confirmDialog("Undo this drop?",
+                    playerName(d.pid) + " goes back on " + teamLabel(d.tid) + "'s roster and leaves the free agent list.", "Undo drop");
+                if (!ok) return;
+                var del = await client.from("dropped_public").delete().eq("pid", d.pid);
+                if (del.error) {
+                    console.error("Portal admin: undo drop failed", del.error);
+                    toast("Couldn't undo -- try again.", "error");
+                    return;
+                }
+                toast("Drop undone \u2713", "ok");
+                render();
+            }));
+            card.appendChild(row);
+        });
+        return card;
+    }
+
     function renderOnIr() {
         var card = el("div", "card");
         card.appendChild(el("h3", "", "Currently on IR"));

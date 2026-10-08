@@ -12,6 +12,43 @@
     });
 
     var user = window.Portal.getUser();
+    var client = window.Portal.getClient();
+
+    // Players a GM has just dropped on the site are free agents right away, even
+    // though the commissioner hasn't released them in BBGM yet. Their rows ship in
+    // an inert <template>; reveal the ones in portal.dropped_public (public read).
+    var myDroppedPids = {};   // pid -> true, for players this GM dropped (can't be claimed back this week)
+    try {
+        var droppedResult = await client.from("dropped_public").select("pid,tid,dropped_by,week_number");
+        var dropped = droppedResult.data || [];
+        var tpl = document.getElementById("fa-rostered");
+        var tbody = document.querySelector("table.stats-table tbody");
+        var revealed = 0;
+        if (tpl && tbody && dropped.length) {
+            var templateRows = {};
+            Array.prototype.forEach.call(tpl.content.querySelectorAll("tr[data-pid]"), function (tr) {
+                templateRows[tr.dataset.pid] = tr;
+            });
+            dropped.forEach(function (d) {
+                var source = templateRows[d.pid];
+                if (!source || String(source.dataset.tid) !== String(d.tid)) return;   // already released in BBGM
+                if (tbody.querySelector("tr[data-pid='" + d.pid + "']")) return;
+                var row = source.cloneNode(true);
+                row.classList.add("fa-just-dropped");
+                // keep the table in Overall order, like the rest of the page
+                var ovr = parseInt(row.dataset.ovr, 10) || 0;
+                var before = Array.prototype.find.call(tbody.rows, function (r) { return (parseInt(r.dataset.ovr, 10) || 0) < ovr; });
+                tbody.insertBefore(row, before || null);
+                revealed++;
+                if (user && d.dropped_by === user.id) myDroppedPids[d.pid] = d.week_number;
+            });
+        }
+        var count = document.getElementById("fa-count");
+        if (count && revealed) count.textContent = String(parseInt(count.textContent, 10) + revealed);
+    } catch (err) {
+        console.error("Portal: couldn't load recent drops", err);
+    }
+
     if (!user) return; // signed out -- page stays exactly as generated
 
     var myTeams = await window.Portal.getMyTeams();
@@ -34,6 +71,23 @@
         });
         return;
     }
+
+    // A GM can't claim back a player they dropped this week (also enforced by the database).
+    var stateResult = await client.from("sync_state").select("current_week_number").eq("id", 1).single();
+    var thisWeek = stateResult.data ? stateResult.data.current_week_number : null;
+    Object.keys(myDroppedPids).forEach(function (pid) {
+        if (myDroppedPids[pid] !== thisWeek) return;
+        var btn = document.querySelector(".fa-add-btn[data-pid='" + pid + "']");
+        if (!btn) return;
+        var cell = btn.parentElement;
+        btn.remove();
+        cell.title = "You dropped this player this week, so you can't claim him back until next week";
+        cell.textContent = "";
+        var note = document.createElement("span");
+        note.className = "fa-dropped-note";
+        note.textContent = "Dropped";
+        cell.appendChild(note);
+    });
 
     document.body.classList.add("fa-managing");
     Array.prototype.forEach.call(document.querySelectorAll(".fa-add-hint"), function (el) { el.hidden = false; });

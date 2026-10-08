@@ -80,6 +80,14 @@
         });
     });
 
+    // Players a GM has just dropped are off that roster for everyone straight away,
+    // even before the commissioner releases them in BBGM (and a new export is built).
+    var droppedResult = await client.from("dropped_public").select("pid,tid");
+    (droppedResult.data || []).forEach(function (d) {
+        var droppedPanel = document.querySelector(".team-panel[data-tid='" + d.tid + "']");
+        if (droppedPanel) removePlayerRows(droppedPanel, d.pid);
+    });
+
     if (!user) return; // signed out -- panels show the public view only
 
     var stateResult = await client.from("sync_state").select("current_week_number").eq("id", 1).single();
@@ -364,12 +372,79 @@
             console.error("Portal: claim failed", err);
             // 23505 = the one-add/drop-per-week unique index (e.g. an earlier claim was already resolved)
             var used = err && err.code === "23505";
-            showToast(used ? "You've already used your add/drop for this week." : "Couldn't submit \u2014 check your connection and try again.", "error");
+            var reclaim = err && /dropped this player/i.test(err.message || "");   // blocked by the database trigger
+            showToast(used ? "You've already used your add/drop for this week."
+                : reclaim ? "You dropped " + addName + " this week, so you can't claim him back until next week."
+                : "Couldn't submit \u2014 check your connection and try again.", "error");
             return;
         }
         stopAdding(panel);
         renderClaims();
         showToast("Claim submitted \u2713", "ok");
+    }
+
+    function removePlayerRows(panel, pid) {
+        Array.prototype.forEach.call(panel.querySelectorAll(".roster-table tbody"), function (tbody) {
+            var row = tbody.querySelector("tr[data-pid='" + pid + "']");
+            if (row) row.remove();
+            layoutIrSection(tbody);   // re-places the Bench / IR dividers
+        });
+    }
+
+    // Standalone drop: the player leaves this roster and joins the free agent list at
+    // once. It is not an add/drop, so it doesn't touch the one-per-week limit. The
+    // commissioner then releases him in BBGM (portal.dropped_public feeds the admin page).
+    async function dropPlayer(row, panel, tid, tbodies) {
+        if (pickerBusy) return;
+        var pid = parseInt(row.dataset.pid, 10);
+        var name = rowName(row);
+        closePicker();
+        if (claim && claim.tid === tid && claim.payload.drop_pid === pid) {
+            showToast("Cancel your waiver claim first \u2014 it drops " + name + ".", "error");
+            return;
+        }
+        var ok = await confirmDialog(
+            "Drop " + name + "?",
+            name + " leaves your roster now and goes to the Free Agents list, where anyone except you can claim him this week. " +
+            "This doesn't use your weekly add/drop, and it can't be undone.",
+            "Drop " + name, "Keep him"
+        );
+        if (!ok) return;
+        pickerBusy = true;
+        showToast("Saving\u2026", "");
+        try {
+            var inserted = await client.from("dropped_public").insert({
+                pid: pid, tid: tid, dropped_by: user.id, player_name: name, week_number: weekNumber,
+            });
+            if (inserted.error) throw inserted.error;
+            // A pending "move to IR" request for him no longer means anything.
+            await client.from("gm_requests").delete()
+                .eq("gm_id", user.id).eq("type", "ir_toggle").eq("week_number", weekNumber).eq("status", "pending")
+                .filter("payload->>pid", "eq", String(pid));
+            removePlayerRows(panel, pid);
+            lineupByTid[tid] = orderMap(tbodies[0]);
+            showToast(name + " dropped \u2713", "ok");
+        } catch (err) {
+            console.error("Portal: drop failed", err);
+            showToast(err && err.code === "23505"
+                ? "That player is already dropped."
+                : "Couldn't drop \u2014 check your connection and try again.", "error");
+        }
+        pickerBusy = false;
+    }
+
+    function addDropOption(list, row, panel, tid, tbodies) {
+        var heading = document.createElement("div");
+        heading.className = "roster-picker-heading";
+        heading.textContent = "Or";
+        list.appendChild(heading);
+        var btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "roster-picker-option roster-picker-release";
+        btn.innerHTML = "<strong>Drop this player</strong><span></span>";
+        btn.querySelector("span").textContent = "Release " + rowName(row) + " to free agency (doesn't use your add/drop)";
+        btn.addEventListener("click", function () { dropPlayer(row, panel, tid, tbodies); });
+        list.appendChild(btn);
     }
 
     function confirmDialog(title, message, yesLabel, noLabel) {
@@ -557,6 +632,8 @@
             list.appendChild(irNote("BBGM has no IR slot, so while a player is on IR the commissioner sets his playing time to 0 there. It goes back to normal when he returns."));
         }
 
+        addDropOption(list, row, panel, tid, tbodies);
+
         pickerEl.hidden = false;
     }
 
@@ -579,13 +656,15 @@
         btn.innerHTML = "<strong>Move back to active roster</strong><span></span>";
         var full = activeCount(panel) >= ROSTER_LIMIT;
         btn.querySelector("span").textContent = full
-            ? "Roster is full (" + ROSTER_LIMIT + ") \u2014 release someone first"
+            ? "Roster is full (" + ROSTER_LIMIT + ") \u2014 drop a player first"
             : "Joins the bench";
         btn.disabled = full;
         btn.addEventListener("click", function () {
             if (!full) setIr(row, panel, tid, tbodies, false);
         });
         list.appendChild(btn);
+        if (full) list.appendChild(irNote("Roster full? Drop someone first (open their Move menu and choose Drop this player), then come back here."));
+        addDropOption(list, row, panel, tid, tbodies);
         list.appendChild(irNote("His playing time goes back to normal (or whatever you set) once the commissioner enters the move in BBGM."));
         pickerEl.hidden = false;
     }
