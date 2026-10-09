@@ -61,6 +61,19 @@
         return node;
     }
 
+    // "Oct 9, 3:42 PM" -- when a GM made a change (blank if unknown).
+    function when(ts) {
+        if (!ts) return "";
+        var d = new Date(ts);
+        if (isNaN(d.getTime())) return "";
+        return d.toLocaleString(undefined, { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" });
+    }
+
+    function timeChip(ts) {
+        var text = when(ts);
+        return text ? el("span", "admin-time", text) : document.createTextNode("");
+    }
+
     function playerName(pid) {
         var p = playerByPid[pid];
         return p ? (p.first_name + " " + p.last_name).trim() : "Player #" + pid;
@@ -128,8 +141,8 @@
         var results = await Promise.all([
             client.from("gm_requests").select("id,gm_id,tid,type,status,payload,submitted_at,week_number").gte("week_number", Math.max(currentWeek - 1, 0)).order("submitted_at"),
             client.from("waiver_priority").select("tid,priority_rank").eq("week_number", currentWeek),
-            client.from("lineup_state").select("pid,tid,pt_level,roster_order"),
-            client.from("ir_public").select("pid,tid"),
+            client.from("lineup_state").select("pid,tid,pt_level,roster_order,updated_at"),
+            client.from("ir_public").select("pid,tid,updated_at"),
             client.from("dropped_public").select("pid,tid,dropped_by,player_name,week_number,dropped_at").order("dropped_at"),
         ]);
         if (results[0].error || results[1].error || results[2].error || results[3].error) {
@@ -143,9 +156,10 @@
         // Who is on IR: the public list (GMs' moves are public at once), overridden by
         // this week's latest IR request per player in case a public write didn't go through.
         irByPid = {};
-        results[3].data.forEach(function (r) { irByPid[r.pid] = true; });
+        irTimeByPid = {};
+        results[3].data.forEach(function (r) { irByPid[r.pid] = true; irTimeByPid[r.pid] = r.updated_at; });
         irRequests.filter(function (r) { return r.week_number === currentWeek; })
-            .forEach(function (r) { irByPid[r.payload.pid] = !!r.payload.to_ir; });
+            .forEach(function (r) { irByPid[r.payload.pid] = !!r.payload.to_ir; irTimeByPid[r.payload.pid] = r.submitted_at; });
         var rankByTid = {};
         results[1].data.forEach(function (w) { rankByTid[w.tid] = w.priority_rank; });
 
@@ -170,7 +184,6 @@
         root.appendChild(renderClaimsToEnter(openClaims, rankByTid));
         root.appendChild(renderLineups());
         root.appendChild(renderOnIr());
-        root.appendChild(renderIrEligibility());
         root.appendChild(renderAllRequests(allRequests));
     }
 
@@ -228,6 +241,7 @@
                 var row = el("div", "admin-line");
                 row.appendChild(el("span", "admin-line-text", teamLabel(c.tid) + " — " + claimDropText(c) +
                     (rankByTid[c.tid] ? " — priority #" + rankByTid[c.tid] : "")));
+                row.appendChild(timeChip(c.submitted_at));
                 row.appendChild(el("span", "admin-badge admin-badge-" + (i === 0 ? "won" : "lost"), i === 0 ? "wins" : "loses"));
                 group.appendChild(row);
             });
@@ -270,6 +284,7 @@
         won.forEach(function (c) {
             var row = el("div", "admin-line");
             row.appendChild(el("span", "admin-line-text", teamLabel(c.tid) + " — add " + playerName(c.payload.add_pid) + ", " + claimDropText(c)));
+            row.appendChild(timeChip(c.submitted_at));
             card.appendChild(row);
         });
         if (lost.length) {
@@ -293,6 +308,8 @@
                 : r.type === "ir_toggle" ? playerName(r.payload.pid) + " → " + (r.payload.to_ir ? "IR" : "active")
                 : r.type;
             var line = el("p", "admin-line-p", teamLabel(r.tid) + " — " + text + " (" + r.status + ")");
+            line.appendChild(document.createTextNode(" "));
+            line.appendChild(timeChip(r.submitted_at));
             details.appendChild(line);
         });
         card.appendChild(details);
@@ -319,6 +336,7 @@
     // GMs' lineup and PT choices save instantly (no approval). This lists, per
     // team, only what still differs from BBGM's last export -- i.e. what the
     // commissioner has left to enter. It empties itself after the next sync.
+    var irTimeByPid = {};   // pid -> when the GM last changed his IR status
     var irByPid = {};   // pid -> true (on IR) / false (just moved back to active)
     var irRequests = []; // this week's IR requests, to cancel when taking a player off IR
 
@@ -369,18 +387,21 @@
             group.appendChild(title);
             if (orderChanged) {
                 var names = wanted.map(playerName);
-                group.appendChild(lineText("Starters", names.slice(0, 5).join(", ")));
+                var orderTime = mine.reduce(function (latest, r) {
+                    return r.roster_order !== null && r.roster_order !== undefined && (!latest || r.updated_at > latest) ? r.updated_at : latest;
+                }, null);
+                group.appendChild(lineText("Starters", names.slice(0, 5).join(", "), orderTime));
                 if (names.length > 5) group.appendChild(lineText("Bench", names.slice(5).join(", ")));
             }
             ptChanges.forEach(function (r) {
                 var level = r.pt_level === "normal" ? "\u2713" : r.pt_level;
-                group.appendChild(lineText("Playing time", playerName(r.pid) + " \u2192 " + level));
+                group.appendChild(lineText("Playing time", playerName(r.pid) + " \u2192 " + level, r.updated_at));
             });
             irZero.forEach(function (pid) {
-                group.appendChild(lineText("On IR", playerName(pid) + " \u2192 set playing time to 0"));
+                group.appendChild(lineText("On IR", playerName(pid) + " \u2192 set playing time to 0", irTimeByPid[pid]));
             });
             irBack.forEach(function (pid) {
-                group.appendChild(lineText("Back from IR", playerName(pid) + " \u2192 set playing time back to \u2713"));
+                group.appendChild(lineText("Back from IR", playerName(pid) + " \u2192 set playing time back to \u2713", irTimeByPid[pid]));
             });
             card.appendChild(group);
         });
@@ -389,10 +410,11 @@
         return card;
     }
 
-    function lineText(label, text) {
+    function lineText(label, text, ts) {
         var p = el("p", "admin-line-p");
         p.appendChild(el("strong", "", label + ": "));
-        p.appendChild(document.createTextNode(text));
+        p.appendChild(document.createTextNode(text + " "));
+        p.appendChild(timeChip(ts));
         return p;
     }
 
@@ -412,6 +434,7 @@
             var row = el("div", "admin-line");
             row.appendChild(el("span", "admin-line-text",
                 teamLabel(d.tid) + " \u2014 release " + playerName(d.pid) + " (dropped in week " + d.week_number + ")"));
+            row.appendChild(timeChip(d.dropped_at));
             row.appendChild(button("Undo drop", "admin-btn admin-btn-small admin-btn-ghost", async function () {
                 var ok = await confirmDialog("Undo this drop?",
                     playerName(d.pid) + " goes back on " + teamLabel(d.tid) + "'s roster and leaves the free agent list.", "Undo drop");
@@ -459,57 +482,6 @@
             }));
             card.appendChild(row);
         });
-        return card;
-    }
-
-    // Only the commissioner can flag a player as IR-eligible; GMs then get
-    // an IR checkbox next to that player on their roster page.
-    function renderIrEligibility() {
-        var card = el("div", "card");
-        card.appendChild(el("h3", "", "IR Eligibility"));
-        var countNote = el("p", "admin-note");
-        function updateCount() {
-            var n = players.filter(function (p) { return p.ir_eligible; }).length;
-            countNote.textContent = "Automatic: a player is IR-eligible while he is out " + 7 + "+ games (set at each update). Tick a player for a one-off exception; the next update goes back to the automatic rule. " + n + " currently eligible (highlighted green).";
-        }
-        updateCount();
-        card.appendChild(countNote);
-
-        var details = el("details", "admin-details");
-        details.appendChild(el("summary", "", "Show rosters"));
-        teams.forEach(function (team) {
-            var roster = players.filter(function (p) { return p.tid === team.tid; })
-                .sort(function (a, b) { return (a.roster_order || 0) - (b.roster_order || 0); });
-            if (!roster.length) return;
-            var block = el("div", "admin-group");
-            block.appendChild(el("div", "admin-group-title")).appendChild(el("strong", "", teamLabel(team.tid)));
-            roster.forEach(function (p) {
-                var label = el("label", "admin-check admin-ir-row" + (p.ir_eligible ? " is-eligible" : ""));
-                var cb = document.createElement("input");
-                cb.type = "checkbox";
-                cb.checked = !!p.ir_eligible;
-                cb.addEventListener("change", async function () {
-                    var result = await client.from("players_mirror").update({ ir_eligible: cb.checked }).eq("pid", p.pid);
-                    if (result.error) {
-                        console.error("Portal admin: IR flag failed", result.error);
-                        cb.checked = !cb.checked;
-                        toast("Couldn't save -- try again.", "error");
-                        return;
-                    }
-                    p.ir_eligible = cb.checked;
-                    label.classList.toggle("is-eligible", cb.checked);
-                    updateCount();
-                    toast(playerName(p.pid) + (cb.checked ? " is IR-eligible" : " is no longer IR-eligible") + " ✓", "ok");
-                });
-                label.appendChild(cb);
-                label.appendChild(document.createTextNode(" " + playerName(p.pid)));
-                label.appendChild(el("span", "admin-chip admin-chip-ir", "IR ELIGIBLE"));
-                if (p.injury_status && p.injury_status !== "Healthy") label.appendChild(el("span", "admin-chip admin-chip-inj", "INJ \u00b7 " + p.injury_status));
-                block.appendChild(label);
-            });
-            details.appendChild(block);
-        });
-        card.appendChild(details);
         return card;
     }
 

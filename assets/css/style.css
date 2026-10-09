@@ -2716,3 +2716,4 @@ a.sch-tile:hover { background: rgba(10, 37, 64, 0.04); }
 .ir-subhead span { color: var(--muted); font-weight: 700; }
 .ir-kind-back { color: #1a7f37; }
 .ir-none { margin: 0; padding: 10px 12px; }
+.admin-time { color: var(--muted); font-size: 0.72rem; font-weight: 600; white-space: nowrap; margin: 0 6px; }
