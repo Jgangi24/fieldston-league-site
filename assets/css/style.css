@@ -2709,3 +2709,10 @@ a.sch-tile:hover { background: rgba(10, 37, 64, 0.04); }
 
 /* Free Agents: shown instead of the + button for a player this GM dropped this week */
 .fa-dropped-note { font-size: 0.7rem; font-weight: 700; color: #b3261e; white-space: nowrap; }
+.admin-subhead { margin: 14px 0 6px; font-size: 1rem; color: var(--navy, #1a2b4a); }
+
+/* Injury Report: players who returned during the week just simmed */
+.ir-subhead { display: flex; justify-content: space-between; align-items: center; padding: 7px 12px; background: #eef1f5; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--navy); }
+.ir-subhead span { color: var(--muted); font-weight: 700; }
+.ir-kind-back { color: #1a7f37; }
+.ir-none { margin: 0; padding: 10px 12px; }

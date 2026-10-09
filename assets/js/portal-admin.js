@@ -50,7 +50,6 @@
     var currentWeek = refs[3].data ? refs[3].data.current_week_number : 0;
     if (!currentWeek) return showMessage("No weekly sync has run yet -- there's nothing to manage.");
 
-    var state = { week: currentWeek, showApplied: false };
     var lineupRows = [];
 
     // ---- Small helpers --------------------------------------------------
@@ -98,42 +97,6 @@
         toastTimer = setTimeout(function () { toastEl.classList.remove("is-visible"); }, kind === "error" ? 5000 : 2000);
     }
 
-    // Applying is allowed once a request is "won". Non-waiver requests
-    // (lineup, PT, IR) have nothing to contest, so they can be applied
-    // straight from "pending" too.
-    function canApply(req) {
-        return req.status === "won" || (req.status === "pending" && req.type !== "add_drop");
-    }
-
-    async function markApplied(reqs) {
-        var ids = reqs.filter(canApply).map(function (r) { return r.id; });
-        if (!ids.length) return;
-        var result = await client.from("gm_requests")
-            .update({ status: "applied", applied_at: new Date().toISOString(), applied_by: user.id })
-            .in("id", ids);
-        if (result.error) {
-            console.error("Portal admin: mark applied failed", result.error);
-            toast("Couldn't save -- try again.", "error");
-            return;
-        }
-        // IR moves become public once applied: copy them to ir_public.
-        var irMoves = reqs.filter(function (r) { return canApply(r) && r.type === "ir_toggle"; });
-        for (var i = 0; i < irMoves.length; i++) {
-            var move = irMoves[i];
-            var irResult = move.payload.to_ir
-                ? await client.from("ir_public").upsert({ pid: move.payload.pid, tid: move.tid, updated_at: new Date().toISOString() }, { onConflict: "pid" })
-                : await client.from("ir_public").delete().eq("pid", move.payload.pid);
-            if (irResult.error) {
-                console.error("Portal admin: public IR update failed", irResult.error);
-                toast("Applied, but the public IR list didn't update -- is SQL 020 run?", "error");
-                render();
-                return;
-            }
-        }
-        toast("Marked applied ✓", "ok");
-        render();
-    }
-
     function confirmDialog(title, message, yesLabel) {
         return new Promise(function (resolve) {
             var backdrop = el("div", "roster-picker-backdrop");
@@ -163,8 +126,8 @@
 
     async function render() {
         var results = await Promise.all([
-            client.from("gm_requests").select("id,gm_id,tid,type,status,payload,submitted_at").eq("week_number", state.week).order("submitted_at"),
-            client.from("waiver_priority").select("tid,priority_rank").eq("week_number", state.week),
+            client.from("gm_requests").select("id,gm_id,tid,type,status,payload,submitted_at,week_number").gte("week_number", Math.max(currentWeek - 1, 0)).order("submitted_at"),
+            client.from("waiver_priority").select("tid,priority_rank").eq("week_number", currentWeek),
             client.from("lineup_state").select("pid,tid,pt_level,roster_order"),
             client.from("ir_public").select("pid,tid"),
             client.from("dropped_public").select("pid,tid,dropped_by,player_name,week_number,dropped_at").order("dropped_at"),
@@ -174,48 +137,41 @@
             return showMessage("Couldn't load this week's requests -- check your connection and refresh.");
         }
 
-        var allRequests = results[0].data;
+        var allRequests = results[0].data.filter(function (r) { return r.status !== "cancelled"; });
         irRequests = allRequests.filter(function (r) { return r.type === "ir_toggle"; });
         lineupRows = results[2].data;
-        // Who is on IR: the public list, overridden by this week's latest IR request per player.
+        // Who is on IR: the public list (GMs' moves are public at once), overridden by
+        // this week's latest IR request per player in case a public write didn't go through.
         irByPid = {};
         results[3].data.forEach(function (r) { irByPid[r.pid] = true; });
-        allRequests.filter(function (r) { return r.type === "ir_toggle" && r.status !== "cancelled"; })
+        irRequests.filter(function (r) { return r.week_number === currentWeek; })
             .forEach(function (r) { irByPid[r.payload.pid] = !!r.payload.to_ir; });
+        var rankByTid = {};
+        results[1].data.forEach(function (w) { rankByTid[w.tid] = w.priority_rank; });
+
         // Drops still waiting on the commissioner: the latest BBGM export still has the player on that team.
         var pendingDrops = (results[4].error ? [] : results[4].data).filter(function (d) {
             var p = playerByPid[d.pid];
             return p && p.tid === d.tid;
         });
         if (results[4].error) console.error("Portal admin: couldn't load drops (is SQL 021 run?)", results[4].error);
-        var rankByTid = {};
-        results[1].data.forEach(function (w) { rankByTid[w.tid] = w.priority_rank; });
 
-        var visible = allRequests.filter(function (r) {
-            if (r.status === "cancelled") return false;
-            return state.showApplied || r.status !== "applied";
+        // A claim is finished once the last BBGM export has the player on the claiming team.
+        var claims = allRequests.filter(function (r) { return r.type === "add_drop"; });
+        var openClaims = claims.filter(function (c) {
+            var p = playerByPid[c.payload.add_pid];
+            return !(p && p.tid === c.tid);
         });
 
         root.innerHTML = "";
         root.appendChild(el("h1", "", "Commissioner Dashboard"));
-        root.appendChild(renderToolbar(allRequests, visible, rankByTid));
-
-        var addDrops = visible.filter(function (r) { return r.type === "add_drop"; });
-        var irToggles = visible.filter(function (r) { return r.type === "ir_toggle"; });
-
-        if (pendingDrops.length) root.appendChild(renderDrops(pendingDrops));
-
-        if (!visible.length && !pendingDrops.length) {
-            var none = el("div", "card");
-            none.appendChild(el("p", "placeholder", "Nothing waiting on you for Week " + state.week + "."));
-            root.appendChild(none);
-        }
-
-        root.appendChild(renderAddDrops(addDrops, rankByTid));
+        root.appendChild(renderStepOne(openClaims, rankByTid));
+        root.appendChild(renderDrops(pendingDrops));
+        root.appendChild(renderClaimsToEnter(openClaims, rankByTid));
         root.appendChild(renderLineups());
-        root.appendChild(renderIrToggles(irToggles));
         root.appendChild(renderOnIr());
         root.appendChild(renderIrEligibility());
+        root.appendChild(renderAllRequests(allRequests));
     }
 
     // Week 14 is the last regular-season week and runs past a normal 7 days, so it
@@ -223,10 +179,10 @@
     // commissioner from the week before.
     function seasonReminder() {
         if (currentWeek === 13) {
-            return "Heads up: after this week, Week 14 is the last week of the season. Sim it with Play \u2192 Until playoffs (not One week).";
+            return "Heads up: after this week, Week 14 is the last week of the season. Sim it with Play → Until playoffs (not One week).";
         }
         if (currentWeek === 14) {
-            return "Next sim is Week 14, the last regular-season week: in BBGM choose Play \u2192 Until playoffs (not One week).";
+            return "Next sim is Week 14, the last regular-season week: in BBGM choose Play → Until playoffs (not One week).";
         }
         if (currentWeek >= 15) {
             return "The regular season is complete. Playoffs are next.";
@@ -234,43 +190,57 @@
         return null;
     }
 
-    function renderToolbar(allRequests, visible, rankByTid) {
+    // Everything on this page is a to-do for BBGM. Items clear themselves after your next
+    // export shows them done, so there is nothing to tick off. The one button is Resolve
+    // Waivers, so claims are settled before you sim.
+    function renderStepOne(openClaims, rankByTid) {
         var card = el("div", "card admin-toolbar");
-
         var reminder = seasonReminder();
         if (reminder) card.appendChild(el("p", "admin-reminder", reminder));
+        card.appendChild(el("h3", "", "Week " + currentWeek + " — before you sim"));
+        card.appendChild(el("p", "admin-note", "Work down this page: 1 resolve waivers, 2 release dropped players, 3 enter the winning claims, 4 set IR, playing time and lineups. Items disappear by themselves after your next export."));
 
-        var weekRow = el("div", "admin-row");
-        var prev = button("◀", "admin-btn admin-btn-ghost", function () { state.week--; render(); });
-        prev.disabled = state.week <= 1;
-        var next = button("▶", "admin-btn admin-btn-ghost", function () { state.week++; render(); });
-        next.disabled = state.week >= currentWeek;
-        weekRow.appendChild(prev);
-        weekRow.appendChild(el("strong", "admin-week", "Week " + state.week));
-        weekRow.appendChild(next);
-        var label = el("label", "admin-check");
-        var cb = document.createElement("input");
-        cb.type = "checkbox";
-        cb.checked = state.showApplied;
-        cb.addEventListener("change", function () { state.showApplied = cb.checked; render(); });
-        label.appendChild(cb);
-        label.appendChild(document.createTextNode(" Show applied"));
-        weekRow.appendChild(label);
-        card.appendChild(weekRow);
+        var order = Object.keys(rankByTid).sort(function (a, b) { return rankByTid[a] - rankByTid[b]; });
+        if (order.length) {
+            card.appendChild(el("p", "admin-note", "Waiver order: " + order.map(function (tid, i) {
+                return (i + 1) + ". " + teamLabel(parseInt(tid, 10));
+            }).join("  ·  ")));
+        }
 
-        var pendingCount = allRequests.filter(function (r) { return r.status === "pending"; }).length;
-        var applyable = visible.filter(canApply);
+        var pending = openClaims.filter(function (c) { return c.status === "pending"; });
+        card.appendChild(el("h4", "admin-subhead", "1. Resolve waivers"));
+        if (!pending.length) {
+            card.appendChild(el("p", "placeholder", openClaims.length ? "All claims are resolved." : "No claims waiting."));
+            return card;
+        }
 
-        var actions = el("div", "admin-row");
-        var resolveBtn = button("Resolve Waivers", "admin-btn", async function () {
+        // Preview: per player, who would win by waiver priority.
+        var groups = {};
+        pending.forEach(function (c) { (groups[c.payload.add_pid] = groups[c.payload.add_pid] || []).push(c); });
+        Object.keys(groups).forEach(function (pid) {
+            var list = groups[pid].slice().sort(function (a, b) { return (rankByTid[a.tid] || 99) - (rankByTid[b.tid] || 99); });
+            var group = el("div", "admin-group" + (list.length > 1 ? " admin-contested" : ""));
+            var title = el("div", "admin-group-title");
+            title.appendChild(el("strong", "", "Add " + playerName(parseInt(pid, 10))));
+            if (list.length > 1) title.appendChild(el("span", "admin-badge admin-badge-contested", list.length + " teams want him"));
+            group.appendChild(title);
+            list.forEach(function (c, i) {
+                var row = el("div", "admin-line");
+                row.appendChild(el("span", "admin-line-text", teamLabel(c.tid) + " — " + claimDropText(c) +
+                    (rankByTid[c.tid] ? " — priority #" + rankByTid[c.tid] : "")));
+                row.appendChild(el("span", "admin-badge admin-badge-" + (i === 0 ? "won" : "lost"), i === 0 ? "wins" : "loses"));
+                group.appendChild(row);
+            });
+            card.appendChild(group);
+        });
+        var resolveBtn = button("Resolve Waivers (" + pending.length + " claim" + (pending.length === 1 ? "" : "s") + ")", "admin-btn", async function () {
             var ok = await confirmDialog(
-                "Resolve Week " + state.week + " waivers?",
-                "Contested add/drop claims go to the team with the best waiver priority; every other pending request is approved. " +
-                pendingCount + " pending request" + (pendingCount === 1 ? "" : "s") + " will change status.",
+                "Resolve Week " + currentWeek + " waivers?",
+                "Contested claims go to the team with the best waiver priority and the rest are lost. GMs will see whether their claim won.",
                 "Resolve"
             );
             if (!ok) return;
-            var result = await client.rpc("resolve_waivers", { p_week_number: state.week });
+            var result = await client.rpc("resolve_waivers", { p_week_number: currentWeek });
             if (result.error) {
                 console.error("Portal admin: resolve failed", result.error);
                 toast("Couldn't resolve -- try again.", "error");
@@ -279,71 +249,53 @@
             toast("Waivers resolved ✓", "ok");
             render();
         });
-        resolveBtn.disabled = !pendingCount;
-        actions.appendChild(resolveBtn);
+        card.appendChild(resolveBtn);
+        return card;
+    }
 
-        var allBtn = button("Mark all applied (" + applyable.length + ")", "admin-btn admin-btn-secondary", async function () {
-            var ok = await confirmDialog("Mark everything applied?", "This marks " + applyable.length + " request" + (applyable.length === 1 ? "" : "s") + " as entered in BBGM.", "Mark applied");
-            if (ok) markApplied(applyable);
+    function claimDropText(c) {
+        return c.payload.drop_pid ? "drop " + playerName(c.payload.drop_pid) : "no drop (open roster spot)";
+    }
+
+    // Won claims still to be entered in BBGM, plus lost ones (nothing to do).
+    function renderClaimsToEnter(openClaims, rankByTid) {
+        var card = el("div", "card");
+        card.appendChild(el("h3", "", "3. Waiver claims to enter in BBGM"));
+        var won = openClaims.filter(function (c) { return c.status === "won"; })
+            .sort(function (a, b) { return (rankByTid[a.tid] || 99) - (rankByTid[b.tid] || 99); });
+        var lost = openClaims.filter(function (c) { return c.status === "lost"; });
+        var pendingCount = openClaims.filter(function (c) { return c.status === "pending"; }).length;
+        if (pendingCount) card.appendChild(el("p", "admin-note", pendingCount + " claim" + (pendingCount === 1 ? " is" : "s are") + " not resolved yet (step 1)."));
+        if (!won.length && !pendingCount) card.appendChild(el("p", "placeholder", "Nothing to enter."));
+        won.forEach(function (c) {
+            var row = el("div", "admin-line");
+            row.appendChild(el("span", "admin-line-text", teamLabel(c.tid) + " — add " + playerName(c.payload.add_pid) + ", " + claimDropText(c)));
+            card.appendChild(row);
         });
-        allBtn.disabled = !applyable.length;
-        actions.appendChild(allBtn);
-        card.appendChild(actions);
-
-        var order = Object.keys(rankByTid).sort(function (a, b) { return rankByTid[a] - rankByTid[b]; });
-        if (order.length) {
-            card.appendChild(el("p", "admin-note", "Waiver order: " + order.map(function (tid, i) {
-                return (i + 1) + ". " + teamLabel(parseInt(tid, 10));
-            }).join("  ·  ")));
+        if (lost.length) {
+            var details = el("details", "admin-details");
+            details.appendChild(el("summary", "", "Lost claims (nothing to do) — " + lost.length));
+            lost.forEach(function (c) {
+                details.appendChild(el("p", "admin-line-p", teamLabel(c.tid) + " — wanted " + playerName(c.payload.add_pid)));
+            });
+            card.appendChild(details);
         }
         return card;
     }
 
-    function renderAddDrops(addDrops, rankByTid) {
+    // Everything GMs have submitted, for troubleshooting only.
+    function renderAllRequests(allRequests) {
         var card = el("div", "card");
-        card.appendChild(el("h3", "", "Add / Drop Claims"));
-        if (!addDrops.length) {
-            card.appendChild(el("p", "placeholder", "No claims."));
-            return card;
-        }
-
-        var groups = {};
-        addDrops.forEach(function (r) {
-            var key = r.payload.add_pid || "drop-only-" + r.id;
-            (groups[key] = groups[key] || []).push(r);
+        var details = el("details", "admin-details");
+        details.appendChild(el("summary", "", "All requests (troubleshooting) — " + allRequests.length));
+        allRequests.forEach(function (r) {
+            var text = r.type === "add_drop" ? "add " + playerName(r.payload.add_pid) + ", " + claimDropText(r)
+                : r.type === "ir_toggle" ? playerName(r.payload.pid) + " → " + (r.payload.to_ir ? "IR" : "active")
+                : r.type;
+            var line = el("p", "admin-line-p", teamLabel(r.tid) + " — " + text + " (" + r.status + ")");
+            details.appendChild(line);
         });
-
-        Object.keys(groups).forEach(function (key) {
-            var claims = groups[key].slice().sort(function (a, b) {
-                return (rankByTid[a.tid] || 99) - (rankByTid[b.tid] || 99);
-            });
-            var contested = claims.length > 1;
-            var group = el("div", "admin-group" + (contested ? " admin-contested" : ""));
-
-            var title = el("div", "admin-group-title");
-            var first = claims[0].payload;
-            title.appendChild(el("strong", "", first.add_pid ? "Add " + playerName(first.add_pid) : "Drop only"));
-            if (contested) title.appendChild(el("span", "admin-badge admin-badge-contested", claims.length + " teams want this player"));
-            group.appendChild(title);
-
-            var anyPending = claims.some(function (c) { return c.status === "pending"; });
-            claims.forEach(function (claim, i) {
-                var row = el("div", "admin-line");
-                var text = el("span", "admin-line-text");
-                text.textContent = teamLabel(claim.tid) + (claim.payload.drop_pid ? " — drop " + playerName(claim.payload.drop_pid) : " — no drop (open roster spot)") +
-                    (rankByTid[claim.tid] ? " — priority #" + rankByTid[claim.tid] : "");
-                row.appendChild(text);
-                if (contested && anyPending && claim.status === "pending" && i === 0) {
-                    row.appendChild(el("span", "admin-badge admin-badge-won", "would win"));
-                }
-                row.appendChild(badge(claim.status));
-                if (canApply(claim)) {
-                    row.appendChild(button("Mark applied", "admin-btn admin-btn-small", function () { markApplied([claim]); }));
-                }
-                group.appendChild(row);
-            });
-            card.appendChild(group);
-        });
+        card.appendChild(details);
         return card;
     }
 
@@ -372,7 +324,7 @@
 
     function renderLineups() {
         var card = el("div", "card");
-        card.appendChild(el("h3", "", "Lineups & Playing Time to enter in BBGM"));
+        card.appendChild(el("h3", "", "4. IR, playing time & lineups to enter in BBGM"));
         var any = false;
 
         teams.forEach(function (t) {
@@ -451,10 +403,11 @@
     // after the next export shows the player gone.
     function renderDrops(drops) {
         var card = el("div", "card");
-        card.appendChild(el("h3", "", "Drops to release in BBGM"));
+        card.appendChild(el("h3", "", "2. Players to release in BBGM"));
         card.appendChild(el("p", "admin-note",
             "These players are already off the roster and listed as free agents on the site. Release each one in BBGM before the next sim (do this before entering waiver claims). " +
             "They clear from this list after the next export shows them released."));
+        if (!drops.length) card.appendChild(el("p", "placeholder", "Nobody to release."));
         drops.forEach(function (d) {
             var row = el("div", "admin-line");
             row.appendChild(el("span", "admin-line-text",
@@ -509,26 +462,6 @@
         return card;
     }
 
-    function renderIrToggles(irToggles) {
-        var card = el("div", "card");
-        card.appendChild(el("h3", "", "IR Moves"));
-        if (!irToggles.length) {
-            card.appendChild(el("p", "placeholder", "No IR moves."));
-            return card;
-        }
-        irToggles.forEach(function (req) {
-            var row = el("div", "admin-line");
-            row.appendChild(el("span", "admin-line-text",
-                teamLabel(req.tid) + " — " + playerName(req.payload.pid) + " → " + (req.payload.to_ir ? "move to IR" : "move to active")));
-            row.appendChild(badge(req.status));
-            if (canApply(req)) {
-                row.appendChild(button("Mark applied", "admin-btn admin-btn-small", function () { markApplied([req]); }));
-            }
-            card.appendChild(row);
-        });
-        return card;
-    }
-
     // Only the commissioner can flag a player as IR-eligible; GMs then get
     // an IR checkbox next to that player on their roster page.
     function renderIrEligibility() {
@@ -537,7 +470,7 @@
         var countNote = el("p", "admin-note");
         function updateCount() {
             var n = players.filter(function (p) { return p.ir_eligible; }).length;
-            countNote.textContent = "Tick a player to let their GM move them to IR. " + n + " currently eligible (highlighted green).";
+            countNote.textContent = "Automatic: a player is IR-eligible while he is out " + 7 + "+ games (set at each update). Tick a player for a one-off exception; the next update goes back to the automatic rule. " + n + " currently eligible (highlighted green).";
         }
         updateCount();
         card.appendChild(countNote);

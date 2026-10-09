@@ -132,7 +132,7 @@
 
         var [playersResult, pendingResult, irResult] = await Promise.all([
             client.from("players_mirror").select("pid,ir_eligible").in("pid", pidsInPanel),
-            client.from("gm_requests").select("id,type,tid,payload").eq("gm_id", user.id).eq("tid", tid).eq("week_number", weekNumber).eq("status", "pending"),
+            client.from("gm_requests").select("id,type,tid,payload,status").eq("gm_id", user.id).eq("tid", tid).eq("week_number", weekNumber).in("status", ["pending", "won", "lost"]),
             client.from("gm_requests").select("payload,submitted_at").eq("gm_id", user.id).eq("tid", tid).eq("week_number", weekNumber)
                 .eq("type", "ir_toggle").in("status", ["pending", "applied"]).order("submitted_at", { ascending: true }),
         ]);
@@ -312,14 +312,20 @@
             label.textContent = "Waiver claim: ";
             var text = document.createElement("span");
             text.textContent = claimText(claim) + " ";
-            var cancel = document.createElement("button");
-            cancel.type = "button";
-            cancel.className = "roster-claim-cancel";
-            cancel.textContent = "Cancel claim";
-            cancel.addEventListener("click", cancelClaim);
             el.appendChild(label);
             el.appendChild(text);
-            el.appendChild(cancel);
+            if (claim.status === "pending") {
+                var cancel = document.createElement("button");
+                cancel.type = "button";
+                cancel.className = "roster-claim-cancel";
+                cancel.textContent = "Cancel claim";
+                cancel.addEventListener("click", cancelClaim);
+                el.appendChild(cancel);
+            } else {
+                var result = document.createElement("strong");
+                result.textContent = claim.status === "won" ? "\u2014 won \u2713 (the commissioner will enter it in BBGM)" : "\u2014 lost (another team had waiver priority)";
+                el.appendChild(result);
+            }
             el.hidden = false;
         });
     }
@@ -399,7 +405,7 @@
         var pid = parseInt(row.dataset.pid, 10);
         var name = rowName(row);
         closePicker();
-        if (claim && claim.tid === tid && claim.payload.drop_pid === pid) {
+        if (claim && claim.status === "pending" && claim.tid === tid && claim.payload.drop_pid === pid) {
             showToast("Cancel your waiver claim first \u2014 it drops " + name + ".", "error");
             return;
         }
@@ -421,6 +427,7 @@
             await client.from("gm_requests").delete()
                 .eq("gm_id", user.id).eq("type", "ir_toggle").eq("week_number", weekNumber).eq("status", "pending")
                 .filter("payload->>pid", "eq", String(pid));
+            await client.from("ir_public").delete().eq("pid", pid);   // no longer on IR once he's gone
             removePlayerRows(panel, pid);
             lineupByTid[tid] = orderMap(tbodies[0]);
             showToast(name + " dropped \u2713", "ok");
@@ -685,8 +692,8 @@
         tbodies.forEach(function (tbody) { setRowIr(tbody, pid, toIr); });
         lineupByTid[tid] = orderMap(tbodies[0]);
         var ok = await saveAndRefresh(panel, tid, function () {
-            // The commissioner's IR changes go live at once (no request to approve).
-            return isCommissioner ? saveIrAsCommissioner(tid, pid, toIr) : upsertPendingRequest(tid, "ir_toggle", pid, { to_ir: toIr });
+            // IR changes go live for everyone at once; a GM's also leaves a request as the commissioner's reminder to enter it in BBGM.
+            return isCommissioner ? saveIrAsCommissioner(tid, pid, toIr) : saveIrAsGm(tid, pid, toIr);
         });
         if (!ok) {   // put it back the way it was
             tbodies.forEach(function (tbody) { setRowIr(tbody, pid, !toIr); });
@@ -783,6 +790,25 @@
             .filter("payload->>pid", "eq", String(pid))
             .filter("payload->>to_ir", "eq", String(!toIr));
         if (cancel.error) throw cancel.error;
+    }
+
+    // Public list first (so everyone sees it now), then the private request that tells the
+    // commissioner to enter it in BBGM. If the request fails, the public list is put back.
+    async function writeIrPublic(tid, pid, toIr) {
+        var result = toIr
+            ? await client.from("ir_public").upsert({ pid: pid, tid: tid, updated_at: new Date().toISOString() }, { onConflict: "pid" })
+            : await client.from("ir_public").delete().eq("pid", pid);
+        if (result.error) throw result.error;
+    }
+
+    async function saveIrAsGm(tid, pid, toIr) {
+        await writeIrPublic(tid, pid, toIr);
+        try {
+            await upsertPendingRequest(tid, "ir_toggle", pid, { to_ir: toIr });
+        } catch (err) {
+            try { await writeIrPublic(tid, pid, !toIr); } catch (undoErr) { console.error("Portal: couldn't undo public IR", undoErr); }
+            throw err;
+        }
     }
 
     async function saveLineupOrder(tid, orderByPid) {
