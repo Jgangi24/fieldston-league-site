@@ -307,7 +307,7 @@
             var text = r.type === "add_drop" ? "add " + playerName(r.payload.add_pid) + ", " + claimDropText(r)
                 : r.type === "ir_toggle" ? playerName(r.payload.pid) + " → " + (r.payload.to_ir ? "IR" : "active")
                 : r.type;
-            var line = el("p", "admin-line-p", teamLabel(r.tid) + " — " + text + " (" + r.status + ")");
+            var line = el("p", "admin-line-p", teamLabel(r.tid) + " — " + text + " (" + (r.type === "add_drop" ? r.status : "live on site") + ")");
             line.appendChild(document.createTextNode(" "));
             line.appendChild(timeChip(r.submitted_at));
             details.appendChild(line);
