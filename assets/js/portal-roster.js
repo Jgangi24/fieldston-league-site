@@ -55,6 +55,16 @@
             (lineupOrderByTid[row.tid] = lineupOrderByTid[row.tid] || {})[row.pid] = row.roster_order;
         }
     });
+    // Waiver claims the commissioner has resolved are live straight away: the added player
+    // joins that roster (on the bench) and the dropped player leaves it, even before the
+    // claim is entered in BBGM. Done before lineups/PT are applied so the new row gets them.
+    try {
+        var claimsResult = await client.from("claims_public").select("add_pid,tid,drop_pid");
+        await applyWonClaims(claimsResult.data || []);
+    } catch (err) {
+        console.error("Portal: couldn't show won waiver claims", err);
+    }
+
     Array.prototype.forEach.call(document.querySelectorAll(".team-panel[data-tid]"), function (panel) {
         var order = lineupOrderByTid[panel.dataset.tid];
         Array.prototype.forEach.call(panel.querySelectorAll(".roster-table tbody"), function (tbody) {
@@ -387,6 +397,47 @@
         stopAdding(panel);
         renderClaims();
         showToast("Claim submitted \u2713", "ok");
+    }
+
+    // Ready-made rows for every player (built by build_gms.py), fetched only when a claim needs one.
+    async function applyWonClaims(claims) {
+        var wanted = claims.filter(function (c) {
+            return document.querySelector(".team-panel[data-tid='" + c.tid + "']");
+        });
+        if (!wanted.length) return;
+        var res = await fetch("../data/roster_rows.html?t=" + Date.now());
+        if (!res.ok) throw new Error("roster_rows.html " + res.status);
+        var holder = document.createElement("template");
+        holder.innerHTML = await res.text();
+        var rowsByPid = {};   // pid -> {window key or "ratings": <tr>}
+        Array.prototype.forEach.call(holder.content.querySelectorAll("tr"), function (tr) {
+            var pid = tr.dataset.pid || tr.dataset.rpid;
+            var key = tr.dataset.win || "ratings";
+            (rowsByPid[pid] = rowsByPid[pid] || {})[key] = tr;
+        });
+
+        wanted.forEach(function (c) {
+            var panel = document.querySelector(".team-panel[data-tid='" + c.tid + "']");
+            var source = rowsByPid[c.add_pid];
+            if (!source) return;
+            Array.prototype.forEach.call(panel.querySelectorAll(".roster-table tbody"), function (tbody) {
+                var windowEl = tbody.closest("[data-tab-panel]");
+                var key = windowEl ? windowEl.dataset.tabPanel : null;
+                var template = source[key];
+                if (!template) return;
+                var isRatings = key === "ratings";
+                var attr = isRatings ? "data-rpid" : "data-pid";
+                if (tbody.querySelector("tr[" + attr + "='" + c.add_pid + "']")) return;   // the export already has him here
+                if (c.drop_pid) {
+                    var dropRow = tbody.querySelector("tr[" + attr + "='" + c.drop_pid + "']");
+                    if (dropRow) dropRow.remove();
+                }
+                var row = template.cloneNode(true);
+                // new players start on the bench, like in BBGM: after the active rows, before IR
+                tbody.insertBefore(row, tbody.querySelector(".ir-divider"));
+                if (!isRatings) layoutIrSection(tbody);
+            });
+        });
     }
 
     function removePlayerRows(panel, pid) {

@@ -21,6 +21,13 @@
     try {
         var droppedResult = await client.from("dropped_public").select("pid,tid,dropped_by,week_number");
         var dropped = droppedResult.data || [];
+        // Won waiver claims swap two players on the site right away: the added player is no
+        // longer a free agent and the player dropped for him is one.
+        var claimsResult = await client.from("claims_public").select("add_pid,tid,gm_id,drop_pid,week_number");
+        var wonClaims = claimsResult.data || [];
+        wonClaims.forEach(function (c) {
+            if (c.drop_pid) dropped.push({ pid: c.drop_pid, tid: c.tid, dropped_by: c.gm_id, week_number: c.week_number });
+        });
         var tpl = document.getElementById("fa-rostered");
         var tbody = document.querySelector("table.stats-table tbody");
         var revealed = 0;
@@ -43,8 +50,13 @@
                 if (user && d.dropped_by === user.id) myDroppedPids[d.pid] = d.week_number;
             });
         }
+        var taken = 0;
+        wonClaims.forEach(function (c) {
+            var row = tbody && tbody.querySelector("tr[data-pid='" + c.add_pid + "']");
+            if (row) { row.remove(); taken++; }
+        });
         var count = document.getElementById("fa-count");
-        if (count && revealed) count.textContent = String(parseInt(count.textContent, 10) + revealed);
+        if (count && (revealed || taken)) count.textContent = String(parseInt(count.textContent, 10) + revealed - taken);
     } catch (err) {
         console.error("Portal: couldn't load recent drops", err);
     }
