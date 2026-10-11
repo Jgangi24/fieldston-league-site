@@ -2717,19 +2717,3 @@ a.sch-tile:hover { background: rgba(10, 37, 64, 0.04); }
 .ir-kind-back { color: #1a7f37; }
 .ir-none { margin: 0; padding: 10px 12px; }
 .admin-time { color: var(--muted); font-size: 0.72rem; font-weight: 600; white-space: nowrap; margin: 0 6px; }
-
-/* Transactions page */
-.txn-row { display: grid; grid-template-columns: minmax(120px, 190px) 1fr auto; align-items: center; gap: 10px 14px; padding: 10px 14px; border-top: 1px solid var(--border); }
-.txn-team { display: inline-flex; align-items: center; gap: 8px; color: var(--navy); text-decoration: none; min-width: 0; }
-.txn-team-name { display: flex; flex-direction: column; font-weight: 700; line-height: 1.2; min-width: 0; }
-.txn-team-name small { color: var(--muted); font-weight: 600; font-size: 0.74rem; }
-.txn-move { display: flex; gap: 8px; align-items: baseline; font-size: 0.95rem; }
-.txn-move b { flex: none; width: 62px; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; }
-.txn-add b { color: #1a7f37; }
-.txn-drop b { color: #b3261e; }
-.txn-move a { color: var(--navy); font-weight: 600; text-decoration: none; }
-.txn-when { color: var(--muted); font-size: 0.74rem; font-weight: 600; white-space: nowrap; }
-@media (max-width: 600px) {
-    .txn-row { grid-template-columns: 1fr auto; }
-    .txn-what { grid-column: 1 / -1; grid-row: 2; }
-}
